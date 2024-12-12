@@ -1,0 +1,278 @@
+\section{Short Refresher on Probability}
+
+In this section, we briefly recap some important quantities and formulas in probability that are relevant for us in quantum mechanics. Derivations and more discussion can be found in the first chapter of Griffiths.
+
+\begin{itemize}
+    \item First, given a random sample, the probability that we pick an element $j$ from the sample is
+        \begin{equation}
+            \rho(j) = \frac{N(j)}{N},\label{ProbabilityDiscrete}
+        \end{equation}
+        where $N(j)$ is the number of times $j$ appears in the sample, and $N$ is the total number of elements in the sample.
+    \item We expect, intuitively, that the sum of the probabilities of all the elements in the sample would be equal to 1, and that is exactly what we get. Quantitatively:
+        \begin{equation}
+            \sum_j \rho(j) = 1.
+        \end{equation}
+    \item The next interesting quantities we will want to look at are averages. The average of some \textit{observable} $j$ (same letter, but slightly different meaning now), such as the age in a group of people in a room, is given by the following:
+        \begin{equation}
+            \braket{j} = \sum_j j\rho(j).\label{MeanDiscrete}
+        \end{equation}
+        We can see this with an example, continuing with the example of ages of people in a room. Let's say there are three 21 year olds, four 22 year olds, and five 23 year olds. We do the following:
+        \begin{equation*}
+            \braket{j} = \frac{3\cdot21 + 4\cdot22 + 5\cdot23}{12} = \frac{3}{12}\cdot21 + \frac{4}{12}\cdot = \frac{5}{12}\cdot23 = \sum_j j\frac{N(j)}{j}.
+        \end{equation*}
+        By virtue of Eq.~\eqref{ProbabilityDiscrete}, the above becomes Eq.~\eqref{MeanDiscrete}.
+    \item In a similar manner, we can determine the average of $j^2$:
+        \begin{equation}
+            \braket{j^2} = \sum_j j^2\rho(j).
+        \end{equation}
+    \item Generally, then, the average of any function of $j$ is
+        \begin{equation}
+            \braket{f(j)} = \sum_j f(j) \rho(j).
+        \end{equation}
+\end{itemize}
+
+
+\sep
+
+
+\begin{itemize}
+    \item Jumping to the continuous case (and into physics world), our interpretation of $\rho(x)$ where $x$ is some continuous variable, is that the quantity
+        \begin{equation}
+            \rho(x) \dd x
+        \end{equation}
+        is the probability of finding a particle between $x$ and $x+\dd x$. So, 
+        \begin{equation}
+            P(x \in [a,b]) = \int_a^b \rho(x) \dd x.
+        \end{equation}
+    \item As in the discrete case, the particle has to be \textit{somewhere}, so we expect that if we integrate the probability over all space the result must be one:
+        \begin{equation}
+            \int_{-\infty}^{\infty} \rho(x) = 1 \;\dd x.
+        \end{equation}
+    \item Further, the idea of averages carries over as one would expect:
+        \begin{equation}
+            \braket{f(x)} = \int_a^b f(x)\rho(x) \;\dd x.
+        \end{equation}
+    \item Jumping back to quantum, we know that Born's interpretation of the quantum wavefunction $\psi$ is that its (modulus) square is the probability, so
+        \begin{equation}
+            \braket{f(x)} = \int_a^b f(x) \abs{\psi}^2 \;\dd x.
+        \end{equation}
+    \item Looking specifically at the average of $x$ (and dropping integration limits until we know where we want to integrate):
+        \begin{equation}
+            \braket{x} = \int x\abs{\psi}^2 \;\dd x.
+        \end{equation}
+    \item Since $p=mv = m\dd x/\dd t$, 
+        \begin{align*}
+            \braket{p} &= m\diff{}{t} \int x\abs{\psi}^2 \;\dd x, \\
+            &= m\int x x\diffp{}{t}\abs{\psi}^2 \;\dd,
+        \end{align*}
+        where, when bringing the total time derivative inside the integral, we now have $x$ dependence, so the total derivative becomes a partial derivative.
+    \item Now, from the SE:
+        \begin{gather}
+            i\hbar \diffp{\psi}{t} = -\frac{\hbar^2}{2m} \diffp[2]{\psi}{x} + V\psi, \\
+            \diffp{\psi}{t} = i\frac{\hbar}{2m} \diffp[2]{\psi}{x} -\frac{i}{\hbar} V\psi.\label{MomentumAverageDeriv1}
+        \end{gather}
+        The complex conjugate is:
+        \begin{equation}
+            \diffp{\psi^*}{t} = -i\frac{\hbar}{2m} \diffp[2]{\psi^*}{x} + \frac{i}{\hbar} V\psi.\label{MomentumAverageDeriv2}
+        \end{equation}
+        Now, multiplying \eqref{MomentumAverageDeriv1} by $\psi^*$ (in front) and \eqref{MomentumAverageDeriv2} by $\psi$ (also in front), we get:
+        \begin{equation*}
+            \psi^*\diffp{\psi}{t} + \psi\diffp{\psi^*}{t} = \frac{i\hbar}{2m}\psi^*\diffp[2]{\psi}{x} - \frac{i}{\hbar} V\psi^*\psi - \frac{i\hbar}{2m} \psi\diffp[2]{\psi^*}{x} + \frac{i}{\hbar}V\psi\psi^*.
+        \end{equation*}
+        The potential terms will cancel, since $\psi\psi^* = \psi^*\psi$, so we have:
+        \begin{equation*}
+            \psi^*\diffp{\psi}{t} + \psi\diffp{\psi^*}{t} = \frac{i\hbar}{2m}\left[\psi^*\diffp[2]{\psi}{x}- \psi\diffp[2]{\psi^*}{x}\right].
+        \end{equation*}
+    \item We can do an inverse product-rule now to bring out one of the $x$ derivatives:
+        \begin{equation*}
+            \psi^*\diffp{\psi}{t} + \psi\diffp{\psi^*}{t} = \frac{i\hbar}{2m}\diffp{}{x}\left[\psi^*\diffp{\psi}{x}- \psi\diffp{\psi^*}{x}\right].
+        \end{equation*}
+    \item We have now simplified this as much as we really can; the expression on the left side of the equals sign is just the time derivative of the modulus square of the wavefunction, so we can just replace it in the integral with the expression on the right hand side of the equals sign:
+        \begin{equation*}
+            m\int x\diffp{}{t}\abs{\psi}^2 \;\dd x = \frac{i\hbar}{2}\int x\diffp{}{x}\left[\psi^*\diffp{\psi}{x}- \psi\diffp{\psi^*}{x}\right] \dd x.
+        \end{equation*}
+    \item If we do integration by parts, we get:
+        \begin{equation*}
+            \rightarrow -\frac{i\hbar}{2} \int \diff{x}{x} \left(\psi^*\diffp{\psi}{x} - \psi\diffp{\psi^*}{x}\right) \;\dd x + \left[x\left(\psi^*\diffp{\psi}{x} - \psi\diffp{\psi^*}{x}\right)\right]_{-\infty}^{\infty}.
+        \end{equation*}
+        But, since by construction we have that the wavefunction vanishes at infinity, the second term is just zero. Further, obviously, $\dd x/\dd x = 1$, so:
+        \begin{equation*}
+            \braket{p} = -\frac{i\hbar}{2} \int \left(\psi^*\diffp{\psi}{x} - \psi\diffp{\psi^*}{x}\right) \;\dd x.
+        \end{equation*}
+    \item We can do integration by parts on the second term this time to get 
+        \begin{equation*}
+            \braket{p} = -\frac{i\hbar}{2} \int \left(\psi^*\diffp{\psi}{x} + \psi^*\diffp{\psi}{x}\right) \;\dd x - \psi^*\psi \big|_{\-infty}^{\infty},
+        \end{equation*}
+        and, again, the second term will vanish, so all we are left with is
+        \begin{equation}
+            \boxed{\braket{p} = -i\hbar \int \psi^* \diffp{\psi}{x} \;\dd x}.
+        \end{equation}
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item However, we can rewrite this in this way:
+        \begin{equation*}
+            \braket{p} = \int \psi^* \left(-i\hbar \diffp{}{x}\right) \psi \;\dd x,
+        \end{equation*}
+        and similarly, for $x$,
+        \begin{equation*}
+            \braket{x} = \int \psi^* x \psi \;\dd x.
+        \end{equation*}
+    \item Here, we have sort of sandwiched these quantities in between the wave function and its complex conjugate. The quantity in the sandwich is the \textbf{operator}, and it \textit{acts} on a wavefunction. It is much more clear to see this in the case of the momentum operator, since it contains a derivative, the most well-known operator.
+    \item In Dirac notation, which will hopefully be introduced at some point, these are condensed into the following notation:
+        \begin{equation*}
+            \int \psi^* x \psi \;\dd x = \bra{\psi^*} \hat{x} \ket{\psi},\ \text{and}\ \int \psi^* \left(-i\hbar\diffp{}{x}\right)\psi \;\dd x = \bra{\psi^*} \hat{p} \ket{\psi}.
+        \end{equation*}
+    \item So, we have retrieved the quantum prescription:
+        \begin{equation*}
+            \hat{p} = -i\hbar\diffp{}{x}.
+        \end{equation*}
+    \item Interestingly, plugging this into the kinetic energy relation $T = p^2/2m$ nets us
+        \begin{equation}
+            \hat{T} = -\frac{\hbar^2}{2m} \diffp[2]{}{x},
+        \end{equation}
+    \item Which is exactly what shows up in the SE.
+\end{itemize}
+
+
+\sep
+
+\subsection{The Heisenberg Uncertainty Principle}
+\begin{itemize}
+    \item The \textbf{Heisenberg Uncertainty Principle} gives the following relation:
+        \begin{equation}
+            \boxed{\sigma_x \sigma_p \geq \frac{\hbar}{2}.}\label{HeisenUncertPrinciple}
+        \end{equation}
+    \item This essentially says that we cannot know precisely both the position and momentum of a particle simultaneously. There is a rigorous definition relating to Fourier transforms, but in short imagine this: If you have a wave with many modes over a long length of string, if someone asks ``where'' the wave is, you can't give an answer, but you can answer very easily the wavelength (which corresponds to momentum; thanks De Broglie!). However, if you send a single spike through the string, you can very easily tell its position, but cannot give its wavelength. This tradeoff is expressed in Eq.~\eqref{HeisenUncertPrinciple}.
+\end{itemize}
+
+
+\begin{example}
+    A particle of mass $m$ has the wave function:
+
+    \begin{equation}
+        \psi(x,t) = Ax^{-a[(mx^2/\hbar) + it]}.
+    \end{equation}
+
+    \begin{itemize}
+        \item[a)] Find A.
+    \end{itemize}
+
+    \begin{itemize}
+        \item This is just a matter of normalizing the wavefunction using the familiar relation. It is also helpful to know that we can just set $t=0$ to normalize, as we proved that the normalization is not time-dependent. So,
+            \begin{equation*}
+                1 = \int_{-\infty}^{\infty} A^2 e^{-2amx^2/\hbar} \;\dd x = 2A^2 \int_0^{\infty} e^{-2amx^2/\hbar} \;\dd,
+            \end{equation*}
+            since the exponential is an even function. From the integral table we know that 
+            \begin{equation}
+                \int_0^{\infty} x^{2n}e^{-x^2/a^2} \;\dd x = \sqrt{\pi} \frac{(2n)!}{n!} \left(\frac{a}{2}\right)^{2n+1}.
+            \end{equation}
+            Here, we have that $n=0$, and $a = \sqrt{\hbar/2amx^2}$, so
+            \begin{equation*}
+                1 = A^2 \sqrt{\pi} \sqrt{\frac{\hbar}{2amx^2}},
+            \end{equation*}
+            \begin{equation}
+                \boxed{A = \sqrt[4]{\frac{2am}{\hbar\pi}}},
+            \end{equation}
+            meaning our full, normalized wavefunction is
+            \begin{equation}
+                \psi(x,t) = \sqrt[4]{\frac{2am}{\hbar\pi}} e^{-a[(mx^2/\hbar) + it]}.
+            \end{equation}
+    \end{itemize}
+
+    \begin{itemize}
+        \item[b)] For what potential $V(x)$ is this a valid solution to the SE?
+    \end{itemize}
+
+    \begin{itemize}
+        \item We shall just plug this into the SE and solve for $V(x)$:
+            \begin{gather*}
+                i\hbar\diffp{\psi}{t} = -\frac{\hbar^2}{2m} \diffp[2]{\psi}{x} + V(x)\psi, \\
+                i\hbar (-ai) \psi = -\frac{\hbar^2}{2m} \diffp{}{x}\left[-\frac{2amx}{\hbar} \psi\right] + V(x)\psi, \\
+                \hbar a \psi = -\frac{\hbar^2}{2m} \left[-\frac{2am}{\hbar}\psi - \frac{2amx}{\hbar}\psi\left(-\frac{2amx}{\hbar}\right)\right] + V(x)\psi, \\
+                \hbar a = \hbar a - \frac{\hbar^2}{2m} \left(\frac{-2amx}{\hbar}\right)^2 + V(x)\psi, \\
+                \boxed{V(x) = 2ma^2x^2.}
+            \end{gather*}
+    \end{itemize}
+
+
+    \begin{itemize}
+        \item[c)] Calculate $\braket{x}$, $\braket{x^2}$, $\braket{p}$, and $\braket{p^2}$.
+    \end{itemize}
+
+    \begin{itemize}
+        \item Let's start with $\braket{x}$:
+            \begin{equation}
+                \braket{x} = \int_{\infty}^{\infty} x\abs{\psi}^2 \;\dd x = \sqrt{\frac{2am}{\hbar\pi}} \int_{-\infty}^{\infty} xe^{-2amx^2/\hbar} \;\dd x.
+            \end{equation}
+            We can immediately stop here. $x$ is an odd function, and the exponential is an even one. An odd function times an even function gives an odd function, and we are evaluating this function over symmetric intervals, meaning that its zero:
+            \begin{equation}
+                \boxed{\braket{x} = 0}.
+            \end{equation}
+        \item Moving to $\braket{x^2}$:
+            \begin{equation*}
+                \braket{x^2} = \sqrt{\frac{2am}{\hbar\pi}} \int_{-\infty}^{\infty} x^2 e^{-2amx^2/\hbar} \;\dd x = 2\sqrt{\frac{2am}{\hbar\pi}} \int_0^{\infty} xe^{-2amx^2/\hbar} \;\dd x.
+            \end{equation*}
+            We return again to the integral table:
+            \begin{equation}
+                \int_0^{\infty} x^{2n} e^{-x^2/a^2} \;\dd x = \sqrt{\pi} \frac{(2n)!}{n!} \left(\frac{a}{2}\right)^{2n+1}.
+            \end{equation}
+            Here, $n=1$ and $a=\sqrt{\hbar/2am}$, so:
+            \begin{equation*}
+                = \left(\frac{2am}{\hbar\pi}\right)^{1/2} \cdot 2 \cdot \sqrt{\pi} \cdot 2 \cdot \left(\frac{\hbar}{2am}\right)^{3/2} = \frac{1}{2}\left(\frac{\hbar}{2am}\right)^{3/2}\left(\frac{2am}{\hbar}\right)^{1/2} = \boxed{\frac{\hbar}{4am}}.
+            \end{equation*}
+        \item Since $\braket{x} = 0$, $\braket{p} = 0$ too.
+        \item Lastly, we turn to $\braket{p^2}$:
+            \begin{equation*}
+                \braket{p^2} = \intinf \psi^* \left(-i\hbar \diffp{}{x}\right)^2 \psi \;\dd x = -\hbar^2 \intinf \psi^* \diffp[2]{\psi}{x} \;\dd x.
+            \end{equation*}
+            Doing the derivatives:
+            \begin{equation*}
+                \diffp{\psi}{x} = -\frac{2amx}{\hbar}\psi \rightarrow \diffp[2]{\psi}{x} = -\frac{2am}{\hbar}\psi + \frac{4a^2m^2x^2}{\hbar^2}\psi.
+            \end{equation*}
+            So,
+            \begin{align*}
+                \braket{p^2} &= -2\hbar^2 \sqrt{\frac{2am}{\hbar\pi}} \int_0^{\infty} \left(-\frac{2am}{\hbar} + \frac{4a^2m^2x^2}{\hbar^2}\right)e^{-2amx^2/\hbar} \;\dd x, \\
+                &= 4amh\sqrt{\frac{2am}{\hbar\pi}} \int_0^{\infty} e^{-2amx^2/\hbar} \;\dd x -8a^2m^2\sqrt{\frac{2am}{\hbar\pi}} \int_0^{\infty} x^2 e^{-2amx^2\hbar} \;\dd x, \\
+                &= 4am\hbar \sqrt{\frac{2am}{\hbar\pi}} \cdot \frac{\sqrt{\pi}}{2}\sqrt{\frac{\hbar}{2am}} - 8a^2m^2\sqrt{\frac{2am}{\hbar\pi}} \cdot \frac{2\sqrt{\pi}}{8} \left(\frac{h}{2am}\right)^{3/2}, \\
+                &=2am\hbar - 2a^2m^2 \left(\frac{h}{2am}\right) = 2am\hbar - am\hbar, \\
+                \Aboxed{\braket{p^2} &= am\hbar.}
+            \end{align*}
+    \end{itemize}
+
+    \sep
+
+    \begin{itemize}
+        \item[d)] For $\sigma_x$ and $\sigma_p$; are these consistent with the Heisenberg Uncertainty Principle?
+    \end{itemize}
+
+    \sep
+
+    \begin{itemize}
+        \item The definition of the standard deviations is:
+            \begin{equation}
+                \sigma_x = \sqrt{\braket{x^2} - \braket{x}^2},\ \text{and}\ \sigma_p = \sqrt{\braket{p^2} - \braket{p}^2}.
+            \end{equation}
+            So, for $x$:
+            \begin{equation*}
+                \sigma_x = \sqrt{\frac{\hbar}{4am}},
+            \end{equation*}
+            since $\braket{x} = 0$. For $p$:    
+            \begin{equation*}
+                \sigma_p = \sqrt{am\hbar}.
+            \end{equation*}
+            Plugging in:
+            \begin{equation*}
+                \sqrt{\frac{\hbar}{4am}}\cdot\sqrt{am\hbar} = \frac{\hbar}{2} \geq \frac{\hbar}{2}.
+            \end{equation*}
+        \item It does indeed satisfy the Heisenberg Uncertainty Principle!
+    \end{itemize}
+\end{example}
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Notes"
+%%% End:

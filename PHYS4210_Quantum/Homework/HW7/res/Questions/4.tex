@@ -1,0 +1,33 @@
+\section{(6.1c)}
+
+Parity only affects the angular part like $\hat{\Pi} \, Y^m_\ell(\theta,\phi) = Y^m_\ell(\pi - \theta, \phi + \pi).$ Recall,
+
+\begin{equation}
+  Y^m_\ell(\theta,\phi) = \sqrt{\frac{(2\ell + 1)}{4\pi} \frac{(\ell - m)!}{(\ell + m)!}} e^{im\phi} P^m_\ell(\cos\theta).
+\end{equation}
+
+The coefficient obviously doesn't change. The exponential turns into:
+
+\begin{equation}
+  e^{im(\phi+\pi)} = e^{im\pi}e^{im\phi} = (-1)^m e^{im\phi}.
+\end{equation}
+
+For the associated Legendre polynomials, we are taking $\cos\theta \rightarrow \cos(\pi - \theta) = -\cos\theta$ and $\sin\theta \rightarrow \sin(\pi - \theta) = \sin\theta$. Using the definition of the associated Legendre functions and the $\ell$th Legendre function, we can see that taking $x \rightarrow -x$ results in a factor of -1 only if the quantity $\ell+m$ is odd, because we only see $x^2$, but the derivatives will pick up a minus. Therefore, we can have a general factor of $(-1)^{\ell+m}$, which, combining with the $(-1)^m$ from before:
+
+\begin{equation}
+  (-1)^m(-1)^{\ell + m} = (-1)^{2m}(-1)^\ell.
+\end{equation}
+
+-1 raised to any even number is always 1, so all we have leftover is $(-1)^\ell$. Therefore:
+
+\begin{equation}
+  \boxed{\hat{\Pi} \, \psi_{n\ell m}(r,\theta,\phi) = (-1)^\ell \psi_{n\ell m}(r,\theta,\phi).}
+\end{equation}
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW7"
+%%% End:

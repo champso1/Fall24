@@ -1,0 +1,353 @@
+\section{Formalism}
+
+\subsection*{Linear Algebra}
+
+\begin{itemize}
+    \item It'll be helpful for me to define some of the stuff from linear algebra, since I haven't taken it. I know what vectors and matrices and stuff are and transformations, but some of the formalities I do not know, so I'll lay some of it out here. This is all from the Appendix in Griffiths.
+    \item A \textbf{vector space} is a set of vectors and scalars that satisfy \textbf{closure} under \textit{vector addition} and \textit{scalar multiplication}.
+    \item \textit{Vector addition} encompasses a number of things. First, the sum of two vectors is another vector in the vector space, which we'll call $V$; so for $\ket{a},\ket{b} \in V$:
+        \begin{equation*}
+            \ket{a} + \ket{b} = \ket{c}, \quad \ket{c} \in V.
+        \end{equation*}
+    \item Next, vector addition is commutative:
+        \begin{equation*}
+            \ket{a} + \ket{b} = \ket{b} + \ket{a}.
+        \end{equation*}
+    \item It's also associative:
+        \begin{equation*}
+            \ket{a} + (\ket{b} + \ket{c}) = (\ket{a} + \ket{b}) + \ket{c}.
+        \end{equation*}
+    \item There exists a \textit{zero} vector such that when added to any vector $\ket{a}$, it gives $\ket{a}$:
+        \begin{equation*}
+            \ket{a} + \ket{0} = \ket{a}.
+        \end{equation*}
+    \item Lastly, every vector has an \textit{inverse} (denoted with a negative) such that
+        \begin{equation*}
+            \ket{a} + \ket{-a} = \ket{0}.
+        \end{equation*}
+    \item \textit{Scalar multiplcation} also involves a number of properties. First, it is \textit{distributive} (not that the ket $\ket{a}$ and the scalar $a$ are completely different):
+        \begin{equation*}
+            a(\ket{a} + \ket{b}) = a\ket{a} + a\ket{b},
+        \end{equation*}
+        and the same the other way around:
+        \begin{equation*}
+            (a+b)\ket{a} = a\ket{a} + b\ket{a}.
+        \end{equation*}
+    \item It is associative:
+        \begin{equation*}
+            a(b\ket{a}) = (ab)\ket{a}.
+        \end{equation*}
+    \item This is all just normal vector stuff, but it puts it down on the table formally.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item Next, we define a \textbf{linear combination} of vectors to be 
+        \begin{equation*}
+            a\ket{a} + b\ket{b} + c\ket{c} + \ldots
+        \end{equation*}
+        for however many vectors we have. By closure, the resultant vector must also be in the vector space. This vector is said to be \textbf{linearly dependent} on the set $\ket{a},\ket{b},\ldots$, as it can be expressed as a linear combination of them. If any vector \textit{cannot} be expressed as a linear combination of a set of vectors, it is said to be \textbf{linearly independent} of them.
+    \item If every vector in the vector space can be expressed as a linear combination of a set of vectors, then that set of vectors is said to \textbf{span} the space. If each vector in the set is linearly independent of the others, then the set is called a \textbf{basis}. The number of vectors in a basis set is the \textbf{dimension} of the vector space.
+    \begin{itemize}
+        \item The unit vectors $\hat{i},\hat{j},\hat{k}$ are a basis for $\mathbb{R}^3$, as they are all linearly independent of one another, and any other vector in that space can be represented as a linear combination of them. Plus, there are three, which means that the vector space is 3-dimensional, as expected!
+    \end{itemize}
+    \item Then, with respect to a given basis
+        \begin{equation*}
+            \ket{e_1},\ket{e_2}, \ldots \ket{e_n},
+        \end{equation*}
+        we can represent a vector like
+        \begin{equation*}
+            \ket{a} = a_1\ket{e_1} + a_2\ket{e_2} + \ldots a_n\ket{e_n},
+        \end{equation*}
+        or more concretely, we represent vectors as a tuple of $N$ components (an ``$N$-tuple''):
+        \begin{equation*}
+            \ket{a} \rightarrow (a_1,a_2,\ldots,a_n).
+        \end{equation*}
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item Now, we call a vector space that has an \textbf{inner product} as an \textbf{inner product space}. The inner product can be thought of as a generalization to the 3-dimensional dot product, and it is denoted with
+        \begin{equation*}
+            \braket{a|b}.
+        \end{equation*}
+    \item To keep things general, we consider that case that $\ket{a},\ket{b}$ have complex components. With this, we define threee properties:
+        \begin{align*}
+            &\braket{b|a} = \braket{a|b}^*, \\
+            &\braket{a|a} \geq 0, \quad \mathrm{and} \quad \braket{a|a} = 0 \ \mathrm{iff} \ \ket{a}=0, \\
+            &\bra{a}(b\ket{b} + c\ket{c}) = b\braket{a|b} + c\braket{a|c}.
+        \end{align*}
+    \item Now, since the inner product of a vector with itself is greater than (or equal to) zero, we know that its square root must be real. Therefore, we can define the \textbf{norm} of a vector to be
+        \begin{equation*}
+            \norm{a} = \sqrt{\braket{a|a}}.
+        \end{equation*}
+    \item A vector is \textbf{normalized} if it has a norm of 1. Two vectors are \textbf{orthogonal} if their dot product vanishes. If we have a set of vectors that are both orthogonal and normalizes (which we can write compactly as
+        \begin{equation*}
+            \braket{a_i|a_j} = \delta_{ij}
+        \end{equation*}
+    ), then we say it is an \textbf{orthonormal} set. With this, we can retrieve the normal relations for dot products in terms of the components:
+        \begin{equation*}
+            \braket{a|b} = a_1^*b_1 + a_2^*b_2 + \ldots a_n^*b_n.
+        \end{equation*}
+    \item Then, for an orthonormal basis, we can say
+        \begin{equation*}
+            a_i = \braket{e_i|a}.
+        \end{equation*}
+    \item Lastly, we note that if two vectors have an inner product with themselves, then the inner product between them must exist. This follows from the \textbf{Schwartz inequality}:
+        \begin{equation}
+            \abs{\braket{a|b}}^2 \leq \braket{a|a}\braket{b|b}.
+        \end{equation}
+\end{itemize}
+
+
+
+\subsection*{Hilbert Spaces}
+
+\begin{itemize}
+    \item Now that we have defined some of this stuff, we can continue back to quantum mechanics (but not before a little bit more specifics related to linear algebra in QM). 
+    \item First, we can recognize the connection that have sorta already established my seeing that states that operators act on are analogous to vectors that matrices act on. So, we can turn states into vectors and operators into matrices; hence, linear algebra.
+    \item But what vector space are we considering? Well, first we remember that any wavefunction must be normalizable;
+        \begin{equation*}
+            \intinf \abs{\psi(x)} \;\ddx < \infty.
+        \end{equation*}
+        This is a well-known property: functions that satisfy this are called \textbf{square-integrable}. Now, the set of all functions form a vector space themselves, but if we restrict it to to the subset of functions that are square-integrable, it also forms a vector space, and it is this vector space that we call the \textbf{Hilbert Space}. Then: \textit{all wave functions live in Hilbert Space}.
+    \item In this space, which can be infinite dimensional, vectors will have infinite components. So, the inner product can be generalized to an integral:
+        \begin{equation*}
+            \braket{f|g} = \int_a^b f^*(x)g(x)\;\ddx.
+        \end{equation*}
+    \item It can be shown that
+        \begin{equation*}
+            \abs{\int_a^b f^*(x)g(x)\;\ddx} = \sqrt{\int_a^b \abs{f(x)}^2\;\ddx\int_a^b \abs{g(x)}^2\;\ddx},
+        \end{equation*}
+        which is just the Schwartz inequality, so this Hilbert space satisfies the condition we laid out previous for the inner product.
+    \item We also have, obviously that $\braket{f|g} = \braket{g|f}^*$, and the inner product of a w.f. with itself,
+        \begin{equation*}
+            \braket{f|f} = \int_a^b \abs{f(x)}^2 \;\ddx
+        \end{equation*}
+        can be zero if and only if $f(x)=0$.
+    \item A set of functions is orthonormal is
+        \begin{equation*}
+            \braket{f_m|f_n} = \delta_{mn},
+        \end{equation*}
+        which we found for solutions for the infinite square well, for instance.
+    \item Also, a Hilbert space is \textbf{complete}, meaning that we can express any function inside it as a linear combination of other functions in the same Hilbert space:
+        \begin{equation*}
+            f(x) = \sum_n c_n f_n(x),
+        \end{equation*}
+        where the coefficients $c_n$ can be found with Fourier's trick (assuming the set is orthonormal):
+        \begin{equation*}
+            c_n = \braket{f_n | f}.
+        \end{equation*}
+\end{itemize}
+
+
+\sep
+
+
+
+
+\subsection*{Hermitian Observables/Operators}
+
+\begin{itemize}
+    \item We know that the expectation value of any observable $Q$ is given by
+        \begin{equation*}
+            \braket{Q} = \int \psi^* \hat{Q} \psi \;\ddx = \Braket{\psi | \hat{Q} | \psi}.
+        \end{equation*}
+    \item We can also write this in slightly different notation; since the operator $\hat{Q}$ acts on the ket $\ket{\psi}$, we can bring it inside the ket; $\ket{\hat{Q}\psi}$. This will just make it a little easier to write what we want to write in a minute.
+    \item Now, if this is an observable, meaning that it represents a quantity that we can physically observe (like energy, position, momentum), then it's expectation value must be real, meaning that
+        \begin{equation*}
+            \Braket{\psi | \hat{Q} | \psi} = \Braket{\psi | \hat{Q} | \psi}^* = \Braket{\hat{Q}\psi | \psi},
+        \end{equation*}
+        where we have that $\hat{Q} = \hat{Q}*$ in order for this to be satisfied. 
+    \item If we are working with matrices, then we must also transpose. The complex-conjugate and transpose is called the \textbf{Hermition conjugate}, and it is denoted with a dagger. 
+    \item Let's examine the momentum operator as an example:
+        \begin{equation*}
+            \Braket{f | \hat{p}g} = \int f^* (-i\hbar) \diff{g}{x} \;\ddx = -i\hbar f^*g\bigg|_{\infty}^{\infty} + \intinf \br{-i\hbar \diff{f}{x}}^* g \;\ddx = \Braket{\hat{p} f | g}.
+        \end{equation*}
+        Evidently, the momentum operator is Hermitian! It also shows that the derivative part in there makes it not just a simple complex conjugate, because in that case, obviously it wouldn't be Hermitian. That is why we, in general, use the dagger notation regardless if it is a pure scalar, contains derivatives, or is a matrix.
+    \item Let's find what the Hermitian conjugate of the operator $\hat{Q} = \diff{}{x}$:
+        \begin{equation*}
+            \Braket{f | \hat{Q} g} = \int f^* \diff{g}{x} \;\ddx = f^*g \bigg|_{\infty}^{\infty} + \intinf \br{-\diff{f}{x}}^* g \;\ddx.
+        \end{equation*}
+        Thus, 
+        \begin{equation*}
+            \br{\diff{}{x}}^{\dagger} = -\diff{}{x}.
+        \end{equation*}
+\end{itemize}
+
+
+\sep
+
+
+
+\subsection*{Determinate States}
+
+\begin{itemize}
+    \item Determinate states of a particular operator that represents an observable are those that have no variance; every measurement of that particular observable will give back the same value. So,
+        \begin{equation*}
+            \sigma_Q = \Braket{\br{Q - \braket{Q}}^2} = \Braket{\br{\hat{Q} - q}^2} = \Braket{\psi | \br{\hat{Q} - q}^2 | \psi}.
+        \end{equation*}
+    \item As an observable, $\hat{Q}$ is Hermitian, and so is $\hat{Q} - q$ (this can be easily shown), meaning we can bring one of them over to the bra:
+        \begin{equation*}
+            = \Braket{\br{\hat{Q} - q}^2 \psi | \br{\hat{Q} - q}^2 \psi} = 0.
+        \end{equation*}
+        Now we have the inner product of a vector in Hilbert space with itself, and we know from before that the only way that this can be true is if the vector itself is zero:
+        \begin{equation*}
+            \Ket{\br{\hat{Q} - q}\psi} = 0 \quad \rightarrow \quad \hat{Q}\ket{\psi} = q\ket{\psi}.
+        \end{equation*}
+    \item This is just an eigenvalue equation, which means that \textit{a determinate state of an operator $\hat{Q}$ is an eigenfunction of that operator}.
+    \item The TISE is an eigenvalue equation, which means that solutions to it (that are normalizable!! looking at you free particle solutions\ldots) are determinate states of the Hamiltonian, or energy.
+    \item Next: Eigenvalues of a Hermitian operator are real.
+    \item Proof: If $\hat{Q}$ is Hermitian and has eigenvalue $q$
+        \begin{equation*}
+            \braket{\hat{Q}f | f} = \braket{f | \hat{Q}f} \Rightarrow q^* \braket{f|f} = q\braket{f|f}.
+        \end{equation*}
+        Now the eigenfunction $f$ cannot be zero, because zero-eigenfunctions are not actual eigenfunctions. If they were, then it would have every eigenvalue for every observable, which obviously shouldn't be the case. Thus, its inner product with itself cannot be zero, and it must be that $q^* = q$ for every eigenfunction $f$.
+    \item Next: Eigenfunctions of a Hermitian operator with distinct eigenvalues are orthogonal.
+    \item Proof: Consider two eigenfunctions $f$ and $g$ of operator $\hat{Q}$: $\hat{Q}f = qf$ and $\hat{Q}g = q'g$. Since $\hat{Q}$ is Hermitian,
+        \begin{equation*}
+            \Braket{\hat{Q}f|g} = \Braket{f|\hat{Q}g} \rightarrow q^*\braket{f|g} = q'\braket{f|g}.
+        \end{equation*}
+        We just proved $q^*=q$, so
+        \begin{equation*}
+            q\braket{f|g} = q'\braket{f|g}.
+        \end{equation*}
+        Again, neither $f$ nor $g$ can be zero themselves, and since they live in Hilbert space, their inner product exists. Since $q \neq q'$, then it must be that $\braket{f|g}=0$.
+    \item Lastly: Eigenfunctions of a Hermitian operator are \textbf{complete}.
+    \item There is no proof for this one. We can show that it is the case for a few examples, like for the infinite square well due to Dirichlet's theorem, but in general we can't really show this. In fact, we will take this as an axiom in our theory. Well, really, we take is as a restriction on the eigenfunctions and operators that we look at, but it's the same thing.
+\end{itemize}
+
+
+\sep
+
+
+
+\begin{itemize}
+    \item Now, what if we have a continuous spectra? We have just been considering discrete spectra (where spectra is the eigenvalues). In this case, we know from the free particle that the eigenfunctions are not normalizable for any momentum.
+    \item Let's examine this a little bit more: the eigenfunctions of the momentum operator are simple plane waves as we found out before:
+        \begin{equation*}
+            f_p(x) = Ae^{ipx/\hbar}.
+        \end{equation*}
+    \item Which, as we just stated, we obviously cannot normalize. But, we can we find anything? Let's just try and test the orthogonality condition and see what happens:
+        \begin{equation*}
+            \braket{f_{p'}|f_p} = \intinf f_{p'}(x)f_p(x) \;\ddx = \abs{A}^2\intinf e^{-i(p'-p)x/\hbar}\;\ddx.
+        \end{equation*}
+        This is a common identity, it gives is a delta function:
+        \begin{equation*}
+            \braket{f_{p'}|f_p} = \abs{A}^2 2\pi\hbar\delta(p'-p).
+        \end{equation*}
+    \item If we let $A = 1/\sqrt{2\pi\hbar}$, then the momentum eigenfunctions become
+        \begin{equation*}
+            f_p(x) = \frac{1}{\sqrt{2\pi\hbar}}e^{ipx/\hbar},
+        \end{equation*}
+        and the ``orthogonality'' condition becomes
+        \begin{equation*}
+            \braket{f_{p'}|f_p} = \delta(p'-p).
+        \end{equation*}
+    \item This pseudo-orthogonality is called \textbf{Dirac orthogonality}. It'll still blow up if $p'=p$ (this is just the normalization, of course), but for any $p'\neq p$, it is zero reflecting orthogonality.
+    \item On top of this, these are still complete, as we found. For a continuous spectra, it turns from a sum to an integral:
+\end{itemize}
+
+
+\sep
+
+
+\begin{itemize}
+    \item Going back to the discrete case, we know that if we have a complete orthonormal set $\{\ket{f_n}\}$, we can say
+        \begin{equation*}
+            \bra{f} = \sum_i c_i \bra{f_i}.
+        \end{equation*}
+    \item Then should we want to determine the $n$th coefficient, all we do is
+        \begin{equation*}
+            \braket{f_n | f} = \sum_i c_i \braket{f_n | f_i} = \sum_i c_i \delta_{in} = c_n.
+        \end{equation*}
+\end{itemize}
+
+
+
+
+\subsection*{Generalized Statistical Interpretation and the Uncertainty Principle}
+
+\begin{itemize}
+    \item What we have done is great, but let's ground it a little bit into what we are doing in QM. The first interpretation that we make is that for an observable $\hat{Q}$ with discrete spectrum, the probability of measuring $Q$ and getting an eigenvalue $q_n$ associated with the eigenfunction $f_n(x)$ is $\abs{c_n}^2$, which is the corresponding Fourier coefficient that we just found.
+    \item There are a number of other related and relatively intuitive results that we could keep quoting and deriving, but they are things that we have already alluded to before, and would just be rephrasing in a more abstract light. 
+    \item However, we will look at the generalized version of the uncertianty principle, as we just quoted it in the previous chapter without any sort of derivation.
+    \item First, we know from before that for some observable $A$:
+        \begin{equation*}
+            \sigma_A^2 = \Braket{\br{\hat{A} - \hat{A}} \psi | \br{\hat{A} - \hat{A}} \psi} = \braket{f|f},
+        \end{equation*}
+        where $\ket{f} = \br{\hat{A} - \hat{A}} \psi$. Similarly, for some other observable $B$
+        \begin{equation*}
+            \sigma_B^2 = \Braket{\br{\hat{B} - \hat{B}} \psi | \br{\hat{B} - \hat{B}} \psi} = \braket{g|g},
+        \end{equation*}
+        where $\ket{g} = \br{\hat{B} - \hat{B}} \psi$. The product of the variances is
+        \begin{equation*}
+            \sigma_A^2\sigma_B^2 = \braket{f|f}\braket{g|g} \geq \abs{\braket{f|g}}^2,
+        \end{equation*}
+        which follows from the Schwartz inequality. 
+    \item Now, in general $\braket{f|g}$ may be complex, let's call it $z$ for a moment. We know that 
+        \begin{equation*}
+            \abs{z}^2 = \mathrm{Re}[z]^2 + \mathrm{Im}[z]^2 \geq \mathrm{Im}[z]^2,
+        \end{equation*}
+        since $\mathrm{\Re}[z]^2 \geq 0$, as it's real. We can rewrite the imaginary part in terms of $z$ itself:
+        \begin{equation*}
+            \abs{z}^2 \geq \br{\frac{1}{2i}\br{z-z^*}}^2.
+        \end{equation*}
+    \item Plugging back in our $\braket{f|g}$:
+        \begin{equation*}
+            \sigma_A^2\sigma_B^2 \geq \br{\frac{1}{2i}\br{\braket{f|g} - \braket{g|f}}}^2.
+        \end{equation*}
+        We can write
+        \begin{align*}
+            \braket{f|g} &= \Braket{\psi | \br{\hat{A} - \braket{A}}\br{\hat{B} - \braket{B}} | \psi}, \\
+            &= \Braket{\psi | \hat{A}\hat{B} - \hat{A}\braket{B} - \braket{A}\hat{B} + \braket{A}\braket{B} | \psi}.
+        \end{align*}
+        Note that $\braket{A}$ and $\braket{B}$ are just numbers, so we can move them around however we like:
+        \begin{align*}
+            &= \Braket{\psi | \hat{A}\hat{B} | \psi} - \braket{B}\Braket{\psi | \hat{A} | \psi} - \braket{A}\Braket{\psi | \hat{B} | \psi} + \braket{A}\braket{B}\Braket{\psi|\psi}, \\
+            &= \Braket{\hat{A}\hat{B}} - \braket{B}\braket{A} - \braket{A}\braket{B} + \braket{A}\braket{B}, \\
+            \braket{f|g} &= \braket{\hat{A}\hat{B}} + \braket{A}\braket{B}.
+        \end{align*}
+    \item Similarly, we find that 
+        \begin{equation*}
+            \braket{g|f} = \braket{\hat{B}\hat{A}} + \braket{A}\braket{B},
+        \end{equation*}
+        so  
+        \begin{equation*}
+            \braket{f|g} - \braket{g|f} = \braket{\hat{A}\hat{B}} - \braket{\hat{B}\hat{A}} = \braket{[\hat{A},\hat{B}]}.
+        \end{equation*}
+        With this,
+        \begin{equation*}
+            \boxed{\sigma_A^2\sigma_B^2 \geq \br{\frac{1}{2i}\braket{[\hat{A},\hat{B}]}}^2.}
+        \end{equation*}
+    \item Let's test this with $\hat{x}$ and $\hat{p}$. We know their commutator is $i\hbar$:
+        \begin{equation*}
+            \sigma_x^2\sigma_p^2 \geq \br{\frac{1}{2i} i\hbar}^2 = \br{\frac{\hbar}{2}}^2.
+        \end{equation*}
+        But since the standard deviations are positive by definition,
+        \begin{equation}
+            \boxed{\sigma_x\sigma_p \geq \frac{\hbar}{2}.}
+        \end{equation}
+    \item Nice!
+    \item What this basically says is that for any pair of non-commuting observables, there will be inherent uncertainty with simultaneous measurements of them. In fact, there is no way at all for simultanous measurements to be made, which means that we cannot construct states that are eigenstates of both operators. When we turn to the hydrogen atom, we will find that the $z$-component of spin and the magnitude squared of angular momentum commute, which means that we can form states that are eigenstates of both; in fact, that is how we will label generic states. We will see this when we get there.
+    \item For one more thing, let's consider the Hamiltonian operator and some other generic observable $Q$. This requires a bit more work, but it's not terribly important. Regardless, it can be shown that 
+        \begin{equation*}
+            \sigma_H^2\sigma_Q^2 \geq \br{\frac{1}{2i}\braket{[\hat{H},\hat{Q}]}}^2 = \br{\frac{1}{2i}\frac{\hbar}{i} \od{\braket{Q}}{t}}^2 = \br{\frac{\hbar}{2}}^2\br{\od{\braket{Q}}{t}}^2.
+        \end{equation*}
+        Doing some rearranging:
+        \begin{equation*}
+            \sigma_H \frac{\sigma_Q}{\dd\braket{Q}/\ddt} \geq \frac{\hbar}{2}.
+        \end{equation*}
+    \item Now, we can make a few definitions, the first is which is quite obvious: $\Delta E \equiv \sigma_H$. Next, we can interpret the second term on the left as the amount of time it takes for the expectation value of $Q$ to change by 1 standard deviation. As such, we can define this as $\Delta t$, so that we get
+        \begin{equation}
+            \boxed{\Delta E \Delta t \geq \frac{\hbar}{2}.}
+        \end{equation}
+    \item This is the energy-time uncertainty principle, and it is a little bit misleading. This is not just the ``change in energy'' and the ``change in time'', it has to do with uncertainties. Further, the ``change in time'' is not just a generic time; it is related only to one particle observable, and means something entirely differnet for another observable.
+    \item The basic interpretation is that how quickly an observable's expectation value changes is inversely proportional to the uncertainty in the energy. Roughly speaking, the faster an variable changes, the less we know about the energy.o
+\end{itemize}
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Notes"
+%%% End:

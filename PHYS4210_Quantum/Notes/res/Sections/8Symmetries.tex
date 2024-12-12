@@ -1,0 +1,76 @@
+\section{Symmetries}
+
+\begin{itemize}
+  
+\item We say that a system has a \textit{symmetry} under an action if the Hamiltonian remains unchanged under that action. For instance, the Hamiltonian will have \textit{rotational symmetry} if it remains unchanged under a rotation.
+\item Let's consider a translation operator $\hat{T}(a)$ which has the effect
+
+  \begin{equation}
+    \hat{T}(a)\psi(x) = \psi'(x) = \psi(x-a).
+  \end{equation}
+
+\item This is simple; how do we describe such a transformation on an operator $\hat{Q}$?
+\item We can determine this by noting that the expectation value of this operator should be the same regardless if we transform the wavefunction or if we transform the operator. With this,
+
+  \begin{gather}
+    \braket{\psi' | \hat{Q} | \psi'} = \braket{\psi | \hat{Q}' | \psi} \\
+    \braket{\psi | \hat{T}^\dagger\hat{Q}\hat{T} | \psi} = \braket{\psi | \hat{Q}' | \psi},
+  \end{gather}
+
+  so
+
+  \begin{equation}
+    \boxed{\hat{Q}' = \hat{T}^\dagger\hat{Q}\hat{T}.}
+  \end{equation}
+
+\item As an example, let's consider what is $\hat{x}'$?
+
+  \begin{align}
+    \hat{x}'f(x) &= [\hat{T}^\dagger(a) x \hat{T}(a)]f(x) \\
+                 &= \hat{T}(a)[xf(x-a)].
+  \end{align}
+  Since $xf(x-a)$ is another function of $x$, we can say that $\hat{x}' = \hat{x} + a$.
+  
+\end{itemize}
+
+
+\begin{itemize}
+  
+\item Now, it turns out that momentum is the generator for translations, meaning
+
+  \begin{equation}
+    \hat{T}(a) = e^{-ia\hat{p}/\hbar}.
+  \end{equation}
+
+  From this definition, it is easy to see that $\hat{p}' = \hat{p}$, since any operator commutes with itself.
+
+\item With this, if the potential has a translational symmetry, then the Hamiltonian will remain unchanged:
+
+  \begin{equation}
+    \hat{H}' = \hat{T}^\dagger\hat{H}\hat{T} = \hat{H}.
+  \end{equation}
+
+\item With a little bit of work, we can then find that in this case, the Hamiltonian and the translation operator commute, meaning that we can form simultaneous eigenstates.
+
+\item \textbf{Other symmetries for other transformations can be found in exactly the same way.}
+  
+\end{itemize}
+
+
+
+
+
+
+\section{Final Words}
+
+\begin{itemize}
+\item I ended up getting quite lazy by the end of the semester. Stuff was also getting real slow and moderately easy since I have seen (at least some) fo this symmetry stuff before, so I stopped taking notes. In principle I'd look into the book and finish up, but I don't want to!
+\end{itemize}
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Notes"
+%%% End:

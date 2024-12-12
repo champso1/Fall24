@@ -1,0 +1,135 @@
+\section{The Schr\"odinger Equation}
+
+
+
+\begin{itemize}
+    \item To find the aforementioned $\psi$, we need the \textbf{Time-Dependent Schrodiner Equation (TDSE)}:
+        \begin{equation}
+            i\hbar \diffp{\Psi}{t} = -\frac{\hbar}{2m} \diffp[2]{\Psi}{x} + V\Psi,\ \text{where}\ \Psi = \Psi(x, t).
+        \end{equation}
+        or
+        \begin{gather}
+            i\hbar \diffp{\Psi}{t} = \left(-\frac{\hbar}{2m}\diffp[2]{}{x} + V\right) \Psi, \\
+            i\hbar \diffp{\Psi}{t} = \hat{H} \Psi,
+        \end{gather}
+        where $\hat{H}$ is the \textbf{Hamiltonian operator}. This is analogous to the classical ``master'' equation: Newton's Second Law:
+        \begin{equation}
+            -\diff{V}{r} = m\diff[2]{x}{t}.
+        \end{equation}
+    \item However, this is often \textit{extremely} hard to solve even for seemingly simple systems. One simplification we make is when the potential is not dependent on time, we can then make the \textbf{Time-Independent Schrodinger Equation (TISE)}:
+        \begin{equation}
+            E\psi = \bar{H}\psi,
+        \end{equation}
+        where $E$ is the energy of that particular state, called a \textbf{stationary state}. This $\psi$ is lowercase to signify that this is technically a different equation it is satisfying. $\Psi$ is the total wavefunction with the time-dependent part included.
+        \begin{itemize}
+            \item From here on out, we will continue to use the lowercase $\psi$ just for ease. The distinction should be clear if and when it is necessary.
+        \end{itemize}
+\end{itemize}
+
+
+
+\begin{itemize}
+    \item Born's interpretation of this wavefunction is that 
+        \begin{equation}
+            \abs{\psi(x,t)} \dd x
+        \end{equation}
+        is the probaility of finding a particle between $x$ and $x + \dd x$.
+    \item Thus, to determine the probability of finding a particle between $x=a,b$, 
+        \begin{equation}
+            P(x \in [a,b]) = \int \dd x\; \abs{\phi(x,t)}^2.
+        \end{equation}
+    \item Perhaps one of the more sensible and surprisingly important concept here is that our particle must be somewhere. This means that the total probaility over all space must be equal to one:
+        \begin{equation}
+            \int_{-\infty}^{\infty} \dd x\; \abs{\psi(x,t)} = 1.
+        \end{equation}
+    \item This will turn out to be a very important condition to normalize an arbitrary wavefunction. For instance, for some wavefunction $\psi$, if the above relation is not satisfied, we know that we can simply multiply by a constant and have it still satisfy the SE, so we have $A\psi$. We can then use the normalization condition to determine what $A$ must be.
+    \item If the above integral of some wavefunction turns out to be something non-normalizable, like infinity or zero, then it cannot be physical, and we will just ignore it.
+    \item A nice property of this condition is that we can normalize it at one time, say $t=0$, so that $\psi(x,0)$ is normalized. Then, we don't have to normalize it again; it will say normalized for all time.
+    \item We can prove this now. Let's start with two copies of the SE. For the first, we will multiply it (from the left) by $\psi^*$:
+        \begin{equation}
+            i\hbar \psi^* \diffp{\psi}{t} = -\frac{\hbar^2}{2m} \psi^*\diffp[2]{\psi}{x} + V\psi^*\psi.
+        \end{equation}
+    \item For the second copy, we will complex conjugate it the multiply it by $\psi$:
+        \begin{equation}
+            i\hbar \psi \diffp{\psi^*}{t} = \frac{\hbar^2}{2m} \psi\diffp[2]{\psi*}{x} - V\psi\psi^*.
+        \end{equation}
+    \item Now we add the two together:
+        \begin{equation}
+            i\hbar \left(\psi^*\diffp{\psi}{t} + \psi\diffp{\psi^*}{t}\right) = -\frac{\hbar^2}{2m} \left(\psi^*\diffp[2]{\psi}{x} - \psi\diffp[2]{\psi^*}{x}\right) + V (\psi^*\psi - \psi\psi^*).
+        \end{equation}
+    \item The potential term will be zero obviously. Now, we can ``undo'' the product rule on the left to obtain:
+        \begin{equation}
+            i\hbar \diffp{}{t}(\psi^*\psi) = i\hbar \diffp[]{\abs{\psi}^2}{t} = -\frac{\hbar^2}{2m} \left(\psi^*\diffp[2]{\psi}{x} - \psi\diffp[2]{\psi^*}{x}\right).
+        \end{equation}
+    \item Now, we can undo one of the product rules on the right-hand side to obtain:
+        \begin{equation}
+            i\hbar \diffp[]{\abs{\psi}^2}{t} = -\frac{\hbar}{2m} \diffp{}{x} \left[\psi^* \diffp{\psi}{x} - \psi \diffp{\psi^*}{x}\right].
+        \end{equation}
+    \item Let's integrate both sides over all space:
+        \begin{equation}
+            \int_{-\infty}^{\infty} \dd x\; i\hbar \diffp[]{\abs{\psi}^2}{t} = \int_{-\infty}^{\infty} \dd x\; -\frac{\hbar}{2m} \diffp{}{x} \left[\psi^* \diffp{\psi}{x} - \psi \diffp{\psi^*}{x}\right].
+        \end{equation}
+    \item On the left, since the derivative and integral are unrelated units, we can pull the time derivative out and it'll become a total derivative. On the left, the integral and derivative cancel and we simply evaluate the quantity at the limits. However, the limits are $\pm\infty$, and we know that the wavefunction must vanish at these limits, so the entire right hand side vanishes. 
+    \item All we are left with then, is:
+        \begin{equation}
+            \diff{}{t} \int_{-\infty}^{\infty} \dd x\; \abs{\psi}^2 = 0.
+        \end{equation}
+    \item The integral part is our normalization condition, and for its time derivative to be zero suggests that this normalization does not change with time, for any wavefunction.
+\end{itemize}
+
+
+
+\begin{example}
+    At time $t=0$, a particle is represented by a wave function:
+
+    \begin{equation}
+        \psi(x,0) = 
+            \begin{alignedat}{1}
+            \begin{cases}
+                A\left(\frac{x}{a}\right) \qquad &\text{for } 0 \leq x \leq a \\
+                A\left(\frac{b-x}{b-a}\right) &\text{for } a \leq x \leq b \\
+                0 &\text{otherwise}
+            \end{cases}
+            \end{alignedat}
+    \end{equation}
+
+    \begin{itemize}
+        \item[a)] Normalize $\psi$. That is, find $A$ in terms of $a$ and $b$. 
+    \end{itemize}
+
+    \sep
+
+    \begin{itemize}
+        \item All we need to do here is just plug in to our normalization condition and find a relation for $A$:
+            \begin{align}
+                \int_{-\infty}^{\infty} \dd x\; \abs{\psi}^2 = \int_0^a \dd x\; A^2 \frac{x^2}{a^2} + \int_a^b \dd x\; A^2 \left(\frac{b-x}{b-a}\right)^2 &= 1. \\
+                \frac{A^2}{a^2}\int_0^a \dd x\; x^2 + \frac{A^2}{(b-a)^2}^2\int_a^b \dd x\; (b-x)^2 &= 1 \\
+                \frac{1}{3} A^2 a + \frac{1}{3} A^2(b-a) &= 1 \\
+                A^2 b &= 3,
+            \end{align}
+            so
+            \begin{equation}
+                \boxed{A = \sqrt{\frac{3}{b}}}.
+            \end{equation}
+    \end{itemize}
+
+    \sep 
+
+    \begin{itemize}
+        \item[b)] What is the probability of finding the particle to the left of $a$?
+    \end{itemize}
+
+    \sep
+
+    \begin{itemize}
+        \item This is simple: we just integrate the wavefunction squared from $0$ to $a$ (technically from $-\infty$ to $a$, but since the wavefunction is only non-zero starting at $x=0$, we can just say that)
+            \begin{equation}
+                \int_0^a \dd x\; \abs{\psi}^2 = \frac{3}{a^2b} \int_0^a \dd x\; x^2 = \boxed{\frac{a}{b}}.
+            \end{equation}
+            As a sort of confirmation, if we have that $a=b$, then we are integrating over the entire non-zero area of the wavefunction, and the result is 1, as we expect. If $b=2a$, we have that the probability is $1/2$, which also makes sense, as this is just half.
+    \end{itemize}
+\end{example}
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Notes"
+%%% End:

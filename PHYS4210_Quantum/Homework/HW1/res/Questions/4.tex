@@ -1,0 +1,279 @@
+\section{}
+
+We are given the wavefunction:
+
+\begin{equation}
+    \Psi(x,t) = \frac{1}{\sqrt{2}} \psi_1(x)e^{-iE_1t/\hbar} + \frac{i}{\sqrt{2}}\psi_2(x) e^{-iE_2t/\hbar},\label{Prblm4Wavefunction}
+\end{equation}
+
+where $\psi_1(x)$ and $\psi_2(x)$ are two Hamiltonian eigenstates of the TISE for the infinite square well; the $n$th eigenstate is given by
+
+\begin{equation}
+    \psi_n(x) = \sqrt{\frac{2}{a}}\sin\left( \frac{n\pi x}{a} \right),
+\end{equation}
+
+so
+
+\begin{equation}
+    \psi_1(x) = \sqrt{\frac{2}{a}}\sin\left( \frac{\pi x}{a} \right), \quad \text{and} \quad \psi_2(x) = \sqrt{\frac{2}{a}}\sin\left( \frac{2\pi x}{a} \right).
+\end{equation}
+
+To determine whether this satisfies the Heisenberg Uncertainty Principle, we can start computing expectation values:
+
+\begin{equation*}
+    \braket{x} = \bra{\Psi} \hat{x} \ket{\Psi} = \int x \abs{\Psi}^2 \;\ddx.
+\end{equation*}
+
+To make this a bit easier, I will define $\phi_1(t) = e^{-iE_1t/\hbar}$ and $\phi_2(t) = e^{-iE_2t/\hbar}$:
+
+\begin{align*}
+    \abs{\Psi}^2 &= \frac{1}{2} \abs{\psi_1}^2\abs{\phi_1}^2 \;\ddx + \frac{1}{2} \abs{\psi_2}^2\abs{\phi_2}^2 \;\ddx + \frac{i}{2} \psi_1^*\psi_2\phi_1^*\phi_2 \;\ddx - \frac{i}{2} \psi_1\psi_2^*\phi_1\phi_2^* \;\ddx, \\
+    &= \frac{1}{2}\psi_1^2 + \frac{1}{2}\psi_1^2 + \frac{i}{2}\psi_1\psi_2 (\phi_1^*\phi_2 - \phi_1\phi_2^*),
+\end{align*}
+
+where I have dropped the ``absolute value'' bars (that signified modulus squared) for the $\psi$'s since they are fully real, and $\abs{\phi_1}^2 = \abs{\phi_2}^2 = 1$. For the term in parentheses:
+
+\begin{align*}
+    \phi_1^*\phi_2 - \phi_1\phi_2^* &= \phi_1^*\phi_2 - (\phi_1^*\phi_2)^* = 2i\im(\phi_1^*\phi_2), \\
+    &= 2i\im\left(e^{iE_1t/\hbar}e^{-iE_2t/\hbar}\right) = 2i\im\left( e^{-i(E_2-E_1)t/\hbar} \right), \\
+    &= 2i \sin\left( -\frac{E_2-E_1}{\hbar}t \right), \\
+    &= -2i \sin\left( \frac{E_2-E_1}{\hbar}t \right).
+\end{align*}
+
+
+We know that 
+
+\begin{equation*}
+    E_n = \frac{n^2\pi^2\hbar^2}{2ma^2},
+\end{equation*}
+
+meaning
+
+\begin{equation*}
+    E_2-E_1 = \frac{3\pi^2\hbar^2}{2ma^2},
+\end{equation*}
+
+hence
+
+\begin{equation*}
+    \phi_1^*\phi_2 - \phi_1\phi_2^* = -2i\sin\left( \frac{3\pi^2\hbar}{2ma^2}t \right).
+\end{equation*}
+
+The full result for the $\phi$ terms is
+
+\begin{equation*}
+    \abs{\Psi}^2 = \frac{1}{2}\psi_1^2 + \frac{1}{2}\psi_2^2 + \psi_1\psi_2\sin\left( \frac{3\pi^2\hbar}{2ma^2}t \right).
+\end{equation*}
+
+Since our derivatives are always over $x$, I will stow away that sine term $\phi$ from now on for simplicity and only substitute back at the very end. Our expectation value for $x$ is
+
+\begin{align*}
+    \braket{x} &= \frac{1}{2}\int x\psi_1^2 \;\ddx + \frac{1}{2}\int x\psi_2^2 \;\ddx + \phi \int x\psi_1\psi_2 \;\ddx, \\
+    &= \frac{1}{a}\int_0^a x\sin^2\left( \frac{\pi x}{a} \right)\;\ddx + \frac{1}{a}\int_0^a x\sin^2\left( \frac{2\pi x}{a} \right)\;\ddx + \frac{2\phi}{a}\int x\sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right) \;\ddx.
+\end{align*}
+
+The first two integrals are almost identical; let's look at a general integral that encompasses both:
+
+\begin{align*}
+    \int_0^a x\sin^2 \left( \frac{n\pi x}{a} \right) \;\ddx &= \frac{1}{2}\int_0^a x\left[1 - \cos\left( \frac{2n\pi x}{a} \right)\right] \;\ddx, \\
+    &= \frac{1}{2}\int_0^a x\;\ddx - \frac{1}{2}\int_0^a x\cos \left( \frac{2n\pi x}{a} \right)\;\ddx, \\
+    &= \frac{a^2}{4} - \left[\frac{xa}{4n\pi}\sin\left( \frac{2n\pi x}{a} \right)\right]_0^a - \frac{a}{4n\pi} \int_0^a \sin\left( \frac{2n\pi x}{a} \right)\;\ddx, \\
+    &= \frac{a^2}{4} - \frac{a^2}{8n^2\pi^2} \left[\cos\left( \frac{2n\pi x}{a} \right)\right]_0^a, \\
+    &= \frac{a^2}{4} - \frac{a^2}{8n^2\pi^2} [\cos(2n\pi) - \cos0].
+\end{align*}
+
+Now the term in brackets will always be zero, because any integer multiple of $2\pi$ always has a cosine of 1, and $\cos0=1$. Hence, 
+
+\begin{equation*}
+    \int_0^a x\sin^2 \left( \frac{n\pi x}{a} \right) \;\ddx = \frac{a^2}{4},
+\end{equation*}
+
+which is independent of $n$, meaning that the first two terms of the expectation value for $x$ both evaluate to this:
+
+\begin{equation*}
+    \braket{x} = \frac{a}{2} + \frac{2\phi}{a}\int x\sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right) \;\ddx.
+\end{equation*}
+
+Looking now at the second integral:
+
+\begin{equation*}
+    \int x\sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right) \;\ddx = 2\int x\sin^2\left( \frac{\pi x}{a} \right)\cos\left( \frac{\pi x}{a} \right) \;\ddx,
+\end{equation*}
+
+using the double angle formula. Now, we can do integration by parts with
+
+\begin{equation*}
+    u = x \quad \mathrm{and} \quad \dd v = \sin^2\left( \frac{n\pi x}{a} \right)\cos\left( \frac{n\pi x}{a} \right),
+\end{equation*}
+
+but the integral of $\dd v$ needs another $u$-sub, but to avoid confusion with notation, I will use $w$ as the substitution variable:
+
+\begin{gather*}
+    \int \sin^2\left( \frac{\pi x}{a} \right)\cos\left( \frac{\pi x}{a} \right) 
+    \rightarrow \left[
+        \begin{alignedat}{1}
+            w &= \sin(\pi x/a), \\
+            \dd w &= \frac{\pi}{a}\cos(\pi x/a) \;\ddx
+        \end{alignedat}
+    \right] \rightarrow 
+    \frac{a}{\pi}\int w^2 \;\dd w, \\
+    = \frac{a}{3\pi}w^3 = \frac{a}{3\pi} \sin^3\left( \frac{\pi x}{a} \right).
+\end{gather*}
+
+Our integration by parts is now
+
+\begin{align*}
+    &= 2 \left\{ \left[ \frac{xa}{3\pi}\sin^3\left( \frac{\pi x}{a} \right) \right]_0^a - \frac{a}{3\pi}\int \sin^3\left( \frac{\pi x}{a} \right)\;\ddx \right\}.
+\end{align*}
+
+It is easy to see that the sine term will be zero at both limits. Looking specifically at the new sine integral and using the power reduction formula:
+
+\begin{align*}
+    \int \sin^3\left( \frac{\pi x}{a} \right)\;\ddx &= \frac{1}{2}\int\sin\left( \frac{\pi x}{a} \right) \left[ 1 - \cos\left( \frac{2\pi x}{a} \right) \right]\;\ddx, \\
+    &= \frac{1}{2} \left[ \int_0^a \sin\left( \frac{\pi x}{a} \right)\;\ddx - \int \sin\left( \frac{\pi x}{a} \right)\cos\left( \frac{2\pi x}{a} \right)\;\ddx \right].
+\end{align*}
+
+Doing integration by parts on the second integral with
+
+\begin{equation*}
+    \begin{alignedat}{2}
+        u &= \sin\left( \frac{\pi x}{a} \right), \quad & \quad \dd v &= \cos\left( \frac{2\pi x}{a} \right)\;\ddx, \\
+        \dd u &= \frac{\pi}{a}\cos\left( \frac{\pi x}{a} \right), \quad &\mathrm{and} \quad v &= \frac{a}{2\pi}\sin\left( \frac{2\pi x}{a} \right),
+    \end{alignedat}
+\end{equation*}
+
+we get
+
+\begin{gather*}
+    \int\sin^3\left( \frac{\pi x}{a} \right)\;\ddx = \\
+    \frac{1}{2} \left\{ -\frac{a}{\pi} \left[\cos\left( \frac{\pi x}{a} \right)\right]_0^a - \left(\frac{a}{2\pi} \left[ \sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right) \right]_0^a - \frac{1}{2}\int\cos\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right)\;\ddx. \right) \right\}.
+\end{gather*}
+
+The evaluated term with the sines will again be zero. Using similar methods as before on the final integral:
+
+\begin{align*}
+    \int\sin^3\left( \frac{\pi x}{a} \right)\;\ddx &= \frac{1}{2}\left[ \frac{2a}{\pi} + \int_0^a \cos^2\left( \frac{\pi x}{a} \right)\sin\left( \frac{\pi x}{a} \right)\;\ddx \right], \\
+    &= \frac{1}{2} \left[\frac{2a}{\pi} + \frac{a}{\pi}\int_{-1}^1 u^2\;\dd u\right], \\
+    &=\frac{1}{2}\left(\frac{2a}{\pi} + \frac{2a}{3\pi}\right) = \frac{4a}{3\pi}.
+\end{align*}
+
+At last, our original integral is given by:
+
+\begin{equation*}
+    \int x\sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right)\;\ddx = -\frac{2a}{3\pi} \left(\frac{4a}{3\pi}\right) = -\frac{8a^2}{9\pi^2},
+\end{equation*}
+
+so our expectation value is
+
+\begin{equation*}
+    \braket{x} = \frac{a}{2} + \frac{2\phi}{a} \left(-\frac{8a^2}{9\pi^2}\right) = \frac{a}{2} - \frac{16a}{9\pi^2}\sin\left( \frac{3\pi^2\hbar}{2ma^2}t\right).
+\end{equation*}
+
+
+Since this was taken from the full wavefunction (not just the initial one), we can do
+
+\begin{equation*}
+    \braket{p} = m\diff{\braket{x}}{t} = -\frac{8\hbar}{3a}\cos\left( \frac{3\pi^2\hbar}{2ma^2}t \right).
+\end{equation*}
+
+
+
+
+Now for $\braket{x^2}$:
+
+\begin{equation*}
+    \braket{x^2} = \frac{1}{a}\int_0^a x^2\sin^2 \left( \frac{\pi x}{a} \right)\;\ddx + \frac{1}{a} \int_0^a x^2\sin^2 \left( \frac{2\pi x}{a} \right)\;\ddx + \frac{2\phi}{a}\int x^2 \sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right)\;\ddx.
+\end{equation*}
+
+Again looking at a general case for the first two integrals:
+
+\begin{equation*}
+    \int_0^a x^2\sin^2 \left( \frac{n \pi x}{a} \right)\;\ddx,
+\end{equation*}
+\begin{align*}
+    &= \frac{1}{2}\int_0^a x^2 \;\ddx - \frac{1}{2}\int_0^a x^2\cos\left( \frac{2n\pi x}{a} \right) \;\ddx, \\
+    &= \frac{a^3}{6} - \frac{1}{2}\left[\frac{x^2a}{2n\pi}\sin\left( \frac{2n\pi x}{a} \right)\right]_0^a - \frac{a}{2n\pi} \int_0^a x\sin\left( \frac{2n\pi x}{a} \right) \;\ddx, \\
+    &= \frac{a^3}{6} + \frac{a}{2n\pi} \left\{\left[ -\frac{xa}{2n\pi}\cos\left( \frac{2n\pi x}{a} \right) \right]_0^a + \frac{a}{4n\pi}\int_0^a\cos\left( \frac{2n\pi x}{a} \right)\;\ddx\right\},
+\end{align*}
+
+where in the second to last line, the sine would evaluate to zero at both limits. In this last line, the cosine integral will turn into a sine, which would evaluate to zero similarly. So,
+
+\begin{align*}
+    \int_0^a x^2\sin^2 \left( \frac{n \pi x}{a} \right)\;\ddx &= \frac{a^3}{6} - \frac{a^3}{4n^2\pi^2}\cos(2n\pi), \\
+    &= \frac{a^3}{6} - \frac{a^3}{4n^2\pi^2}.
+\end{align*}
+
+The first two terms in our equation for $\braket{x^2}$ are therefore:
+
+\begin{align*}
+    \frac{1}{a}\int_0^a x^2\sin^2 \left( \frac{\pi x}{a} \right)\;\ddx + \frac{1}{a} \int_0^a x^2\sin^2 \left( \frac{2\pi x}{a} \right)\;\ddx &= \frac{1}{a} \left( \frac{a^3}{6} - \frac{a^3}{4\pi^2} \right) + \frac{1}{a} \left( \frac{a^3}{6} - \frac{a^3}{16\pi^2} \right), \\
+    &= a^2 \left(\frac{1}{6} + \frac{1}{4\pi^2} + \frac{1}{6} + \frac{1}{16\pi^2}\right), \\
+    &= a^2 \left( \frac{1}{3} + \frac{5}{16\pi^2} \right).
+\end{align*}
+
+The final integral is super nasty, so I will just plug it into Mathematica:
+
+\begin{equation*}
+    \int x^2 \sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right)\;\ddx = -\frac{8a^3}{9\pi^2}.
+\end{equation*}
+
+So,
+
+\begin{equation*}
+    \braket{x^2} = a^2 \left( \frac{1}{3} + \frac{5}{16\pi^2} \right) -\frac{16a^2}{9\pi^2}\sin\left( \frac{3\pi^2\hbar}{2ma^2}t\right).
+\end{equation*}
+
+Lastly, we need to $\braket{p^2}$. Since we have no extra factors of $x$ or anything, the time-dependent terms are going to cancel, and the cross terms will integrate to zero since the sines are orthogonal to each other, meaning all we have is:
+
+\begin{align*}
+    \braket{p^2} &= \bra{\Psi} \left( -i\hbar \diff{}{x} \right)^2 \ket{\Psi}, \\
+    &= -\frac{2\hbar^2}{a} \bigg\{\int_0^a \sin\left( \frac{\pi x}{a} \right)\diff[2]{}{x}\left[ \sin\left( \frac{\pi x}{a} \right) \right]\;\ddx + \int_0^a \sin\left( \frac{2\pi x}{a} \right)\diff[2]{}{x}\left[ \sin\left( \frac{2\pi x}{a} \right) \right]\;\ddx
+\end{align*}
+
+Again looking at a general case first:
+
+\begin{align*}
+    \int_0^a \sin\left( \frac{n\pi x}{a} \right)\diff[2]{}{x} \left[ \sin\left( \frac{n\pi x}{a} \right) \right]\;\ddx &= -\frac{n^2\pi^2}{a^2} \int_0^a \sin^2\left( \frac{n\pi x}{a} \right)\;\ddx, \\
+    &= -\frac{n^2\pi^2}{2a^2} \left[ \int_0^a \;\ddx - \int_0^a \cos\left( \frac{2n\pi x}{a} \right)\;\ddx \right], \\
+    &= - \frac{n^2\pi^2}{2a^2} \left\{ a - \frac{a}{2n\pi}\left[ \sin\left( \frac{2n\pi x}{a} \right) \right]_0^a \right\}, \\
+    &= -\frac{n^2\pi^2}{2a}.
+\end{align*}
+
+So,
+
+\begin{equation*}
+    \braket{p^2} = -\frac{2\hbar^2}{a} \left(\frac{-\pi^2}{2a} - \frac{4\pi^2}{2a}\right) = \frac{\hbar^2\pi^2}{a^2}(1+4) = \frac{5\hbar^2\pi^2}{a^2}.
+\end{equation*}
+
+To recap:
+
+\begin{align*}
+    &\braket{x} = \frac{a}{2} - \frac{16a}{9\pi^2}\sin\left( \frac{3\pi^2\hbar}{2ma^2}t \right), \\
+    &\braket{x^2} = a^2\left( \frac{1}{3} + \frac{5}{16\pi^2} \right) - \frac{16a^2}{9\pi^2} \sin\left( \frac{3\pi^2\hbar}{2ma^2}t \right), \\
+    &\braket{p} = -\frac{8\hbar}{3a}\cos\left( \frac{3\pi^2\hbar}{2ma^2}t \right), \\
+    &\braket{p^2} = \frac{5\hbar^2\pi^2}{a^2}.
+\end{align*}
+
+The algebra will be insanely complex to find the standard deviations and then the uncertainty. So, I will just plug everything in Mathematica as the following function:
+
+\begin{equation}
+    f(t) = \frac{2}{\hbar}\sigma_x(t)\sigma_p(t),\label{Prblm4FofT}
+\end{equation}
+
+since both standard deviations will contain the time dependence. The factor of $2/\hbar$ is there so that we now are making sure that our function remains above 1. Then, I evaluate this over a few $t$ values that give ``angles'' (meaning the quantity inside the sines and cosines) of $0$, $\pi/2$, and $\pi/4$. These $t$ values are $t=0$, $t=(ma^2)/(3\pi\hbar)$, and $t=(ma^2)/(6\pi\hbar)$ respectively.
+
+\renewcommand{\arraystretch}{1.25}
+\begin{table}[ht]
+    \centering
+    \begin{tabular}{c|c|c}
+        ``$\theta$'' & $t$ & $f(t)$ \\ \hline
+        $0$ & $0$ & $1.905$ \\
+        $\frac{\pi}{2}$ & $\frac{ma^2}{3\pi\hbar}$ & $1.377$ \\
+        $\frac{\pi}{4}$ & $\frac{ma^2}{6\pi\hbar}$ & $1.730$ \\
+    \end{tabular}
+    \caption{Table of a few select values of $t$ for Eq.~\eqref{Prblm4FofT}.}
+    \label{Prblm4Table}
+\end{table}
+\renewcommand{\arraystretch}{1}
+
+It would appear that our wavefunction Eq.~\eqref{Prblm4Wavefunction} satisfies the Heinsenberg Uncertainty Principle, as these values are a good bit over 1.

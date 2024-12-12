@@ -1,0 +1,149 @@
+\section{(4.1a)}
+
+\begin{parts}
+
+
+\item We are to work out all of the anti-commutators for each component of the position and momentum operators. We can first qualitatively consider the commutators of the position operators amongst themselves. They are just numbers, there are no derivatives or anything involved with them, and we know that numbers commute, so we can immediately say that
+
+\begin{equation}
+    [r_i,r_j] = 0.
+\end{equation}
+
+Next, let's consider the commutators of the momentum operators among each other:
+
+\begin{equation}
+    [p_i,p_j]f = -\hbar^2 \br{\diffp{f}{{r_i}{r_j}} - \diffp{f}{{r_j}{r_i}}}.
+\end{equation}
+
+By construction, $f$ lives in Hilbert space (rather, we only care about such functions), so it is well behaved, and we are able to switch the order of the derivatives. Hence, the two quantities in parentheses are just identical, so we can say
+
+\begin{equation}
+    [p_i,p_j] = 0.
+\end{equation}
+
+Next, we have the commutator of the position components with the momentum components:
+
+\begin{equation}
+    [r_i,p_j]f = -i\hbar\br{r_i \diffp[]{f}{r_j} - \diffp[]{}{r_j}[r_i*f]}.
+\end{equation}
+
+If $i \neq j$, we can just pull $r_j$ out of the second derivative:
+
+\begin{equation}
+    [r_i,p_j]f = i\hbar r_i \br{\diffp[]{f}{r_j} - \diffp[]{f}{r_j}}.
+\end{equation}
+
+But this is zero. The other case is if $i=j$. This is just $[x,p_x] = i\hbar$ that we have done in class before. To combine the two, then, we can use a Dirac delta and say that
+
+\begin{equation}
+    [r_i,p_j] = i\hbar\delta_{ij}.
+\end{equation}
+
+Of course, $[p_i,r_j] = -[r_i,p_j] = -i\hbar\delta_{ij}$.
+
+
+
+
+\item The ``generalized'' Ehrenfest theorem, given in Eq~(3.73) in Griffiths is 
+
+\begin{equation}
+    \diff{}{t}\braket{Q} = \frac{i}{\hbar}\Braket{[\hat{H},\hat{Q}]} + \Braket{\diffp{\hat{Q}}{t}}.
+\end{equation}
+
+However, the operators never depend on time, so really we have
+
+\begin{equation}
+    \diff{}{t}\braket{Q} = \frac{i}{\hbar}\Braket{[\hat{H},\hat{Q}]}.
+\end{equation}
+
+Here we have $Q = r_i$:
+
+\begin{equation}
+    \diff{}{t}\braket{r_i} = \frac{i}{\hbar}\Braket{[\hat{H},r_i]}.
+\end{equation}
+
+Looking at the commutator:
+
+\begin{equation}
+    [\hat{H},r_i] = \left[ \frac{\hat{\vv{p}}^2}{2m} + V, r_i \right].
+\end{equation}
+
+The potential is just a number, and $r_i$ is just a number, so we can get rid of $V$. Further, from the previous part we know that only like components of momentum don't commute with like components of position, so the only non-zero terms are $p_i^2$:
+
+\begin{align}
+    &= \frac{1}{2m}[\hat{p}_i^2,r_i] \\
+    &= \frac{1}{2m}\br{\hat{p}_i\hat{p}_ir_i - r_i\hat{p}_i\hat{p}_i + \hat{p}_ir_i\hat{p}_i - \hat{p}_ir_i\hat{p}_i},
+\end{align}
+
+where I added and subtracted the same term for the third and fourth terms. Now,
+
+\begin{align}
+    &= \frac{1}{2m}\br{\hat{p}_i[\hat{p}_i,r_i] + [\hat{p}_i,r_i]\hat{p}_i} \\
+    &= \frac{1}{2m}\br{-i\hbar\hat{p}_i - i\hbar\hat{p}_i} \\
+    &= -\frac{i\hbar}{m}\hat{p}_i.
+\end{align}
+
+Plugging back in:
+
+\begin{equation}
+    \diff{}{t}\braket{r_i} = \frac{i}{\hbar}\Braket{-\frac{i\hbar}{m}\hat{p}_i} = \frac{1}{m}\braket{\hat{p}_i}.
+\end{equation}
+
+Since there were no cross-terms between position or momentum components, this will be the same for all three components, meaning we can generally express it in vector form:
+
+\begin{equation}
+    \boxed{\diff{}{t}\braket{\vv{r}} = \frac{1}{m}\braket{\vv{p}}.}
+\end{equation}
+
+Next, we'll let $\hat{Q} = \hat{p}_i$:
+
+\begin{equation}
+    \diff{}{t}\braket{\hat{p}_i} = \Braket{[\hat{H},\hat{p}_i]}.
+\end{equation}
+
+Looking at the commutator:
+
+\begin{equation}
+    [\hat{H},\hat{p}_i] = \left[ \frac{\hat{\vv{p}}^2}{2m} + V, \hat{p}_i \right].
+\end{equation}
+
+We know from before that all momentum components commute among each other, so all we have is
+
+\begin{equation}
+    = [V,\hat{p}_i].
+\end{equation}
+
+Using a test function $f$:
+
+\begin{align}
+    [V,\hat{p}_i]f &= -i\hbar\br{V\diffp[]{f}{r_i} - \diffp[]{}{r_i}[Vf]} \\
+    &= i\hbar f \diffp[]{V}{r_i}. \\
+    \rightarrow [V,\hat{p}_i] &= i\hbar \diffp[]{V}{r_i}.
+\end{align}
+
+Plugging this back in:
+
+\begin{equation}
+    \diff{}{t}\braket{\hat{p}_i} = \frac{i}{\hbar}\Braket{i\hbar \diffp[]{V}{r_i}} = \Braket{-\diffp[]{V}{r_i}}.
+\end{equation}
+
+Again, there are no cross-terms among components, so we can express this in vector form:
+
+\begin{equation}
+    \boxed{\diff{}{t}\braket{\hat{\vv{p}}} = \Braket{-\grad V}.}
+\end{equation}
+
+
+
+
+
+\item This is easy. We know only like components of position and momentum don't compute, and since there are no cross terms, they are each equal to $\hbar/2$, as we very well know, so long as $i=j$:
+
+\begin{equation}
+    \boxed{\sigma_{r_i}^2\sigma_{\hat{p}_j}^2 \geq \frac{\hbar}{2}\delta_{ij}.}
+\end{equation}
+
+
+
+
+\end{parts}

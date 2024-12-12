@@ -1,0 +1,84 @@
+\section{(1.9)}
+
+We are given the wavefunction:
+
+\begin{equation}
+    \Psi(x,t) = Ae^{-a[(mx^2/\hbar) + it]}.
+\end{equation}
+
+\begin{parts}
+    \item To find $A$ can can just normalize:
+        \begin{equation*}
+            \intinf \abs{\Psi(x,0)}^2 \;\dd x = A^2 \intinf e^{-2amx^2/\hbar}\;\dd x = 2A^2 \int_0^{\infty} e^{-2amx^2/\hbar} \;\dd x = 1.
+        \end{equation*}
+        Using the integral table:
+        \begin{equation}
+            \int_0^{\infty} x^{2n} e^{-x^2/a^2} \;\dd x = \sqrt{\pi} \frac{(2n)!}{n!} \left(\frac{a}{2}\right)^{2n+1}.\label{Prblm2GaussIntegral}
+        \end{equation}
+        In our case, we have $n=0$ and $a = \sqrt{\hbar/2am}$, so:
+        \begin{gather*}
+            \intinf \abs{\Psi(x,0)}^2 \;\dd x = 2A^2 \sqrt{\pi} \cdot \frac{1}{2} \sqrt{\frac{\hbar}{2am}} = A^2 \sqrt{\frac{\hbar\pi}{2am}} = 1, \\
+            \boxed{A = \sqrt[4]{\frac{2am}{\hbar\pi}}.}
+        \end{gather*}
+
+    \item To find the potential, we can simply plug in to the Schr\"odinger Equation and solve for $V(x)$:
+        \begin{gather*}
+            i\hbar \diffp{\Psi}{t} = -\frac{\hbar^2}{2m} \diffp[2]{\Psi}{x} = V(x)\Psi, \\
+            i\hbar (-ai) \Psi = \frac{\hbar^2}{2m} \diffp{}{x} \left[-\frac{2amx}{\hbar}\Psi\right] + V(x)\Psi, \\
+            \hbar a \Psi = -\frac{\hbar^2}{2m} \left[\frac{-2am}{\hbar}\Psi - \frac{2amx}{\hbar}\Psi \left(-\frac{2amx}{\hbar}\right)\right] + V(x)\Psi, \\
+            \hbar a = \hbar a -\frac{\hbar^2}{2m}\left(-\frac{2amx}{\hbar}\right)^2 + V(x), \\
+            \boxed{V(x) = 2ma^2x^2.}
+        \end{gather*}
+
+    \item Let's start with $\braket{x}$:
+        \begin{equation*}
+            \braket{x} = \int_{\infty}^{\infty} x\abs{\psi}^2 \;\dd x = \sqrt{\frac{2am}{\hbar\pi}} \int_{-\infty}^{\infty} xe^{-2amx^2/\hbar} \;\dd x.
+        \end{equation*}
+        We can immediately stop here. $x$ is an odd function, and the exponential is an even one. An odd function times an even function gives an odd function, and we are evaluating this function over symmetric intervals, meaning that its zero:
+        \begin{equation*}
+            \boxed{\braket{x} = 0}.
+        \end{equation*}
+        Moving to $\braket{x^2}$:
+        \begin{equation*}
+            \braket{x^2} = \sqrt{\frac{2am}{\hbar\pi}} \int_{-\infty}^{\infty} x^2 e^{-2amx^2/\hbar} \;\dd x = 2\sqrt{\frac{2am}{\hbar\pi}} \int_0^{\infty} xe^{-2amx^2/\hbar} \;\dd x.
+        \end{equation*}
+        Using Eq~\eqref{Prblm2GaussIntegral}, we have $n=1$ and $a=\sqrt{\hbar/2am}$, so:
+        \begin{equation*}
+            \braket{x^2} = \left(\frac{2am}{\hbar\pi}\right)^{1/2} \cdot 2 \cdot \sqrt{\pi} \cdot 2 \cdot \left(\frac{\hbar}{2am}\right)^{3/2} = \frac{1}{2}\left(\frac{\hbar}{2am}\right)^{3/2}\left(\frac{2am}{\hbar}\right)^{1/2} = \boxed{\frac{\hbar}{4am}}.
+        \end{equation*}
+        Since $\braket{x} = 0$, $\braket{p} = 0$ too.
+        Lastly, we turn to $\braket{p^2}$:
+        \begin{equation*}
+            \braket{p^2} = \intinf \psi^* \left(-i\hbar \diffp{}{x}\right)^2 \psi \;\dd x = -\hbar^2 \intinf \psi^* \diffp[2]{\psi}{x} \;\dd x.
+        \end{equation*}
+        Doing the derivatives:
+        \begin{equation*}
+            \diffp{\psi}{x} = -\frac{2amx}{\hbar}\psi \rightarrow \diffp[2]{\psi}{x} = -\frac{2am}{\hbar}\psi + \frac{4a^2m^2x^2}{\hbar^2}\psi.
+        \end{equation*}
+        So,
+        \begin{align*}
+            \braket{p^2} &= -2\hbar^2 \sqrt{\frac{2am}{\hbar\pi}} \int_0^{\infty} \left(-\frac{2am}{\hbar} + \frac{4a^2m^2x^2}{\hbar^2}\right)e^{-2amx^2/\hbar} \;\dd x, \\
+            &= 4amh\sqrt{\frac{2am}{\hbar\pi}} \int_0^{\infty} e^{-2amx^2/\hbar} \;\dd x -8a^2m^2\sqrt{\frac{2am}{\hbar\pi}} \int_0^{\infty} x^2 e^{-2amx^2\hbar} \;\dd x, \\
+            &= 4am\hbar \sqrt{\frac{2am}{\hbar\pi}} \cdot \frac{\sqrt{\pi}}{2}\sqrt{\frac{\hbar}{2am}} - 8a^2m^2\sqrt{\frac{2am}{\hbar\pi}} \cdot \frac{2\sqrt{\pi}}{8} \left(\frac{h}{2am}\right)^{3/2}, \\
+            &=2am\hbar - 2a^2m^2 \left(\frac{h}{2am}\right) = 2am\hbar - am\hbar, \\
+            \Aboxed{\braket{p^2} &= am\hbar.}
+        \end{align*}
+    
+    \item The definition for the standard deviations are:
+        \begin{equation}
+            \sigma_x = \sqrt{\braket{x^2} - \braket{x}^2},\ \text{and}\ \sigma_p = \sqrt{\braket{p^2} - \braket{p}^2}.
+        \end{equation}
+        So, for $x$:
+        \begin{equation*}
+            \sigma_x = \sqrt{\frac{\hbar}{4am}},
+        \end{equation*}
+        since $\braket{x} = 0$. For $p$:    
+        \begin{equation*}
+            \sigma_p = \sqrt{am\hbar}.
+        \end{equation*}
+        Plugging in:
+        \begin{equation*}
+            \sqrt{\frac{\hbar}{4am}}\cdot\sqrt{am\hbar} = \frac{\hbar}{2} \geq \frac{\hbar}{2}.
+        \end{equation*}
+        And the Heisenberg Uncertainty Principle is satisfied!
+\end{parts}

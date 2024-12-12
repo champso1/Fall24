@@ -1,0 +1,63 @@
+\section{(5.4)}
+
+\begin{parts}
+
+  
+\item Equation~(5.17) is
+
+  \begin{equation}
+    \psi_\pm(\vv{r}_1,\vv{r}_2) = A[\psi_a(\vv{r}_1) \psi_b(\vv{r}_2) \pm \psi_b(\vv{r}_1) \psi_a(\vv{r}_2)]
+  \end{equation}
+
+  By inspection, it's probably going to be $1/\sqrt{2}$. But, of course, let's check. Imposing the normalization condition,
+
+  \begin{equation}
+    \int \abs{\psi_\pm(\vv{r}_1,\vv{r}_2)}^2 \;\dd^3\vv{r}_1\dd^3\vv{r}_2 = 1
+  \end{equation}
+
+  The square of the wavefunction is
+
+  \begin{equation}
+    \abs{\psi_\pm(\vv{r}_1,\vv{r}_2)}^2 = \abs{A}^2 \left[ \psi_a^*(\vv{r}_1)\psi_b^*(\vv{r}_2) \pm \psi_b^*(\vv{r}_1)\psi_a^*(\vv{r}_2) \right] \times \left[ \psi_a(\vv{r}_1) \psi_b(\vv{r}_2) \pm \psi_b(\vv{r}_1) \psi_a(\vv{r}_2) \right].
+  \end{equation}
+
+  Now, when we do the multiplication, the cross terms will look like $\psi_b^*(\vv{r}_1)\psi_a(\vv{r}_2)$, which, since $\psi_a$ and $\psi_b$ are orthogonal, will integrate to zero when we normalize. Therefore, the square of the wavefuntion is \textit{effectively}
+
+  \begin{equation}
+    \abs{\psi_\pm(\vv{r}_1,\vv{r}_2)}^2 = \abs{A}^2 \left[ \abs{\psi_a(\vv{r}_1)}^2\abs{\psi_b(\vv{r}_2)}^2 + \abs{\psi_b(\vv{r}_1)}^2\abs{\psi_a(\vv{r}_2)}^2\right]
+  \end{equation}
+
+  Doing the integration:
+
+  \begin{multline}
+    \int \abs{\psi_\pm(\vv{r}_1,\vv{r}_2)}^2 \;\dd^3\vv{r}_1\dd^3\vv{r}_2 = \abs{A}^2\Bigg[\br{\int \dd^3\vv{r}_1 \;\abs{\psi_a(\vv{r}_1)}^2}\br{\int \dd^3\vv{r}_2 \;\abs{\psi_b(\vv{r}_2)}^2} \\ + \br{\int \dd^3\vv{r}_1 \;\abs{\psi_b(\vv{r}_1)}^2}\br{\int \dd^3\vv{r}_2 \;\abs{\psi_a(\vv{r}_2)}^2}\Bigg]
+  \end{multline}
+  \begin{equation}
+    \int \abs{\psi_\pm(\vv{r}_1,\vv{r}_2)}^2 \;\dd^3\vv{r}_1\dd^3\vv{r}_2 = 2\abs{A}^2.
+  \end{equation}
+
+  So, $A = 1/\sqrt{2}$, as expected.
+
+
+
+\item If the two wavefunctions are the same, then
+
+  \begin{equation}
+    \psi_\pm(\vv{r}_1,\vv{r}_2) = 2\psi_a(\vv{r}_1)\psi_b(\vv{r}_2),
+  \end{equation}
+
+  meaning
+
+  \begin{align}
+    \int \abs{\psi_\pm(\vv{r}_1,\vv{r}_2)}^2 \;\dd^3\vv{r}_1\dd^3\vv{r}_2 =& 4\abs{A}^2\br{\int \abs{\psi_a(\vv{r}_1)}^2 \;\dd^3\vv{r}_1 \times \int \abs{\psi_b(\vv{r}_2)}^2\;\dd^3\vv{r}_2} = 4\abs{A}^2 = 1,
+  \end{align}
+
+  so this time, $A = 1/2$.
+
+  
+\end{parts}
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW7"
+%%% End:

@@ -1,0 +1,25 @@
+\section{(2.26)}
+
+The definition of the Fourier transform is
+
+\begin{equation*}
+    f(x) = \frac{1}{\sqrt{2\pi}}\intinf F(k) e^{ikx} \;\ddk,
+\end{equation*}
+
+and the inverse Fourier transform is
+
+\begin{equation*}
+    F(k) = \frac{1}{\sqrt{2\pi}}\intinf f(x) e^{-ikx} \;\ddx.
+\end{equation*}
+
+Here we have $f(x) \equiv \delta(x)$, so its Fourier transform is
+
+\begin{equation*}
+    F(k) = \frac{1}{\sqrt{2\pi}} \intinf \delta(x)e^{-ikx} \;\ddx = \frac{1}{\sqrt{2\pi}}.
+\end{equation*}
+
+Therefore
+
+\begin{equation*}
+    f(x) = \delta(x) = \frac{1}{\sqrt{2\pi}} \intinf \frac{1}{\sqrt{2\pi}} e^{ikx} \;\ddk = \frac{1}{2\pi} \intinf e^{ikx} \;\ddx.
+\end{equation*}

@@ -1,0 +1,120 @@
+\section{(4.15)}
+
+
+\begin{parts}
+    
+
+
+
+\item The ground state of an electron in a hydrogen atom is
+
+\begin{equation}
+    \psi_{100} = \frac{1}{\sqrt{\pi a^3}}e^{-r/a}.
+\end{equation}
+
+So,
+
+\begin{equation}
+    \braket{r} = \Braket{\psi_{100} | r | \psi_{100}} = \frac{1}{\pi a^3} \int r e^{-2r/a} \dd^3r.
+\end{equation}
+
+Converting to spherical coordinates:
+
+\begin{equation}
+    \braket{r} = \frac{1}{\pi a^3} \int \dd\Omega \int_0^{\infty} r^3 e^{-2r/a} \;\dd r.
+\end{equation}
+
+The solid angle integral is $4\pi$, and we can use the formula from the back of the book
+
+\begin{equation}
+    \int_0^{\infty} x^n e^{-x/a} \;\ddx = n! a^{n+1}
+\end{equation}
+
+to say that
+
+\begin{equation}
+    \braket{r} = \frac{4}{a^3} 3! \br{\frac{a}{2}}^4 \ 4a \br{\frac{6}{16}} = \boxed{\frac{3}{2}a^2.}
+\end{equation}
+
+Similarly, 
+
+\begin{equation}
+    \braket{r^2} = \frac{4}{a^3} \int r^4 e^{-2r/a} \;\dd r = \frac{4}{a^3} 4! \br{\frac{a}{2}}^5 = 4a^2 \br{\frac{24}{32}} = \boxed{3a^2.}
+\end{equation}
+
+
+
+\item The ground state only depends on $r$, the distance from the center; there is no dependence on anything else, so there is perfect spherical symmetry. Therefore, it easily follows that the expectation value of $x$ must be zero: $\boxed{\braket{x}=0x}$
+
+$x^2$ is a little different, but still doesn't require integration. Since $r^2 = x^2+y^2+z^2$, then $\braket{r^2} = \braket{x^2} + \braket{y^2} + \braket{z^2}$. But again, by spherical symmetry, all three terms on the right should be equal, so
+
+\begin{equation}
+    \braket{x^2} = \frac{1}{3}\braket{r^2} = \boxed{a^2.}
+\end{equation}
+
+
+
+\item First we must figure out $\psi_{211}$. We know $\psi_{211} = R_{21}Y^1_1$, and $R_{21}$ is given in Equation~(4.83):
+
+\begin{equation}
+    R_{21} = \frac{c_0}{4a^2}re^{-r/2a}.
+\end{equation}
+
+We must normalize it an find $c_0$. We know that we can normalize the radial equation separately by
+
+\begin{equation}
+    \int_0^{\infty} \abs{R}^2r^2 \;\dd r = 1,
+\end{equation}
+
+so for us we have
+
+\begin{align}
+    \int_0^{\infty} \abs{R_{21}}^2 r^2 \;\dd r &= \frac{c_0^2}{16a^4} \int_0^{\infty}r^4e^{-r/a}\;\dd r \\ 
+    &= \frac{c_0^2}{16a^4} 4! a^5 = c_0^2 \frac{3}{2}a = 1,
+\end{align}
+
+so
+
+\begin{equation}
+    c_0 = \sqrt{\frac{2}{3a}}.
+\end{equation}
+
+Next, we can use one of the tables in the book to find that
+
+\begin{equation}
+    Y_1^1 = -\br{\frac{3}{8\pi}}\sin\theta e^{i\phi}.
+\end{equation}
+
+So, the total wavefunction is
+
+\begin{align}
+    \psi_{211} &= \sqrt{\frac{2}{3a}}\frac{1}{4a^2}re^{-r/2a} \cdot -\sqrt{\frac{3}{8\pi}}\sin\theta e^{i\phi} \\
+    &= -\frac{1}{\sqrt{\pi a}}\frac{1}{8a^2}r e^{-r/2a} \sin\theta e^{i\phi}.
+\end{align}
+
+This carries an angular dependence, so it isn't perfectly spherically symmetric, so we must use the fact that $x = r\sin\theta\cos\phi$ to find that
+
+\begin{equation}
+    \braket{x^2} = \Braket{\psi_{211} | r^2\sin^2\theta\cos^2\phi | \psi_{211}} = \frac{1}{64\pi a^5} \int_0^{\pi}\sin^5\theta \;\dd\theta \int_0^{2\pi}\cos^2\phi \;\dd\phi \int r^6 e^{-r/a} \;\dd r.
+\end{equation} 
+
+I'll just use Mathematica for the angular integrals:
+
+\begin{equation}
+    \int_0^{\pi} \sin^5\theta\;\dd\theta = \frac{16}{15} \quad\mathrm{and}\quad \int_0^{2\pi}\cos^2\phi\;\dd\phi = \pi,
+\end{equation}
+
+so
+
+\begin{equation}
+    \braket{x^2} = \frac{1}{64\pi a^5} \br{\frac{16}{15}}\cdot \pi \cdot 6! a^7 = \frac{a^2}{60}720 = \boxed{12a^2.}
+\end{equation}
+
+
+
+
+
+
+
+
+\end{parts}

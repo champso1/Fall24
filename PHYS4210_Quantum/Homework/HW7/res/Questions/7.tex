@@ -1,0 +1,66 @@
+\section{(6.13)}
+
+\begin{parts}
+\item For a single electron in the ground state of the hydrogren atom, there is perfect spherical symmetry, meaning that $\braket{\vv{r}}=0$, so $\braket{\vv{p}_e} = q\braket{\vv{r}} = 0$.
+
+
+\item For $n=2$, we need to make use of Equation~(6.26), and we can tell that there is possibility for two different values of $\ell$ and $\ell'$ such that $\ell+\ell'$ is not even. We need a single state/wavefunction, so we need a linear combination of two states with different $\ell$ values, say
+
+  \begin{equation}
+    \ket{\psi} = \frac{1}{\sqrt{2}}(\ket{210} + \ket{200}),
+  \end{equation}
+
+  where
+
+  \begin{align}
+    \psi_{200} &= \frac{1}{4\sqrt{a^3\pi}}\br{2 - \frac{r}{a}} e^{-r/2a}, \quad\text{and} \\
+    \psi_{210} &= \frac{1}{4\sqrt{a^3\pi}}\br{\frac{r}{a}} e^{-r/2a} \cos\theta.
+  \end{align}
+
+  Thus,
+
+  \begin{equation}
+    \Braket{\psi | \hat{p}_e | \psi} = \frac{1}{2}\br{\braket{200 | \hat{p}_e | 200} + \braket{210 | \hat{p}_e | 210} + \braket{210 | \hat{p}_e | 200} + \braket{200 | \hat{p}_e | 210}}.
+  \end{equation}
+
+  The first two terms in parentheses are zero since $\ell = \ell'$, so we are only left with
+
+  \begin{equation}
+    \Braket{\psi | \hat{p}_e | \psi} = \frac{1}{2}\br{\braket{210 | \hat{p}_e | 200} + \braket{200 | \hat{p}_e | 210}}.
+  \end{equation}
+
+  For a generic complex number $z$, we have that $(z+z^*)/2 = \mathrm{Re}[z]$, and since the second term in parentheses is the complex conjugate of the first (because the position operator is Hermitian) then we can write this as
+
+  \begin{equation}
+    \Braket{\psi | \hat{p}_e | \psi} = \mathrm{Re}[\braket{210 | \hat{p}_e | 200}].
+  \end{equation}
+
+  Doing the actual calculation, $\vv{r}$ is a vector so: $\hat{\vv{r}} = \begin{pmatrix}\hat{x} & \hat{y} & \hat{z}\end{pmatrix} = \begin{pmatrix}r\sin\theta\cos\phi & r\sin\theta\sin\phi & r\cos\phi\end{pmatrix}.$ The $x$ component is
+
+  \begin{align}
+    \braket{\hat{p}_e}_x &= -e \cdot \mathrm{Re}\left[ \int \psi^*_{210} (r\sin\theta\cos\phi) \psi_{200} \;\dd^3\vv{r} \right] \,\hat{i}
+  \end{align}
+
+  The $\phi$ integration will be super easy, since neither wavefunctions contribute a $\phi$ component and $\dd^3r = r^2 \sin\theta \dd r$ also doesn't contribute a $\phi$ component. Fortunately, however, we have that
+
+  \begin{equation}
+    \int_0^{2\pi} \cos\phi \;\dd\phi =     \int_0^{2\pi} \sin\phi \;\dd\phi = 0,
+  \end{equation}
+
+  so both the $x$ and $y$ components will be zero. The $z$ component is (and since we know everything will be real now, we can drop the real specifier)
+
+  \begin{equation}
+    \braket{210 | \hat{p}_e | 200}_x = - \frac{e}{16a^5\pi} \int_0^{2\pi} \dd\phi \int_0^\pi \cos^2\theta\sin\phi \;\dd\theta \int_0^\infty r^4(2a - r)e^{-r/a} \;\dd r.
+  \end{equation}
+
+  The $\phi$ integration is obviously $2\pi$, Mathematica tells me the $\theta$ integral is 2/3, and it also tells me the $r$ integration is $-72/a^6$, so
+
+  \begin{equation}
+    \boxed{\braket{\hat{p}_e} = 6ea \,\hat{k}.}
+  \end{equation}
+\end{parts}
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW7"
+%%% End:

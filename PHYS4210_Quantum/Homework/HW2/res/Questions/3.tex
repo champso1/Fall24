@@ -1,0 +1,168 @@
+\section{(2.11)}
+
+
+We will need:
+
+\begin{equation}
+    \psi_0 = \alpha e^{-\frac{m\omega}{2\hbar}x^2}, \qquad \mathrm{and} \qquad \psi_1 = \alpha \sqrt{\frac{2m\omega}{\hbar}}x e^{-\frac{m\omega}{2\hbar}x^2},
+\end{equation}
+
+where
+
+\begin{equation}
+    \alpha \equiv \sqrt[4]{\frac{m\omega}{\pi\hbar}}.
+\end{equation}
+
+To make things easier, we introduce a change of variables with
+
+\begin{equation*}
+    \xi = \sqrt{\frac{m\omega}{\hbar}}x, 
+\end{equation*}
+
+so
+
+\begin{equation*}
+    \psi_0 = \alpha e^{-\xi^2/2}, \qquad \mathrm{and} \qquad \psi_1 = \alpha \sqrt{2}\xi e^{-\xi^2/2}
+\end{equation*}
+
+
+\begin{parts}
+
+\item Let's start with $\braket{x}$ for $\psi_0$:
+
+\begin{equation*}
+    \braket{x} = \Braket{\psi_0 | x | \psi_0} = \alpha^2 \intinf x e^{-\xi^2}\;\ddx = \alpha^2 \left( \frac{\hbar}{m\omega} \right) \intinf \xi e^{-\xi^2}\;\dd\xi.
+\end{equation*}
+
+However, $\xi$ is odd and the exponential is even, so the integrand itself is odd, which, when integrated over a symmetric interval, is zero. Also, since we are looking at individual stationary states, we know that we know that time-dependence won't change them, so we can say:
+
+\begin{equation*}
+    \braket{p} = m\diff{\braket{x}}{t} = 0.
+\end{equation*}
+
+For $\braket{x^2}$:
+
+\begin{equation*}
+    \braket{x^2} = \alpha^2 \intinf x^2 e^{-\xi^2}\;\ddx = 2\alpha^2 \left( \frac{\hbar}{m\omega} \right)^{3/2} \int_0^{\infty} \xi^2 e^{-\xi^2}\;\dd\xi.
+\end{equation*}
+
+Using the integral table in the back of the book, the integral evaluate to $\sqrt{\pi}/4$, so
+
+\begin{equation*}
+    \braket{x^2} = 2\left( \frac{m\omega}{\pi\hbar} \right)^{1/2} \left( \frac{\hbar}{m\omega} \right)^{3/2} \frac{\sqrt{\pi}}{4} = \frac{1}{2}\left( \frac{\hbar}{m\omega} \right)^{-1/2}\left( \frac{\hbar}{m\omega} \right)^{3/2} = \boxed{\frac{\hbar}{2m\omega}.}
+\end{equation*}
+
+
+Now for $\braket{p^2}$:
+
+\begin{equation*}
+    \braket{p^2} = -\hbar^2\alpha^2 \intinf e^{-\xi^2/2} \diff[2]{}{x}\left[ e^{-\xi^2/2} \right] \;\ddx.
+\end{equation*}
+
+The derivative term is:
+
+\begin{equation*}
+    \left( \frac{m\omega}{\hbar} \right) \diff[2]{}{\xi}\left[ e^{-\xi^2/2} \right] = \left( \frac{m\omega}{\hbar} \right)\diff{}{\xi}\left[ -\xi e^{-\xi^2/2} \right] = \left( \frac{m\omega}{\hbar} \right)\left( - e^{-\xi^2/2} + \xi^2 e^{-\xi^2/2} \right),
+\end{equation*}
+
+so
+
+\begin{align*}
+    \braket{p^2} &= -2\hbar^2\alpha^2 \left( \frac{m\omega}{\hbar} \right) \sqrt{\frac{\hbar}{m\omega}} \left[ -\int_0^{\infty} e^{-\xi^2}\;\ddx + \int_0^{\infty} \xi^2 e^{\xi^2} \;\ddx \right], \\
+    &= -2\hbar^2  \sqrt{\frac{m\omega}{\pi\hbar}} \sqrt{\frac{\hbar}{m\omega}} \left( \frac{m\omega}{\hbar} \right) \left( -\frac{\sqrt{\pi}}{2} + \frac{\sqrt{\pi}}{4}\right), \\
+    &= \frac{\hbar m\omega}{2}.
+\end{align*}
+
+
+So, for $\psi_0$, we have 
+
+\begin{align*}
+    &\braket{x} = 0, \\
+    &\Braket{x^2} = \frac{\hbar}{2m\omega}, \\
+    &\Braket{p} = 0, \\
+    &\Braket{p^2} = \frac{\hbar m\omega}{2}.
+\end{align*}
+
+Thus,
+
+\begin{equation*}
+    \sigma_x\sigma_p = \left( \sqrt{\frac{\hbar}{2m\omega}} \right)\left( \sqrt{\frac{\hbar m\omega}{2}} \right) = \frac{\hbar}{2} \geq \frac{\hbar}{2}. \ \checkmark
+\end{equation*}
+
+Now we turn to $\psi_1(x)$; starting with $\braket{x}$:
+
+\begin{equation*}
+    \Braket{x} = 2\alpha^2 \intinf \xi^2 x e^{-\xi^2/2}\;\ddx = 2\alpha^2 \left( \frac{\hbar}{m\omega} \right) \intinf \xi^3 e^{-\xi^2/2} \;\dd\xi.
+\end{equation*}
+
+We can again stop here since we have an odd integrand, so both $\Braket{x}$ and $\Braket{p}$ are zero. Turning to $\Braket{x^2}$:
+
+\begin{align*}
+    \Braket{x^2} &= 2\alpha^2 \intinf x^2\xi^2 e^{-\xi^2}\;\ddx, \\
+    &= 4 \sqrt{\frac{m\omega}{\pi\hbar}}\left( \frac{\hbar}{m\omega} \right)^{3/2} \int_0^{\infty} \xi^4 e^{-\xi^2} \;\dd\xi.
+\end{align*}
+
+From the integral table, we can find that the integral evaluates to $3\sqrt{\pi}/8$, so:
+
+\begin{equation*}
+    \Braket{x^2} = \frac{4}{\sqrt{\pi}}\left( \frac{\hbar}{m\omega} \right) \frac{3\sqrt{\pi}}{8} = \frac{3\hbar}{2m\omega}.
+\end{equation*}
+
+Now for $\braket{p^2}$:
+
+\begin{equation*}
+    \braket{p^2} = -2\hbar^2\alpha^2 \intinf \xi e^{-\xi^2/2} \diff[2]{}{x}\left[ \xi e^{-\xi^2/2} \right] \;\ddx.
+\end{equation*}
+
+The derivative term is:
+
+\begin{align*}
+    \diff[2]{}{x}\left[ \xi e^{-\xi^2/2} \right] &= \left( \frac{m\omega}{\hbar} \right)\diff{}{\xi}\left[ -\xi^2 e^{-\xi^2/2} + e^{-\xi^2/2} \right], \\
+    &= \left( \frac{m\omega}{\hbar} \right)\left( -2\xi e^{-\xi^2/2} + \xi^3 e^{-\xi^2/2} - \xi e^{-\xi^2/2} \right),\\
+    &= \left( \frac{m\omega}{\hbar} \right)(\xi^3 - 3\xi)e^{-\xi^2/2},
+\end{align*}
+
+so
+
+\begin{align*}
+    \braket{p^2} &= -4\hbar^2 \alpha^2 \left( \frac{m\omega}{\hbar} \right) \sqrt{\frac{\hbar}{m\omega}} \left[ \int_0^{\infty} \xi^4e^{-\xi^2}\;\dd\xi - 3\int_0^{\infty} \xi^2e^{-\xi^2}\;\dd\xi \right], \\
+    &= -4\hbar^2 \sqrt{\frac{m\omega}{\pi\hbar}}\sqrt{\frac{m\omega}{\hbar}} \left( \frac{3\sqrt{\pi}}{8} - \frac{3\sqrt{\pi}}{4} \right), \\
+    &= \frac{3\hbar m\omega}{2}.
+\end{align*}
+
+Thus,
+
+\begin{equation*}
+    \sigma_x\sigma_p = \sqrt{\frac{3\hbar}{2m\omega}} \sqrt{\frac{3\hbar m\omega}{2}} = 3\frac{\hbar}{2} \geq \frac{\hbar}{2}. \ \checkmark
+\end{equation*}
+
+
+
+\item Starting with $\psi_0$, we can use the definition of kinetic energy:
+
+\begin{equation*}
+    T = \frac{p^2}{2m} \ \rightarrow \Braket{T} = \frac{\braket{p^2}}{2m} = \frac{\hbar\omega}{4}.
+\end{equation*}
+
+Similar for potential:
+
+\begin{equation*}
+    V = \frac{1}{2}m\omega^2x^2 \ \rightarrow \Braket{V} = \frac{1}{2}m\omega^2 \Braket{x^2} = \frac{\hbar\omega}{4}
+\end{equation*}
+
+Their sum is $\hbar\omega/2$, which is exactly what the total energy of the $n=0$ state is, as expected. 
+
+Now for $n=1$, we have
+
+\begin{equation*}
+    \Braket{T} = \frac{3\hbar\omega}{4}, \quad \Braket{V} = \frac{3\hbar\omega}{4},
+\end{equation*}
+
+whose sum is $3\hbar\omega/2$, which is also the total energy of the $n=1$ state using the forula $E_n = \left( n + \frac{1}{2} \right)\hbar\omega$.
+
+
+
+
+
+
+\end{parts}

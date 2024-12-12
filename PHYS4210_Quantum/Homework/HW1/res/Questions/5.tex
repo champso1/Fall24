@@ -1,0 +1,42 @@
+\section{}
+
+We are given the wavefunction
+
+\renewcommand{\arraystretch}{1.3}
+\begin{equation}
+    \psi(x) = 
+        \begin{alignedat}{1}
+        \begin{cases}
+            Ae^{ikx} \cos\left(\dfrac{3\pi x}{L}\right),\quad & -L/2 \leq x \leq L/2, \\
+            0 & \ \text{otherwise}.
+        \end{cases}
+        \end{alignedat}
+\end{equation}
+\renewcommand{\arraystretch}{1}
+
+To find $A$, we just normalize:
+
+\begin{align*}
+    \intinf \abs{\psi}^2 \;\ddx &= A^2 \int_{-L/2}^{L/2} \cos^2 \left(\frac{3\pi x}{L}\right) \;\ddx, \\
+    &= 2A^2 \int_0^{L/2} \frac{1}{2} \left[1 + \cos\left(\frac{6\pi x}{L}\right)\right] \;\ddx, \\
+    &= A^2 \left[\int_0^{L/2} \;\ddx + \int_0^{L/2} \cos\left(\frac{6\pi x}{L}\right) \;\ddx\right], \\
+    &= A^2 \left[\frac{L}{2} + \frac{L}{6\pi} \sin\left(\frac{6\pi x}{L}\right) \Big|_0^{L/2}\right], \\
+    &= A^2L \left[\frac{1}{2} + \frac{1}{6\pi} \sin(3\pi)\right], \\
+    &= A^2 L \cdot \frac{1}{2}, \\
+    \rightarrow\ \Aboxed{A &= \sqrt{\frac{2}{L}}.}
+\end{align*}
+
+Next, to determine the probability of finding the particle in between $x=0$ and $x=L/4$, we just integrate the square of the wavefunction between that interval:
+
+\begin{equation*}
+    P\left(x \in [0,\ L/2]\right) = \int_0^{L/4} \abs{\psi}^2 \;\ddx.
+\end{equation*}
+
+Picking up from the third line in the previous step, changing the upper limit and dividing by 2 since we multiplied by 2 in that step due to the even integrand, we get:
+
+\begin{align*}
+    P\left(x \in [0,\ L/2]\right) &= \frac{A^2}{2} \left[\int_0^{L/4} \;\ddx + \int_0^{L/4} \cos\left(\frac{6\pi x}{L}\right) \;\ddx\right], \\
+    &= \frac{1}{L} \left[\frac{L}{4} + \frac{L}{6\pi} \sin\left(\frac{6\pi x}{L}\right)\Big|_0^{L/4}\right], \\
+    &= \frac{1}{4} + \frac{1}{6\pi} \sin(3\pi/2) = \frac{1}{4} - \frac{1}{6\pi}, \\
+    \rightarrow\ \Aboxed{P\left(x \in [0,\ L/2]\right) &= \frac{3\pi - 2}{12\pi} \approx 0.197.}
+\end{align*}

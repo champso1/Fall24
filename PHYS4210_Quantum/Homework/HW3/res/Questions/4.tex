@@ -1,0 +1,243 @@
+\section{(2.34)}
+
+\begin{parts}
+
+%a
+\item In the region $x\leq0$, the Schr\"odinger EQ reads
+
+\begin{equation*}
+    -\frac{\hbar^2}{2m}\diff[2]{\psi}{x} = E\psi \quad \rightarrow \quad \diff[2]{\psi}{x} = -\frac{2mE}{\hbar^2}\psi.
+\end{equation*}
+
+Since we must have $E > V_{\mathrm{min}}$, $E>0$, so we have to let $k = \sqrt{2mE}/\hbar$:
+
+\begin{equation*}
+    \rightarrow \diff[2]{\psi}{x} = -k^2\psi.
+\end{equation*}
+
+This has solutions
+
+\begin{equation}
+    \psi(x) = Ae^{ikx} + Be^{-ikx}.
+\end{equation}
+
+For the other region ($x>0$), the Schr\"odinger EQ reads
+
+\begin{equation*}
+    -\frac{\hbar^2}{2m}\diff[2]{\psi}{x} + V_0\psi = E\psi \quad \rightarrow \diff[2]{\psi}{x} = \frac{2m(V_0 - E)}{\hbar^2}\psi.
+\end{equation*}
+
+If $0<E<V_0$, then we define $\ell = \sqrt{2m(V_0 - E)}/\hbar$ (a different variable) to get
+
+\begin{equation*}
+    \diff[2]{\psi}{x} = ell^2\psi,
+\end{equation*}
+
+which has solutions
+
+\begin{equation}
+    \psi(x) = C^{\ell x} + D^{-\ell x}.
+\end{equation}
+
+In this case, we can eliminate the first term since it blows up as $x \rightarrow \infty$, so we have
+
+\begin{equation}
+    \psi(x) = 
+        \begin{alignedat}{1}
+        \begin{cases}
+            Ae^{ikx} + Be^{-ikx} \quad & x\leq0, \\
+            D^{-\ell x} & x>0.
+        \end{cases}
+        \end{alignedat}
+\end{equation}
+
+However, regardless if it actually blew up, we could set it zero under the assumption that the experiement we are conducting only involves shooting in, say, electrons from the left. Regardless, continuity of $\psi(x)$ at $x=0$ means that
+
+\begin{equation}
+    A+B=D,
+\end{equation}
+
+and continuity of $\dd\psi(x)/\ddx$ means that
+
+\begin{equation*}
+    ik(A-B) = -\ell D \rightarrow D = -\frac{ik}{\ell}(A-B).
+\end{equation*}
+
+Using these two equations, we have that
+
+\begin{equation*}
+    A+B = -\frac{ik}{\ell}(A-B) \rightarrow A\br{1 + \frac{ik}{\ell}} = B\br{\frac{ik}{\ell} - 1}.
+\end{equation*}
+
+The reflection coefficient is given by 
+
+\begin{equation}
+    R = \frac{\abs{B}^2}{\abs{A}^2} = \frac{\abs{1+ik/\ell}^2}{\abs{ik/\ell - 1}^2} = \frac{k^2/\ell^2 + 1}{k^2/\ell^2 + 1} = 1.
+\end{equation}
+
+Interestingly, we have a non-zero transmitted wave, but eventually all of the wave gets reflected back. This is because the energy is less than the potential on the right.
+
+
+
+
+
+%b
+\item In the opposite case, where $E>V_0$, the left-side stays the same, but for the right side, the Schr\"odinger EQ reads
+
+\begin{equation*}
+    \diff[2]{\psi}{x} = -\frac{2m(E-V_0)}{\hbar^2}\psi.
+\end{equation*}
+
+Defining $\ell = \sqrt{2m(E-V_0)}/\hbar$, we get
+
+\begin{equation*}
+    \psi(x) = Ce^{i\ell x} + De^{-i\ell x}.
+\end{equation*}
+
+But, as mentioned before, in experiments under our consideration, the $D$ term vanishes, so we have
+
+\begin{equation}
+    \psi(x) = 
+        \begin{alignedat}{1}
+        \begin{cases}
+            Ae^{ikx} + De^{-ikx} \quad & x\leq0, \\
+            Ce^{i\ell x} & x>0.
+        \end{cases}
+        \end{alignedat}
+\end{equation}
+
+Continuity of $\psi(x)$ at $x=0$ means that
+
+\begin{equation}
+    A+B=C,
+\end{equation}
+
+and continuity of $\dd\psi(x)/\ddx$ means
+
+\begin{equation*}
+    ik(A-B) = i\ell D \rightarrow D = \frac{k}{\ell}(A-B),
+\end{equation*}
+
+so
+
+\begin{equation*}
+    A+B = \frac{k}{\ell}(A-B) \rightarrow A\br{1 - \frac{k}{\ell}} = B(-\frac{k}{\ell} - 1).
+\end{equation*}
+
+The reflection coefficient is therefore
+
+\begin{equation*}
+    R = \frac{\abs{B}^2}{\abs{A}^2} = \frac{(1 - k/\ell)^2}{(1 + k/l)^2} = \frac{(\ell - k)^2}{(\ell + k)^2} = \frac{(\ell - k)^4}{(\ell + k)^2(\ell - k)^2} = \frac{(\ell - k)^4}{(\ell^2 - k^2)^2}.
+\end{equation*}
+
+Now that we have the denominator in a super nice form:
+
+\begin{equation*}
+    \ell^2 - k^2 = \br{\frac{2m}{\hbar^2}}(E - V_0 - E) = \br{\frac{2m}{\hbar^2}}V_0.
+\end{equation*}
+
+The numerator won't be so nice, but normally we are more interested in a cleaner looking denominator:
+
+\begin{equation*}
+    \ell - k = \br{\frac{\sqrt{2m}}{\hbar}}(\sqrt{E-V_0} - \sqrt{E}),
+\end{equation*}
+
+so
+
+\begin{equation*}
+    R = \frac{(\sqrt{E-V_0} - \sqrt{E})^4}{V_0^2}.
+\end{equation*}
+
+
+
+
+%c
+\item As the book explains, the transmission coefficient is a little harder, since the speeds of the two waves are different. To account for this, we can use the ratio of the two speeds from Equation~2.98 in the book:
+
+\begin{equation}
+    v_{\mathrm{quantum}} = \frac{\hbar\abs{k}}{2m}.
+\end{equation}
+
+For the wave on the left, this is identical to the case in the book to 
+
+\begin{equation*}
+    v_i = \frac{E}{2m}.
+\end{equation*}
+
+For the wave on the right, we use $\ell$ instead (for the case when $E>V_0$):
+
+\begin{equation*}
+    v_f = \frac{\hbar}{2m}\frac{\sqrt{2m(E-V_0)}}{\hbar} = \sqrt{\frac{E - V_0}{2m}}.
+\end{equation*}
+
+Thus the ratio of the two speeds is 
+
+\begin{equation}
+    \frac{v_f}{v_i} = \sqrt{\frac{E - V_0}{E}}.
+\end{equation}
+
+By taking this factor into account for the calculation of the transmission coefficient, we arrive at
+
+\begin{equation}
+    T = \sqrt{\frac{E - V_0}{E}} \frac{\abs{F}^2}{\abs{A}^2}.
+\end{equation}
+
+This part of the problems asks for the transmission coefficient for the case of $E<V_0$, which since we found the reflection coefficient to be 1, then the transmission coefficient must be zero.
+
+
+
+
+
+%d
+\item For the other case of $E>V_0$, we need to use our new formula for the transmission coefficient. First, we use our two equations for $A$, $B$, and $D$ (where $D$ is my $F$):
+
+\begin{equation*}
+    A+B = D \rightarrow B = D-A,
+\end{equation*}
+
+and
+
+\begin{equation*}
+    ik(A-B) = i\ell D \rightarrow A - \frac{\ell}{k}D = B,
+\end{equation*}
+
+so
+
+\begin{align*}
+    D-A &= A - \frac{\ell}{l}D, \\
+    D\br{1 + \frac{\ell}{k}} &= 2A, \\
+    2kA &= (k+l)D.
+\end{align*}
+
+Thus,
+
+\begin{equation*}
+    \frac{\abs{D}^2}{\abs{A}^2} = \frac{4k^2}{(k+l)^2} = \frac{4k^2(k-l)^2}{(k^2-l^2)^2} = \frac{4E(\sqrt{E} - \sqrt{E - V_0})^2}{V_0^2}.
+\end{equation*}
+
+The transmission coefficient therefore is
+
+\begin{equation*}
+    T = \sqrt{\frac{E - V_0}{E}} \frac{4E(\sqrt{E} - \sqrt{E - V_0})^2}{V_0^2} = \frac{4\sqrt{E(E-V_0)}(\sqrt{E} - \sqrt{E - V_0})^2}{V_0^2}.
+\end{equation*}
+
+To check,
+
+\begin{equation*}
+    T+R = \sqrt{\frac{E - V_0}{E}}\frac{4k^2}{(k+l)^2} + \frac{(\ell - k)^2}{(\ell + k)^2}.
+\end{equation*}
+
+To make things simpler, the square root quantity at the beginning is just $\ell/k$:
+
+\begin{equation*}
+    T+R = \frac{4k\ell}{(k+l)^2} + \frac{(\ell - k)^2}{(\ell + k)^2} = \frac{4k\ell + k^2 - 2k\ell + \ell^2}{(\ell + k)^2} = \frac{k^2 + 2k\ell + \ell^2}{(\ell + k)^2} = \frac{(k+\ell)^2}{(\ell + k)^2} = 1,
+\end{equation*}
+
+as expected.
+
+
+
+
+
+
+\end{parts}

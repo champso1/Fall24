@@ -1,0 +1,77 @@
+\section{Identical Particles}
+
+\begin{itemize}
+    \item For multiple particles, we have some simple generalizations. First, the wavefunction is now a function of all the positions of the particles: $\Psi(\{\vv{r}_n\}, t)$.
+    \item The probabilistic interpretation is similar: now, the quantity $\abs{\Psi(\{\vv{r}_n\}, t)}^2 \prod_{i=1}^n \dd^3\vv{r}_i$ is the probability that \textit{each particle} is contained in its infinitesimal volume element $\dd^3\vv{r}_i$.
+    \item The changes to the Schrodinger equation are relatively simple: the time evolution operator remains the same, but the Hamiltonian changes. Now, we sum all of the kinetic terms and the potential is a function of all the positions of all the particles:
+        \begin{equation}
+            i\hbar\pd{\Psi}{t} = \hat{H}\Psi = \br{-\frac{\hbar^2}{2m}\sum_{i=1}^n\grad_i^2 + V(\{\vv{r}_n\})}.
+        \end{equation}
+    \item Just as before, if the potential is independent of time (which it is for this course), we can find stationary states
+        \begin{equation}
+            \Psi(\{\vv{r}_n\}, t) = \psi(\{\vv{r}_n\})e^{-iE\hbar/t}.
+        \end{equation}
+    \item Now, in an atom with atomic number $Z$ (meaning there are $Z$ protons, and if it is not an ion, $Z$ electrons). We will consider the nucleus to be effectively stationary, which makes our work quite a bit easier.
+    \item In this case, we will have the kinetic terms of the electrons, the potential between the nucleus and each electron, then the interactions among the electrons themselves:
+        \begin{equation}
+            \hat{H} = -\frac{\hbar^2}{2m}\sum_{i=1}^{Z} \grad_{i}^2 - \sum_{i=1}^{Z} \frac{Ze^2}{\abs{\vv{R} - \vv{r}_i}} + \sum_{i<j} \frac{e^2}{\abs{\vv{r}_i - \vv{r}_j}},
+        \end{equation}
+        where the final term's sum serves to remove duplicates from our counting of potentials among the electrons.
+    \item Equations like this are very hard to solve, but we can separate it into two special cases that makes them easier to solve. The first is if the particles don't interact, e.g. the last term in the above Hamiltonian will be zero. Therefore, we could write the potential $V(\{\vv{r}_n\}) = \sum_i V(\vv{r}_i)$. The Hamiltonian is now separable, so we will have $n$ equations for each particle itself. The total energy of the system will then just be the sum of all the individual energies, and the total wavefunction will be a product of each individual wavefunction: $\Psi = \prod_i \psi_i(\vv{r}_i)e^{iE_i\hbar/t}$.
+    \item However there is a problem with this: \textit{we have assumed the particles are distinguishable}. Otherwise, what sense does it make to say that particle 1 is in state 1 if there is no way to tell them apart?
+    \item To make this easier to consider, let's only take two particles. In general, since there is no way to tell them apart, we can have particle 1 (represented by position $\vv{r}_1$) in state 1 or it can be state 2, and similarly for particle 2. The general state of a particle is a linear combination of the two:
+        \begin{equation}
+            \psi(\vv{r}_1,\vv{r}_2) = A[\psi_1(\vv{r}_1)\psi_2(\vv{r}_2) \pm \psi_1(\vv{r}_2)\psi_2(\vv{r}_1)].
+        \end{equation}
+    \item The $+$ corresponds to if the particles are bosons and the minus corresponds to if the particles are fermions.
+    \item With this, it immediately follows that no two electrons (ignoring spin for a moment) can occupy the same state, because then, with $\psi_1=\psi_2$, we have
+        \begin{equation}
+            \psi(\vv{r}_1,\vv{r}_2) = A[\psi_1(\vv{r}_1)\psi_1(\vv{r}_2) - \psi_1(\vv{r}_2)\psi_2(\vv{r}_1)] = 0,
+        \end{equation}
+        so there's no wavefunction at all.
+    \item Now including spin, we have that the \textit{combination}(product) of the position wavefunction and spin state must be anti-symmetric: so the product $\psi(\vv{r}_1,\vv{r}_2)\chi(1,2)$ must remain anti-symmetric under exchange of particles. 
+\end{itemize}
+
+\sep
+
+\subsection*{Addition of Angular Momentum}
+
+\begin{itemize}
+    \item Now, say that we have two electrons. They can either be in the spin-up state $\Ket{\frac{1}{2},\frac{1}{2}}$ or spin-down state $\Ket{\frac{1}{2},-\frac{1}{2}}$. We can shorthand write these states as $\ket{\uparrow}$ and $\ket{\downarrow}$, respectively.
+    \item Now, if we form a combined state, of the two electrons, we'd expect four possible combinations: $\ket{\uparrow,\uparrow}$, $\ket{\uparrow,\downarrow}$, $\ket{\downarrow,\uparrow}$, and $\ket{\downarrow,\downarrow}$. Now, the $z$-component of spin will just add, meaning that $m=1$ for the first case, $m=0$ for the middle two cases, and $m=-1$ for the last case. With these upper and lower limits on $m$, it follows that $s=1$, but for a state of $s=1/2$, we expect only \textit{three} states with $m=1$, $m=0$, and $m=-1$, meaning we have an extra $m=0$ state\ldots
+    \item To remedy this, let's take the $\ket{\uparrow,\uparrow} = \ket{1,1}$ state and apply the lowering operator. We have two individual states within this combined state, so the combined lowering operator $S_- = S_-^{(1)} + S_-^{(2)}$. Thus:
+        \begin{align}
+            S_- \ket{\uparrow,\uparrow} = S_-\ket{1,1} &= \br{S_-^{(1)}\ket{\uparrow}}\ket{\uparrow} + \ket{\uparrow}\br{S_-^{(2)}\ket{\uparrow}} \\
+            \hbar\sqrt{2}\ket{1,0} &= \hbar\br{\ket{\uparrow,\downarrow} + \ket{\downarrow,\uparrow}} \\
+            \ket{1,0} &= \frac{1}{\sqrt{2}}\br{\ket{\uparrow,\downarrow} + \ket{\downarrow,\uparrow}}.
+        \end{align}
+    \item Therefore, there are three states with $s=1$:
+        \begin{equation}
+            \begin{alignedat}{1}
+            \begin{cases}
+                \ket{1,1}  &= \ket{\uparrow,\uparrow}, \\
+                \ket{1,0}  &= \frac{1}{\sqrt{2}}\br{\ket{\uparrow,\downarrow} + \ket{\downarrow,\uparrow}}, \\
+                \ket{1,-1} &= \ket{\downarrow,\downarrow}.
+            \end{cases}
+            \end{alignedat}
+        \end{equation}
+    \item It turns out, that if we apply the lowering operator again to $\ket{1,0}$, we get $\ket{1,-1}$, and if we apply the raising operator we return to $\ket{1,1}$, as expected. Additionally, applying the raising operator to $\ket{1,1}$ or the lowering operator to $\ket{1,-1}$ give zero, so it seems this works nicely.
+    \item Now, there is nothing stopping a potential $s=0$ state. This would admit only one state which would have $m=0$. In fact, it seems almost natural to find another $m=0$ state due to our double $m=0$ from before. We just need to construct a state such that if we apply either raising or lowering operator results in zero. It turns out this is
+        \begin{equation}
+            \ket{0,0} = \frac{1}{\sqrt{2}}\br{\ket{\uparrow,\downarrow} - \ket{\downarrow,\uparrow}}.
+        \end{equation}
+    \item The three $s=1$ states form a \textbf{triplet} that is symmetric, and this single $s=0$ state forms a \textbf{singlet}, than is anti-symmetric.
+\end{itemize}
+
+
+\subsection*{Note}
+\begin{itemize}
+    \item We covered next Helium, and some periodic table stuff which followed from the idea of no two electrons being able to occupy the same state. We can fit two into one position/energy state, but only so long as their spins are opposite. This leads to subsequent elements in the periodic table needing to push their electrons into higher states, called orbitals.
+    \item Anyway, this is cool and all but I don't care to write it because it is hardly important.
+    \end{itemize}
+
+    
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Notes"
+%%% End:

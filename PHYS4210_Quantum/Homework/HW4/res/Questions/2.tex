@@ -1,0 +1,75 @@
+% Show that minimum uncertainty wave packets are gaussian.
+\section{}
+
+Considering two observables $A$ and $B$, we can define 
+
+\begin{equation}
+    \ket{f} = (\hat{A} - \braket{A})\ket{\psi}, \quad\mathrm{and}\quad \ket{g} = (\hat{B} - \braket{B})\ket{\psi},
+\end{equation}
+
+just as the book did. The product of the variances is given, by the Schwartz inequality, as
+
+\begin{equation}
+    \sigma_A^2\sigma_B^2 = \braket{f|f}\braket{g|g} \geq \abs{\braket{f|g}}^2.
+\end{equation}
+
+To achieve minimum uncertainty, this means that we have an equality rather than a inequality in the above equation:
+
+\begin{equation}
+    \sigma_A^2\sigma_B^2 = \braket{f|f}\braket{g|g} = \abs{\braket{f|g}}^2.
+\end{equation}
+
+However, the only way for this to be the case in the vector space of square-integrable functions (Hilbert space) is for the two functions $f$ and $g$ to be equal, up to a constant which can in general be complex:
+
+\begin{equation}
+    f = ag.
+\end{equation}
+
+But, Griffiths states that for a complex number $z$:
+
+\begin{equation}
+    \abs{z}^2 = [\mathrm{Re}(z)]^2 + [\mathrm{Im}(x)]^2 \geq [\mathrm{Im}(z)]^2.
+\end{equation}
+
+Again, in the minimum-uncertainty regime, this is now an equality, meaning
+
+\begin{equation}
+    \abs{\braket{f|g}}^2 = \abs{a\braket{f|f}}^2 = [\mathrm{Im}(z)]^2,
+\end{equation}
+
+or 
+
+\begin{equation}
+    [\mathrm{Re}(a\braket{f|f})]^2 = 0.
+\end{equation}
+
+We could have taken it to be equal to the 
+
+However, since $f$ lies in Hilbert space, it is square-integrable, meaning its inner product with itself must be real. For the entire quantity to be zero, $a$ must be purely imaginary:
+
+\begin{equation}
+    a = i\alpha.
+\end{equation}
+
+We now have that
+
+\begin{equation}
+    f = i\alpha g \quad\rightarrow\quad (\hat{A} - \braket{A})\psi = i\alpha(\hat{B} - \braket{B})\psi,
+\end{equation}
+
+or replacing $\hat{A} \rightarrow \hat{p} \rightarrow -i\hbar\dd/\ddx$ and $\hat{B} \rightarrow \hat{x} = x$, we get
+
+\begin{align}
+    \br{-i\hbar\diff{}{x} - \braket{p}}\psi &= i\alpha(x - \braket{x})\psi, \\
+    -i\hbar\diff{\psi}{x} - \braket{p}\psi &= i\alpha(x - \braket{x})\psi, \\ 
+    \od{\psi}{x} &= \frac{i}{\hbar}[i\alpha(x - \braket{x}) + \braket{p}]\psi, \\
+    \od{\psi}{x} &= \br{-\frac{\alpha}{\hbar}(x - \braket{x}) + \frac{i}{\hbar}\braket{p}}\psi.
+\end{align}
+
+This will be an exponential. For the first term, since we are differentiating with respect to $x$, we need a $\frac{1}{2}(x-\braket{x})^2$ in the exponential (with the other constants as well, of course), and the second term is easy since $\braket{p}$ is not a function of $x$ - it's just a number. With this:
+
+\begin{equation}
+    \boxed{\psi = Ae^{-\alpha(x-\braket{x})^2/2\hbar + i\braket{p}x/\hbar} = Ae^{-\alpha(x-\braket{x})^2/2\hbar}e^{i\braket{p}x/\hbar}.}
+\end{equation}
+
+The first exponential has a square of $x$, which is Gaussian. The second exponential is a ``wiggle'' factor, but the point is that we still get a Gaussian-looking function.

@@ -1,0 +1,82 @@
+\section{(1.16)}
+
+We are given the wavefunction of a particle at $t=0$:
+
+\begin{equation}
+    \Psi(x,0) = 
+        \begin{alignedat}{1}
+        \begin{cases}
+            A(a^2-x^2), \quad & -a \leq x \leq a, \\
+            0, & \text{otherwise}.
+        \end{cases}
+        \end{alignedat}
+\end{equation}
+
+
+\begin{parts}
+    \item We just normalize:
+        \begin{align*}
+            \intinf \abs{\Psi(x,0)} \;\ddx &= A^2 \int_{-a}^{a} (a^2-x^2)^2 \;\ddx = 2A^2 \left(\int_0^a a^4 \;\ddx  - 2\int_0^a a^2x^2 \;\ddx + \int_0^a x^4 \;\ddx\right), \\
+            &= 2A^2 \left(a^5 - \frac{2}{3} a^5 + \frac{a^5}{5}\right) = 2A^2a^5 \cdot \frac{8}{15} = A^2\frac{16a^5}{15} = 1,
+        \end{align*}
+        \begin{equation*}
+            \rightarrow \boxed{A = \sqrt{\frac{15}{16a^5}}.}
+        \end{equation*}
+    \item We have
+        \begin{equation*}
+            \braket{x} = \intinf \Psi^* x \Psi \;\ddx = \int_{-a}^a x\abs{\Psi}^2 \;\ddx.
+        \end{equation*}
+        Just as with the previous parts, we have, in the integrand, a product of an odd and an even function, which is an odd function, evaluated over a symmetric interval, meaning:   
+        \begin{equation*}
+            \boxed{\braket{x} = 0.}
+        \end{equation*}
+        To evaluate $\braket{p}$, we cannot use $\dd \braket{x}/\dd t$, because we are only given the wavefunction at $t=0$; there is no way to assess its change with respect to $t$ -- we will have to do it manually:
+        \begin{gather*}
+            \braket{p} = \intinf \Psi^* \left(-i\hbar \diffp{}{x}\right) \Psi \;\ddx = -\frac{15i\hbar}{16a^5}\int_{-a}^{a} (a^2 - x^2) \diff{}{x} \left[a^2 - x^2\right] \;\ddx, \\
+            \braket{p} = \frac{15i\hbar}{16} \int_{-a}^{a} 2x(a^2-x^2) \;\ddx.
+        \end{gather*}
+        $2x$ is an odd function, and $(a^2-x^2)$ is an even function; hence, by the same reasoning as before, we have that
+        \begin{equation*}
+            \boxed{\braket{p} = 0.}
+        \end{equation*}
+
+    \item For $\braket{x^2}$ we have
+        \begin{align*}
+            \braket{x^2} &= \int_{-a}^{a} x^2 \abs{\Psi}^2 \;\ddx = \frac{15}{16a^5} \int_{-a}^{a} x^2 (a^2 - x^2)^2 \;\ddx, \\
+            &= \frac{15}{8a^5} \int_0^a x^2\left(a^4 -2a^2x^2 + x^4\right) \;\ddx, \\
+            &= \frac{15}{8a^5} \left[a^4\int_0^a x^2 \;\ddx - 2a^2 \int_0^a x^4 \;\ddx + \int_0^a x^6 \;\ddx \right], \\
+            &= \frac{15}{8a^5} \left[\frac{a^7}{3} - \frac{2a^7}{5} + \frac{a^7}{7}\right], \\
+            &= \frac{a^2}{8} \left[5-6 + \frac{15}{7}\right] = \frac{a^2}{8} \left[\frac{15}{7} - 1\right], \\
+            \Aboxed{\braket{x^2} &= \frac{a^2}{7}.}
+        \end{align*}
+
+    \item For $\braket{p^2}$ we have
+        \begin{equation*}
+            \braket{p^2} = \int_{-a}^{a} \Psi^* \left(-i\hbar \diff[2]{}{x}\right) \Psi \;\ddx = -\frac{15\hbar^2}{16a^5} \int_{-a}^{a} \Psi \diff[2]{\Psi}{x} \;\ddx,
+        \end{equation*}
+        where $\Psi^* = \Psi$. Doing the derivatives,
+        \begin{equation*}
+            \diff[2]{\Psi}{x} = \diff{}{x} \left[-2x\right] = -2,
+        \end{equation*}
+        so
+        \begin{align*}
+            \braket{p^2} &= \frac{15\hbar^2}{8a^5} \int_{-a}^{a}(a^2 - x^2) \;\ddx, \\
+            &= \frac{15\hbar^2}{4a^5} \left[a^2 \int_0^a \;\ddx - \int_0^a x^2 \;\ddx\right], \\
+            &= \frac{15\hbar^2}{4a^5} \left[a^3 - \frac{a^3}{3}\right] = \frac{15\hbar}{4a^2} \cdot \frac{2}{3}, \\
+            \Aboxed{\braket{p^2} &= \frac{5\hbar^2}{2a^2}.}
+        \end{align*}
+    
+    \item The standard deviation for $x$ is
+        \begin{equation*}
+            \sigma_x = \sqrt{\braket{x^2} - \braket{x}^2} = \sqrt{\frac{a^2}{7}} = \frac{a}{\sqrt{7}}.
+        \end{equation*}
+    \item The standard deviation for $p$ is
+        \begin{equation*}
+            \sigma_p = \sqrt{\braket{p^2} - \braket{p}^2} = \sqrt{\frac{5\hbar^2}{2a^2}} = \frac{\hbar}{a}\sqrt{\frac{5}{2}}.
+        \end{equation*}
+    \item Plugging into the uncertainty relation:
+        \begin{equation*}
+            \sigma_x\sigma_p = \frac{a}{\sqrt{7}} \cdot \frac{\hbar}{a}\sqrt{\frac{5}{2}} = \hbar \sqrt{\frac{5}{14}} = \frac{\hbar}{2} \sqrt{\frac{10}{7}} \geq \frac{\hbar}{2}.
+        \end{equation*}
+        The quantity $\sqrt{10/7}$ is definitely over 1, meaning the Heisenberg Uncertainty Principle is satisfied.
+\end{parts}

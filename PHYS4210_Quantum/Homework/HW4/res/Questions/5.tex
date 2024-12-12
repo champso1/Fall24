@@ -1,0 +1,84 @@
+\section{(3.18)}
+
+
+
+For all of these, the last term involving the rate of change of the operator will be zero since none of the operators depend on time.
+
+
+\begin{parts}
+    
+
+
+\item Starting with $Q=1$, the entire right-hand side is zero since $[\hat{H},1] = \hat{H} - \hat{H} = 0$ and 1 obviously has no time dependence, so
+
+\begin{equation}
+    \diff{}{t}(\braket{1}) = \diff{}{t}\br{\braket{\psi|\psi}} = 0.
+\end{equation}
+
+This is something we proved before - the normalization of the wave-function is independent of time, so we can normalize it at the most convenient time (usually $t=0$), and we are set forever.
+
+
+\item For $\hat{Q}=\hat{H}$, it obviously commutes with itself and since it almost never has time dependence, this means that 
+
+\begin{equation}
+    \diff{}{t}\braket{H} = 0,
+\end{equation}
+
+which is just conservation of energy! Technically, it's that measurements of the energy on any given system are guaranteed to give back the same energy; it cannot change with time so it cannot somehow gain a different energy sometime later.
+
+
+
+\item For $\hat{Q} = \hat{x}$, we first need to look at the commutator
+
+\begin{equation}
+    [\hat{H},x] = \br{\br{\frac{p^2}{2m} + V},x} = \frac{1}{2m}[p^2,x],
+\end{equation}
+
+since $x$ obviously commutes with $V(x)$. Now,
+
+\begin{equation}
+    [p^2,x] = p^2x - xp^2 = p \cdot px - xp \cdot p = p[p,x] - pxp - [x,p]p + pxp = -p[x,p] - [x,p]p = -2i\hbar p,
+\end{equation}
+
+so
+
+\begin{equation}
+    [\hat{H},x] = -\frac{i\hbar p}{m}.
+\end{equation}
+
+Plugging this in:
+
+\begin{equation}
+    \diff{\braket{x}}{t} = \frac{i}{\hbar}\Braket{\br{-\frac{i\hbar p}{m}}} = \frac{\braket{p}}{m},
+\end{equation}
+
+or
+
+\begin{equation}
+    m\diff{\braket{x}}{t} = \braket{p}.
+\end{equation}
+
+This is just what we had before when doing all the problems with determining the expectation values for various wavefunctions!
+
+
+
+
+\item For $\hat{Q} = \hat{p}$, $[p^2,p] = p^3-p^3 = 0$ and (using a test function $f$)
+
+\begin{equation}
+    \left[ V, -i\hbar \diff{}{x} \right]f = -i\hbar V \diff{f}{x} + i\hbar\diff{}{x}(Vf) = i\hbar\diff{V}{x}.
+\end{equation}
+
+So, plugging everything in:
+
+\begin{equation}
+    \diff{\braket{p}}{t} = \frac{i}{\hbar}\br{-\hbar\diff{V}{x}} = -\Braket{\diff{V}{x}}.
+\end{equation}
+
+This is the same as Equation~(1.28) in Griffiths, which is \textbf{Ehrenfest's theorem}.
+
+
+
+
+
+\end{parts}

@@ -1,0 +1,185 @@
+\section{(2.5)}
+
+We are given the initial wave function
+
+\begin{equation}
+    \Psi(x,0) = A[\psi_1(x) + \psi_2(x)],
+\end{equation}
+
+where $\psi_1(x)$ and $\psi_2(x)$ are the $n=1$ and $n=2$ stationary states for the infinite square well.
+
+\begin{parts}
+
+\item First, we need to find $A$:
+
+\begin{equation*}
+    \Braket{\Psi(x,0) | \Psi(x,0)} = A^2 \intinf \left( \abs{\psi_1(x)}^2 + \abs{\psi_2(x)}^2 + \psi_1(x)^*\psi_2(x) + \psi_1(x)\psi_2(x)^* \right) \;\ddx.
+\end{equation*}
+
+We know that the solutions to the TISE form an orthonormal set, so the first two terms are 1 and the second two terms are zero, meaning that:
+
+\begin{gather*}
+    \Braket{\Psi(x,0) | \Psi(x,0)} = A^2 \intinf (1 + 1 + 0 + 0) \;\ddx = 2A^2 = 1, \\
+    \rightarrow\ \boxed{A = \frac{1}{\sqrt{2}}.}
+\end{gather*}
+
+Thus,
+
+\begin{equation*}
+    \boxed{\Psi(x,0) = \frac{1}{\sqrt{2}}[\psi_1(x) + \psi_2(x)].}
+\end{equation*}
+
+
+
+\item Next, we need to $\Psi(x,t)$ and $\abs{\Psi(x,t)}^2$. To find the former, we know that the general solution is a linear combination of the stationary states:
+
+\begin{equation*}
+    \Psi(x,t) = \sum_n c_n \psi_n(x),
+\end{equation*}
+
+so, since we only have $n=1$ and $n=2$, we have
+
+\begin{align*}
+    \Psi(x,t) &= \frac{1}{\sqrt{2}} \left[ \psi_1(x)e^{-iE_1t/\hbar} + \psi_2(x)e^{-iE_2t/\hbar} \right], \\
+    &= \frac{1}{\sqrt{a}} \left[ \sin\left( \frac{\pi x}{a} \right)e^{-iE_1t/\hbar} + \sin\left( \frac{2\pi x}{a} \right)e^{-iE_2t/\hbar} \right].
+\end{align*}
+
+Now,
+
+\begin{multline*}
+    \abs{\Psi(x,t)}^2 = \frac{1}{a} \bigg[ \sin^2\left( \frac{\pi x}{a} \right) + \sin^2\left( \frac{2\pi x}{a} \right) + \sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right)e^{iE_1t/\hbar}e^{-iE_2t/\hbar}\\
+    + \sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right)e^{-iE_1t/\hbar}e^{iE_2t/\hbar} \bigg]
+\end{multline*}
+\begin{align*}
+    \abs{\Psi(x,t)}^2 &= \frac{1}{a} \left[ \sin^2\left( \frac{\pi x}{a} \right) + \sin^2\left( \frac{2\pi x}{a} \right) + \sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right)\left( e^{-i(E_2-E_1)t/\hbar} + e^{i(E_2-E_1)t/\hbar} \right) \right], \\
+    &= \frac{1}{a} \left[ \sin^2\left( \frac{\pi x}{a} \right) + \sin^2\left( \frac{2\pi x}{a} \right) + 2\sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right)\cos\left( \frac{E_2-E_1}{\hbar}t \right) \right].
+\end{align*}
+
+We know that for the simple harmonic oscillator the energies are quantized:
+
+\begin{equation*}
+    E_n = \frac{n^2\pi^2\hbar^2}{2ma^2},
+\end{equation*}
+
+so
+
+\begin{equation*}
+    \frac{E_2-E_1}{\hbar} = 3\frac{\pi^2\hbar}{2ma^2} = 3\omega
+\end{equation*}
+
+with $\omega \equiv \pi^2\hbar/2ma^2$. Thus,
+
+\begin{equation*}
+    \boxed{\abs{\Psi(x,t)}^2 = \frac{1}{a} \left[ \sin^2\left( \frac{\pi x}{a} \right) + \sin^2\left( \frac{2\pi x}{a} \right) + 2\sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right)\cos(3\omega t) \right].}
+\end{equation*}
+
+
+
+
+\item To compute $\braket{x}$:
+
+\begin{align*}
+    \braket{x} &= \Braket{\Psi(x,t) | x | \Psi(x,t)} = \intinf x\abs{\Psi(x,t)}^2 \;\ddx, \\
+    &= \frac{1}{a}\int_{-a}^a x\left[ \sin^2\left( \frac{\pi x}{a} \right) + \sin^2\left( \frac{2\pi x}{a} \right) \right]\;\ddx + \frac{\cos(3\omega t)}{a} \int_{-a}^a x\sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right) \;\ddx
+\end{align*}
+
+For the first set of integrals, we will have something of the form:
+
+\begin{align*}
+    \int_0^a x\sin^2\left( \frac{n\pi x}{a} \right)\;\ddx &= \frac{1}{2}\int_0^a x\left[ 1 - \cos\left( \frac{2n\pi x}{a} \right) \right]\;\ddx, \\
+    &= \frac{1}{2}\int_0^a x\;\ddx - \frac{1}{2}\int_0^a x\cos\left( \frac{2n\pi x}{a} \right)\;\ddx.
+\end{align*}
+
+Now, the second term, if we were to do integration by parts, would contain sines for both terms, which, when evaluated at the limits we have, will be zero, so we only have the first integral:
+
+\begin{equation*}
+    \int_0^a x\sin^2\left( \frac{n\pi x}{a} \right)\;\ddx = \frac{a^2}{4}.
+\end{equation*}
+
+This is independent of $n$! The second integral we will have to do is
+
+\begin{equation*}
+    \int_0^a x\sin\left( \frac{\pi x}{a} \right)\sin\left( \frac{2\pi x}{a} \right)\;\ddx = 2\int_0^a x\sin^2\left( \frac{\pi x}{a} \right)\cos\left( \frac{n\pi x}{a} \right)\;\ddx.
+\end{equation*}
+
+If we do integration by parts with $u=x$ and $\dd v = \sin^2(\pi x/a)\cos(\pi x/a)\dd x$, we will need to do a more complicated integral to find $v$. This integral is:
+
+\begin{equation*}
+    \int \sin^2\left( \frac{\pi x}{a} \right)\cos\left( \frac{n\pi x}{a} \right) \;\ddx
+    \rightarrow \left[
+        \begin{alignedat}{1}
+            w &= \sin(\pi x/a), \\
+            \dd w &= \frac{\pi}{a}\cos(\pi x/a)
+        \end{alignedat}
+    \right] \rightarrow 
+    \frac{a}{\pi}\int w^2 \;\dd w = \frac{a\sin^3(\frac{\pi x}{a})}{3\pi}.
+\end{equation*}
+
+So,
+
+\begin{equation*}
+    2\int_0^a x\sin^2\left( \frac{\pi x}{a} \right)\cos\left( \frac{n\pi x}{a} \right)\;\ddx = 2\left\{ \frac{a}{\pi}\left[ \sin^3\left( \frac{\pi x}{a} \right) \right]_0^a - \frac{a}{3\pi} \int\sin^3\left( \frac{\pi x}{a} \right)\;\ddx \right\}.
+\end{equation*}
+
+The first term in braces is zero trivially, so we have
+
+\begin{align*}
+    -\frac{2a}{3\pi} \int_0^a \sin^3\left( \frac{\pi x}{a} \right)\;\ddx &= -\frac{a}{6\pi} \int_0^a \left[ 3\sin\left( \frac{\pi x}{a} \right) - \sin\left( \frac{3\pi x}{a} \right) \right]\;\ddx, \\
+    &= -\frac{a^2}{2\pi^2} \left[ \cos\left( \frac{\pi x}{a} \right) \right]_0^a + \frac{a^2}{18\pi^2}\left[ \cos\left( \frac{3\pi x}{a} \right) \right]_0^a, \\
+    &= \frac{a^2}{\pi^2} - \frac{a^2}{9\pi^2} = -\frac{8a^2}{9\pi^2}.
+\end{align*}
+
+Thus,
+
+\begin{equation*}
+    \braket{x} = \frac{1}{a}\left( \frac{a^2}{4} + \frac{a^2}{4} \right) + \frac{\cos(3\omega t)}{a} \left( -\frac{8a^2}{9\pi^2} \right) = \boxed{\frac{a}{2} - \frac{16a\cos(3\omega t)}{9\pi^2}.}
+\end{equation*}
+
+
+
+
+\item Now we need to compute $\braket{p}$, but this one is easy:
+
+\begin{equation*}
+    \braket{p} = m\diff{\braket{x}}{t} = \frac{16ma\omega\sin(3\omega t)}{3\pi^2}.
+\end{equation*}
+
+But
+
+\begin{equation*}
+    \frac{16ma\omega}{3\pi^2} = \frac{16ma}{3\pi^2}\left( \frac{\pi^2\hbar}{2ma^2} \right) = \frac{8\hbar}{3a},
+\end{equation*}
+
+so
+
+\begin{equation*}
+    \boxed{\braket{p} = \frac{8\hbar}{3a}\sin(3\omega x).}
+\end{equation*}
+
+
+
+
+\item We can get either $E_1$ or $E_2$ since our wave function consists only of the $n=1$ and $n=2$ states:
+
+\begin{equation*}
+    E_1 = \frac{\pi^2\hbar^2}{2ma^2}, \quad \mathrm{and} \quad E_2 = \frac{2\pi^2\hbar^2}{ma^2}.
+\end{equation*}
+
+The probability of getting any one state is tied to its coefficient, from orthonormality of $\{\psi_n\}$:
+
+\begin{equation*}
+    P(E = E_n) = \abs{c_n}^2.
+\end{equation*}
+
+So, since $c_n = 1/\sqrt{2}$ for both states, then they both have a probability of $1/2$.
+
+Lastly, 
+
+\begin{equation*}
+    \Braket{H} = \sum_n \abs{c_n}^2 E_n = \frac{1}{2}(E_1+E_2) = \boxed{\frac{5\pi^2\hbar^2}{4ma^2}.}
+\end{equation*}
+
+The expecation value of the total energy is equal to the average of the two individual energies of the states that make up our total wavefunction.
+
+
+\end{parts}

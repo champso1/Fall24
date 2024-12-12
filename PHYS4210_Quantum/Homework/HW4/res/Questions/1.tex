@@ -1,0 +1,18 @@
+% Find eigenfunctions and eigenvalues of the position operator and argue that every real number is an eigenvalue of position operator.
+\section{}
+
+The eigenvalue equation for the position operator is
+
+\begin{equation}
+    \hat{x}f(x) = x_0f(x) \quad\rightarrow\quad xf(x) = x_0f(x).
+\end{equation}
+
+where $x_0$ is the eigenvalue. The only function that is the same when multiplied by \textit{any} $x$ and the singular $x_0$ is the Dirac delta:
+
+\begin{equation}
+    f(x) = \delta(x - x_0).
+\end{equation}
+
+The eigenfunctions of the position operator being the Dirac delta sort of make sense - such a function (roughly speaking) is a localization entirely at $x=x_0$, which is exactly what the position is!
+
+With this in mind, it is pretty straightforward to see in this case that the eigenvalues $\set{x_n}$ are all the possible positions the particle can take. Since this spectrum is continuous and since the particle can be anywhere in space, then the eigenvalues must be the set of all real numbers.

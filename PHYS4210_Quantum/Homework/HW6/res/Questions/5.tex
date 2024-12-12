@@ -1,0 +1,48 @@
+\section{(4.22a)}
+
+
+We are considering the commutators of the $z$ angular momentum operator with the position and linear momentum operators. $\hat{L}_z$ is defined like
+
+\begin{equation}
+    \hat{L}_z = x\hat{p}_y - y\hat{p}_x.
+\end{equation}
+
+Looking first at the $x$ operator:
+
+\begin{align}
+    [\hat{L}_z,x] &= (x\hat{p}_y x - y\hat{p}_x x) - (xx\hat{p}_y - xy\hat{p}_x) \\
+    &= xy\hat{p}_x - y\hat{p}_x x \\
+    &= xy\hat{p}_x - y\hat{p}_x x -yx \hat{p}_x + yx\hat{p}_x \\
+    &= y[x,\hat{p}_x] = \boxed{i\hbar y.}
+\end{align}
+
+In the second line, we canceled the first term in the first parentheses with the first term in the second parentheses since $[\hat{p}_y,x] = 0$. Then in the third line I added and subtracted the same term, so that the first and third terms cancel and we are left with a commutator we know.
+
+Next,
+
+\begin{align}
+    [\hat{L}_z,y] &= (x\hat{p}_y y - y\hat{p}_x y) - (yx\hat{p}_y - yy\hat{p}_x) \\
+    &= x\hat{p}_y y - yx\hat{p}_y \\
+    &= x\hat{p}_y y - yx\hat{p}_y  - xy\hat{p}_y + xy\hat{p}_y \\
+    &= x[\hat{p}_y,y] = \boxed{-i\hbar x.}
+\end{align}
+
+When we do $[\hat{L}_z,z]$, we notice that there are no $\hat{p}_z$ operators, so $z$ will commute with all them, and of course it'll commute with the other position operators, so since it commutes with everything, then we can say $\boxed{[\hat{L}_z,z] = 0.}$
+
+Looking next at the linear momentum operators:
+
+\begin{align}
+    [\hat{L}_x,\hat{p}_x] &= (x\hat{p}_y\hat{p}_x - y\hat{p}_x\hat{p}_x) - (\hat{p}_x x \hat{p}_y - \hat{p}_x y \hat{p}_x) \\
+    &= x\hat{p}_y\hat{p}_x - \hat{p}_x x \hat{p}_y - x\hat{p}_x\hat{p}_y + x\hat{p}_x\hat{p}_y \\
+    &= [x,\hat{p}_x]\hat{p}_y = \boxed{i\hbar\hat{p}_y.}
+\end{align}
+
+Similarly,
+
+\begin{align}
+    [\hat{L}_x,\hat{p}_y] &= (x\hat{p}_y\hat{p}_y - y\hat{p}_x\hat{p}_y) - (\hat{p}_y x \hat{p}_y - \hat{p}_y y \hat{p}_x) \\
+    &= \hat{p}_y y \hat{p}_x - y\hat{p}_x\hat{p}_y - y\hat{p}_y\hat{p}_x + y\hat{p}_y\hat{p}_x \\
+    &= [\hat{p}_y,y]\hat{p}_x = \boxed{-i\hbar \hat{p}_x}.
+\end{align}
+
+No $z$'s at all appear in $\hat{L}_z$, and we know that different components of position and linear momentum commute, so like before, $\hat{p}_z$ commutes with everything in $\hat{L}_z$ so $\boxed{[\hat{L}_z,\hat{p}_z]=0.}$

@@ -1,0 +1,65 @@
+\section{(4.21)}
+
+We are considering the raising and lowering operators for angular momentum, where
+
+\begin{equation}
+    L_+ f_{\ell}^m = A_{\ell}^m f_{\ell}^{m+1} \quad\mathrm{and}\quad L_- f_{\ell}^m = B_{\ell}^m f_{\ell}^{m-1},
+\end{equation}
+
+where $A_{\ell}^m$ and $B_{\ell}^m$ are undetermined functions of $\ell$ and $m$ and 
+
+\begin{equation}
+    L_{\pm} \equiv L_x \pm iL_y.
+\end{equation}
+
+First, we are to show that $L_+ = (L_-)^{\dagger}$ (and vice versa). This is straightforward:
+
+\begin{equation}
+    \braket{f | L_+ | g} = \int f^* [(L_x + iL_y)g] \;\ddx = \int [(L_x - iL_y)f]^* g \;\ddx = \Braket{f | (L_-)^{\dagger} | g},
+\end{equation}
+
+so, evidently, $L_+ = (L_-)^{\dagger}$.
+
+Next, what we can do is use this fact so that
+
+\begin{equation}
+    \braket{f_{\ell}^m | L_-L_+ | f_{\ell}^m} = \Braket{f_{\ell}^m | (L_+)^{\dagger}L_+ | f_{\ell}^m} = \abs{A_{\ell}^m}^2 \braket{f_{\ell}^{m+1} | f_{\ell}^{m+1}} = \abs{A_{\ell}^m}^2.
+\end{equation}
+
+We can use Equation~(4.112) from the book to get that
+
+\begin{equation}
+    L_-L_+ = L^2 - L_z^2 - \hbar L_z
+\end{equation}
+
+so that
+
+\begin{align}
+    \abs{A_{\ell}^m}^2 &= \braket{f_{\ell}^m | L_-L_+ | f_{\ell}^m} = \Braket{f_{\ell}^m | L^2 - L_z^2 - \hbar L_z | f_{\ell}} \\
+    &= [\hbar^2 \ell(\ell+1) - \hbar^2m^2 - \hbar^2m] \braket{f_{\ell}^m | f_{\ell}^m} \\
+    \abs{A_{\ell}^m}^2 &= [\hbar^2 \ell(\ell+1) - \hbar^2m^2 - \hbar^2m].\label{eq:1}
+\end{align}
+
+So,
+
+\begin{equation}
+    \boxed{A_{\ell}^m = \hbar \sqrt{\ell(\ell+1) - m(m+1)}.}
+\end{equation}
+
+For the other case, we have
+
+\begin{equation}
+    \braket{f_{\ell}^m | L_+L_- | f_{\ell}^m} = \abs{B_{\ell}^m}^2,
+\end{equation}
+
+and the only difference between $L_-L_+$ (from before) and $L_+L_-$ (now) is a relative minus on the $\hbar L_z$ term in Equation~(4.112) in Griffiths. Therefore, we have a plus instead in the third term in brackets in Equation~\eqref{eq:1} (in this document) meaning
+
+\begin{equation}
+    \boxed{B_{\ell}^m = \hbar\sqrt{\ell(\ell+1) - m(m-1)}.}
+\end{equation}
+
+More succinctly, we could say
+
+\begin{equation}
+    L_{\pm}f_{\ell}^m = \hbar \sqrt{\ell(\ell+1) - m(m \pm 1)} f_{\ell}^{m \pm 1}.
+\end{equation}

@@ -1,0 +1,65 @@
+\section{(3.3)}
+
+First we assume that $\braket{h|\hat{Q}|h} = \braket{h|\hat{Q}^{\dagger}|h}$ (i.e. $\hat{Q}$ is Hermitian). This doesn't actually say much about the function $h(x)$, since are are already assuming it is in Hilbert space. But the stronger condition that operators must satisfy is that $\braket{f|\hat{Q}|g} = \braket{f|\hat{Q}^{\dagger}|g}$ for any \textit{two} functions $f(x)$ and $g(x)$. To show this, let's first consider the case where $h(x) = f(x) + g(x)$:
+
+\begin{align*}
+    \braket{f+g|\hat{Q}|f+g} &= \int(f^* + g^*)[\hat{Q}(f + g)]\;\ddx \\
+    &= \int[f^*(\hat{Q}g) + g^*(\hat{Q}g) + f^*(\hat{Q}g) + g^*(\hat{Q}f)]\;\ddx.
+\end{align*}
+
+Similarly,
+
+\begin{align*}
+    \braket{f+g|\hat{Q}^{\dagger}|f+g} &= \int[\hat{Q}(f^* + g^*)](f + g)\;\ddx \\
+    &= \int[(\hat{Q}f^*)f + (\hat{Q}g^*)g + (\hat{Q}f^*)g + (\hat{Q}g^*)f]\;\ddx.
+\end{align*}
+
+Since we started with $\braket{h|\hat{Q}|h} = \braket{h|\hat{Q}^{\dagger}|h}$, these two equations must be equal, or better, their integrands must be equal
+
+\begin{equation*}
+    f^*(\hat{Q}f) + g^*(\hat{Q}g) + f^*(\hat{Q}g) + g^*(\hat{Q}f) = (\hat{Q}f^*)f + (\hat{Q}g^*)g + (\hat{Q}f^*)g + (\hat{Q}g^*)f.
+\end{equation*}
+
+But we can eliminate the first two terms on each side since they are equal by our assumption, so we have
+
+\begin{equation*}
+    f^*(\hat{Q}g) + g^*(\hat{Q}f) = (\hat{Q}f^*)g + (\hat{Q}g^*)f.
+\end{equation*}
+
+If we now let $h(x) = f(x) + ig(x)$,
+
+\begin{align*}
+    \braket{f+ig|\hat{Q}|f+ig} &= \int(f^* - ig^*)[\hat{Q}(f + ig)]\;\ddx \\
+    &= \int[f^*(\hat{Q}g) + g^*(\hat{Q}g) + if^*(\hat{Q}g) - ig^*(\hat{Q}f)]\;\ddx,
+\end{align*}
+
+and
+
+\begin{align*}
+    \braket{f+ig|\hat{Q}^{\dagger}|f+ig} &= \int[\hat{Q}(f^* - ig^*)](f + ig)\;\ddx \\
+    &= \int[(\hat{Q}f^*)f + (\hat{Q}g^*)g + i(\hat{Q}f^*)g - i(\hat{Q}g^*)f]\;\ddx.
+\end{align*}
+
+Again, these must be equal:
+
+\begin{equation*}
+    f^*(\hat{Q}g) + g^*(\hat{Q}g) + if^*(\hat{Q}g) - ig^*(\hat{Q}f) = (\hat{Q}f^*)f + (\hat{Q}g^*)g + i(\hat{Q}f^*)g - i(\hat{Q}g^*).
+\end{equation*}
+
+The first two terms on each side cancel again, so we have (canceling the $i$'s):
+
+\begin{equation*}
+    f^*(\hat{Q}g) - g^*(\hat{Q}f) = (\hat{Q}f^*)g - (\hat{Q}g^*).
+\end{equation*}
+
+If we now add to this the result from the previous $h(x) = f(x) + g(x)$, then we get
+
+\begin{equation}
+    2f^*(\hat{Q}g) = 2(\hat{Q}f^*)g,
+\end{equation}
+
+or
+
+\begin{equation*}
+    \boxed{\braket{f|\hat{Q}|g} = \braket{f|\hat{Q}^{\dagger}|g}.}
+\end{equation*}

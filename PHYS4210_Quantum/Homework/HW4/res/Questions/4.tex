@@ -1,0 +1,73 @@
+\section{(3.5)}
+
+\begin{parts}
+
+\item First, for a real $x$,
+
+
+\begin{equation}
+    \braket{f|x|f} = \int f^* (xf) \;\ddx = \int(xf)^* f \;\ddx = \braket{f|x^{\dagger}|f},
+\end{equation}
+so $x^{\dagger} = x$, meaning it's Hermitian.
+
+Looking next at $i$:
+
+\begin{equation}
+    \braket{f|i|f} = \int f^* (if) \;\ddx = \int (-if)^* f \;\ddx = \braket{f|i^{\dagger}|f},
+\end{equation}
+so $i^{\dagger} = -i$.
+
+Finally for $\dd/\ddx$:
+
+\begin{equation}
+    \Braket{f|\diff{}{x}|f} = \int f^* \diff{f}{x} \;\ddx = f^*f\bigg|_{\infty}^{\infty} - \int \diff{f^*}{x} f \;\ddx = \int \br{-\diff{f}{x}}^* f\;\ddx = \Braket{f|\br{\diff{}{x}}^{\dagger}|f},
+\end{equation}
+
+so $(\dd/\ddx)^{\dagger} = -\dd/\ddx$.
+
+
+
+
+\item Using Griffiths' notation will be a little more illuminating than the notation I've been using (which is because I've been doing QFT stuff, and they tend to use that notation there more). Starting with $\braket{f|(\hat{Q}\hat{R})f}$, this means that $\hat{R}$ acts on $f$ first, then $\hat{Q}$, so to move the two operators to act on the bra instead, we have to start with the outer $\hat{Q}$ the move the inner $\hat{R}$, meaning
+
+\begin{equation}
+    \braket{f|(\hat{Q}\hat{R})f} = \braket{(\hat{R}^{\dagger}\hat{Q}^{\dagger})f|f}.
+\end{equation}
+
+But as Hermitian operators, this means that we must have
+
+\begin{equation}
+    \braket{(\hat{R}^{\dagger}\hat{Q}^{\dagger})f|f} = \braket{(\hat{Q}\hat{R})^{\dagger}f|f},
+\end{equation}
+
+meaning that
+
+\begin{equation}
+    (\hat{Q}\hat{R})^{\dagger} = \hat{R}^{\dagger}\hat{Q}^{\dagger}.
+\end{equation}
+
+
+
+
+
+\item With the normalization scheme we used in class, we have that
+
+\begin{equation}
+    \hat{a}_+ = \frac{1}{\sqrt{2m}}\br{\hat{p} + im\omega\hat{x}}.
+\end{equation}
+
+Taking the Hermitian conjugate, the constant out front doesn't change since it's real, and we know that $\hat{x}$ and $\hat{p}$ are Hermitian, so the only thing that changes is that the $i$ picks up a negative sign:
+
+\begin{equation}
+    (\hat{a}_+)^{\dagger} = \frac{1}{\sqrt{2m}}\br{\hat{p} - im\omega x}.
+\end{equation}
+
+Incidentally, this says that
+
+\begin{equation}
+    (\hat{a}_+)^{\dagger} = \hat{a}_-.
+\end{equation}
+
+
+
+\end{parts}

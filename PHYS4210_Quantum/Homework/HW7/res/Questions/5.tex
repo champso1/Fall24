@@ -1,0 +1,38 @@
+\section{(6.8)}
+
+
+We did this one in class!
+
+
+\begin{parts}
+\item First,
+  \begin{equation}
+    \Braket{f | \hat\Pi | g} = \intinf f^*(x) g(-x) \; \ddx.
+  \end{equation}
+
+  Taking $x \rightarrow -x$:
+
+  \begin{equation}
+    = \int_{\infty}^{-\infty} f^*(-x) g(x) \;(-\dd x) = \intinf f^*(-x) g(x) \;\dd x = \Braket{f | \hat{\Pi}^\dagger | g},
+  \end{equation}
+
+  so $\boxed{\hat\Pi^\dagger = \hat\Pi.}$
+
+
+
+\item As a unitary operator, we have that
+  \begin{equation}
+    \hat\Pi^\dagger\hat\Pi \, \psi = \abs{\lambda}^2 \psi = \psi,
+  \end{equation}
+
+  where the second expression follows from applying the operators to the wavefunction and getting the eigenvalues and the third follows from the unitarity of the parity operator rendering $\hat\Pi^\dagger\hat\Pi = 1$. Now, since the parity operator is also Hermitian, it means that its eigenvalues must also be real, so it must be that $\lambda^2 = 1$, meaning $\lambda = 1$ or -1.
+\end{parts}
+
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW7"
+%%% End:

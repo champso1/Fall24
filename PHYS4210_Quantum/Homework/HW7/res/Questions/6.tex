@@ -1,0 +1,34 @@
+\section{(6.10)}
+
+\begin{parts}
+\item For $\hat{x}$:
+  \begin{align}
+    \Braket{f | \hat\Pi^\dagger \hat{x} \hat\Pi | g} &= \intinf f^*(-x) x g(-x) \;\dd x \\
+                                                     &= \int^{-\infty}_\infty f^*(x) (-x) g(x) \;(-\dd x) \\
+                                                     &= \intinf f^*(x) (-x) g(x) \;\dd x = \Braket{f | (-\hat{x}) | g},
+  \end{align}
+
+  so $\boxed{\hat{x}'= -\hat{x}.}$
+
+\item For $\hat{p}$, we have
+  \begin{equation}
+    \Braket{f |\hat\Pi^\dagger\hat{p}\hat\Pi| g} = \intinf f^*(-x) (-i\hbar) \diff{g(x)}{x} \;\dd x.
+  \end{equation}
+
+  When we do integration by parts, the term that we evaluate at the limits will go to zero like always so we have
+
+  \begin{align}
+    \Braket{f |\hat\Pi^\dagger\hat{p}\hat\Pi| g} &= -\intinf (-i\hbar) \diff{f^*(-x)}{x} g(-x) \;\dd x \\
+                                                 &= -\int^{-\infty}_\infty (-i\hbar) -\diff{f^*(x)}{x} g(x) \;(-\dd x) \\
+                                                 &= -\intinf i\hbar \diff{f^*(x)}{x} g(x) \;\dd x \\
+    &= -\intinf \br{-i\hbar \diff{f(x)}{x}}^* g(x) \; \ddx = \Braket{f | (-\hat{p}) | g},
+  \end{align}
+
+  so $\boxed{\hat{p}' = -\hat{p}.}$
+
+\end{parts}
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW7"
+%%% End:

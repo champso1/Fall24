@@ -1,0 +1,83 @@
+\section{(4.30)}
+
+
+
+\begin{parts}
+
+\item Spinors are states in Hilbert space, so they must be normalized:
+
+\begin{equation}
+    \chi^{\dagger}\chi = \abs{A}^2[\abs{3Ai}^2 + (4A)^2] = 25\abs{A}^2 = 1,
+\end{equation}
+
+so
+
+\begin{equation}
+    \boxed{A = \frac{1}{5}.}
+\end{equation}
+
+
+\item We first measure the $\braket{\hat{S}_x}$:
+
+\begin{align}
+    \braket{\hat{S}_x} &= \Braket{\chi | \hat{S}_x | \chi} = \frac{\hbar}{2}\frac{1}{25}\begin{pmatrix}-3i & 4\end{pmatrix}\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}\begin{pmatrix}3i \\ 4\end{pmatrix} \\
+    &= \frac{\hbar}{50}\begin{pmatrix}4 & -3i\end{pmatrix}\begin{pmatrix}3i \\ 4\end{pmatrix} \\
+    &= \frac{\hbar}{50}(12i-12i) = \boxed{0.}
+\end{align}
+
+Next,
+
+
+\begin{align}
+    \braket{\hat{S}_y} &= \Braket{\chi | \hat{S}_y | \chi} = \frac{\hbar}{2}\frac{1}{25}\begin{pmatrix}-3i & 4\end{pmatrix}\begin{pmatrix}0 & i \\ i & 0\end{pmatrix}\begin{pmatrix}3i \\ 4\end{pmatrix} \\
+    &= \frac{\hbar}{50}\begin{pmatrix}4i & -3\end{pmatrix}\begin{pmatrix}3i \\ 4\end{pmatrix} \\
+    &= \frac{\hbar}{50}(-12-12) = \boxed{-\frac{12\hbar}{25}.}
+\end{align}
+
+Lastly,
+
+
+\begin{align}
+    \braket{\hat{S}_z} &= \Braket{\chi | \hat{S}_z | \chi} = \frac{\hbar}{2}\frac{1}{25}\begin{pmatrix}-3i & 4\end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}\begin{pmatrix}3i \\ 4\end{pmatrix} \\
+    &= \frac{\hbar}{50}\begin{pmatrix}-3i & -4\end{pmatrix}\begin{pmatrix}3i \\ 4\end{pmatrix} \\
+    &= \frac{\hbar}{50}(9-16) = \boxed{-\frac{7\hbar}{50}.}
+\end{align}
+
+
+
+\item To get the standard deviations, we need $\braket{\hat{S}_i^2}$. First, we need
+
+\begin{gather}
+    \sigma_x^2 = \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix} = \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix} = 1 \\
+    \sigma_y^2 = \begin{pmatrix}0 & -i \\ i & 0\end{pmatrix}\begin{pmatrix}0 & -i \\ i & 0\end{pmatrix} = \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix} = 1 \\
+    \sigma_z^2 = \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix} = \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix} = 1 \\
+\end{gather}
+
+So,
+
+\begin{equation}
+    \braket{\hat{S}_i^2} = \frac{\hbar^2}{4}\braket{\chi | \chi} = \frac{\hbar^2}{4}
+\end{equation}
+
+no matter what the spinor $\chi$ happens to be and for all three components. So,
+
+\begin{align}
+    \sigma_{S_x} &= \sqrt{\frac{\hbar^2}{4} - 0} = \boxed{\frac{\hbar}{2}.} \\
+    \sigma_{S_y} &= \sqrt{\frac{\hbar^2}{4} - \hbar^2 \frac{144}{625}} = \hbar \sqrt{\frac{625-576}{2500}} = \hbar\sqrt{\frac{49}{2500}} = \boxed{\frac{7\hbar}{50}.} \\
+    \sigma_{S_z} &= \sqrt{\frac{\hbar^2}{4} - \hbar^2\frac{49}{2500}} = \hbar\sqrt{\frac{625 - 49}{2500}} = \hbar\sqrt{\frac{576}{2500}} = \boxed{\frac{12\hbar}{25}.}
+\end{align}
+
+
+\item We now check if this satisfies the uncertainty principle with Equation~(4.100) in Griffiths:
+
+\begin{align}
+    \sigma_{S_x}\sigma_{S_y} &= \frac{\hbar}{2}\frac{7\hbar}{50} \geq \frac{\hbar}{2}\frac{7\hbar}{50} \ \checkmark \\
+    \sigma_{S_y}\sigma_{S_z} &= \frac{7\hbar}{50}\frac{12\hbar}{25} \geq 0 \ \checkmark \\
+    \sigma_{S_z}\sigma_{S_x} &= \frac{12\hbar}{25}\frac{\hbar}{2} \geq \frac{\hbar}{2}\frac{12\hbar}{25} \ \checkmark
+\end{align}
+
+For the non-zero ones, we are right at the limit!
+
+
+
+\end{parts}

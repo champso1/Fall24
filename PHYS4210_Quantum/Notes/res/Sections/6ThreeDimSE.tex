@@ -1,0 +1,403 @@
+\section{Three Dimensional Schrodinger Equation}
+
+\begin{itemize}
+    \item Going to three dimensions is relatively straightforward:
+        \begin{equation}
+            i\hbar \pd{\psi}{t} = -\frac{\hbar^2}{2m}\grad^2\psi + V\psi.\label{eq:ThreeDimSchrodingerEQ}
+        \end{equation}
+    \item Now we have that the probability of finding a particle in an infinitesimal \textit{volume} $\dd^3\vv{r}$ is given by $\abs{\psi(\vv{r},t)}^2\,\dd^3\vv{r}$, and the normalization condition is now
+        \begin{equation}
+            \int\abs{\psi(\vv{r},t)}^2 \;\dd^3\vv{r} = 1.\label{eq:ThreeDimNormCondition}
+        \end{equation}
+    \item Our first set of assumptions/simplifications that we will make in this regime is that our potential is only dependent on the distance $r = \abs{\vv{r}}$ as well as not dependent on time; this is called a \textit{central potential}, and it motivates the switching of coordinate systems from cartesian to spherical. With this, the \textbf{Laplacian} $\grad^2$ becomes
+        \begin{equation}
+            \grad^2 = \frac{1}{r^2}\diffp{}{r}\br{r^2\diffp{}{r}} + \frac{1}{r^2\sin\theta}\diffp{}{\theta}\br{\sin\theta \diffp{}{\theta}} + \frac{1}{r^2\sin^2\theta}\br{\diffp[2]{}{\phi}}.
+        \end{equation}
+    \item With our assumption of a time-independent potential, the TISE now reads
+        \begin{equation*}
+            -\frac{\hbar^2}{2m}\br{\frac{1}{r^2}\diffp{}{r}\br{r^2\diffp{\psi}{r}} + \frac{1}{r^2\sin\theta}\diffp{}{\theta}\br{\sin\theta \diffp{\psi}{\theta}} + \frac{1}{r^2\sin^2\theta}\br{\diffp[2]{\psi}{\phi}}} + V\psi = E\psi.
+        \end{equation*}
+    \item There is more annoying simplifications to be made, which I will not do. We will now use separation of variables and split the wave function into the radial and angular parts:
+        \begin{equation}
+            \psi(r,\theta,\phi) = R(r)Y(\theta,\phi).
+        \end{equation}
+        Our choice of separation constant as $\ell(\ell+1)$ lets later results make more sense and makes things easier to solve. This comes at the cost of making literally zero sense at the moment, but that's kinda how things are done in QM - we just follow ad hoc solutions that people many decades ago came up with. With this, we get two equations:
+        \begin{equation}
+            \begin{cases}
+                \dfrac{1}{R}\diff{}{r}\br{r^2 \diff{R}{r}} - \frac{2mr^2}{\hbar^2}[V(r) - E] = \ell(\ell + 1), \\[8pt]
+                \dfrac{1}{Y}\br{\dfrac{1}{\sin\theta}\diffp{}{\theta}\br{\sin\theta \diffp{\psi}{\theta}} + \frac{1}{\sin^2\theta}\br{\diff[2]{\psi}{\phi}}}.
+            \end{cases}
+        \end{equation}
+    \item Let's look at angular equation first. We can apply separation of variables again to have
+        \begin{equation}
+            Y(\theta,\phi) = \Theta(\theta)\Phi(\phi),
+        \end{equation}
+        and if we choose our separation constant to be $m^2$, we get another set of two equations:
+        \begin{equation}
+            \begin{cases}
+                \dfrac{1}{\Theta}\br{\sin\theta \diff{}{\theta}\br{\sin\theta \diff{\Theta}{\theta}}} + \ell(\ell + 1)\sin^2\theta = m^2, \\
+                \dfrac{1}{\Phi}\diff[2]{\Phi}{\phi} = -m^2.
+            \end{cases}
+        \end{equation}
+    \item The $\phi$ equation is super easy to solve:
+        \begin{equation}
+            \Phi(\phi) = Ae^{im\phi} + Be^{-im\phi}.
+        \end{equation}
+        What we will do here is let $m$ run negative so that $A$ and $B$ become related, then move it into the $\theta$ equation so all we have is
+        \begin{equation}
+            \Phi(\phi) = e^{im\phi}.
+        \end{equation}
+    \item As an azimuthal angle, we expect that $\Phi(0) = \Phi(2\pi)$ since $0=2\pi$. This means that we must have
+        \begin{equation*}
+            e^{im2\pi} = 1 \quad\rightarrow\quad m=0,\pm1,\pm2,\ldots;
+        \end{equation*}
+        $m$ must be an integer!
+    \item Moving to the polar equation, it turns out that if we do some rearranging and some comparing, we find that the solutions are exactly the \textbf{associated Legendre functions} (with a constant):
+        \begin{equation}
+            \Theta(\theta) = AP_{\ell}^m(\cos\theta),
+        \end{equation}
+        where $P_{\ell}^m(\cos\theta)$ is associated Legendre function defined by
+        \begin{equation}
+            P_{\ell}^m(x) \equiv (-1)^m (1-x^2)^{m/2} \br{\diff{}{x}}^m P_{\ell}(x),
+        \end{equation}
+        and $P_{\ell}(x)$ is the $\ell$th \textbf{associated Legendre polynomial}, and it is given by the \textbf{Rodrigues formula}:
+        \begin{equation}
+            P_{\ell}(x) = \frac{1}{2^{\ell} \ell!}\br{\diff{}{x}}^{\ell} (x^2 - 1)^{\ell}.
+        \end{equation}
+    \item This is why we chose the separation constant to be that funky form. I suppose we could have just let it be whatever, then once we did the rearranging a bit later, we could recognize that it is almost identical to the Legendre differential equation, after which we could make the substitution. Either way, for these notes, I wouldn't have written it down so it doesn't really matter. By the way, we defined $m$ to be able to run negative, and as it stands, negative $m$'s make no sense. It turns out that we define the associated Legendre functions with negative $m$ like so:
+        \begin{equation}
+            P_{\ell}^{-m}(x) = (-1)^m \frac{(\ell - m)!}{(\ell + m)!}P_{\ell}^m(x).
+        \end{equation}
+    \item Now, for the Rodrigues formula to make any sense at all, we must have that $\ell$ be a non-negative integer (there is no definition for a negative $\ell$). Further, $m$ cannot exceed $l$, else we get zero.\footnote{This is because $P_{\ell}(x)$ is by definition an $\ell$th order polynomial. If $m$ were to be greater than $\ell$, then in the definition of the associated Legendre functions we would be differentiating an $\ell$th order polynomial more than $\ell$ times, which is zero.}
+    \item With this, then, we must have that for any given value of $\ell$, there are $2\ell+1$ valid values of $m$ that are both possible and non-zero - it's the range from $-\ell$ to $\ell$. These quantization conditions will come in handy in a little while when we more closely examine angular momentum.
+\end{itemize}
+
+
+\begin{itemize}
+    \item The last thing that we can do for the angular equation is normalize it. We can choose our normalization constants such that we can normalize the radial and angular part separately:
+        \begin{equation*}
+            \int \abs{\psi}^2\;\dd^3\vv{r} = \int \abs{\psi}^2 r^2\sin\theta \;\dd r\dd\theta\dd\phi = \int_0^{\infty}\abs{R}^2r^2 \;\dd r \:\int_0^{2\pi}\int_0^{\pi}\abs{Y}^2 \sin\theta \;\dd\theta\dd\phi.
+        \end{equation*}
+    \item This normalization is quite complex. It turns out that it is
+        \begin{equation}
+            \boxed{Y_{\ell}^m = \sqrt{\frac{(2\ell + 1)}{4\pi}\frac{(\ell - m)!}{(\ell + m)!}} e^{im\phi} P_{\ell}^m(\cos\theta).}
+        \end{equation}
+    \item These are called \textbf{spherical harmonics}.
+\end{itemize}
+
+
+
+\begin{itemize}
+    \item Moving now to the radial equation:
+        \begin{equation}
+            \diff{}{r}\br{r^2 \od{R}{r}} - \frac{2mr^2}{\hbar^2} [V(r) - E]R = \ell(\ell + 1)R.
+        \end{equation}
+    \item If we define $u(r) \equiv rR(r)$, then this becomes
+        \begin{equation}
+            -\frac{\hbar^2}{2m} + \br{V + \frac{\hbar^2}{2m} \frac{\ell(\ell + 1)}{r^2}}u = Eu.
+        \end{equation}
+    \item This is identical in form to the TISE, with the extra potential term which we call the \textbf{effective potential}. It turns out that this has a ``centrifugal'' effect.
+    \item Unfortunately this is as far as we can go in the general because we need to know the form of the potential before doing anything else.
+\end{itemize}
+
+
+
+
+\subsection*{The Hydrogen Atom}
+
+\begin{itemize}
+    \item One such potential is that of an electron orbiting a ``stationary'' positively charged particle - a.k.a. the hydrogen atom. This potential is
+        \begin{equation}
+            V(r) = -\frac{e^2}{4\pi\epsilon_0} \frac{1}{r},
+        \end{equation}
+        and with it the radial equation becomes
+        \begin{equation}
+            -\frac{\hbar^2}{2m}\od[2]{u}{r} + \br{-\frac{e^2}{4\pi\epsilon_0}\frac{1}{r} + \frac{\hbar^2}{2m}\frac{\ell(\ell + 1)}{r^2}}u = Eu.
+        \end{equation}
+    \item We are interested in bound states here, because a scattering state isn't the hydrogen atom. First, we can tidy up the notation. If we let $k \equiv \sqrt{-2mE}/\hbar$, $\rho=kr$ and $\rho_0 = me^2/2\pi\epsilon_0\hbar^2k$, then we get
+        \begin{equation}
+            \od[2]{u}{\rho} = \br{1 - \frac{\rho_0}{\rho} + \frac{\ell(\ell + 1)}{\rho^2}}u.
+        \end{equation}
+    \item We consider the solutions in the extremes. When $\rho \rightarrow \infty$, the 2nd and 3rd term vanish so all we have is
+        \begin{equation}
+            \od[2]{u}{\rho} = u,
+        \end{equation}
+        which has the general solution
+        \begin{equation}
+            u(\rho) = Ae^{-\rho} + Be^{\rho}.
+        \end{equation}
+    \item But in this limit, the $B$ term blows up, so all we have is
+        \begin{equation}
+            u(\rho) = Ae^{-\rho}.
+        \end{equation}
+    \item Next, when $\rho \rightarrow 0$, the first and second terms vanish and only the third contributes so
+        \begin{equation}
+            \od[2]{u}{\rho} = \frac{\ell(\ell + 1)}{\rho^2}u,
+        \end{equation}
+        which has general solution
+        \begin{equation}
+            u(\rho) = C\rho^{\ell+1} + D\rho^{-\ell}.
+        \end{equation}
+    \item The $D$ term blows up in this limit, so 
+        \begin{equation}
+            u(\rho) = C\rho^{\ell+1}.
+        \end{equation}
+    \item What we do next is ``peel off'' this asymptotic behavior by attempting to find a function $v(\rho)$ such that
+        \begin{equation}
+            u(\rho) = \rho^{\ell+1}e^{-\rho}v(\rho).
+        \end{equation}
+    \item The radial equation in terms of this $v(\rho)$ is
+        \begin{equation}
+            \rho\od[2]{v}{\rho} + 2(\ell + 1 - \rho)\od{v}{\rho} + \br{\rho_0 - 2\br{\ell + 1}}v = 0.
+        \end{equation}
+    \item The last big assumption we make is that we can express this function $v(\rho)$ as a power series in $\rho$:
+        \begin{equation}
+            v(\rho) = \sum_{j=0}^{\infty}c_j\rho^j.
+        \end{equation}
+    \item With this, the radial equation becomes
+        \begin{equation}
+            \sum_{j=0}^{\infty}j(j+1)c_{j+1}\rho^j + 2(\ell+1)\sum_{j=0}^{\infty}j(j+1)c_{j+1}\rho^j - 2\sum_{j=0}^{\infty}jc_j\rho^j + [\rho_0 - 2(\ell+1)]\sum_{j=0}^{\infty}c_j\rho_j = 0,
+        \end{equation}
+        and if we equate like-power coefficients, we get 
+        \begin{equation}
+            j(j+1)c_{j+1} + 2(\ell+1)(j+1)c_{j+1} - 2jc_j + [\rho_0 - 2(\ell+1)]c_j = 0.
+        \end{equation}
+    \item We can turn this into a recursion relation:
+        \begin{equation}
+            c_{j+1} = \br{\frac{2(j + \ell + 1) - \rho_0}{(j + 1)(j + 2\ell + 2)}}c_j.
+        \end{equation}
+    \item It turns out however, that after doing all this and plugging back into our equation for $u(\rho)$, it still diverges in one of the limits, which is exactly what we didn't want. The only way to fix this with our current assumptions is for the series to terminate eventually at some $N$ such that $C_{N-1} \neq 0$ and $C_N = 0$, after which all the rest of the coefficients will be zero by virtue of the recursion relation.
+    \item Using the recursion relation and the assumption that the series must terminate, we end up getting something like
+        \begin{equation}
+            2(N+\ell) - \rho_0 = 0.
+        \end{equation}
+        Defining $n \equiv N+\ell$, we get
+        \begin{equation}
+            \rho_0 = 2n.
+        \end{equation}
+    \item But $\rho_0$ determines the energy; with this, we get that
+        \begin{equation}
+            E = -\frac{me^4}{8\pi^2\epsilon_0^2\hbar^2\rho_0^2},
+        \end{equation}
+        meaning the allowed energies are
+        \begin{equation}
+            E_n = -\br{\frac{m}{2\hbar^2}\br{\frac{e^2}{4\pi\epsilon_0}}^2}\frac{1}{n^2} = \frac{E_1}{n^2},
+        \end{equation}
+        where $E_1 = -\qty{13.6}{\electronvolt}$. This is the \textbf{Bohr Formula}.
+    \item Now it turns out that the $N-1$th order polynominals whose coefficients are determined by the above recursion relation are the \textbf{associated Laguerre polynomials} given by
+        \begin{equation}
+            L_q^p(x) = (-1)^p \br{\diff{}{x}}^p L_{p+q}(x),
+        \end{equation}
+        where $L_q(x)$ is the $q$th \textbf{Laguerre polynomial} defined by
+        \begin{equation}
+            L_q(x) = \frac{e^x}{q!}\br{\diff{}{x}}^q (e^{-x}x^q).
+        \end{equation}
+    \item $v(\rho)$ can then be written as
+        \begin{equation}
+            R_{n\ell}(r) = \frac{1}{r} \rho^{\ell+1}e^{-\rho}L_{n-\ell-1}^{2\ell+1}(2\rho),
+        \end{equation}
+        and our final normalized wave function for the hydrogen atom is
+        \begin{equation}
+            \boxed{\psi_{n\ell m} = \sqrt{\br{\frac{2}{na}}^3 \frac{(n - \ell - 1)!}{2n(n+\ell)!}}e^{-r/na} \br{\frac{2r}{na}}^{\ell}\br{L_{n-\ell-1}^{2\ell+1}\br{2r/na}}Y_{\ell}^m(\theta,\phi).}
+        \end{equation}
+    \item Note that this is dependent on \textit{three} quantum numbers. $n$ characterizes the energy, as we found, and for a given value of $n$, there are $n$ values of $\ell$ (from the equation we got from the condition for the power series terminating), and there are $2\ell + 1$ values of $m$ for each value of $\ell$. These second two quantum numbers are related to the angular momentum, as we will find.
+\end{itemize}
+
+
+
+
+\subsection*{Angular Momentum}
+
+\begin{itemize}
+    \item If two operators $\hat{A}$ and $\hat{B}$ commute, then we can construct a function that is simultaneously an eigenfunction of both operators. This comes from the fact that the generalized uncertainty principle gives no minimum uncertainty for simultaneous measurements of both operators. It follows, then, that we can know both quantities at any given time with perfect precision, meaning that we can define a state by both quantities.
+    \item We know that the position operator (in some direction) does \textit{not} commute with the momentum operator (in the same dimension), meaning that we cannot construct a state that is a simultaneously an eigenfunction of both position and momentum (in the same direction).
+    \item What about \textit{angular} momentum?
+    \item As a recap, angular momentum is defined (classically) by 
+        \begin{equation}
+            \vv{L} = \vv{r}\times\vv{p} = (yp_z - zp_y)\hat{i} + \ldots.
+        \end{equation}
+    \item Now, $L_x = yp_z - zp_y$ as we just saw. In operator form,
+        \begin{equation}
+            \hat{L}_x = \hat{y}\hat{p}_z - \hat{z}\hat{p}_y = \frac{1}{i\hbar}[\hat{L}_y,\hat{L}_z].
+        \end{equation}
+    \item So,
+        \begin{equation}
+            [\hat{L}_y,\hat{L}_z] = i\hbar \hat{L}_x.
+        \end{equation}
+    \item It turns out that in general this is \textit{cyclic}:
+        \begin{equation}
+            [\hat{L}_a,\hat{L}_b] = i\hbar \epsilon^{abc} \hat{L}_c,
+        \end{equation}
+        where $\epsilon^{abc}$ is the \textbf{Levi-Civita} symbol.
+    \item It would seem, then, that we cannot construct states that are simultaneously eigenfunctions of any two components of angular momentum, unlike ordinary momentum.
+    \item However, we can examine the \textit{magnitude} of the angular momentum
+        \begin{equation}
+            \vv{L}^2 = L_x^2 + L_y^2 + L_z^2.
+        \end{equation}
+    \item Then, (dropping the hats for simplicity as well as the bolding of the magnitude)
+        \begin{equation}
+            [\vv{L}^2,L_z] = [L_x^2,L_z] + [L_y^2,L_z] + [L_z^2,L_z].
+        \end{equation}
+    \item Obviously the last term commutes. The first term is
+        \begin{align}
+            [L_x^2,L_z] &= L_xL_xL_z - L_zL_xL_x \\
+            &= L_xL_xL_z - L_xL_zL_x + L_xL_zL_x - L_zL_xL_x \\
+            &= L_x[L_x,L_z] + [L_x,L_z]L_z \\
+            &= -i\hbar(L_xL_y + L_yL_x) \\
+            &= -i\hbar \{L_x,L_y\},
+            \rightarrow [L_y^2,L_z] &= i\hbar{L_x,L_y},
+        \end{align}
+        where the final step follows from the cyclic nature of the angular momentum operators (doing the second commutator has an identical process). Then, if the last term is zero and the others cancel,
+        \begin{equation}
+            \rightarrow [L^2, L_z] = 0
+        \end{equation}
+    \item This means that while we cannot know more than one component of the angular momentum at a time, we can however one component (we typically choose the $z$ component) and the \textit{total} angular momentum.
+    \item It also follows that are able to contruct a function $f$ such that
+        \begin{equation}
+            L^2 f = \lambda f \quad\mathrm{and}\quad L_zf = \mu f.
+        \end{equation}
+\end{itemize}
+
+
+\sep
+
+
+\begin{itemize}
+    \item Let's construct now two new operators $L_{\pm} = L_x \pm iL_y$. It follows pretty simply that 
+        \begin{equation}
+            [L_z, L_{\pm}] - \pm\hbar L_{\pm}, \quad\mathrm{and}\quad [L^2,L_{\pm}] = 0.
+        \end{equation}
+    \item In a similar vein as with the ladder operators we found for the harmonic oscillator, we make the claim that if $f$ is an eigenstate of $L^2$ and $L_z$, then so too is $L_{\pm}f$ with eigenvalues we will find now.
+    \item First,
+        \begin{equation}
+            L^2(L_{\pm}f) = L_{\pm}(L^2f) = \lambda(L_{\pm})f,
+        \end{equation}
+        which is trivial since $L_{\pm}$ commutes with $L^2$. We see that is has the same eigenvalue, as well.
+    \item For $L_z$:
+        \begin{align}
+            L_z(L_{\pm}f) &= [L_z,L_{\pm}]f + L_{\pm}(L_zf) \\
+            &= \pm\hbar L_{\pm}f + \mu L_{\pm}f \\
+            &= (\mu \pm \hbar)L_{\pm}f.
+        \end{align}
+    \item It turns out that the analogy with the ladder operators is quite a good analogy! Acting with the ladder operator on a state that is an eigenfunction of $L_z$ increases/decreases its eigenvalue by $\pm\hbar$.
+    \item But there are a few restrictions to this. First, it should be obvious that a single component of the angular momentum cannot go above the total magnitude, meaning that $\mu$ cannot go above $\lambda$. Then, there must exist some maximum rung of our ladder (more pedantically, there must exist some top \textit{eigenfunction} $f_t$) such that $L_+ f_t = 0$. The top rung, then, has eigenvalue $L_z f_t = \hbar \ell f_t$ where $\ell$ is some integer. This functions $L^2$ eigenvalue is still $\lambda$.
+    \item Now,
+        \begin{align}
+            L_{\pm}L_{\mp} &= (L_x \pm iL_y)(L_x \mp iL_y) = L_x^2 + L_y^2 \mp i(L_xL_y - L_yL_x) \\
+            &= L^2 - L_z^2 \pm \hbar L_z,
+        \end{align}
+        or, with $L^2$ on one side this reads   
+        \begin{equation}
+            L^2 = L_{\pm}L_{\mp} + L_z^2 \mp \hbar L_z.
+        \end{equation}
+    \item Then,
+        \begin{equation}
+            L^2 f_t = \lambda f_t = (L_-L_+ + L_z^2 + \hbar L_z)f_t = (0+\hbar^2\ell^2 + \hbar^2\ell)f_t = \hbar^2\ell(\ell+1)f_t.
+        \end{equation}
+        Hence,
+        \begin{equation}
+            \lambda = \hbar^2 \ell(\ell+1).
+        \end{equation}
+    \item The exact same logic applies to sending the eigenvalue of $L_z$ in the other direction - there is some \textit{bottom} rung (eigenfunction) $f_b$ that has $L_z f_b = \hbar \bar{\ell}f_t$, and we similarly find
+        \begin{equation}
+            \lambda = \hbar^2 \bar{\ell}(\bar{\ell}+1).
+        \end{equation}
+    \item These must be equal, of course, and for this to be the case there are two possibilities: $\bar{\ell} = \ell+1$ or $\bar{\ell} = -\ell$. The former is ridiculous since the bottom rung cannot be \textit{above} the top, so it must be that the latter is true.
+    \item Therefore, the eigenvalues of $L_z$ are integer multiples of $\hbar$, call this integer $m$, where $m$ is restricted to move between $-\ell$ and $\ell$ for some value of $\ell$ (seem familiar yet?).
+    \item More completely:
+        \begin{equation}
+            L^2f_{\ell}^m = \hbar^2 \ell(\ell+1)f_{\ell}^m \quad\mathrm{and}\quad L_zf_{\ell}^m = \hbar m f_{\ell}^m.
+        \end{equation}
+    \item Interestingly, we never restricted $\ell$ to have purely integer values, we simply let it correspond the to multiple of $\hbar$ that was the eigenvalue of the top rung. The only restriction we now have is that there are an integer number of steps between $-\ell$ and $\ell$, meaning that $\ell$ can actually be a \textit{half-integer}.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item But what are these eigen-functions $f_{\ell}^m$? Well, we know that the equation for angular momentum is $\vv{L} = \vv{r} \times \vv{p}$, or with the quantum prescription for momentum we get
+        \begin{equation}
+            \vv{L} = -i\hbar (\vv{r} \times \grad).
+        \end{equation}
+    \item The gradient, in spherical coordinates is
+        \begin{equation}
+            \grad = \diffp{}{r}\,\hat{r} + \frac{1}{r}\diffp{}{\theta}\,\hat{\theta} + \frac{1}{r\sin\theta}\diffp{}{\phi}\,\hat{\phi}.
+        \end{equation}
+    \item Therefore, with $\vv{r} = r\,\hat{r}$, doing the cross product we find that
+        \begin{equation}
+            \vv{L} = -i\hbar\br{\diffp{}{\theta}\,\hat{\phi} - \frac{1}{\sin\theta}\diffp{}{\phi}\,\hat{\theta}}.
+        \end{equation}
+    \item With this, then,
+        \begin{equation}
+            L_z = -i\hbar \diffp{}{\phi}.
+        \end{equation}
+    \item We can now assemble the eigenvalue equation for this operator:
+        \begin{equation}
+            \hat{L}_z f_{\ell}^m = -i\hbar \diff{}{\phi}f_{\ell}^m = \hbar m f_{\ell}^m.
+        \end{equation}
+    \item This is exactly the azimuthal equation we solved for in the beginning! 
+    \item Next, after some algebra (technically calculus, I guess) we find
+        \begin{equation}
+            \vv{L}^2 = -\hbar^2 \br{\frac{1}{\sin\theta}\diff{}{\theta}\br{\sin\theta \diffp{}{\theta}} +\frac{1}{\sin^2\theta}\diffp[2]{}{\phi}},
+        \end{equation}
+        so our eigenvalue equation is
+        \begin{equation}
+            \hat{L}^2 f_{\ell}^m = -\hbar^2 \br{\frac{1}{\sin\theta}\diff{}{\theta}\br{\sin\theta \diffp{}{\theta}} +\frac{1}{\sin^2\theta}\diffp[2]{}{\phi}}f_{\ell}^m = \hbar^2 \ell(\ell+1) f_{\ell}^m.
+        \end{equation}
+        This is the angular equation that we solved for!
+    \item Thus, we have found that the eigenfunctions of both operators are the spherical harmonics. The full normalized wave function is therefore an eigenfunction of $\hat{L}_z$, $\hat{L}^2$, and $H$, meaning all of those operators commute.
+    \item Another interesting bit: going this route, we have found that $\ell$ (and therefore $m$) can actually take \textit{half}-integer values. The only discretization condition we found is that $m$ must go from $-\ell$ to $\ell$ in integer steps. This by no means implies that $\ell$ must be an integer, since we can very well go from $-1/2$ to $1/2$ in one integer step. This missing piece is spin.
+\end{itemize}
+
+
+\sep
+
+
+\subsection*{Spin}
+\begin{itemize}
+    \item All particles have both orbital angular momentum, given by $\vv{L}$ that we looked at just now, and \textit{spin} angular momentum given by $\vv{S}$. Actually, the theory follows exactly the same since it's derived from the same fundamental rotational symmetry any system must have:
+        \begin{equation}
+            [S_i,S_j] = i\hbar \epsilon^{ijk} S_k.
+        \end{equation}
+    \item As we will see, however, eigenstates of spin angular momentum aren't functions that canc take on any value given any polar/azimuthal angles, but rather just states(vectors), so we write the spin eigenvalue equations as 
+        \begin{equation}
+            S^2 \ket{s,m} = \hbar^2 s(s+1)\ket{s,m} \quad\mathrm{and}\quad S_z\ket{s,m} = \hbar m \ket{s,m},
+        \end{equation}
+        where this $m$ is different than the one associated with orbital angular momentum, but rarely if ever do both appear in the same equation/context, so it is normally enough to label them both as $m$. If a distinction needs to be made, I'll subscript it with the corresponding other eigenvalue, so this $m$ would be $m_s$ and the orbital one would be $m_{\ell}$.
+    \item It can also be shown that with $S_{\pm} \equiv S_x \pm iS_y$,
+        \begin{equation}
+            S_{\pm}\ket{s,m} = \hbar\sqrt{s(s+1) - m(m \pm 1)}\ket{s,(m\pm 1)}.
+        \end{equation}
+    \item Again, $s$ (and therefore $m$) can take on half-integer values.
+    \item The (arguably) most important case to consider is when $s=1/2$, called ``spin one-half''. This admits $m = -1/2,+1/2$, so we have two possible states: $\ket{\frac{1}{2},\frac{1}{2}}$ and $\ket{\frac{1}{2},-\frac{1}{2}}$. It follows, then, that we can express any generic spin 1/2 state as a two component object called a \textbf{spinor}:
+        \begin{equation}
+            \chi = \begin{pmatrix}a \\ b\end{pmatrix} = a\chi_+ + b\chi_-,
+        \end{equation}
+        where $\chi_+$ (corresponding to spin-up) and $\chi_-$ (corresponding to spin-down) are
+        \begin{equation}
+            \chi_+ = \begin{pmatrix}1 \\ 0\end{pmatrix} \quad\mathrm{and}\quad \chi_- = \begin{pmatrix}0 \\ 1\end{pmatrix}.
+        \end{equation}
+    \item Our operators, in this basis, are $2\times2$ matrices. For instance, since $S^2 \ket{s,m} = \hbar^2 s(s+1) \ket{s,m}$, with $s=1/2$ then $S^2 \chi_{\pm} = \frac{3}{4}\hbar^2 \chi_{\pm}$, we can write $S^2$ as 
+        \begin{equation}
+            S^2 = \begin{pmatrix}c & d \\ e & f\end{pmatrix}.
+        \end{equation}
+    \item Working things out using the equations for $S^2\chi_{\pm}$, we end up finding that 
+        \begin{equation}
+            S^2 = \frac{3}{4}\hbar^2\begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}.
+        \end{equation}
+    \item We can find quite easily that
+        \begin{equation}
+            S_z = \frac{\hbar}{2}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}.
+        \end{equation}
+    \item With our definitions of $S_{\pm}$, we can end up finding that
+        \begin{equation}
+            S_x = \frac{\hbar}{2}\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix} \quad\mathrm{and}\quad S_y = \frac{\hbar}{2}\begin{pmatrix}0 & -i \\ i & 0\end{pmatrix}.
+        \end{equation}
+    \item These all have a factor of $\hbar/2$, so we will say $\vv{S} = \hbar/2 \vv{\sigma}$, where the $\sigma$'s are called the \textbf{Pauli matrices}:
+        \begin{equation}
+            \sigma_x = \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}, \quad \sigma_y = \begin{pmatrix}0 & -i \\ i & 0\end{pmatrix}, \quad\mathrm{and}\quad \sigma_z = \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}.
+        \end{equation}
+\end{itemize}
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Notes"
+%%% End:
