@@ -1,0 +1,36 @@
+% 3) Calculate the time-ordered product of five fields, and show everything explicitly
+\section{}
+
+We are looking to compute 
+
+\begin{equation*}
+    T\left\{ \phi_1\phi_2\phi_3\phi_4\phi_5 \right\}.
+\end{equation*}
+
+There are going to be a large number of terms here, so to better organize it for myself, I'll split it up into terms with only a single contraction and terms with a double contraction. For the single contractions terms, we have:
+
+\newcommand{\PHIthree}[3]{\phi_{#1}\phi_{#2}\phi_{#3}}
+\begin{multline*}
+    \text{single contractions}\ = D_{12}\PHIthree{3}{4}{5} + D_{13}\PHIthree{2}{4}{5} + D_{14}\PHIthree{2}{3}{5} + D_{15}\PHIthree{2}{3}{4} \\
+    + D_{23}\PHIthree{1}{4}{5} + D_{24}\PHIthree{1}{3}{5} + D_{25}\PHIthree{1}{3}{4} + D_{34}\PHIthree{1}{2}{5} + D_{35}\PHIthree{1}{2}{4} + D_{45}\PHIthree{1}{2}{3}.
+\end{multline*}
+
+Then, for double contractions we can look at in terms of the leftover field. For any given left-over field, we will have three different ways to double contract the remaining four fields:
+
+\begin{align*}
+    \text{double contractions}\ &= (D_{23}D_{45} + D_{24}D_{35} + D_{25}D_{34})\phi_1 \\
+    &+ (D_{13}D_{45} + D_{14}D_{35} + D_{15}D_{34})\phi_2 \\
+    &+ (D_{12}D_{45} + D_{14}D_{25} + D_{15}D_{24})\phi_3 \\
+    &+ (D_{12}D_{35} + D_{13}D_{25} + D_{15}D_{23})\phi_4 \\
+    &+ (D_{12}D_{34} + D_{13}D_{24} + D_{14}D_{23})\phi_5.
+\end{align*}
+
+So, joining everything together (not really sure how to best format this):
+
+\begin{align}
+    T\left\{ \phi_1\phi_2\phi_3\phi_4\phi_5 \right\} &=\; :\phi_1\phi_2\phi_3\phi_4\phi_5: + D_{12}\PHIthree{3}{4}{5} + D_{13}\PHIthree{2}{4}{5} + D_{14}\PHIthree{2}{3}{5} + D_{15}\PHIthree{2}{3}{4} \\
+    &+ D_{23}\PHIthree{1}{4}{5} + D_{24}\PHIthree{1}{3}{5} + D_{25}\PHIthree{1}{3}{4} + D_{34}\PHIthree{1}{2}{5} + D_{35}\PHIthree{1}{2}{4} + D_{45}\PHIthree{1}{2}{3} \\
+    &+ (D_{23}D_{45} + D_{24}D_{35} + D_{25}D_{34})\phi_1 + (D_{13}D_{45} + D_{14}D_{35} + D_{15}D_{34})\phi_2 \\
+    &+ (D_{12}D_{45} + D_{14}D_{25} + D_{15}D_{24})\phi_3 + (D_{12}D_{35} + D_{13}D_{25} + D_{15}D_{23})\phi_4 \\
+    &+ (D_{12}D_{34} + D_{13}D_{24} + D_{14}D_{23})\phi_5.
+\end{align}

@@ -1,0 +1,46 @@
+\section{(16.7)}
+
+We are now looking at the \textit{standard representation} for the gamma matrices:
+
+\begin{equation}
+    \gamma^0 = \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix},\ \text{and}\ \gamma^i = \begin{pmatrix}0 & \sigma^i \\ -\sigma^i & 0\end{pmatrix}.
+\end{equation}
+
+
+We want to show that these satisfy the representation-independent commutation relation:
+
+\begin{equation}
+    \left\{\gamma^{\mu},\ \gamma^{\nu}\right\} = 2g^{\mu\nu}.
+\end{equation}
+
+We have three cases to work out:
+
+\begin{enumerate}[leftmargin=0.5in]
+    \item[i.] When $\mu=\nu=0$:
+        \begin{gather*}
+            \left\{\gamma^0, \gamma^0\right\} = 2\left(\gamma^0\right)^2 = 2\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix} = 2\begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix} = 2, \\
+            \rightarrow 2 = 2g^{00} = 2.\ \checkmark
+        \end{gather*}
+    \item[ii.] When $\mu=0,\ \nu=i$:
+        \begin{align*}
+            \left\{\gamma^0,\ \gamma^i\right\} &= \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}\begin{pmatrix}0 & \sigma^i \\ -\sigma^i & 0\end{pmatrix} + \begin{pmatrix} 0 & \sigma^i \\ -\sigma^i & 0\end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}, \\
+            &= \begin{pmatrix}0 & \sigma^i \\ \sigma^i & 0\end{pmatrix} + \begin{pmatrix}0 & -\sigma^i \\ -\sigma^i & 0\end{pmatrix} = 0,
+        \end{align*}
+        \begin{equation*}
+            \rightarrow 0 = 2g^{0i} = 0.\ \checkmark
+        \end{equation*}
+    \item[iii.] When $\mu=i,\ \nu=j$:
+        \begin{align*}
+            \left\{\gamma^i,\ \gamma^j\right\} &= \begin{pmatrix}0 & \sigma^i \\ -\sigma^i & 0\end{pmatrix}\begin{pmatrix}0 & \sigma^j \\ -\sigma^j & 0\end{pmatrix} + \begin{pmatrix}0 & \sigma^j \\ -\sigma^j & 0\end{pmatrix}\begin{pmatrix}0 & \sigma^i \\ -\sigma^i & 0\end{pmatrix}, \\
+            &= \begin{pmatrix}0 & -\sigma^i\sigma^j \\ -\sigma^i\sigma^j & 0\end{pmatrix}\begin{pmatrix}0 & -\sigma^j\sigma^i \\ -\sigma^j\sigma^i & 0\end{pmatrix} = -\begin{pmatrix}\left\{\sigma^i,\ \sigma^j\right\} & 0 \\ 0 & \left\{\sigma^i,\ \sigma^j\right\}\end{pmatrix}.
+        \end{align*}
+        We know that the Pauli spin matrices satisfy the following anti-commutation relation:
+        \begin{equation}
+            \left\{\sigma_i,\ \sigma_j\right\} = 2\delta_{ij},
+        \end{equation}
+        so
+        \begin{equation*}
+            \left\{\gamma^i,\ \gamma^j\right\} = -2\delta^{ij} = 2g^{ij}.
+        \end{equation*}
+        When $i=j$, we have $-2=-2$, which is what we expect, and when $i\neq j$, we have $0=0$. So, this holds. $\checkmark$
+\end{enumerate}

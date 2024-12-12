@@ -1,0 +1,101 @@
+\section{}
+
+To derive the eikonal rule for an outgoing antiquark, we are considering the diagram
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{feynman}
+      \vertex[dot] (a) {};
+      \vertex[right of=a] (b);
+      \vertex[right of=b] (c);
+      \vertex[below of=b] (d);
+
+      \diagram* {
+        (a) --[anti fermion, momentum=$p+k$] (b) --[anti fermion, momentum=$p$] (c),
+        (b) --[gluon, momentum=$k$] (d)
+      };
+      
+    \end{feynman}
+  \end{tikzpicture}
+\end{center}
+
+Following the familiar Feynman rules, we find that since the ``time'' direction of the propagator is opposite the direction of its momentum, then the propagator will pick up a minus in the momentum (since the momentum in the denominator is squared, it doesn't matter there, only the numerator):
+
+\begin{equation}
+  \rightarrow\quad \frac{i(-\psl - \ksl + m)}{(p+k)^2 - m^2} \br{-ig_s T^a\gamma^\mu} v(p) = g_sT^a \frac{-\psl + m}{2pk} \gamma^\mu v(p).
+\end{equation}
+
+Looking at the numerator of the propagator and rest of the expression to the right, we find
+
+\begin{align}
+  \br{-\psl + m}\gamma^\mu v(p) &= \br{-p_v\gamma^\nu\gamma^\mu + m\gamma^\mu}v(p) \\
+                                &= \br{-p_v\br{2g^{\nu\mu} - \gamma^\mu\gamma^\nu} + m\gamma^\mu}v(p) \\
+                                &= \br{-2p^\mu + \gamma^\mu\br{\psl + m}}v(p).
+\end{align}
+
+But we can invoke the Dirac equation for antiparticles to say $(\psl + m)v(p) = 0$, so all we have left in the amplitude is
+
+\begin{equation}
+  \rightarrow\quad g_sT^a \frac{-2p^\mu}{2pk} = g_sT^a \frac{-v^\mu}{vk}.
+\end{equation}
+
+Essentially, then, the eikonal rule for the outgoing anti-quark is:
+
+\begin{equation}
+  \boxed{\frac{-v^\mu}{v \cdot k}.}
+\end{equation}
+
+
+
+We next consider the case of an incoming quark:
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{feynman}
+      \vertex (a);
+      \vertex[right of=a] (b);
+      \vertex[right of=b, dot] (c) {};
+      \vertex[below of=b] (d);
+
+      \diagram* {
+        (a) --[fermion, momentum=$p$] (b) --[fermion, momentum=$p+k$] (c),
+        (b) --[gluon, rmomentum=$k$] (d)
+      };
+      
+    \end{feynman}
+  \end{tikzpicture}
+\end{center}
+
+Following a similar method, we have that the ``time'' direction of the propagator is the same as its momentum direction, so we use the normal expression for the propagator.
+
+\begin{equation}
+  \rightarrow\quad \frac{i(\psl + \ksl + m)}{(p+k)^2 - m^2} \br{-ig_s T^a\gamma^\mu} u(p) = g_s T^a \frac{\psl + m}{2pk} \gamma^\mu u(p).
+\end{equation}
+
+
+As before, we look at just the numerator, the gamma matrix, and the spinor:
+
+\begin{align}
+  (\psl+m) \gamma^\mu u(p) &= \br{p_\nu\gamma^\nu\gamma^\mu + m\gamma^\mu}u(p) \\
+                           &= \br{p_\nu\br{2g^{\nu\mu} - \gamma^\mu\gamma^\nu} + m\gamma^\mu}u(p) \\
+                           &= \br{2p^\mu - \br{\psl - m}}u(p).
+\end{align}
+
+by virtue of the Dirac equation for regular particles, we have that $(\psl - m)u(p) = 0$, so our amplitude is
+
+\begin{equation}
+  \rightarrow\quad = g_s T^a \frac{2p^\mu}{2pk}u(p) = g_s T^a \frac{v^\mu}{v \cdot k},
+\end{equation}
+
+so the eikonal rule for the incoming quark is
+
+\begin{equation}
+  \boxed{\frac{v^\mu}{v \cdot k}.}
+\end{equation}
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW15"
+%%% End:

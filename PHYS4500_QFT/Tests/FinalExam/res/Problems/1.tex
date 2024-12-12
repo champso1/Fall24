@@ -1,0 +1,84 @@
+\section{}
+
+The QED Lagrangian is given by
+
+\begin{equation}
+  \lag_{\mathrm{QED}} = i\psib \gamma^\mu \ddp_\mu \psi - m\psib\psi - q\psib \gamma^\mu \psi A_\mu - \frac{1}{4}F_{\mu\nu}F^{\mu\nu}.
+\end{equation}
+
+For the purposes of finding the Euler-Lagrange equation for the Dirac spinor $\psib$, we don't really care about the last term with the field tensors. Also, we can easily tell that the term
+
+\begin{equation}
+  \ddp_\mu \br{\diffp[]{\lag}{(\ddp_\mu \psib)}} = 0
+\end{equation}
+
+since there are no terms like $\ddp_\mu \psib$. So,
+
+\begin{equation}
+  \diffp{\lag}{\psib} = 0 \quad\rightarrow\quad i\gamma^\mu \ddp_\mu \psi - m\psi - q\gamma^\mu \psi A_\mu = 0 \quad\rightarrow\quad \boxed{\br{i\slashed{\ddp} - m - q\slashed{A}}\psi = 0.}
+\end{equation}
+
+The EW (GWS) Lagrangian, before electroweak symmetry breaking (where the fermions are massless) is given by
+
+\begin{equation}
+  \lag_{EW} = i\bar{L} \gamma^\mu D_\mu L + \bar{e}_R \gamma^\mu D_{\mu} e_R - \frac{1}{4}W^a_{\mu\nu}W^{a,\mu\nu} - \frac{1}{4}B_{\mu\nu}B^{\mu\nu}
+\end{equation}
+
+where $L$ is the left-handed lepton doublet and $e_R$ is the right-handed lepton singlet. The covarient derivative is defined as
+
+\begin{align}
+  &D_\mu L = \ddp_\mu L + \frac{i}{2}g \br{\sigma^a W^a_\mu}L - \frac{i}{2}g' B_\mu L, \quad\text{and} \\
+  &D_\mu e_R = \ddp_\mu e_R - ig' B_\mu e_R.
+\end{align}
+
+Again, we don't care about the field-tensor terms for either the $SU(2)$ or $U(1)$ gauge fields, and there are no terms like $\ddp_\mu\psib$ for either the doublet or singlet. The terms for the individual spinors within the doublet will be identical, so I'll just leave it in the doublet. Starting with this doublet, I'll expand out the covarient derivative into one expression:
+
+\begin{equation}
+  \lag_{\mathrm{EW,L}} = i\bar{L} \gamma^\mu \ddp_\mu L - \frac{g}{2} \bar{L}\gamma^\mu\br{\sigma^aW^a_\mu}L + \frac{g'}{2} \bar{L}\gamma^\mu B_\mu L.
+\end{equation}
+
+From here,
+
+\begin{gather}
+  \diffp[]{\lag}{\bar{L}} = 0 \\
+  \rightarrow\quad i\slashed{\ddp}L - \frac{g}{2} \gamma^\mu \sigma^aW^a_\mu L + \frac{g'}{2} \slashed{B} L = 0 \\
+  \rightarrow\quad \boxed{\br{i\slashed{\ddp} - \frac{g}{2} \sigma^a\slashed{W}^a + \frac{g'}{2}\slashed{B} }L = 0.}
+\end{gather}
+
+The Euler-Lagrange equation for the singlet is similar, but without any $SU(2)$ terms and a different weak hypercharge:
+
+\begin{equation}
+  \boxed{\br{i\slashed{\ddp} + g'\slashed{B}}e_R = 0.}
+\end{equation}
+
+The QCD Lagrangian is given by
+
+\begin{equation}
+  \lag_{\mathrm{QCD}} = i\psib \gamma^\mu D_\mu \psi - m\psib\psi - \frac{1}{4}G^a_{\mu\nu}G^{a,\mu\nu} + \lag_{\text{g-f}} + \lag_{\text{ghost}},
+\end{equation}
+
+where $\lag_{\text{g-f}}$ corresponds to gauge-fixing terms, and the covariant term is given by
+
+\begin{equation}
+  D_\mu \psi = \ddp_\mu \psi + ig_s T^a G^a_\mu.
+\end{equation}
+
+Expanding this out and considering only the terms we care about for this calculation:
+
+\begin{equation}
+  \lag_{\mathrm{QCD}} \rightarrow i\psib \gamma^\mu\ddp_\mu \psi - g_s\psib \gamma^\mu \br{T^aG^a_\mu}\psi - m\psib\psi.
+\end{equation}
+
+In principle, there should be flavor and color indices on the spinors here, but that doesn't make any meaningful changes when it comes to the form of the Lagrangian and the Euler-Lagrange equations. Thus,
+
+\begin{gather}
+  \diffp{\lag}{\psib} = 0 \\
+  \rightarrow\quad i\slashed{\ddp}\psi - g_s\gamma^\mu T^aG^a_\mu \psi - m\psi = 0 \\
+  \rightarrow\quad \boxed{\br{i\slashed{\ddp} - g_sT^a\slashed{G}^a - m} = 0.}
+\end{gather}
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../FinalExam"
+%%% End:

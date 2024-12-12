@@ -1,0 +1,28 @@
+\section{}
+
+The Mandelstam variables for a $a+b \rightarrow 1+2$ process are (this is my convention for $u$)
+
+\begin{equation}
+    s = (p_a + p_b)^2, \quad t = (p_a - p_1)^2, \quad u = (p_a - p_2)^2.
+\end{equation}
+
+Let's just expand (where all $p$'s are understood to be 4-momenta):
+
+\begin{align*}
+    s+t+u &= (p_a + p_b)^2 + (p_a - p_1)^2 + (p_a - p_2)^2, \\
+    &= p_a^2 + p_b^2 + 2\dotprod{p_a}{p_b} + p_a^2 + p_b^2 - 2\dotprod{p_a}{p_1} + p_a^2 + p_2^2 - 2\dotprod{p_a}{p_2}, \\
+    &= 3m_a^2 + m_b^2 + m_1^2 + m_2^2 + 2\dotprod{p_a}{p_b} - 2\dotprod{p_a}{p_1} - 2\dotprod{p_a}{p_2}.
+\end{align*}
+
+Looking at just the cross terms:
+
+\begin{equation*}
+    2\dotprod{p_a}{p_b} - 2\dotprod{p_a}{p_1} - 2\dotprod{p_a}{p_2} = 2p_a(p_b - p_1 - p_2) = 2p_a(p_a + p_b - p_1 - p_2 - p_a).
+\end{equation*}
+
+But the first four terms in the parentheses are zero by momentum conservation, so the cross terms simplify to just $-2p_a^2 = -2m_a^2$. So, 
+
+\begin{align*}
+    s+t+u &= 3m_a^2 + m_b^2 + m_1^2 + m_2^2 - 2m_a^2, \\
+    \rightarrow\ \Aboxed{s+t+u &= m_a^2 + m_b^2 + m_1^2 + m_2^2.}
+\end{align*}

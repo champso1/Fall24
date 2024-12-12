@@ -1,0 +1,175 @@
+\section{}
+
+\begin{figure}[ht]
+    \centering
+    
+    \begin{tikzpicture}
+    \begin{feynman}[large]
+        \vertex (a);
+        \vertex[right of=a] (b);
+        \vertex[above left of=a] (i1) {$e^-$};
+        \vertex[below left of=a] (i2) {$e^+$};
+        \vertex[above right of=b] (f1) {$\mu^-$};
+        \vertex[below right of=b] (f2) {$\mu^+$};
+
+        \vertex[left=1.5mm of a] (mu) {$\mu$};
+        \vertex[right=1.5mm of b] (nu) {$\nu$};
+
+        \diagram* {
+            (i1) --[fermion, momentum=$p_1$] (a) --[photon, edge label'=$\gamma$, momentum=$q$] (b) --[fermion, momentum=$p_3$] (f1),
+            (i2) --[anti fermion, momentum'=$p_2$] (a),
+            (b) --[anti fermion, momentum'=$p_4$] (f2)
+        };
+    \end{feynman}
+    \end{tikzpicture}
+
+    \caption{Single Feynman diagram contributing to $e^-(p_1) + e^+(p_2) \rightarrow \mu^-(p_3) + \mu^+(p_4)$.}
+    \label{fig:Prblm4FeynmanDiagram}
+\end{figure}
+
+For the process $e^-(p_1) + e^+(p_2) \rightarrow \mu^-(p_3) + \mu^+(p_4)$, there is only one Feynman diagram: the $s$-channel, as shown in Figure~\ref{fig:Prblm4FeynmanDiagram}. We can pretty easily use the Feynman rules to write down the amplitude for this diagram:
+
+\begin{equation*}
+    \mathcal{M} = -i \, \bar{v}^{(s_2)}(p_2)(-ie\gamma^{\mu})u^{(s_1)}(p_1) \left[ \frac{-ig_{\mu\nu}}{q^2} \right] \bar{u}^{(s_3)}(p_3)(-ie\gamma^{\nu})v^{(s_4)}(p_4).
+\end{equation*}
+
+For notational simplicity, I will let $u_i \equiv u^{(s_i)}(p_i)$. Additionally, by virtue of momentum conservation, the virtual photon momentum is contrained to $q = p_1+p_2$. So,
+
+\begin{equation*}
+    \mathcal{M} = \frac{e^2}{(p_1 + p_2)^2} [\bar{v}_2 \gamma^{\mu} u_1][\bar{u}_3 \gamma_{\mu} v_4].
+\end{equation*}
+
+Squaring this, 
+
+\begin{equation*}
+    \emsq = \frac{e^4}{(p_1+p_2)^2} [\bar{v}_2 \gamma^{\mu} u_1][\bar{u}_3 \gamma_{\mu} v_4] [\bar{v}_2 \gamma^{\nu} u_1]^*[\bar{u}_3 \gamma_{\nu} v_4]^*,
+\end{equation*}
+
+where we have used another dummy index on the second set of terms. We know that
+
+\begin{equation*}
+    [\bar{v}_i \gamma^{\mu} u_j]^* = [\bar{u}_j \gamma^{\mu} v_i],
+\end{equation*}
+
+so
+
+\begin{equation*}
+    \emsq = \frac{e^4}{(p_1+p_2)^4} [\bar{v}_2 \gamma^{\mu} u_1][\bar{u}_1 \gamma^{\nu} v_2] [\bar{u}_3 \gamma_{\mu} v_4][\bar{v}_4 \gamma_{\nu} u_3].
+\end{equation*}
+
+Summing over $s_1$ and $s_4$, we get
+
+\begin{equation*}
+    \sum_{s_1,s_4}\emsq = \frac{e^4}{(p_1+p_2)^4} [\bar{v}_2 \gamma^{\mu} (\psl{1} + m_e) \gamma^{\nu} v_2][\bar{u}_3 \gamma_{\mu} (\psl{4} - m_{\mu}) \gamma_{\nu} u_3].
+\end{equation*}
+
+We also worked out in class that a term like
+
+\begin{equation*}
+    [\bar{v}_2 \Gamma v_2] = \Tr[v_2\bar{v}_2 \Gamma],
+\end{equation*}
+
+so, also doing the sum over $s_2$ and $s_3$ spins and average over initial spins (which incurs a factor of $1/4$)
+
+\begin{equation*}
+    \frac{1}{4}\sum_{\mathrm{all spins}}\emsq = \frac{e^4}{4(p_1+p_2)^4}\Tr[(\psl{2} - m_e)\gamma^{\mu}(\psl{1} + m_e)\gamma^{\nu}] \times \Tr[(\psl{3} + m_{\mu})\gamma_{\mu}(\psl{4} - m_{\mu})\gamma_v].
+\end{equation*}
+
+Looking the first trace, we note that in our expansion of the terms we can eliminate any term linear in the masses because those carry an odd number of gamma matrices, the trace of which is zero. So all we are left with is:
+
+\begin{align*}
+    \Tr[(\psl{2} - m_e)\gamma^{\mu}(\psl{1} + m_e)\gamma^{\nu}] &= \Tr[\psl{2}\gamma^{\mu}\psl{1}\gamma^{\nu} - m_e^2\gamma^{\mu}\gamma^{\nu}], \\
+    &= p_{2,\sigma}p_{1,\rho}\Tr[\gamma^{\sigma}\gamma^{\mu}\gamma^{\rho}\gamma^{\nu}] - m_e^2\Tr[\gamma^{\mu}\gamma^{\nu}] \\
+    &= 4p_{2,\sigma}p_{1,\rho} (g^{\sigma\mu}g^{\rho\nu} - g^{\sigma\rho}g^{\mu\nu} + g^{\sigma\nu}g^{\mu\rho}) - 4m_e^2g^{\mu\nu} \\
+    &= 4[p_2^{\mu}p_1^{\nu} - g^{\mu\nu}(\dotprod{p_1}{p_2} + m_e^2) + p_2^{\nu}p_1^{\mu}].
+\end{align*}
+
+The other trace will be identical, with $p_2 \rightarrow p_3$, $p_1 \rightarrow p_4$, and $m_e \rightarrow m_{\mu}$, as well as lowered indices:
+
+\begin{equation*}
+    \Tr[(\psl{3} + m_{\mu})\gamma_{\mu}(\psl{4} - m_{\mu})\gamma_v] = 4[p_{3,\mu}p_{4,\nu} - g_{\mu\nu}(\dotprod{p_3}{p_4} + m_{\mu}^2) + p_{3,\nu}p_{4,\mu}].
+\end{equation*}
+
+To multiply these out, I will make a notational simplification of $\dotprod{p_i}{p_j} = p_{ij}$. Doing the product:
+
+\begin{multline*}
+    = 16[p_{14}p_{23} - p_{12}(p_{34} + m_{\mu}^2) + p_{13}p_{24} - p_{34}(p_{12} + m_e^2) + 4(p_{12} + m_e^2)(p_{34} + m_{\mu}^2) \\ - p_{34}(p_{12} + m_e^2) + p_{13}p_{24} - p_{12}(p_{34} + m_{\mu}^2) + p_{14}p_{23}].
+\end{multline*}
+\begin{gather*}
+    = 32[p_{14}p_{23} + p_{13}p_{24} - p_{12}(p_{34} + m_{\mu}^2) - p_{34}(p_{12} + m_e^2) + 2(p_{12} + m_e^2)(p_{34}m_{\mu}^2)] \\
+    = 32[p_{14}p_{23} + p_{13}p_{24} + p_{12}m_{\mu}^2 + p_{34}m_e^2 + 2m_e^2m_{\mu}^2].
+\end{gather*}
+
+or, putting back the original dot product notation,
+
+\begin{equation*}
+    = 32[\pdot{1}{4}\pdot{2}{3} + \pdot{1}{3}\pdot{2}{4} + \pdot{1}{2}m_{\mu}^2 + \pdot{3}{4}m_e^2 + 2m_e^2m_{\mu}^2].
+\end{equation*}
+
+Thus, our amplitude squared is
+
+\begin{equation*}
+    \emsq = \frac{8e^4}{(p_1+p_2)^4}[\pdot{1}{4}\pdot{2}{3} + \pdot{1}{3}\pdot{2}{4} + \pdot{1}{2}m_{\mu}^2 + \pdot{3}{4}m_e^2 + 2m_e^2m_{\mu}^2].
+\end{equation*}
+
+To get this in terms of the Mandelstam variables, we first need
+
+\begin{gather*}
+    s = (p_1 + p_2)^2 = 2m_e^2 + 2\pdot{1}{2} = (p_3+p_4)^2 = 2m_{\mu}^2 + 2\pdot{3}{4}, \quad \mathrm{so} \\
+    \pdot{1}{2} = \frac{s-2m_e^2}{2} \quad\mathrm{and}\quad \pdot{3}{4} = \frac{s-2m_{\mu}^2}{2}.
+\end{gather*}
+
+For $t$:
+
+\begin{gather*}
+    t = (p_1 - p_3)^2 = m_e^2 + m_{\mu}^2 - 2\pdot{1}{3} = (p_4 - p_2)^2 = m_e^2 + m_{\mu}^2 - 2\pdot{2}{4}, \quad\mathrm{so} \\
+    \pdot{1}{3} = \pdot{2}{4} = \frac{m_e^2 + m_{\mu}^2 - t}{2}.
+\end{gather*}
+
+Lastly, for $u$:
+
+\begin{gather*}
+    u = (p_1 - p_4)^2 = m_e^2 + m_{\mu}^2 - 2\pdot{1}{4} = (p_3 - p_2)^2 = m_e^2 + m_{\mu}^2 - 2\pdot{2}{3}, \quad\mathrm{so} \\
+    \pdot{1}{4} = \pdot{2}{3} = \frac{m_e^2 + m_{\mu}^2 - u}{2}.
+\end{gather*}
+
+With these, the term in brackets in the amplitude squared becomes
+
+\begin{equation*}
+    \frac{1}{4}(m_e^2 + m_{\mu}^2 - u)^2 + \frac{1}{4}(m_e^2 + m_{\mu}^2 - t)^2 + \frac{1}{2}(s - 2m_e^2)m_{\mu}^2 + \frac{1}{2}(s - 2m_{\mu}^2)m_e^2 + 2m_e^2m_{\mu}^2
+\end{equation*}
+\begin{align*}
+    = \frac{1}{4}[  &m_e^4 + m_{\mu}^4 + u^2 + 2m_e^2m_{\mu}^2 - 2m_e^2u - 2m_{\mu}^2u \\
+                    &m_e^4 + m_{\mu}^4 + t^2 + 2m_e^2m_{\mu}^2 - 2m_e^2t - 2m_{\mu}^2t \\
+                    & 2sm_{\mu}^2 - 4m_e^2m_{\mu}^4 + 2sm_e^2 - 4m_e^2m_{\mu}^2 + 8m_e^2m_{\mu}^2].
+\end{align*}
+\begin{align*}
+    &= \frac{1}{4}[u^2 + t^2 + 2(s-t-u)(m_e^2 + m_{\mu}^2) + 4m_e^2m_{\mu}^2 + 2m_e^4 + 2m_{\mu}^4] \\
+    &= \frac{1}{4}[u^2 + t^2 + 2(s-t-u)(m_e^2 + m_{\mu}^2) + 2(m_e^2 + m_{\mu}^2)^2].
+\end{align*}
+
+We could keep going with this simplification, however, we have everything in terms of Lorentz-invariant quantities and it looks decently clean, so we can stop here. Our total amplitude squared is therefore
+
+\begin{equation}
+    \emsq = \frac{2e^4}{s^2}[u^2 + t^2 + 2(s-t-u)(m_e^2 + m_{\mu}^2) + 2(m_e^2 + m_{\mu}^2)^2].
+\end{equation}
+
+To get the differential cross section, we turn to the formula we developed in class:
+
+\begin{equation*}
+    \od{\sigma}{t} = \frac{\emsq}{16\pi\lambda(s, m_1^2, m_2^2)},
+\end{equation*}
+
+where we will replace $m_1^2 \rightarrow m_e^2$ and $m_2^2 \rightarrow m_{\mu}^2$ to have that
+
+\begin{equation*}
+    \lambda(s, m_e^2, m_{\mu}^2) = (s - m_e^2 - m_{\mu}^2)^2 - 4m_e^2m_{\mu}^2.
+\end{equation*}
+
+There isn't much simplification that can be done here, so
+
+\begin{equation*}
+    \boxed{\od{\sigma}{t} = \frac{e^4}{8\pi s^2} \frac{u^2 + t^2 + 2(s-t-u)(m_e^2 + m_{\mu}^2) + 2(m_e^2 + m_{\mu}^2)^2}{(s - m_e^2 - m_{\mu}^2)^2 - 4m_e^2m_{\mu}^2}.}
+\end{equation*}
+
+Again, I am not sure how really to simplify this without ending up splitting the fraction into multiple other fractions, so I think this is as good as it is going to get (hopefully).

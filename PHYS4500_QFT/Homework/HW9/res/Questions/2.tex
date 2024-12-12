@@ -1,0 +1,15 @@
+% show 1/AB Feynman parametrization is correct by doing the integration
+\section{}
+
+The Feynman parametrization for $1/AB$ is given by:
+
+\begin{equation*}
+    \frac{1}{AB} = \int_0^1 \frac{\ddx}{[Ax + (1-x)B]^2}.
+\end{equation*}
+
+With a $u$-substitution of $u \equiv Ax + (1-x)B$ where $\dd u = (A-B)\ddx$ or $1/(A-B)\dd u = \ddx$, we have that
+
+\begin{align*}
+    \frac{1}{AB} &= \frac{1}{A-B} \int_B^A \frac{1}{u^2} \dd u = \frac{1}{A-B}\left[ \frac{1}{u} \right]^B_A \\
+    &= \frac{1}{A-B}\br{\frac{1}{B} - \frac{1}{A}} = \frac{1}{A-B}\br{\frac{A-B}{AB}} = \frac{1}{AB}.
+\end{align*}

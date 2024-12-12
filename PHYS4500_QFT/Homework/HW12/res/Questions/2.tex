@@ -1,0 +1,61 @@
+% 23.1 a,b,c,f
+\section{(23.1)}
+
+
+We start by considering a doublet $\psi$ and a generic $2\times2$ matrix $M$ that acts on the doublet.
+
+
+\begin{parts}
+
+
+\item First, we consider $M$ such that we have $\psib'\psi' = \psib\psi$. In order for this to be satisfied, $M$ must be unitary. This can be easily shown by simply writing out the transformations explicity:
+    \begin{equation}
+        \psib'\psi' = \psib M^{\dagger}M \psi.
+    \end{equation}
+    For this to be equal to $\psib\psi$, we must have $M^{\dagger}M = 1$, which is exactly what the unitary condition requires. Thus, $M$ must be unitary.
+
+
+
+\item Now we are to show the determinant of these $M$ matrices must be 1. First, we know the matrix identity $\det{AB} = (\det{A})(\det{B})$. For us, we can choose $A=M^{\dagger}$ and $B=M$ so $\det{M^{\dagger}M} = \det{1} = 1 = (\det{M^{\dagger}})(\det{M})$. Now, we must show that $\det{M^{\dagger}} = (\det{M})^*$. Consider an arbitrary complex $2\times2$ matrix
+    \begin{equation}
+        U = \begin{pmatrix}a & b \\ c & d\end{pmatrix},
+    \end{equation}
+    where $a,b,c$ and $d$ are complex numbers. Now,
+    \begin{equation}
+        U^{\dagger} = \begin{pmatrix}a^* & c^* \\ b^* & d^*\end{pmatrix}.
+    \end{equation}
+    It is quite easy to see that $\det{U} = ad - bc$ and that $\det{U^{\dagger}} = a^*d^* - b^*c^* = (ad - bc)^* = (\det{U})^*$. Thus,
+    \begin{equation}
+        1 = (\det{M})^*(\det{M}) \rightarrow \abs{\det{M}}^2 = 1 \rightarrow \abs{\det{M}} = 1.
+    \end{equation}
+    
+
+
+
+\item For a matrix $M$ with $\det{M} = e^{i\alpha}$, we can define a new matrix $M_{\mathrm{new}} = e^{-i\alpha/2}M$. Using the same matrix identity as in the previous part, we have that $\det{M_{\mathrm{new}}} = (\det{e^{-i\alpha/2}})(\det{M})$. Now,
+    \begin{equation}
+        \det{e^{-i\alpha/2}} = \det\begin{pmatrix}e^{-i\alpha/2} & 0 \\ 0 & e^{-i\alpha/2}\end{pmatrix} = e^{-i\alpha}.
+    \end{equation}
+    Therefore, we have that $\det{M_{\mathrm{new}}} = e^{-i\alpha}e^{i\alpha} = 1$.
+
+
+\item[f)] We have used before that elements of $SU(2)$ can be expressed as the exponential of the algebra of the group, something like (in our notation from class)
+\begin{equation}
+    M = e^{-ig \dotprodv{\sigma}{\lambda}/2}.
+\end{equation}
+We can easily show that this satisfies the $\det{M}=1$ constraint meaning $M$ is an element of $SU(2)$ (obviously it is unitary). With the matrix identity that $\det{e^{A}} = e^{\Tr[A]}$, we have that
+\begin{equation}
+    \det{M} = e^{-\frac{i}{2}g \Tr[\dotprodv{\sigma}{\lambda}]}.
+\end{equation}
+The trace deals with elements down the diagonal. Therefore, the trace is effectively $\Tr[\sigma_z \lambda_z] \rightarrow \lambda_z\Tr[\sigma_z]$ since only the third/$z$ Pauli matrix contains elements that are on the main diagonal. Now
+\begin{equation}
+    \sigma_z = \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix},
+\end{equation}
+so it's trace is obviously zero, meaning
+\begin{equation}
+    \det{M} = e^{0} = 1,
+\end{equation}
+as expected of an element of $SU(2)$.
+
+
+\end{parts}

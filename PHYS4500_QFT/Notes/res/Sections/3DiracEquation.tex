@@ -1,0 +1,329 @@
+\section{The Dirac Equation}
+
+
+
+\begin{itemize}
+    \item There are a number of issues with the KG Equation. First, as mentioned before, $\abs{\phi}^2$ is not positive-definite always, and negative probabilities don't make sense.
+    \item This is resolved later by treating the KG no longer as a single-particle equation but as a field equation. This realization occurs since the number of particles in any given process is no longer constant; we can create particle/anti-particle comboes from the vacuum.
+    \item The other main problem that Dirac saw was the negative energy states, which came from:
+        \begin{gather}
+            p_{\mu}p^{\mu} = \frac{E^2}{c^2} - \vv{p}^2 = m^2c^2 \\
+            \rightarrow E = \pm \sqrt{\vv{p}^2c^2 + m^2c^4}.
+        \end{gather}
+    \item To remedy this, he sought to find an equation that was first order in derivatives. Starting again from the energy-momentum relation, he wanted to factorize it. However, since $p_{\mu}p^{\mu}$ isn't an ordinary square, there must be some factor, call it $\gamma$, that should be a 4-vector:
+        \begin{gather}
+            (p_{\mu}p^{\mu} - m^2) = (\gamma_{\mu}p^{\mu} - m)(\gamma_{\nu}p^{\nu} + m) = 0, \\
+            \gamma_{\mu}p^{\mu}\gamma_{\nu}p^{\nu} + m\gamma_{\mu}p^{\mu} - m\gamma_{\nu}p^{\nu} - m^2 = 0, \\
+            \gamma_{\mu}p^{\mu}\gamma_{\nu}p^{\nu} - m^2 = 0.
+        \end{gather}
+        Now, this is basically the same as the original energy-momentum relation, as long as the first term is equal to $p^2$:
+        \begin{equation}
+            \gamma_{\mu}p^{\mu}\gamma_{\nu}p^{\nu} = p_{\mu}p^{\mu}
+        \end{equation}
+        Applying the quantum prescription (in natural units) and flipping upper to lower indices and vice versa (for consistency later on):
+        \begin{gather}
+            \gamma^{\mu}(i\ddp_{\mu})\gamma^{\nu}(i\ddp_{\nu}) = (i\ddp^{\mu})(i\ddp_{\mu}), \\
+            \gamma^{\mu}\gamma^{\nu}\ddp_{\mu}\ddp_{\nu} = g^{\mu\nu}\ddp_{\mu}\ddp_{\nu},
+        \end{gather}
+        Now, since $\ddp_{\mu}\ddp_{\nu} = \ddp_{\nu}\ddp_{\mu}$, we can say the following:
+        \begin{equation}
+            \frac{1}{2}\left(\gamma^{\mu}\gamma^{\nu}\ddp_{\mu}\ddp_{\nu} + \gamma^{\mu}\gamma^{\nu}\ddp_{\nu}\ddp_{\mu}\right) = g^{\mu\nu}\ddp_{\mu}\ddp_{\nu},
+        \end{equation}
+        and since we can mess around with indices in any given term here (all the indices would contract, so they really are dummy indices), by switching the $\mu$'s and $\nu$'s in the second term in parentheses, we can say
+        \begin{gather}
+            g^{\mu\nu}\ddp_{\mu}\ddp_{\nu} = \frac{1}{2}\left(\gamma^{\mu}\gamma^{\nu}\ddp_{\mu}\ddp_{\nu} + \gamma^{\nu}\gamma^{\mu}\ddp_{\mu}\ddp_{\nu}\right), \\
+            g^{\mu\nu}\ddp_{\mu}\ddp_{\nu} = \frac{1}{2}\left\{\gamma^{\mu},\ \gamma^{\nu}\right\}\ddp_{\mu}\ddp_{\nu}.
+        \end{gather}
+        Lastly, since the coefficients on each side have to match, we can say
+        \begin{equation}
+            \boxed{\left\{\gamma^{\mu},\ \gamma^{\nu}\right\} = 2g^{\mu\nu}}.\label{GammaAntiCommutator}
+        \end{equation}
+    \item The above relation is very useful for determining the form of the these matrices. From here, we can say
+        \begin{itemize}
+            \item For $\mu = \nu = 0$:
+                \begin{gather}
+                    \left\{\gamma^0,\ \gamma^0\right\} = \gamma^0\gamma^0 + \gamma^0\gamma^0 = 2\left(\gamma^0\right)^2 = 2g^{\mu\nu} \\
+                    \left(\gamma^0\right)^2 = g^{\mu\nu}.
+                \end{gather}
+            \item For $\mu = \nu = i$ where $i=1,2,3$:
+                \begin{equation}
+                    \left(\gamma^i\right)^2 = -1
+                \end{equation}
+            \item And for $\mu \neq \nu$:
+                \begin{equation}
+                    \left\{\gamma^{\mu},\ \gamma^{\nu}\right\} = 0.
+                \end{equation}
+        \end{itemize}
+    \item From these relations, it is clear that the gamma's cannot be numbers; instead, Dirac found, they are $4\times4$ matrices. In the standard representation (multiple sets satisfy the above relations), we have:
+        \begin{equation}
+            \gamma^0 = 
+                \begin{pmatrix}
+                    1 & 0 & 0  & 0 \\
+                    0 & 1 & 0  & 0 \\
+                    0 & 0 & -1 & 0 \\
+                    0 & 0 & 0  & -1
+                \end{pmatrix} 
+                \equiv 
+                \begin{pmatrix}
+                    1 & 0 \\
+                    0 & -1
+                \end{pmatrix}.
+        \end{equation}
+    \item Here, we have adopted the convention where each element in the $2\times2$ matrix is itself a $2\times2$ matrix, where $1$ is the identity and $0$ is the matrix of zeros. In this convention, the other gammas can be very nicely represented in terms of the Pauli spin matrices:
+        \begin{equation}
+            \gamma^i =
+                \begin{pmatrix}
+                    0 & \sigma^i \\
+                    -\sigma^i & 0
+                \end{pmatrix}.
+        \end{equation}
+\end{itemize}
+
+
+
+
+
+\begin{itemize}
+    \item Back again to the factorization of the energy-momentum relation, if we take one of the factors (the one with the negative mass term), we can apply the (relativistic) quantum prescription and have it act on a \textbf{Dirac spinor} $\psi$, we get:
+        \begin{gather}
+            \gamma^{\mu}p_{\mu} - m = 0, \\
+            i\gamma^{\mu}\ddp_{\mu} - m = 0, \\
+            \boxed{\left(i\gamma^{\mu}\ddp_{\mu} - m\right)\psi = 0}.\label{DiracEQ}
+        \end{gather}
+    \item We can also adopt to the \textit{Feynman slash} notation, which defines $\slashed{A} \equiv \gamma^{\mu}A_{\mu}$ to get:
+        \begin{equation}
+            \boxed{\left(i\slashed{\ddp} - m\right)\psi = 0}.\label{DiracEQ2}
+        \end{equation}
+    \item Equations \eqref{DiracEQ} and \eqref{DiracEQ2} are the \textbf{Dirac Equation}.
+    \item The spinor $\psi$, from this equation, must be a 4-component object, since the gammas are $4\times4$ matrices. However, the spinor is not a 4-vector, as it does not transform the same under Lorentz transformations (we will prove this later).
+    \item It will be helpful to also define the \textbf{adjoint spinor}:
+        \begin{equation}
+            \psib = \psi^{\dagger}\gamma^0,\label{AdjointSpinor}
+        \end{equation}
+        as well as the properties
+        \begin{equation}
+            \gamma^{0\dagger} = \gamma^0,\qquad \gamma^{i\dagger} = -\gamma^i.\label{GammaDaggers}
+        \end{equation}
+
+    \item Now if we just take the Hermitian conjugate of the Dirac equation (written in a more appealing way to do Hermitian conjugates):
+        \begin{align*}
+            i\gamma^{\mu}\ddp_{\mu}\psi &= m\psi \\ \rightarrow \left(i\gamma^{\mu}\ddp_{\mu}\psi\right)^{\dagger} &= m\psi^{\dagger} \\
+            -i \ddp_{\mu}\psi^{\dagger} \gamma^{\mu\dagger} &= m\psi^{\dagger}.
+        \end{align*}
+        Now, since the time and spatial components of the gamma matrices are Hermitian and anti-Hermitian respectively, we need to split them up, so we get
+        \begin{equation*}
+            -i \ddp_{0}\psi^{\dagger} \gamma^{0\dagger}  - i \ddp_{i}\psi^{\dagger} \gamma^{i\dagger} = m\psi^{\dagger}.
+        \end{equation*}
+        What we can do here is first insert $\gamma^0\gamma^0$ in between the $\psi^{\dagger}$ and $\gamma^{i\dagger}$, since $\left(\gamma^0\right)^2=1$. Additionally, let's also multiply on the right by $\gamma^0$ on both sides. Lastly, in this one step, we will also use the propertes in Eq.~\eqref{GammaDaggers}:
+        \begin{equation*}
+            -i \ddp_{0}\psi^{\dagger} \gamma^0\gamma^0  + i \ddp_{i}\psi^{\dagger}\gamma^0\gamma^0 \gamma^i\gamma^0 = m\psi^{\dagger}\gamma^0.
+        \end{equation*}.
+        In each term, we have $\psi^{\dagger}\gamma^0$, which is just the definition of the adjoint spinor as in Eq.~\eqref{AdjointSpinor}:
+        \begin{equation*}
+            -i \ddp_{0}\psib \gamma^0  + i \ddp_{i}\psib \gamma^0 \gamma^i\gamma^0 = m\psib.
+        \end{equation*}
+        We also know that the time and spatial gamma matrices anti-commute, so we can flip the $\gamma^i$ with either of the $\gamma^0$'s and pick up a minus sign:
+        \begin{align*}
+            -i \ddp_{0}\psib \gamma^0 - i \ddp_{i}\psib \gamma^0 \gamma^0 \gamma^i &= m\psib, \\
+            -i \ddp_{0}\psib \gamma^0 - i \ddp_{i}\psib \gamma^i &= m\psib,
+        \end{align*}
+        \begin{equation}
+            \rightarrow\ \boxed{-i\ddp_{\mu}\psib\gamma^{\mu} = m\psib.}\label{AdjointDiracEQ}
+        \end{equation}
+        This is the \textbf{adjoint Dirac equation}.
+
+    \item We can also assemble the \textbf{4-current} or the \textbf{probability current} $j^{\mu} = \psib\gamma^{\mu}\psi$, which is a conserved quantity (we will look at these 4-currents later):
+        \begin{equation*}
+            \ddp_{\mu}j^{\mu} = \ddp_{\mu}\psib\gamma^{\mu}\psi + \psib\gamma^{\mu}\ddp_{\mu}\psi.
+        \end{equation*}
+        Using the Dirac equation (Eq.~\eqref{DiracEQ}) and adjoint Dirac equation (Eq.~\eqref{AdjointDiracEQ}), the two terms become:
+        \begin{equation*}
+            \ddp_{\mu}j^{\mu} = im\psib\psi - im\psib\psi = 0,
+        \end{equation*}
+        hence $j^{\mu}$ is conserved.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item The analog for the probability $\abs{\Psi}^2$ in the Schr\"odinger equation is the ``time'' component of the 4-current $j^0 = \rho$, so now we have that
+        \begin{equation*}
+            \rho = j^0 = \psib\gamma^0\psi = \psi^{\dagger}\gamma^0\gamma^0\psi = \psi^{\dagger}\psi = \abs{\psi_1}^2 + \abs{\psi_2}^2 + \abs{\psi_3}^2 + \abs{\psi_4}^2 \geq 0.
+        \end{equation*}
+        This is positive definite; we have solved the negative probability problem!
+    \item Unfortunately, though, the problem of negative \textit{energy} still remains, and we will come to that soon. For now, we will continue interpreting this Dirac equation now that we have got some of the formalism down.
+    \item First, the general understanding nowadays is that the negative energy states are anti-particles, and the four components of the Dirac spinor $\psi$ correspond to the spin up/down particles and their anti-particles.
+    \item At the time of the Dirac equations founding, though, anti-particles were not found yet, so they had a different train of thought.
+    \item For instance, Dirac had the idea that we were in a sea of completely negative energy states that were always completely filled, and because of the Pauli Exclusion Principle, all we observe are the other positive energy states.
+    \item Now, if we sent a photon into this ``sea'', it would knock out one of the negative energy state and give it positive energy, and we would observe that as an electron. There would be a vacancy then in the ``sea'', which, since we ``made'' an electron, would be a vacancy of negative charge, or positive charge. This corresponds to the ``positron''.
+    \item This thinking (by Dirac) led to the discovery of the positron by 1932 by Carl Anderson at Caltech.
+\end{itemize}
+
+
+\sep
+
+
+\begin{itemize}
+    \item There is another view of why negative energy states should exist, and it comes as a direct and manifest consequence of including special relativity in the theory, which is super neat.
+    \item Let's imagine a particle traveling through space, and let's imagine two events/transformations that particle undergoes at two points in space time, call them $(\vv{x}_1,t_1)$ and $(\vv{x}_2,t_2)$ respectively. At the first space-time point, our particle transforms from an initial state $\ket{\psi}$ to a new state $\ket{\psi'}$, and at the second point, transforms back to $\ket{\psi}$. In our reference frame $S$, we might observe this trajectory to be something like:
+        \begin{center}
+        \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a);
+            \vertex[right of=a,dot] (b) {};
+            \vertex[right=3em of b] (x1) {$(\vv{x}_1, t_1)$};
+            \vertex[above of=b] (c);
+            \vertex[right of=c,dot] (f) {};
+            \vertex[left=3em of f] (x2) {$(\vv{x}_2, t_2)$};
+            \vertex[right of=f] (g);
+            \diagram* {
+                (a) -- (b) -- (f) -- (g)
+            };
+        \end{feynman}
+        \end{tikzpicture}
+        \end{center}
+        Time here goes from left to right. So, we observe one particle transform once, then transform again.
+    \item Now, what happens if we boost to a different reference frame $S'$, such that we see something like the following:
+        \begin{center}
+        \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (la);
+            \vertex[right of=la] (lb);
+            \vertex[right of=lb,dot] (lc) {};
+            \vertex[right=2.3em of lc] (x1) {$(\vv{x}_1,t_1)$};
+            \vertex[right of=lc] (ld);
+            \vertex[above of=la] (ua);
+            \vertex[right of=ua,dot] (ub) {};
+            \vertex[left=2.3em of ub] (x2) {$(\vv{x}_2,t_2)$};
+            \vertex[right of=ub] (uc);
+            \vertex[right of=uc] (ud);
+            \diagram* {
+                (la) -- (lb) -- (lc) -- (ub) -- (uc) -- (ud)
+            };
+        \end{feynman}
+        \end{tikzpicture}
+        \end{center}
+        (Again, time flows left to right.) In this reference frame, however, what we see is particle $\ket{\psi}$ traveling, then suddenly a $\ket{\psi}$ and $\ket{\psi'}$ pair produce, where the $\ket{\psi'}$ and the original $\ket{\psi}$ annihilate, leaving only the new $\ket{\psi}$ left. In both cases, we have a single particle enter and exit, but just by changing reference frames, we realize that the idea of anti-particles must be present.
+\end{itemize}
+
+
+
+
+
+\subsection{Plane Wave Solutions to the Dirac Equation for a Free Particle}
+
+\begin{itemize}
+    \item For a free particle, again, this means that we will have no potential, and so we will have a similar situation to the KG solution in Eq.~\eqref{KleinGordonSolutions}:
+        \begin{equation}
+            \psi(x^{\mu}) = e^{ix^{\mu}p_{\mu}} u(p),
+        \end{equation}
+        where we have a similar time-dependent exponential factor, but also a new factor $u(p)$ to preserve the four dimensions of the spinor.
+    \item We won't derive these solutions here, but the positive energy solutions are 
+        \begin{gather}
+            u^{(1)}(p) = \sqrt{\frac{E+mc^2}{c}} \begin{pmatrix} 1 \\[5pt] 0 \\[5pt] \frac{cp_z}{E+mc^2} \\[5pt] \frac{c(p_x + ip_y)}{E+mc^2}  \end{pmatrix}, \\
+            u^{(2)}(p) = \sqrt{\frac{E+mc^2}{c}} \begin{pmatrix} 0 \\[5pt] 1 \\[5pt] \frac{c(p_x - ip_y)}{E+mc^2} \\[5pt] -\frac{cp_z}{E+mc^2}  \end{pmatrix}.
+        \end{gather}
+    \item These satisfy the normalization condition 
+        \begin{equation}
+            u^{\dagger}u = \frac{2E}{c}.\label{SpinorNormCondition}
+        \end{equation}
+    \item In momentum space, i.e. by undoing the quantum momentum prescription $\hat{p} \rightarrow i\ddp_{\mu}$, we have that the Dirac equation becomes
+        \begin{equation}
+            (\slashed{p} - m)\psi = 0,
+        \end{equation}
+        and also that
+        \begin{equation}
+            (\slashed{p} - m)u = 0.
+        \end{equation}
+    \item The negative energy solutions look like:
+        \begin{equation}
+            \psi(x^{\mu}) = e^{ix^{\mu}p_{\mu}}v(p),
+        \end{equation}
+        where the $v(p)$ spinors are given by
+        \begin{gather}
+            v^{(1)}(p) = \sqrt{\frac{E+mc^2}{c}} \begin{pmatrix} \frac{c(p_x - ip_y)}{E+mc^2} \\[5pt] -\frac{cp_z}{E+mc^2} \\[5pt] 0 \\ 1 
+            \end{pmatrix}, \\
+            v^{(2)}(p) = \sqrt{\frac{E+mc^2}{c}} \begin{pmatrix} \frac{c p_z}{E+mc^2} \\[5pt] \frac{c(p_x + ip_y)}{E+mc^2} \\[5pt] 1 \\ 0 
+            \end{pmatrix},
+        \end{gather}
+        where these satisfy the same normalization condition and satisfy the adjoint Dirac equation
+        \begin{equation}
+            (\slashed{p} + m)v = 0.
+        \end{equation}
+    \item The last thing to look at quickly here is a particle's rest frame, in which all the components of momentum are zero, and hence all the components of the spinor are zero except for the single component with a 1 in it. In such a case, we can make the following connection:
+        \begin{equation*}
+            \psi = 
+                \begin{pmatrix}
+                    e^-\ \text{spin up} \\
+                    e^-\ \text{spin down} \\
+                    e^+\ \text{spin down} \\
+                    e^+\ \text{spin up}
+                \end{pmatrix}.
+        \end{equation*}
+        It is important to notice that the spin states for positron seem reversed compared to those for the electron. This is intentional!
+\end{itemize}
+
+
+\sep
+
+
+\subsection{The Chiral/Weyl Representation}
+
+
+\begin{itemize}
+    \item We now turn our attention to a different representation of the gamma matrices, since there is more than just one combination of them that yields the commutation relation in Eq.~\eqref{GammaAntiCommutator}. This representation we will call the \textbf{Chiral} or \textbf{Weyl} representation:
+        \begin{equation}
+            \gamma^0 = \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix},\qquad \gamma^i = \begin{pmatrix}0 & -\sigma^i \\ \sigma^i & 0 \end{pmatrix}.\label{ChiralGammas}
+        \end{equation}
+        Notice that the ``spatial'' gammas have picked up an overall factor of $-1$. In many places in the literature, this is not the case; i.e. the spatial gammas in the chiral representation are the same as in the standard representation. We choose this convention as it will be more intuitive later.
+    \item Let's also express the Dirac spinor $\psi$ as a two component object:
+        \begin{equation}
+            \psi = \begin{pmatrix}\phi_R \\ \psi_L\end{pmatrix},\label{ChiralSpinor}
+        \end{equation}
+        where $R$ stands for ``right-handed'' and $L$ stands for ``left-handed''. This is in terms of \textbf{helicity}, which is the component of spin in the direction of the particle's motion.
+    \item Now, in this representation, we can slightly more easily describe how a spinor transforms under Lorentz transformations: the two components transform as the fundamental and adjoint/anti-fundamental (this may or may not be the correct word(s)) representations of $SL(2,C)$, the special linear group in two-dimensions (this is not super important). A general transformation looks like:
+        \begin{equation}
+            \psi \rightarrow \psi^{\prime} = 
+                \begin{pmatrix}
+                    e^{\frac{i}{2}\vv{\sigma}\left(\vv{\theta - i\varphi}\right)} & 0 \\
+                    0 & e^{\frac{i}{2}\vv{\sigma}\left(\vv{\theta + i\varphi}\right)}
+                \end{pmatrix} 
+                \begin{pmatrix}\phi_R \\ \phi_L\end{pmatrix},
+        \end{equation}
+        where $\vv{\theta}$ is a vector of rotation parameters, $\vv{\varphi}$ is a vector of boost parameters, and $\vv{\sigma}$ is the familiar vector of Pauli spin matrices.
+    \item Now, back to the idea of helicity. For massive particles, in one reference frame we may observe the helicity to be one value, but if we boost to a new frame in which we are moving faster than the particle, we will observe the particle to be moving in the other direction. However, the spin will obviously still appear the same, meaning the particle's helicity has reversed.
+    \item This is not the case for massless particles, as we cannot boost to a reference frame that is moving faster than the particle, and as such, cannot view it as appearing to move in an opposite direction (while the spin remains the same). Hence, the helicity of a massless particle is constant, and it is often called \textbf{chirality} in this case.
+    \item Now, for such massless particles, we only have one term remaining in the momentum space Dirac equation:
+        \begin{gather*}
+            \gamma^{\mu}p_{\mu} \psi = 0, \\
+            \gamma^0p_0\psi + \gamma^ip_i\psi = 0, \\
+            \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix} p_0 \begin{pmatrix}\phi_R \\ \phi_L\end{pmatrix} + \begin{pmatrix}0 & -\sigma^i \\ \sigma^i & 0\end{pmatrix} p_i \begin{pmatrix}\phi_R \\ \phi_L\end{pmatrix} = 0,
+        \end{gather*}
+        where in the second line we don't have minus signs because we are keeping the momentum indices lowered. Should we raise them (which we in the next step), we will only insert the minus sign then. Here, we really only just expanded the implicit sum.
+        Simplifying:
+        \begin{equation*}
+            \rightarrow \left[\begin{pmatrix}0 & p_0 \\ p_0 & 0\end{pmatrix} - \begin{pmatrix}0 & -\vv{\sigma} \cdot \vv{p} \\ \vv{\sigma} \cdot \vv{p} & 0\end{pmatrix}\right] \begin{pmatrix}\phi_R \\ \phi_L\end{pmatrix} = 0,
+        \end{equation*}
+        where now that we have made the momentum an ordinary vector (whose components do not have a minus sign), we insert the minus sign. We brought it back out again to have the relative minus between the two matrices in brackets though, but this is just how we chose to simplify. Continuing:
+        \begin{equation*}
+            \rightarrow \begin{pmatrix}0 & p_0 + \vv{\sigma}\cdot\vv{p} \\ p_0 - \vv{\sigma}\cdot\vv{p} & 0\end{pmatrix} \begin{pmatrix} \phi_R \\ \phi_L\end{pmatrix}.
+        \end{equation*}
+        This leads us to a system of two equations:
+        \begin{gather*}
+            \begin{cases}
+                (p_0 + \vv{\sigma}\cdot\vv{p})\phi_L = 0, \\
+                (p_0 - \vv{\sigma}\cdot\vv{p})\phi_R = 0,
+            \end{cases} \\
+            \begin{cases}
+                \vv{\sigma}\cdot\vv{p} \phi_L = -p_0 \phi_L, \\
+                \vv{\sigma}\cdot\vv{p} \phi_R = p_0 \phi_R,
+            \end{cases}
+        \end{gather*}
+        \begin{equation}
+            \begin{cases}
+                \vv{\sigma}\cdot\vvhat{p} \phi_L = -\phi_L, \\
+                \vv{\sigma}\cdot\vvhat{p} \phi_R = \phi_R.
+            \end{cases}
+        \end{equation}
+        These are the \textbf{Weyl equations}, and they describe massless particles. The operator $\vv{\sigma}\cdot\vvhat{p}$ is the helicity operator, and we can see that for massless particles, left-handed states have a helicity of $-1$, and right-handed states have a helicity of $+1$.
+\end{itemize}

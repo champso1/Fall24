@@ -1,0 +1,56 @@
+%5.4 a,b
+
+\section{(5.4)}
+We are given a plane-wave solution $\phi(x^{\mu}) = A\exp(-i k_{\mu}x^{\mu})$ to the Klein-Gordon Equation, where $A$ is a constant.
+
+
+\begin{parts}
+
+
+%a
+\item In order to show eventually that the phase speed is greater than $c$, I'll reintroduce $c$ into the Klein-Gordon equation, but leave $\hbar = 1$:
+    \begin{equation}
+        \ddp_{\mu}\ddp^{\mu} \phi + m^2c^2 \phi = 0.
+    \end{equation}
+    We can simply plug in our plane wave solution into the Klein-Gordon equation and determine what the components of $k^{\mu}$ must be, then solve for the phase speed. First,
+    \begin{equation}
+        \ddp_{\mu}\ddp^{\mu} \left(A\exp(-ik_{\mu}x^{\mu})\right) = -Ak_{\mu}k^{\mu} \exp(-i k_{\mu}x^{\mu}),
+    \end{equation}
+    so we have that
+    \begin{gather}
+        -Ak_{\mu}k^{\mu} \exp(-i k_{\mu}x^{\mu}) + m^2c^2 A\exp(-i k_{\mu}x^{\mu}) = 0, \\
+        A\exp(-i k_{\mu}x^{\mu}) \left(-k_{\mu}k^{\mu} + m^2c^2\right) = 0.
+    \end{gather}
+    Since we don't want the trivial solution where $A=0$ and since the exponential is never zero,
+    \begin{gather}
+        -k_{\mu}k^{\mu} + m^2c^2 = 0,\\
+        -\frac{\omega^2}{c^2} + \abs{\vv{k}}^2 + m^2c^2 = 0, \\
+        \omega^2 = \abs{\vv{k}}^2c^2 + m^2c^4, \\
+        \omega = \sqrt{\abs{\vv{k}}^2c^2 + m^2c^4}.
+    \end{gather}
+    Now, by the definition of the phase speed $v_p = \omega/\abs{\vv{k}}$, we have
+    \begin{equation}
+        \omega/\abs{\vv{k}} \equiv \omega/k = \sqrt{c^2 + \frac{m^2c^4}{k^2}} = c \sqrt{1 + \frac{m^2c^2}{k^2}}.
+    \end{equation}
+    Since the fraction in the exponent will always be positive, the quantity in the square root must always be greater than one, meaning we can safely say that $v_p > c$, as expected.
+
+
+
+
+%b
+\item Here, we will take our original expression for $\omega$ and simply differentiate with respect to $\abs{\vv{k}} \equiv k$:
+    \begin{align}
+        v_g \equiv \diff{\omega}{k} &= \diff{}{k} \left[\sqrt{k^2c^2 + m^2c^4}\right], \\ 
+        &= \frac{1}{2}\left(k^2c^2 + m^2c^2\right)^{-1/2} \cdot 2kc^2, \\
+        &= \frac{kc^2}{\sqrt{k^2c^2 + m^2c^2}}, \\
+        &= \frac{kc}{\sqrt{k^2 + m^2}}.
+    \end{align}
+    Here, the coefficient of $c$ is always less than 1 due to the additive factor of $m^2$ in the square root in the denominator. This time, then, $\dd\omega/\dd k < c$, as expected.
+
+    
+
+
+
+
+
+\end{parts}

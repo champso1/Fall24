@@ -1,0 +1,580 @@
+\section{Feynman Rules}
+\subsection*{Interactions and Perturbation Theory}
+
+\newcommand{\hint}{H_{\mathrm{int}}}
+\newcommand{\hamint}{\ham_{\mathrm{int}}}
+\newcommand{\lagint}{\lag_{\mathrm{int}}}
+\begin{itemize}
+    \item It turns out, the derivation of Feynman rules (which are used to evaluate amplitudes in QFT) follows pretty smoothly through a number of different steps, and it starts with a bit of formalism into interactions and some perturbation theory.
+    \item In general, we can split up the Hamiltonian into the interaction term(s), and ``the rest'': $H = H_0 + \hint$. We can do this similarly for the Hamiltonian density as well as for Lagrangians: $\ham = \ham_0 + \hamint$ and $\lag = \lag_0 + \lagint$.
+    \item As an example, we considered $\phi^4$ theory previous during the test, and we had an interaction term $\lagint = \frac{1}{4}\phi^4$, and the ``rest'', $\lag_0$, was just the ordinary free Klein-Gordon Lagrangian.
+    \item We know that we can write the Hamiltonian density as $\ham = \pi\dot{\phi} - \lag$, but since $\pi = \dot{\phi}$ for this case, we have that $\ham = \dot{\phi}^2 - \lag_0 - \lagint$. So, $\ham_0 = \dot{\phi}^2 - \lag_0$ and $\hamint = -\lagint$. Interestingly, the Hamiltonian interaction term is identical to the Lagrangian interaction term with a minus sign.
+    \item In QED, we have that 
+        \begin{equation*}
+            \lagint = -q \psib\gamma^{\mu}\psi A_{\mu} \quad \mathrm{and} \quad \pi = \diffp[]{\lag}{\dot{\psi}} = i\psib \gamma^0,
+        \end{equation*}
+        so
+        \begin{equation*}
+            \ham = \pi \dot{\psi} = \psi^{\dagger} \dot{\psi} - \lag_0 - \lagint.
+        \end{equation*}
+        Thus,
+        \begin{equation*}
+            \ham_0 = \psi^{\dagger}\dot{\psi} - \lag_0, \quad \mathrm{and} \quad \hamint = q \psib\gamma^{\mu}\psi A_{\mu}.
+        \end{equation*}
+\end{itemize}
+
+\sep 
+
+\begin{itemize}
+    \item Now turning to perturbation theory: if the size of the coupling constant ($\lambda$ in our $\phi^4$ theory here, for instance, or $q$ for QED) is very small, we can consider the interaction term as a small perturbation to the full Hamiltonian. From there, we can apply perturbation techniques.
+    \item First, though, let's lay down some formalism:
+    \item \textbf{The Schrodinger picture/representation} (SP) is the representation that has states that evolve with time (the wavefunction $\psi$) and operators that are constant ($\hat{x}$ is just the variable $x$ always).
+    \item \textbf{The Heisenberg picture/representation} (HP) is the representation that has states that are constant in time but whose operators do evolve with time.
+    \item \textbf{The interaction picture/representation} (IP) is an intermediate position between the two previous representations. We will look at this a little more later, but it is what naturally leads to perturbation theory stuff.
+    \item Now, we have been already basically working within the HP, where our operators are the fields, and they indeed depend on position as well as time: $\hat{\phi}(\vv{x},t)$. If we had been using the SP, we'd only have something like $\hat{\phi}(\vv{x})$.
+    \item In this case, the ``states'' are the kets $\ket{\phi}$, which we will index as $\ket{\phi_S}$ for the SP and $\ket{\phi_H}$ for the HP.
+    \item Intuitively there is only a time-evolution factor different between the two states, and this turns out to be the correct line of thought: the relation between them is given by:
+        \begin{equation}
+            \ket{\phi_H} = e^{iHt} \ket{\phi_S}.\label{eq:SPandHPStateRelation}
+        \end{equation}
+    \item The relation between operators is given by, for a generic operator $\hat{A}$:
+        \begin{equation}
+            \hat{A}_H = e^{iHt} \hat{A}_S e^{-iHt}.
+        \end{equation}
+    \item In the SP, we had the Schrodinger Equation which dictated the time evolution of that state. In the HP, there is an analog for the operators who are now the time-dependent quantities:
+        \begin{equation}
+            i \diff[]{\hat{A}_H}{t} = \left[ \hat{A}_H, \hat{H} \right].
+        \end{equation}
+    \item Now, in the interaction picture, we consider the place between the two pictures. From Eq.~\eqref{eq:SPandHPStateRelation}, we go ``halfway'' by only considering the ``rest'' of the Hamiltonian, not the interaction term (and index a state in this picture with $\ket{\phi_I}$):
+        \begin{equation}
+            \ket{\phi_I} = e^{iH_0t}\ket{\phi_S}.
+        \end{equation}
+        We have similar relations for the operators:
+        \begin{equation}
+            \hat{A}_I = e^{iH_0i} \hat{A}_S e^{-iH_0t}, \quad \mathrm{and} \quad i\diff[]{\hat{A}_I}{t} = \left[ \hat{A}_I, \hat{H}_0 \right].
+        \end{equation}
+    \item In this picture, we have that
+        \begin{equation}
+            \hat{H}_{\mathrm{int}} \ket{\phi_I} = i\diff{}{t} \ket{\phi_I}.
+        \end{equation}
+\end{itemize}
+
+
+\sep
+
+
+\begin{itemize}
+    \item Now, in the SP (where we have time-dependent states), we can evolve a state $\ket{\phi_S(t_i)}$ for some initial time $t=t_i$ to a state $\ket{\phi_S(t_f)}$ at some later time $t=t_f$ using a time evolution operator like so:
+        \begin{equation*}
+            \ket{\phi_s(t_f)} = e^{-iH(t_f-t_i)} \ket{\phi_S(t_i)}.
+        \end{equation*}
+    \item We define the \textbf{amplitude} for such a generic process as
+        \begin{equation}
+            \Braket{\phi_S'(t_f) | e^{-iH(t_f-t_i)} | \phi_S(t_i)}.
+        \end{equation}
+    \item Essentially, the amplitude is given by sandwiching the time-evolution operator between the the final and initial states.
+    \item If we take the limit as $t_f \rightarrow \infty$, then the exponential term becomes what is called the \textbf{S-Matrix}.
+    \item It is \textit{unitary}, obviously, since the Hamiltonian is hermitian.\footnote{It turns out this unitarity is important for conservation laws.}
+    \item We can also define something called the \textbf{T-Matrix}, which is defined as
+        \begin{equation}
+            S = 1 + iT.
+        \end{equation}
+    \item It is not necessarily unitary; in fact,
+        \begin{equation*}
+            S^{\dagger}S = (1-iT^{\dagger})(1+iT) = 1+it-iT^{\dagger} + T^{\dagger}T = 1 \rightarrow T^{\dagger}T = i(T^{\dagger} - T) \neq 1.
+        \end{equation*}
+        We will (presumably) explore this a little later, it just doesn't hurt to lay down the notation now.
+    \item Bringing in what we have done, we have, again, that our field operators are in the HP, and can therefore be represented in terms of SP operators (that are time-independent) like so:
+        \begin{equation*}
+            \hat{\phi}_H(\vv{x},t) = e^{iHt} \hat{\phi}_S(\vv{x}) e^{-iHt}.
+        \end{equation*}
+        The expansion for $\hat{\phi}_S(\vv{x})$ is nearly identical to that for the HP operator:
+        \begin{equation*}
+            \hat{\phi}_S(\vv{x}) = \FourierIntE{p} \left[ a(\vv{p}) e^{i\dotprodv{p}{x}} + a^{\dagger}(\vv{p})e^{-i\dotprodv{p}{x}} \right].
+        \end{equation*}
+    \item Similarly to before, if we have the above case for some initial $t=t_0$ (we can then ``label'' $\hat{\phi}_S$ like $\hat{\phi}_S(\vv{x},t_0)$, but keep in mind that this doesn't otherwise imply time-dependence, it's just a general label), then for some later $t$:
+        \begin{equation}
+            \hat{\phi}_H(\vv{x},t) = e^{iH(t-t_0)} \hat{\phi}_S(\vv{x},t_0) e^{-iH(t-t_0)}.\label{eq:SPandHPFieldRelation}
+        \end{equation}
+    \item Now let's consider what happens to the Hamiltonian when our coupling constant in the interaction term is small, e.g. $\lambda$ is tiny. At an extreme, we can consider the limit as $\lambda \rightarrow 0$, in which case the interaction term vanishes so $H \rightarrow H_0$. In such a case:
+        \begin{equation*}
+            \lim_{\lambda \rightarrow \infty} \hat{\phi}_H(\vv{x},t) = e^{iH_0(t-t_0)} \hat{\phi}_S(\vv{x},t_0) e^{-iH_0(t-t_0)}.
+        \end{equation*}
+    \item But this is just a state the interaction picture as we described before, where we just consider the $\ham_0$ term:\footnote{The equality is only realized when the coupling constant really is zero; of course, this is never the case, so this can only be an approximation at best.}
+        \begin{equation}
+            \hat{\phi}_I(\vv{x},t) = \lim_{\lambda \rightarrow \infty} \hat{\phi}_H(\vv{x},t) = e^{iH_0(t-t_0)} \hat{\phi}_S(\vv{x},t_0) e^{-iH_0(t-t_0)}.
+        \end{equation}
+        This field operator can be expanded out in the normal way:
+        \begin{equation}
+            \hat{\phi}_I(\vv{x},t) = \FourierIntE{p} \left[ a(\vv{p})e^{i\dotprod{p}{x}} + a^{\dagger}(\vv{p})e^{-i\dotprod{p}{x}} \right],
+        \end{equation}
+        where $x^0 = t-t_0$.
+    \item Let's try to make this more general by expressing $\hat{\phi}_H$ in terms of $\hat{\phi}_I$. First, let's reverse our defintion of $\hat{\phi}_I$:
+        \begin{equation*}
+            \hat{\phi}_S(\vv{x},t) = e^{-iH(t-t_0)} \hat{\phi}_I(\vv{x},t_0) e^{iH(t-t_0)}
+        \end{equation*},
+        then plug this into our defition of $\hat{\phi}_H$ from before:
+        \begin{equation}
+            \hat{\phi}_H(\vv{x},t) = e^{iH(t-t_0)}e^{-iH_0(t-t_0)} \hat{\phi}_I(\vv{x},t)e^{iH_0(t-t_0)}e^{-iH(t-t_0)}.
+        \end{equation}
+    \item If we define the IP time-evolution operator, or otherwise called the \textbf{IP propagator}, as
+        \begin{equation}
+            U(t,t_0) \equiv e^{iH_0(t-t_0)}e^{-iH(t-t_0)},
+        \end{equation}
+        then we can write this as
+        \begin{equation}
+            \hat{\phi}_H(\vv{x},t) = U^{\dagger}\hat{\phi}_I(\vv{x},t) U.
+        \end{equation}
+    \item If we consider now the time evolution of this operator, we have:
+        \begin{equation*}
+            i \diff{U}{t} = e^{iH_0(t-t_0)}(H-H_0)e^{-iH(t-t_0)}.
+        \end{equation*}
+        But $H-H_0$ is just $\hint$:
+        \begin{equation*}
+            i \diff{U}{t} = e^{iH_0(t-t_0)} \hint e^{-iH(t-t_0)}.
+        \end{equation*}
+        If we cleverly insert 1 after the interaction Hamiltonian term, we get
+        \begin{equation*}
+            i \diff{U}{t} = e^{iH_0(t-t_0)} \hint e^{-iH_0(t-t_0)}e^{iH(t-t_0)} e^{-iH(t-t_0)}.
+        \end{equation*}
+    \item Now, from earler we define how to relate operators between pictures, what the first three terms are, then, is the interaction Hamiltonian in the interaction picture:
+        \begin{equation*}
+            H_I(t) \equiv e^{iH_0(t-t_0)} \hint e^{-iH_0(t-t_0)},
+        \end{equation*}
+        and the last two terms are just $U$, so we have:
+        \begin{equation}
+            i\diff{U}{t} = H_i U.
+        \end{equation}
+        This is remarkably similar to the Schrodinger equation!
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item Solutions to this equation are tough, since we are working with matrices, so we will just quote the results here:
+        \begin{equation}
+            U(t,t_0) = T\left\{ \exp\left[ -i\int_{t_0}^t H_I(t') \;\dd t' \right] \right\},
+        \end{equation}
+        where $T\left\{ \ldots \right\}$ is defined as the \textbf{time-ordered product}, which essentially means that the product of operators/fields within it are ordered with time decreasing as you go to the right, so later times appear earlier in the product. For example:
+        \begin{equation*}
+            T\left\{ \hat{\phi}(x^{\mu}_1)\hat{\phi}(x^{\mu}_2) \right\} = 
+                \begin{alignedat}{1}
+                \begin{cases}
+                    \hat{\phi}(x^{\mu}_1)\hat{\phi}(x^{\mu}_2) \quad & \mathrm{if}\ t_1>t_2, \\
+                    \hat{\phi}(x^{\mu}_2)\hat{\phi}(x^{\mu}_1) \quad & \mathrm{if}\ t_2>t_1.
+                \end{cases}
+                \end{alignedat}
+        \end{equation*}
+        We can write this a bit more formally using the \textbf{Heaviside step function}, or colloquially called just the ``theta function'':
+        \begin{equation*}
+            T\left\{ \hat{\phi}(x^{\mu}_1)\hat{\phi}(x^{\mu}_2) \right\} = \Theta(x_1^0 - x_2^0) \hat{\phi}(x^{\mu}_1)\hat{\phi}(x^{\mu}_2) + \Theta(x_2^0 - x_1^0) \hat{\phi}(x^{\mu}_2)\hat{\phi}(x^{\mu}_1).
+        \end{equation*}
+    \item If we Taylor expand the solution we would have:
+        \begin{equation*}
+            U(t,t_0) = 1 - i\int_{t_0}^t H_I(t_1)\;\dd t_1 + \frac{(-i)^2}{2!} \int_{t_0}^t T\left\{ H_I(t_1)H_I(t_2) \right\} \;\dd t_1 \;\dd t_2.
+        \end{equation*}
+        It can be shown that the second integral can be re-written after time-ordering like so:
+        \begin{equation*}
+            U(t,t_0) = 1 - i\int_{t_0}^t H_I(t_1)\;\dd t_1 - \int_{t_0}^t \;\dd t_1 \int_{t_0}^{t_1} H_I(t_1)H_I(t_2) \;\dd t_2 + \ldots.
+        \end{equation*}
+\end{itemize}
+
+
+
+\subsection*{The Feynman Propagator}
+
+\begin{itemize}
+    \item[] Just to make this clear, since this next section would otherwise be notation heavy: all fields (any operators, really) are still operators, but we remove the hats. All $x$'s and $p$'s and whatnot are 4-vectors, else they are bolded to signify a 3-vector.
+    \item Let's define the \textbf{$n$-point Green's function} as the vacuum expectation value of the time-ordered product of $n$ fields:
+        \begin{equation}
+            G(x_1,x_2,\ldots,x_n) = \Braket{0 | T\left\{ \phi(x_1)\phi(x_2) \ldots \phi(x_n) \right\} | 0}\label{eq:NPointGreensFunc}
+        \end{equation}
+    \item Using our definitions from above, we can write this as:
+        \begin{align*}
+            &= \Braket{0 | \left( U^{\dagger}(t_1,t_0)\phi_I(x_1)U(t_1,t_0) \right)\left( U^{\dagger}(t_2,t_0)\phi_I(x_2)U(t_2,t_0) \right)\ldots | 0}, \\
+            &= \Braket{0 | U^{\dagger}(t,t_0) T\left\{ \phi_I(x_1)\phi_I(x_2) \ldots \phi_I(x_n) U(t,t_1)U(t_1,t_2) \ldots U(t_n,-t) \right\} U(-t,t_0) | 0}.
+        \end{align*}
+        This simplification is not trivial, but it would take too long to show. Now, the product of the $U$'s can be simplified:
+        \begin{equation*}
+            =\Braket{0 | U^{\dagger}(t,t_0) T\left\{ \phi_I(x_1)\phi_I(x_2) \ldots \phi_I(x_n) \exp\left[ -i \int_{-t}^t H_I(t')\;\dd t \right] \right\} U(-t,t_0) | 0}.
+        \end{equation*}
+    \item We now will make some assumptions/choices. First, let's assume that $t >> t_1 > t_2 > \ldots > t_n > -t$. We will also choose our initial time to be $-t$, and lastly, we will let $t \rightarrow \infty$. With this, we have that
+        \begin{equation*}
+            U(t,t_0) \rightarrow U(\infty,-\infty) \quad \mathrm{and} \quad U(-t,t_0) \rightarrow U(-t,-t) = 1.
+        \end{equation*}
+    \item Additionally, let's consider $U(t,t_0)\Ket{0}$. It's not a creation/annihilation operator, so in a general case, we will retrieve still the vacuum state but with some phase factor: $U(t,t_0)\Ket{0} = e^{i\theta}\Ket{0}$. Now,
+        \begin{equation*}
+            \Braket{0 | U(\infty,-\infty) | 0} = \Braket{0 | e^{i\theta} | 0} = e^{i\theta} \Braket{0 | 0} = e^{i\theta},
+        \end{equation*}
+        if we choose our states to be normalized.
+    \item Now let's do a little bit of gymnastics:
+        \begin{equation*}
+            \left( U(t,t_0)\Ket{0} \right)^{\dagger} = \Bra{0}U^{\dagger}(t,t_0) = \Bra{0}e^{-i\theta} = \frac{\Bra{0}}{e^{i\theta}} = \frac{\Bra{0}}{\Braket{0 | T\left\{ \exp\left[ -i\intinf H_I(t) \;\dd t \right] \right\} | 0}}.
+        \end{equation*}
+    \item From this, then, we can make
+        \begin{equation}
+            \boxed{G(x_1,x_2,\ldots,x_n) = \frac{\Braket{0 | T\left\{ \phi_I(x_1)\phi_I(x_2) \ldots \phi_I(x_n) \exp\left[ \intinf H_I(t) \;\dd t \right] \right\} | 0}}{\Braket{0 | T\left\{ \exp\left[ -i\intinf H_I(t) \;\dd t \right] \right\} | 0}}.}
+        \end{equation}
+    \item This, as we will find out, gives the amplitude for all possible propagations for all $n$-points.
+    \item Let's consider the 2-point Green's function with no interactions and see what happens. This means that the interaction Hamiltonian terms are 1 (exponential of 0) so
+        \begin{equation*}
+            G(x,y) = \Braket{0 | T\left\{ \phi(x)\phi(y) \right\} | 0},
+        \end{equation*}
+        where we have dropped the $I$ subscript for notational simplicity.
+    \item Now, we can split the field into separate components containing the creation and annihilation operators:
+        \begin{gather}
+            \phi(x) = \phi^+(x) + \phi^-(x), \quad \mathrm{where} \\
+            \phi^+(x) = \FourierIntE{p} a(\vv{p}) e^{-i\dotprod{p}{x}} \quad \mathrm{and} \quad \phi^-(x) = \FourierIntE{p} a^{\dagger}(\vv{p}) e^{i\dotprod{p}{x}}.
+        \end{gather}
+    \item We first consider the case where $x^0 > y^0$, then
+        \begin{align*}
+            T\left\{ \phi(x)\phi(y) \right\} &= \phi(x)\phi(y) = (\phi^+(x) + \phi^-(x))(\phi^+(y) + \phi^-(y)) \\
+            &= \phi^+(x)\phi^+(y) + \phi^+(x)\phi^-(y) + \phi^-(x)\phi^+(y) + \phi^-(x)\phi^-(y).
+        \end{align*}
+    \item Let's normal order this. Fortunately, only the 2nd term changes; it picks up a commutator:
+        \begin{equation*}
+            = \phi^+(x)\phi^+(y) + \phi^-(x)\phi^+(y) + \left[ \phi^+(x),\phi^-(y) \right] + \phi^-(x)\phi^+(y) + \phi^-(x)\phi^-(y),
+        \end{equation*}
+        or, more succinctly:
+        \begin{equation*}
+            T\left\{ \phi(x)\phi(y) \right\} = :\phi(x)\phi(y): + D(x-y),
+        \end{equation*}
+        where $D(x-y)$ is the \textbf{Feynman propagator}. We will see why we have ``already'' found it, and why it is a function of $x-y$ in a little.
+    \item Taking the vacuum expectation value:
+        \begin{equation*}
+            \Braket{0 | T\left\{ \phi(x)\phi(y) \right\} | 0} = \Braket{0 | :\phi(x)\phi(y): | 0} + \Braket{0 | D(x-y) | 0}.
+        \end{equation*}
+    \item In the definition of normal ordering, we have annihilation operators on the right, and we know that annihilation operators acting on vacuum states are zero, so the first term is zero. In general, \textit{the vacuum expection value of any normal ordered product is zero}. We can then pull the Feynman propagator out and get:
+        \begin{equation*}
+            G(x,y) = D(x-y)\Braket{0 | 0} = D(x-y).
+        \end{equation*}
+        This is why we already called it the Feynman propagator, because everything else cancels.
+    \item We considered specifically the case when $x^0 > y^0$, but it turns out it is almost identical for the opposite, and we can write, generally,
+        \begin{equation*}
+            D(x-y) = \Theta(x^0 - y^0)\left[ \phi^+(x),\phi^-(y) \right] + \Theta(y^0 - x^0)\left[ \phi^+(y),\phi^-(x) \right].
+        \end{equation*}
+    \item Let's expand the $+$/$-$ fields into creation and annihilation operators:
+        \begin{multline*}
+            D(x-y) = \int \frac{\dd^3p \dd^3q}{(2\pi)^6 2\sqrt{p^0q^0}} \big\{ \Theta(x^0 - y^0)\left[ a(\vv{p}),a^{\dagger}(\vv{q}) \right]e^{-i\dotprod{p}{x}}e^{i\dotprod{q}{y}} \\
+            + \Theta(y^0 - x^0)\left[ a(\vv{p}),a^{\dagger}(\vv{p}) \right]e^{-i\dotprod{p}{y}}e^{i\dotprod{q}{x}} \big\}.
+        \end{multline*}
+        From the commutation relations, we have
+        \begin{equation*}
+            D(x-y) = \int \frac{\dd^3p \dd^3q}{(2\pi)^6 2\sqrt{p^0q^0}} (2\pi)^3\delta^3(\vv{p}-\vv{q}) \left\{ \Theta(x^0 - y^0) e^{-i\dotprod{p}{x}}e^{i\dotprod{q}{y}} + \Theta(y^0 - x^0)e^{-i\dotprod{p}{y}}e^{i\dotprod{q}{x}} \right\}.
+        \end{equation*}
+        We can now kill the $q$ integral, for instance, forcing $\vv{p}=\vv{q}$ and as a consequence $p^0=q^0$:
+        \begin{equation*}
+            D(x-y) = \int \frac{\dd^3p}{(2\pi)^3 2p^0} \left\{ \Theta(x^0 - y^0)e^{-i\dotprod{p}{(x-y)}} + \Theta(y^0 - x^0)e^{i\dotprod{p}(x-y)} \right\}.
+        \end{equation*}
+        It turns out that with some complex integration shenanigans, we can express this integral as:
+        \begin{equation*}
+            D(x-y) = \int \frac{\dd^4p}{(2\pi)^4} \frac{i}{p^2 - m^2}e^{-i\dotprod{p}{(x-y)}}.
+        \end{equation*}
+    \item The $i\epsilon$ at the bottom disappears since we end up taking $\epsilon \rightarrow 0$, but for completeness we left it. We now see why we said $D$ was a function of $x-y$. What we also see is that we have essentially found the momentum space form of the Dirac propagator:
+        \begin{equation}
+            \boxed{D(p) = \frac{i}{p^2 - m^2}.}
+        \end{equation}
+    \item Now, Green's functions are solutions to linear differential equations in response to a delta function, meaning if we plug Green's function (whatever it happens to be for the problem at hand) to the governing linear differential equation, we get a delta function. In this case, for a scalar field, this differential equation is the Klein-Gordon equation. Doing the derivatives for $x$, for instance (it doesn't matter which):
+        \begin{align*}
+            \left[ (\ddp_{\mu})_x(\ddp^{\mu})_x + m^2 \right]G(x,y) &= \int \frac{\dd^4p}{(2\pi)^4} \frac{i}{p^2 - m^2}(-p^2 + m^2) e^{-i\dotprod{p}{(x-y)}}, \\
+            &= -i \int \frac{\dd^4p}{(2\pi)^4} e^{-i\dotprod{p}{(x-y)}} = -i\delta^4(x-y).
+        \end{align*}
+        Indeed, we get a delta function!
+\end{itemize}
+
+
+\subsection*{Wick's Theorem}
+\begin{itemize}
+    \item We considered the simplest case of a time-ordered product of two fields. Wicks' theorem states it more generally:
+        \begin{equation}
+            T\left\{ \phi(x_1)\phi(x_2) \ldots \phi(x_n) \right\} = :\phi(x_1)\phi(x_2) \ldots \phi(x_n): + \ \text{all possible contractions/Feynman propagators}.
+        \end{equation}
+    \item As an example, let's look at the 4-point time-ordered product. For notational simplicity, $\phi(x_i) \rightarrow \phi_i$ and $D(x_i - x_j) \rightarrow D_{ij}$:
+        \begin{multline*}
+            T\left\{ \phi_1\phi_2\phi_3\phi_4 \right\} = :\phi_1\phi_2\phi_3\phi_4: \\
+            + D_{12}:\phi_3\phi_4: + D_{13}:\phi_2\phi_4: + D_{14}:\phi_2\phi_3: + D_{12}D_{34} + D_{13}D_{24} + D_{14}D_{23}.
+        \end{multline*}
+\end{itemize}
+
+
+
+
+
+\subsection*{Feynman Rules for \texorpdfstring{$\phi^4$}{phi4} Theory}
+
+\begin{itemize}
+    \item The previous stuff was all done for non-interacting scalar fields, but we now bring back in interactions. We saw the form of this already:
+        \begin{equation*}
+            \Braket{0 | T\left\{ \phi(x)\phi(y)\exp\left[ -i\intinf H_I(t) \;\ddt \right] \right\} | 0}.
+        \end{equation*}
+        We can expand the exponential out to first order:
+        \begin{equation*}
+            \Braket{0 | T\left\{ \phi(x)\phi(y) + \phi(x)\phi(y)(-i)\intinf H_I(t)\;\ddt \right\}| 0}.
+        \end{equation*}
+        The first term is of course just the Dirac propagator:
+        \begin{equation*}
+            = D(x-y) + \Braket{0 | T\left\{ \phi(x)\phi(y)(-i)\intinf H_I(t)\;\ddt \right\}}.
+        \end{equation*}
+    \item Now, in $\phi^4$ theory, we have that 
+        \begin{equation*}
+            H_{\mathrm{int}} = -L_{\mathrm{int}} = -\int \dd^3z \;\lagint = \int \dd^3z \;\left( \frac{\lambda}{4!}\phi^4 \right),
+        \end{equation*}
+        where we use $z$ to differentiate it from the $x$ and $y$ we are already using. So, our total interaction term is (writing out the four $\phi$'s manually)
+        \begin{equation*}
+            \Braket{0 | T\left\{ \phi(x)\phi(y) \frac{(-i\lambda)}{4!} \int\dd^4z \phi(z)\phi(z)\phi(z)\phi(z) \right\}}.
+        \end{equation*}
+        Note that we combined $\int\ddt\int\dd^3z = \int\dd^4z$. Now, we can use Wick's theorem on these six fields, and we will get a ton of terms, but thankfully, since four of the fields are identical, we actually only have two unique terms:
+        \begin{equation*}
+            3 \frac{(-i\lambda)}{4!} D(x-y) \int\dd^4z D(z-z)D(z-z) + 12 \frac{(-i\lambda)}{4!} D(x-y) \int\dd^4z D(y-z)D(z-z).
+        \end{equation*}
+    \item The 3 and 12 are just combinatorial factors, but we can make a few observations here. The first term represents a particle propagating from point $x$ to $y$, and (separately) two self-interactions at point $z$. Really, its \textit{every} point $z$, since we are integrating over all $z$. This is sort of the analog for the principle of superposition from QM.
+    \item The second term involves a single interaction of four fields. One thing to note: at every vertex, there are always four lines coming in/out: that's because we are working with a $\phi^4$ theory: interactions involve four fields always. We also see mathematically that vertices always involve a factor of $-i\lambda\int\dd^4z$.
+    \item We can now write general Feynman Rules for $\phi^4$ theory in position-space:
+        \begin{enumerate}
+            \item For each propagator, we write $D(x-y)$
+            \item For each vertex, we write $-i\lambda\int\dd^4z$
+            \item[-] Account for symmetry factors and divide by them. 
+        \end{enumerate}
+            The last bit we won't really look at too heavily, so I didn't give it a number.
+        So, for the following (position-space) Feynman diagram:
+        \begin{center}
+        \feynmandiagram [layered layout, horizontal=x to z] {
+            x[particle=$x$] -- z[particle=$z$] -- y[particle=$y$],
+            {[same layer] z --[quarter left] a, a --[quarter left] z}
+        };
+        \end{center}
+        we can immediately write down a term equal to the second term above.
+    \item It turns out that only \textbf{connected} diagrams contribute to the $S$-matrix, so this second term (as depicted above) would contribute, but if we were to draw out the first diagram, we would have independent pieces, hence it would be \textbf{disconnected}, and not contribute to the final $S$-matrix.
+    \item Now, position-space is typically not our first pick for solving Feynman diagrams; far more often we are interested in the momentum-space versions. This is because we can impose momentum conservation and all that; we never really care about \textit{where} a particle is, but rather its \textit{momentum/energy}.
+    \item We found before that we can get the momentum-space Feynman propagator by doing some complex integration stuff:
+        \begin{align*}
+            D(x-y) &= \FourierInt{p} \frac{i}{p^2-m^2 + i\epsilon}e^{-i\dotprod{p}{(x-y)}},
+            D(p) &= \frac{i}{p^2-m^2},
+        \end{align*}
+        where we took $\epsilon \rightarrow 0$. Additionally, we get rid of the full space integration for the vertex factor. To see this, we consider a vertex with momenta $p_1$ and $p_2$ incoming, and $p_3$ and $p_4$ outgoing. This gives a factor like
+        \begin{equation*}
+            \dd^4z e^{-i\dotprod{p_1}{z}}e^{-i\dotprod{p_2}{z}}e^{i\dotprod{p_3}{z}}e^{i\dotprod{p_4}{z}} = (2\pi)^4\delta^4(p_1 + p_2 - p_3 - p_4).
+        \end{equation*}
+        This is just momentum conservation at the vertex.
+    \item So we can now write the Feynman rules in momentum space:
+        \begin{enumerate}
+            \item For each propagator we write $\frac{i}{p^2-m^2}$.
+            \item For each vertex we write $-i\lambda$.
+            \item Impose conservation of momentum at each vertex.
+            \item[-] Integrate over each undetermined internal/loop momenta.
+        \end{enumerate}
+        The last step involves loop diagrams and whatnot, which is something that we will not delve into here, so I refrained from giving it a number again.
+    \item We also see that the delta function from the 4-position integral has become its own Feynman rule. Really, we needn't make it its own Feynman rule, momentum conservation should apply at every vertex in every theory ever if it wants to model the real world. But, we need it since we place all of these things in a total mathematical object called the \textbf{amplitude}, which we can then square, and this quantity is now proportional to a cross section or decay rate.
+    
+\end{itemize}
+
+
+
+
+\subsection*{Feynan Rules for Spinor Fields}
+
+\begin{itemize}
+    \item The Feynman rules for spinor fields are derived in nearly the same way, with a few extra bits due to the more complex nature of spinors. Since it's close enough, we won't run through the full derivations, but rather quote the meaningful steps and the final bits.
+    \item First, we consider the time ordered product of two fields as the Feynman propagator
+        \begin{equation*}
+            S(x-y) = \Braket{0 | T\left\{ \psi(x)\psib(y) \right\} | 0}.
+        \end{equation*}
+        This is almost identical to the result for scalar fields, but since spinors anti-commute, we have
+        \begin{equation*}
+            T\left\{ \psi(x)\psib(y) \right\} =
+                \begin{alignedat}{1}
+                \begin{cases}
+                    \psi(x)\psib(y) \quad   &x^0 > y^0, \\
+                    -\psib(y)\psi(x)        &y^0 > x^0.
+                \end{cases}
+                \end{alignedat}
+        \end{equation*}
+        We will still end up with a final result that looks like this:
+        \begin{equation*}
+            T\left\{ \psi(x)\psib(y) \right\} = :\psi(x)\psib(y): + S(x-y).
+        \end{equation*}
+    \item Now, we do all the complex integration shenanigans that we did before, and this nets us
+        \begin{equation*}
+            S(x-y) = \int \frac{\dd^4p}{(2\pi)^4} \frac{i(\slashed{p} + m)}{p^2-m^2 + i\epsilon}e^{-i\dotprod{p}{(x-y)}}.
+        \end{equation*}
+    \item Now, $S(x-y)$ is a $4\times4$ matrix due to the $\gamma^{\mu}$.
+    \item Some simple algebra nets us the fact that $(\slashed{p}+m)(\slashed{p}-m) = p^2-m^2$, so after taking $\epsilon \rightarrow 0$, we can write that
+        \begin{equation*}
+            S(p) = \frac{i}{\slashed{p}-m}.
+        \end{equation*}
+    \item We can also pretty easily show that this is a Green's function for the momentum-space Dirac operator.
+\end{itemize}
+
+
+
+\subsection*{Feynman Rules for Gauge Fields}
+
+\begin{itemize}
+    \item We have now that $D \rightarrow D_{\mu\nu}$ since our gauge field is a 4-vector. Again, derivations for this are very similar, so we will just quote the result:
+        \begin{equation*}
+            D_{\mu\nu}(x-y) = \Braket{0 | T\left\{ A_{\mu}(x)A_{\nu}(y) \right\} | 0} = \int \frac{\dd^4p}{(2\pi)^4} \frac{(-i)g_{\mu\nu}}{p^2 + i\epsilon}e^{-i\dotprod{p}{(x-y)}},
+        \end{equation*}
+        meaning
+        \begin{equation*}
+            D_{\mu\nu}(p) = \frac{-ig_{\mu\nu}}{p^2}.
+        \end{equation*}
+    \item However, this is for our Coulomb gauge; for a general Lorenz gauge:
+        \begin{equation*}
+            D_{\mu\nu}(p) = \frac{-i}{p^2+i\epsilon}\left[ g_{\mu\nu} -(1-\xi)\frac{p_{\mu}p_{\nu}}{p^2} \right].
+        \end{equation*}
+        Here, then, the Coulomb gauge sets $\xi=1$.
+\end{itemize}
+
+\sep
+
+
+
+
+\subsection*{Feynman Rules for QED}
+
+\begin{itemize}
+    \item Bringing everything together, we can write down the Feynman rules for QED:
+    \begin{enumerate}
+        \item Dirac propagator for photons: \feynmandiagram[horizontal=a to b, small]{a --[photon] b};: $\dfrac{-ig_{\mu\nu}}{p^2}$.
+        \item Dirac propagator for fermions: \feynmandiagram[horizontal=a to b, small]{a --[fermion] b};: $\dfrac{i(\slashed{p} + m)}{p^2-m^2}$.
+        \item Vertex factor: $-ie\gamma^{\mu}$
+        \item External fermion lines:
+            \begin{enumerate}[leftmargin=0.5in, align=left]
+                    \item[Electrons:] Incoming: \feynmandiagram[horizontal=a to b, small]{a --[fermion, momentum=$p$] b[dot]};: $u(\vv{p})$, \hspace{5mm} Outgoing: \feynmandiagram[horizontal=a to b, small]{a[dot] --[fermion, momentum=$p$] b};: $\bar{u}(\vv{p})$.
+                    \item[Positrons:] Incoming: \feynmandiagram[horizontal=a to b, small]{a --[anti fermion, momentum=$p$] b[dot]};: $\bar{v}(\vv{p})$, \hspace{5mm} Outgoing: \feynmandiagram[horizontal=a to b, small]{a[dot] --[anti fermion, momentum=$p$] b};: $v(\vv{p})$.
+            \end{enumerate}
+        \item Extern photon lines: Incoming: \feynmandiagram[horizontal=a to b, small]{a --[photon, momentum=$p$] b[dot]};: $\epsilon_{\mu}(\vv{p})$, \hspace{5mm} Outgoing: \feynmandiagram[horizontal=a to b, small]{a[dot] --[photon, momentum=$p$] b};: $\epsilon^*_{\mu}(\vv{p})$.
+        \item Enforce momentum conservation at each vertex and integrate over all undetermined momenta (again, this is to ensure the principle of superposition is satisfied).
+    \end{enumerate}
+\end{itemize}
+
+
+
+\sep 
+
+
+\subsection*{Electron-Muon Scattering}
+
+\begin{itemize}
+    \item As an example, let's apply this to electron muon scattering, where we have $e^-(p_1) + \mu^-(p_2) \rightarrow e^-(p_3) + \mu^-(p_4)$. The Feynman diagram for this one looks like:
+        \begin{center}
+        \begin{tikzpicture}
+        \begin{feynman}[large]
+            \vertex (aa);
+            \vertex [below=5mm of aa] (a);
+            \vertex [below=of aa] (bb);
+            \vertex [above=5mm of bb] (b);
+
+            \vertex [above left =of a] (i1) {$e^-$};
+            \vertex [below left =of b] (i2) {$\mu^-$};
+            \vertex [above right=of a] (f1) {$e^-$};
+            \vertex [below right=of b] (f2) {$\mu^-$};
+
+            \diagram* {
+                (i1) -- [fermion, momentum'=$p_1$] (aa) -- [fermion, momentum'=$p_3$] (f1),
+                (i2) -- [fermion, momentum=$p_2$] (bb) -- [fermion, momentum=$p_4$] (f2),
+                (aa) -- [photon, momentum=$q$, edge label'=$\gamma$] (bb)
+            };
+        \end{feynman}
+        \end{tikzpicture}
+        \end{center}
+    \item To start, we use our Feynman rules to quickly write down that the amplitude for this process is:
+        \begin{align*}
+            i\mathcal{M} &= \bar{u}^{(s)}(p_3)(-ie\gamma^{\mu})u^{(s)}(p_1) \left[ \frac{-ig_{\mu\nu}}{q^2} \right] \bar{u}^{(s')}(p_4)(-ie\gamma^{\nu})u^{(s')}(p_2), \\
+            \mathcal{M} &= \frac{e^2}{(p_1-p_3)^2} [\bar{u}^{(s)}(p_3)\gamma^{\mu}u^{(s)}(p_1)][\bar{u}^{(s')}(p_4)\gamma_{\mu}u^{(s')}(p_2)],
+        \end{align*}
+        where by momentum conservation, the virtual photon momentum $q$ is fixed to be $p_1 - p_3$. I chose to put brackets where I did because each quantity in the brackets is just a scalar. 
+    \item Recall, the final quantity we want to calculate is the cross section which is proportional to the amplitude squared
+        \begin{equation*}
+            \abs{\mathcal{M}}^2 = \frac{e^4}{t^2} [\bar{u}^{(s)}(p_3)\gamma^{\mu}u^{(s)}(p_1)][\bar{u}^{(s')}(p_4)\gamma_{\mu}u^{(s')}(p_2)] [\bar{u}^{(s)}(p_3)\gamma^{\nu}u^{(s)}(p_1)]^* [\bar{u}^{(s')}(p_4)\gamma_{\nu}u^{(s')}(p_2)]^*
+        \end{equation*}
+    \item It can be shown that the complex conjugate of the quantities in the brackets simply involves a switching of the spinors (and bar-ing the one to the left of the gamma and unbar-ing the one to the right of the gamma), so
+        \begin{equation*}
+            [\bar{u}(p_i)\gamma^{\mu}u(p_j)]^* = [\bar{u}(p_j)\gamma^{\mu}u(p_i)],
+        \end{equation*}
+        so
+        \begin{equation*}
+            \abs{\mathcal{M}}^2 = \frac{e^4}{t^2} [\bar{u}^{(s)}(p_3)\gamma^{\mu}u^{(s)}(p_1)][\bar{u}^{(s)}(p_1)\gamma^{\nu}u^{(s)}(p_3)] [\bar{u}^{(s')}(p_4)\gamma_{\mu}u^{(s')}(p_2)][\bar{u}^{(s')}(p_2)\gamma_{\nu}u^{(s')}(p_4)].
+        \end{equation*}
+    \item Now, for a generic process, we will have some unpolarized beam in the initial state and get some wide variety of final states (in terms of spins), so if we want to accurately represent such a process, we need to average over the initial spins since, in principle, each spin has an equal probability of occuring in the beam, then sum over all the final spins to take into account all of the possible final states.
+    \item In effect, this involves summing over \textit{every} spin, then dividing by the number of possible spin configurations in the initial state. Here, since we have two particles with two possible spin states, there are four possible configurations, so we will divide by four.
+    \item To do the spin sums, we will use the \textit{completeness relations}:
+        \begin{equation*}
+            \sum_s u^{(s)}(p)\bar{u}^{(s)}(p) = \slashed{p}+m, \quad \mathrm{and} \quad \sum_s v^{(s)}(p)\bar{v}^{(s)}(p) = \slashed{p}-m.
+        \end{equation*}
+        Doing this, we get
+        \begin{equation*}
+            \abs{\mathcal{M}}^2 = \frac{e^4}{t^2} [\bar{u}^{(s)}(p_3)\gamma^{\mu}(\psl_{1}+m_e)\gamma^{\nu}u^{(s)}(p_3)] [\bar{u}^{(s')}(p_4)\gamma_{\mu}(\psl_{2}+m_{\mu})\gamma_{\nu}u^{(s')}(p_4)].
+        \end{equation*}
+    \item Let's first examine the first term in brackets. If we write out the indices in each component explicitly, we can then move them around however we want:
+        \begin{equation*}
+            \bar{u}_a^{(s)}(p_3)\br{\gamma^{\mu}(\psl_{1}+m_e)\gamma^{\nu}}_{ab}u^{(s)}_b(p_3) = u^{(s)}_b(p_3)\bar{u}_a^{(s)}(p_3)\br{\gamma^{\mu}(\psl_{1}+m_e)\gamma^{\nu}}_{ab}.
+        \end{equation*}
+        We can now do the spin sums to get: 
+        \begin{equation*}
+            \br{\psl_{3}+m_e}_{ba}\br{\gamma^{\mu}(\psl_{1}+m_e)\gamma^{\nu}}_{ab}.
+        \end{equation*}
+        This is matrix multiplication, but with the two final indices as the same thing. Since these are implicitly summed over, what this means is that this quantity is really a trace:
+        \begin{equation*}
+            [\bar{u}^{(s)}(p_3)\gamma^{\mu}(\psl_{1}+m_e)\gamma^{\nu}u^{(s)}(p_3)] = \Tr[(\psl_{3}+m_e)\gamma^{\mu}(\psl_{1}+m_e)\gamma^{\nu}].
+        \end{equation*}
+    \item So, our total amplitude squared after the spin sum and initial average is
+        \begin{equation*}
+            \abs{\mathcal{M}}^2 = \frac{e^4}{t^2} \Tr[(\psl_{3}+m_e)\gamma^{\mu}(\psl_{1}+m_e)\gamma^{\nu}]\Tr[(\psl_{4}+m_{\mu})\gamma_{\mu}(\psl_{2}+m_{\mu})\gamma_{\nu}].
+        \end{equation*}
+    \item Both of these traces are functionally the same, so we can just examine one at first. We will need a number of trace theorems for gamma matrices, I won't put them here because they are easily findable in literally any QFT book and very easily findable on the internet, it would just waste my time to write them all out here somewhere. So:
+        \begin{equation*}
+            \Tr[(\psl_{3}+m_e)\gamma^{\mu}(\psl_{1}+m_e)\gamma^{\nu}] = \Tr[\psl_{3}\gamma^{\mu}\psl_{1}\gamma^{\nu} + m_e\psl_{3}\gamma^{\mu}\gamma^{\nu} + m_e\gamma^{\mu}\psl_{1}\gamma^{\nu} + m_e^2\gamma^{\mu}\gamma^{\nu}].
+        \end{equation*}
+        We know that the trace of an odd number of gamma matrices is zero, so the middle terms are zero and we have (pulling out the momenta to have just gammas in the traces):
+        \begin{align*}
+            &= p_{3,\sigma}p_{1,\rho}\Tr[\gamma^{\sigma}\gamma^{\mu}\gamma^{\rho}\gamma^{\nu}] + m_e^2\Tr[\gamma^{\mu}\gamma^{\nu}], \\
+            &= p_{3,\sigma}p_{1,\rho}(g^{\sigma\mu}g^{\rho\nu} - g^{\sigma\rho}g^{\mu\nu} + g^{\sigma\nu}g^{\mu\rho}) + 4m_e^2g^{\mu\nu}, \\
+            &= (p_3^{\mu}p_1^{\nu} + p_3^{\nu}p_1^{\mu} - \dotprod{p_3}{p_1}g^{\mu\nu}) + 4m_e^2g^{\mu\nu}, \\
+            &= p_3^{\mu}p_1^{\nu} + p_3^{\nu}p_1^{\mu} + g^{\mu\nu}(4m_e^2 - \dotprod{p_3}{p_1}).
+        \end{align*}
+        The other trace is identical except $p_3 \rightarrow p_4$ and $p_1 \rightarrow p_2$. Then, contracting the two traces gives a bunch more tedious, annoying algebra, so since I have already worked this out myself a while back, I will just quote the answer:
+        \begin{equation*}
+            \abs{\mathcal{M}}^2 = \frac{8e^4}{t^2}[\dotprod{p_1}{p_2}\dotprod{p_3}{p_4} + \dotprod{p_1}{p_4}\dotprod{p_2}{p_3} - m_e^2\dotprod{p_2}{p_4} - m_{\mu}^2\dotprod{p_1}{p_3} + 2m_e^2m_{\mu}^2].
+        \end{equation*}
+    \item This can be further reduced into just the Mandelstam variables, and then we are at last left with fully Lorentz-invariant quantities that are true in any given frame.
+\end{itemize}
+
+
+\sep
+
+
+\begin{itemize}
+    \item The last thing we want to check before moving on to cross sections is what happens for electron-electron scattering, for instance. The Feynman diagram would look just like that for electron-muon scattering, but there is a catch. Which electron has which momentum in the final state? We could which final state particle had which momentum because they were distinct particles, but electrons are fundamentally indistinguishable, so there's nothing saying that the electron coming from the top vertex can't have momentum $p_4$. Because of this, we have the \textbf{u-channel} diagram, named in this way because the momentum $q$ is determined by momentum conservation to be $q^2=u$.
+    \begin{center}
+        \begin{tikzpicture}
+        \begin{feynman}[large]
+            \vertex (aa);
+            \vertex [below=5mm of aa] (a);
+            \vertex [below=of aa] (bb);
+            \vertex [above=5mm of bb] (b);
+
+            \vertex [above left =of a] (i1) {$e^-$};
+            \vertex [below left =of b] (i2) {$\mu^-$};
+            \vertex [above right=of a] (f1) {$e^-$};
+            \vertex [below right=of b] (f2) {$\mu^-$};
+
+            \diagram* {
+                (i1) -- [fermion, momentum'=$p_1$] (aa) -- [fermion, momentum={[arrow shorten=0.3, xshift=3mm, yshift=-4mm]$p_4$}] (f2),
+                (i2) -- [fermion, momentum=$p_2$] (bb) -- [fermion, momentum'={[arrow shorten=0.3, xshift=3mm, yshift=4mm]$p_3$}] (f1),
+                (aa) -- [photon, momentum'=$q$, edge label=$\gamma$] (bb)
+            };
+        \end{feynman}
+        \end{tikzpicture}
+        \end{center}
+    \item Mathematically, all that this modified diagram implies is a switching of $p_3 \leftrightarrow p_4$, so all we really need to do is just make that replacement on the ordinary $t$-channel diagram, however, it would be almost completely visually indistinguishable, so instead we choose to keep the locations of the final momenta in the same spot then swap the lines of the two final particles.
+    \item This new diagram is an addition to the other one to get the full amplitude, meaning that the total amplitude squared will pick up a cross term:
+        \begin{equation*}
+            \abs{\mathcal{M}}^2 = \abs{\mathcal{M}_t + \mathcal{M}_u}^2 = \abs{\mathcal{M}_t}^2 + \abs{\mathcal{M}_u}^2 + \mathcal{M}_t^*\mathcal{M}_u + \mathcal{M}_t\mathcal{M}_u^*.
+        \end{equation*}
+        It turns out that the since the amplitude will be real, then we can simplify the cross terms to just be
+        \begin{equation*}
+            \abs{\mathcal{M}}^2 = \abs{\mathcal{M}_t + \mathcal{M}_u}^2 = \abs{\mathcal{M}_t}^2 + \abs{\mathcal{M}_u}^2 + 2\mathcal{M}_t^*\mathcal{M}_u.
+        \end{equation*}
+    \item We could also have put the complex conjugate on the $u$-channel amplitude, but it doesn't matter, they're equivalent.
+\end{itemize}

@@ -1,0 +1,89 @@
+\section{The Klein Gordon Equation}
+
+
+Now to some more cool/new stuff.
+
+
+\begin{itemize}
+    \item The Schr\"odiger Equation (SE) did very well for atomic/non-relativistic physics, where speeds weren't necessarily all that fast:
+        \begin{equation}
+            \hat{H}\Psi = i\hbar \diffp{\Psi}{t},
+        \end{equation}
+        where $\hat{H}$ is the Hamiltonian operator
+        \begin{equation}
+            \hat{H} = -\frac{\hbar}{2m} \vv{\nabla}^2 + V.
+        \end{equation}
+    \item Here, we have used the classical/Newtonian Hamiltonian but applied the quantum prescription that $p \rightarrow -i\hbar \grad$ and let them become operators that act on a wave function.
+    \item Additionally, there is the prescription that $E \rightarrow i\hbar \diffp{}{t}$.
+    \item These are motivated (but not necessarily derived; I believe the correct terminology for the derivation has to do with canonical quantization or something) by Noether's theorem and the idea of symmetries.
+    \item If there is space-translational symmetry, it implies conservation of linear momentum, which is why we have a spatial derivative taking the place of the momentum.
+    \item Similarly, for time-translational symmetry, we have conservation of energy, which is why we have a time derivative taking the place of the energy.
+\end{itemize}
+
+
+\begin{itemize}
+    \item However, the point of all of this is that these are quantum prescriptions, which are good, but they are only prescriptions on the inherently non-relativistic Newtonian version of the Hamiltonian.
+    \item Additionally, the SE is manifestly not relativistic due to its different treatment of space and time by having different orders in their derivatives.
+    \item This just won't work.
+\end{itemize}
+
+
+\begin{itemize}
+    \item So let's try and fix it by first just starting with a free particle, meaning there is no potential energy function.
+    \item Instead of using the non-relativistic Hamiltonian, let's use the relativistic energy-momentum relation $p_{\mu}p^{\mu} = m^2$.
+    \item Additionally, let's change the prescriptions to be relativistic, since before, specifically the momentum one, just resulted in the classical gradient. This new prescription will be $p^{\mu} \rightarrow i\hbar \partial^{\mu}$. 
+    \item By doing this, plugging into our relation, and letting it act on some wave function $\phi$ (a different letter for differentiating between this and the non-relativistic version):
+        \begin{gather}
+            p_{\mu}p^{\mu}\phi = m^2\phi \\
+            -\partial_{\mu}\partial^{\mu} \phi = m^2 \phi \\
+            \boxed{(\partial_{\mu}\partial^{\mu} + m^2)\phi = 0}
+        \end{gather}
+    \item This is the \textbf{Klein-Gordon Equation}. Interestingly, Schr\"odinger came up with this before his SE, but since it didn't work for the hydrogen atom (due to spin), he abandoned it. Klein and Gordon then, a little while later, independently came up with this equation again and published anyway before spin (and the other problems) were analyzed.
+    \item The solutions to this equation are plane-wave solutions:
+        \begin{equation}
+            \phi(x^{\mu}) = A\exp\left(-\frac{i}{\hbar} p_{\mu}x^{\mu}\right)\label{KleinGordonSolutions}
+        \end{equation}
+\end{itemize}
+
+
+
+\begin{itemize}
+    \item Now, from the non-rel. case, we had that for a wavefunction $\psi$ that obeyed the SE, the Born interpretation meant that $\abs{\psi}^2 = \psi^*\psi$ gives the probability density. This value is always positive definite, which is a good thing.
+    \item On the other hand, $\abs{\phi}^2$ is not always positive. This is one of the reasons Schr\"odinger held back on publishing this equation as well, because this was not understood at the time. 
+\end{itemize}
+
+
+
+
+\begin{itemize}
+    \item Back again to the SE, we had that the wave function satisfied a \textit{probability current}
+        \begin{equation}
+            \vv{j} = -\frac{i\hbar}{2m} \left(\psi^* \grad\psi - \psi\grad\psi^*\right),
+        \end{equation}
+        which is analogous to the electric current, in the sense that it must be conserved, i.e. it satisfies some \textit{continuity equation}:
+        \begin{equation}
+            \diffp{\psi}{t} + \grad \cdot \vv{j} = 0.
+        \end{equation}
+    \item To make this relativistic so it works in our theory, we need to consider a temporal component in some way. So, let's define
+        \begin{equation}
+            \rho \equiv -\frac{i\hbar}{2m} \left(\phi^* \diffp{\phi}{t} - \phi\diffp{\phi^*}{t}\right).
+        \end{equation}
+    \item We can now define a new 4-vector current
+        \begin{equation}
+            j^{\mu} \equiv (\rho, \vv{j}) = \frac{i\hbar}{2m}\left(\phi^*\ddp^{\mu}\phi - \phi\ddp^{\mu}\phi^*\right),
+        \end{equation}
+    \item Which satisfies the continuity equation
+        \begin{equation}
+            \ddp_{\mu}j^{\mu} = 0.
+        \end{equation}
+    \item Let's show that this works:
+        \begin{align}
+            \ddp_{\mu}j^{\mu} &= \ddp_{\mu} \left[\frac{i\hbar}{2m}\left(\phi^*\ddp^{\mu}\phi - \phi\ddp^{\mu}\phi^*\right)\right] \\
+            &= \frac{i\hbar}{2m} \left[\ddp_{\mu}\phi^*\ddp^{\mu}\phi + \phi^*\ddp_{\mu}\ddp^{\mu}\phi - \ddp_{\mu}\phi\ddp^{\mu}\phi^* - \phi\ddp_{\mu}\ddp^{\mu}\phi^*\right].
+        \end{align}
+        The first and third terms cancel since they are the same, and by using the Dirac equation and its complex conjugate, this becomes
+        \begin{equation}
+            \ddp_{\mu}j^{\mu} = \frac{i\hbar}{2m} \left[-\phi^* m^2 \phi + \phi m^2 \phi^*\right] = 0.
+        \end{equation}
+        
+\end{itemize}

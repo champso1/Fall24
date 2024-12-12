@@ -1,0 +1,30 @@
+%2) Show that time time-ordered product of two fields at x and y with x^0 < y^0 is equal to the normal-ordered product of the fields plus the commutator of the + and - components at y and x, respectively
+\section{}
+
+We need to show the relation
+
+\begin{equation}
+    T\left\{ \hat{\phi}_I(x^{\mu})\hat{\phi}_I(y^{\mu}) \right\} \rightarrow T\left\{ \phi(x)\phi(y) \right\} = :\phi(x)\phi(y): + \left[ \phi^+(y),\phi^-(x) \right]
+\end{equation}
+
+for $x^0 < y^0$. First, with this condition, the time-ordered product switches the order
+
+\begin{align*}
+    T\left\{ \phi(x)\phi(y) \right\} &= \phi(y)\phi(x), \\
+    &= [\phi^+(y) + \phi^-(y)][\phi^+(x) + \phi^-(x)], \\
+    &= \phi^+(y)\phi^+(x) + \phi^+(y)\phi^-(x) + \phi^-(y)\phi^+(x) + \phi^-(y)\phi^-(x).
+\end{align*}
+
+What we can note is that $[\phi^{\pm}(y),\phi^{\pm}(x)]=0$ (both plus or both minus), since, when we do this commutation, we will have either $[a(\vv{y}),a(\vv{x})]$ or $[a^{\dagger}(\vv{y}),a^{\dagger}(\vv{x})]$ which we know to be zero. Then, in the interest of normal-ordering, the only term that needs to change in the second term, which when we flip the order of the product, we pick up its commutator:
+
+\begin{equation*}
+    T\left\{ \phi(x)\phi(y) \right\} = \phi^+(x)\phi^+(y) + \phi^-(x)\phi^+(y) + \phi^-(y)\phi^+(x) + \phi^-(x)\phi^-(y) + [\phi^+(y),\phi^-(x)].
+\end{equation*}
+
+But, the first four terms are just the normal-ordering of the product of the two original fields $:\phi(x)\phi(y)$ (this is why commuted the + and - terms), so what we have is
+
+\begin{equation*}
+    T\left\{ \phi(x)\phi(y) \right\} = :\phi(x)\phi(y): + [\phi^+(y),\phi^-(x)],
+\end{equation*}
+
+which is what we expect.

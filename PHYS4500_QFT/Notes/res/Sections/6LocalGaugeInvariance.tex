@@ -1,0 +1,168 @@
+\section{Local Gauge Invariance}
+
+\begin{itemize}
+    \item Let's look at the Dirac Lagrangian:
+        \begin{equation*}
+            \lag = i\psib \gamma^{\mu}\ddp_{\mu} \psi - m\psib\psi.
+        \end{equation*}
+    \item Let's consider a transformation of the field like $\psi \rightarrow \psi' = e^{i\theta}\psi$, where $\theta$ is some angle that is the same everywhere in space-time; this is called a \textbf{global transformation}. Similarly, the adjoint field will transform like $\psib \rightarrow \psib' = e^{-i\theta}\psib$. 
+    \item We can easily find that the Lagrangian does not change under this transformation; the exponentials cancel in the mass term trivially, and we can pull the exponential past the derivative since it's just a constant.
+    \item So, in the QFT lingo, a global phase rotation of the field is a symmetry of the Lagrangian.
+        \begin{itemize}
+            \item This is analogous to the SE where we have the fact that we can make a phase rotation of the wavefunction and have it not impact the physics, since we always have $\abs{\psi}^2$.
+        \end{itemize}
+    \item Now what happens if we let our rotation angle vary across space-time, i.e. $\theta = \theta(x^{\mu})$ (this is called a \textbf{local transformation})? Now, our fields transform like $\psi' = e^{iq\theta(x^{\mu})}\psi$ and $\psib' = \psib e^{-iq\theta(x^{\mu})}$, where we have added a constant $q$ for generality (we could've added it before in the global transformation, but since $\theta$ was also a constant there, it would've just been absorbed). Again, the mass terms remain invariant trivially, but we cannot pull the exponential through the derivative this time since it isn't a constant. Our Lagrangian at this stage (with the mass term cancellation) looks like
+        \begin{equation*}
+            \lag' = i\psib e^{-iq\theta(x^{\mu})} \gamma^{\mu}\ddp_{\mu} e^{iq\theta(x^{\mu})}\psi - m\psib\psi.
+        \end{equation*}
+        Doing the product rule,
+        \begin{align*}
+            \lag' &= i\psib e^{-iq\theta(x^{\mu})} \gamma^{\mu} \left( \psi \ddp_{\mu}e^{i\theta(x^{\mu})} + e^{iq\theta(x^{\mu})} \ddp_{\mu}\psi \right)  - m\psib\psi, \\
+            &= i\psib e^{-iq\theta(x^{\mu})} \gamma^{\mu} e^{iq\theta(x^{\mu})} \ddp_{\mu} \psi + i\psib e^{-iq\theta(x^{\mu})} \gamma^{\mu} \psi (iq) e^{iq\theta(x^{\mu})}\ddp_{\mu}\theta(x^{\mu}) - m\psib\psi.
+        \end{align*}
+        In the first term, the exponentials do cancel, so along with the mass term, that is our original Lagrangian. The second term is an additional term we have picked up (where the exponentials now do cancel), so we have
+        \begin{equation*}
+            \lag' = \lag - q\psib\gamma^{\mu}\psi\ddp_{\mu}\theta.
+        \end{equation*}
+    \item To fix this, let's just add this term to the Lagrangian! We will quantify the change in the phase angle with a new 4-vector $A_{\mu}$ (along with a constant), so our new Lagrangian is
+        \begin{equation*}
+            \lag = i\psib \gamma^{\mu}\ddp_{\mu} \psi - m\psib\psi - q\psib\gamma^{\mu}\psi A_{\mu}.
+        \end{equation*}
+    \item This new quantity must transform like $A_{\mu} \rightarrow A_{\mu}' = A_{\mu} - \ddp_{\mu}\theta$ in order to keep our Lagrangian invariant. Now we have an invariant Lagrangian under \textit{local} transformations!
+    \item We will soon identify $A_{\mu}$ as the electromagnetic four-potential.
+    \item Now we need a kinetic and mass term for this new field $A_{\mu}$; they will be provided here without derivation:
+        \begin{equation*}
+            \lag \subset -\frac{1}{2}m_A^2 A^{\mu}A_{\mu} - \frac{1}{4}F^{\mu\nu}F_{\mu\nu},
+        \end{equation*}
+        where $F^{\mu\nu} = \ddp^{\mu}A^{\nu} - \ddp^{\nu}A^{\mu}$ is the EM stress-energy tensor. I said ``without derivation'' before, but we notice at least that the mass term is identical to that for the scalar fields, where $A^{\mu}A_{\mu} \sim A^2 \sim \phi^2$. The stress-energy tensors are just what we know to be true.
+    \item Now for these terms to remain invariant, it is required that $m_A$ be zero! Since we have already identified this as relating to EM, this means that our new field $A_{\mu}$ describes photons, which are massless! On the other hand, this sort of explains why they must be massless.
+    \item What we have now is the QED Lagrangian:
+        \begin{equation}
+            \lag_{\mathrm{QED}} = i\psib\gamma^{\mu}\ddp_{\mu}\psi - m\psib\psi - q\psib \gamma^{\mu} A_{\mu} \psi - \frac{1}{4}F^{\mu\nu}F_{\mu\nu},
+        \end{equation}
+        or, defining the \textbf{covariant derivative} $D_{\mu} \equiv \ddp_{\mu} + iqA_{\mu}$, we can write this more simply as
+        \begin{equation}
+            \lag_{\mathrm{QED}} = i\psib \slashed{D} \psi - m\psib\psi - \frac{1}{4}F^{\mu\nu}F_{\mu\nu}.\label{QEDLagrangian}
+        \end{equation}
+\end{itemize}
+
+
+\sep 
+
+
+\subsection*{Derivation of Maxwell's Equations}
+
+\begin{itemize}
+    \item Let's do the EL equation for $\psib$:
+        \begin{gather*}
+            \diffp[]{\lag}{\psib} - \ddp_{\mu}\left( \diffp[]{\lag}{(\ddp_{\mu}\psib)} \right) = i\gamma^{\mu}D_{\mu}\psi - m\psi = 0, 
+            \rightarrow (i\slashed{D} - m)\psi = 0.
+        \end{gather*}
+        Or, expanding out the covariant derivative, we get
+        \begin{equation*}
+            (i\slashed{\ddp} - q\slashed{A} - m)\psi = 0.
+        \end{equation*}
+        It is basically the same as the original Dirac equation, but now we have an extra term involving our gauge field.
+    \item Doing the same process with $\psi$ in the EL equation, we get the adjoint Dirac equation:
+        \begin{equation*}
+            \psib(i\slashed{\overleftarrow{D}} + m) = 0
+        \end{equation*}
+    \item Now looking at the gauge field $A_{\mu}$:
+        \begin{equation*}
+            \diffp[]{\lag}{A_{\nu}} - \ddp_{\mu}\left( \diffp[]{\lag}{(\ddp_{\mu}A_{\nu})} \right) = \ddp_{\mu}\left( \ddp^{\mu}A^{\nu} - \ddp^{\nu}A^{\mu} \right) + q\psib\gamma^{\nu}\psi = 0.
+        \end{equation*}
+        But we can recognize the second term as the conserved current, so what we have is:
+        \begin{equation}
+            \ddp_{\mu}F^{\mu\nu} = j^{\nu}.
+        \end{equation}
+    \item We can now show the continuity equation using this. First, let's take the 4-gradient of both sides:
+        \begin{equation*}
+            \ddp_{\nu}\ddp_{\mu}F^{\mu\nu} = \ddp_{\nu}j^{\nu}.
+        \end{equation*}
+        Now, we know that $F^{\mu\nu} = -F^{\nu\mu}$, so this is:
+        \begin{equation*}
+            -\ddp_{\nu}\ddp_{\mu}F^{\nu\mu} = \ddp_{\nu}j^{\nu}.
+        \end{equation*}
+        But $\ddp_{\nu}\ddp_{\mu}$ is fully symmetric, so we can switch those indices freely:
+        \begin{equation*}
+            -\ddp_{\mu}\ddp_{\nu}F^{\nu\mu} = \ddp_{\nu}j^{\nu}.
+        \end{equation*}
+        However, since the left-hand side is just a scalar, we can freely flip the indices since they are just dummy indices:   
+        \begin{equation*}
+            -\ddp_{\nu}\ddp_{\mu}F^{\mu\nu} = \ddp_{\nu}j^{\nu}.
+        \end{equation*}
+        But this is saying that $\ddp_{\nu}\ddp_{\mu}F^{\mu\nu}$ is equal to negative of itself, since the right-hand side is the same. The only way for this to be the case is if it is zero, meaning
+        \begin{equation}
+            \ddp_{\mu}j^{\mu} = 0,
+        \end{equation}
+        which is the continuity equation.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item If we say that $A^{\mu} \equiv \left[ V,\ \vv{A} \right]^{\intercal}$, where $V$ is the voltage and $\vv{A}$ is the magnetic vector potential, then the field strength tensor is:
+        \begin{equation}
+            F^{\mu\nu} = \ddp^{\mu}A^{\nu} - \ddp^{\nu}A^{\mu} = 
+                \begin{pmatrix}
+                    0 & -E_x & -E_y & -E_z \\
+                    E_x & 0 & -B_z & B_y \\
+                    E_y & B_z & 0 & -B_x \\
+                    E_z & -B_y & B_x & 0 
+                \end{pmatrix}.
+        \end{equation}
+    \item Now let's consider, from the equation of motion we got for the gauge field:
+        \begin{equation*}
+            \ddp_{\mu}F^{\mu0} = j^0.
+        \end{equation*}
+        From our definition of the 4-current, $j^{0} = \rho$, the charge density. Doing the work, we get:
+        \begin{equation}
+            \dotprodv{\grad}{E} = \rho.\label{eq:GaussLawE}
+        \end{equation}
+        This is Gauss's Law for the electric field! Similarly, $j^i = \vv{j}$, the current density, so
+        \begin{equation*}
+            \ddp_{\mu}F^{\mu i} = j^i
+        \end{equation*}
+        \begin{equation}
+            \rightarrow\ \grad\times\vv{B} - \diffp[]{\vv{E}}{t} = \vv{j},\label{eq:AmpereMaxwellLaw}
+        \end{equation}
+        which is the Ampere-Maxwell law!
+    \item Next, if we define
+        \begin{equation}
+            \tilde{F}^{\mu\nu} \equiv \frac{1}{2}\epsilon^{\mu\nu\rho\sigma}F_{\rho\sigma},
+        \end{equation}
+        then we can express the rest of Maxwell's equations (the homogeneous ones; we just derived the inhomogeneous ones) as
+        \begin{equation}
+            \ddp_{\mu}\tilde{F}^{\mu\nu} = j^{\nu},
+        \end{equation}
+        which give us
+        \begin{gather}
+            \dotprodv{\grad}{B} = 0,\ \mathrm{and} \\
+            \grad\times\vv{E} = \diffp[]{\vv{B}}{t},
+        \end{gather}
+        which are Gauss's Law of Magnetism and Faraday's Law of Induction, respectively.
+\end{itemize}
+
+
+\sep
+
+\begin{itemize}
+    \item Lastly, we saw briefly before that we can make a \textit{change of gauge}, by which we take $A_{\mu} \rightarrow A_{\mu} + \ddp_{\mu}\lambda$, and the physics remains the same.
+    \item So, we need to make a choice of our gauge in order to reduce these spurious degrees of freedom. Ideally, we know photons have two transverse polarizations, so we need to reduce 4 degrees of freedom to 2.
+    \item One such gauge choice is the \textbf{Lorenz gauge} (not Lorentz!), in which we impose that $\ddp_{\mu}A^{\mu} = 0$. A ``subset'' of this gauge choice is the \textbf{Coulomb gauge}, in which we further impose that $A^0 = V = 0$. With these two restrictions, we now have 2 degrees of freedom.
+        \begin{itemize}
+            \item We have broken Lorentz symmetry here, because we now have to repeatedly Lorentz transform this everytime we change reference frames in order to keep $A^0=0$. But this turns out to be fine normally.
+        \end{itemize}
+    \item Now, for a free photon, $j^{\mu}=0$, so 
+        \begin{align*}
+            \ddp{\mu}F^{\mu\nu} &= \ddp_{\mu}\ddp^{\mu}A^{\nu} - \ddp_{\mu}\ddp^{\nu}A^{\mu}, \\
+            &= \ddp_{\mu}\ddp^{\mu}A^{\nu} - \ddp^{\nu}\ddp_{\mu}A^{\mu}, \\
+            &= \ddp_{\mu}\ddp^{\mu}A^{\nu} = 0.
+        \end{align*}
+        Where the second term is zero because, in the Lorenz gauge, $\ddp_{\mu}A^{\mu}=0$.
+    \item Analogouly to the Dirac equation, we know have plane-wave solutions that look like:
+        \begin{equation*}
+            A^{\mu}(x) = A e^{i\dotprod{p}{x}} \epsilon(p),
+        \end{equation*}
+        where $\epsilon(p)$ is analogous to the $u$ and $v$ spinors from the Dirac equation.
+\end{itemize}

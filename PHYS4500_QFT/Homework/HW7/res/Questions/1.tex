@@ -1,0 +1,46 @@
+% Show that S(x-y) is the Green's function for the Dirac operator.
+\section{}
+
+We are to show that 
+
+\begin{equation}
+    S(x-y) = \int\frac{\dd^4p}{(2\pi)^4} \frac{i(\slashed{p} + m)}{p^2 - m^2 + i\epsilon}e^{-i\dotprod{p}{(x-y)}}
+\end{equation}
+
+is a Green's function for the position-space Dirac operator; that is, we want to show:
+
+\begin{equation}
+    \br{i\gamma^{\mu}\ddp_{\mu} - m}S(x-y) = i\delta^4(x-y).
+\end{equation}
+
+First, we can make the simplification we made in class where we note that since $(\slashed{p}+m)(\slashed{p}-m) = p^2-m$, we can rewrite the denominator such that we cancel the $\slashed{p}+m$ on top and get (also taking $\epsilon \rightarrow 0$):
+
+\begin{equation}
+    S(x-y) = \int\frac{\dd^4p}{(2\pi)^4} \frac{i}{\slashed{p} - m}e^{-i\dotprod{p}{(x-y)}}.
+\end{equation}
+
+Now, taking the 4-gradient with respect to $x$:
+
+\begin{equation*}
+    i\gamma^{\mu}\ddp_{\mu} S(x-y) = \int\frac{\dd^4p}{(2\pi)^4} i\frac{i\gamma^{\mu}}{\slashed{p}-m}(-i)p_{\mu}e^{-i\dotprod{p}{(x-y)}} = \int\frac{\dd^4p}{(2\pi)^4} \frac{i\slashed{p}}{\slashed{p} - m}e^{-i\dotprod{p}{(x-y)}}.
+\end{equation*}
+
+Next,
+
+\begin{equation*}
+    mS(x-y) = \int\frac{\dd^4p}{(2\pi)^4} \frac{im}{\slashed{p} - m}e^{-i\dotprod{p}{(x-y)}},
+\end{equation*}
+
+so
+
+\begin{equation*}
+    \br{i\gamma^{\mu}\ddp_{\mu} - m}S(x-y) = \int\frac{\dd^4p}{(2\pi)^4} \frac{i(\slashed{p}-m)}{\slashed{p}-m}e^{-i\dotprod{p}{(x-y)}}.
+\end{equation*}
+
+Technically, since these are matrices, we can't just ``cancel'' them, but rather we could multiply top and bottom by $\slashed{p}+m$, after which we will get $p^2-m^2$, a scalar, which we can then cancel. Either way, we get
+
+\begin{equation*}
+    \br{i\gamma^{\mu}\ddp_{\mu} - m}S(x-y) = i\int\frac{\dd^4p}{(2\pi)^4} e^{-i\dotprod{p}{(x-y)}} = i\delta^4(x-y),
+\end{equation*}
+
+as expected.

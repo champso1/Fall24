@@ -1,0 +1,33 @@
+\section{}
+
+To do the integral, we need to employ Feynman parametrization, which has the general form:
+
+\begin{equation}
+  \prod_{i=1}^n \frac{1}{A_i^{\alpha_i}} = \frac{\Gamma(\alpha)}{\prod_{i=1}^n\Gamma(\alpha_i)} \int_0^1 \br{\prod_{i=1}^n \dd x_i \; x_i^{\alpha_i-1}}\frac{\delta(1-x}{\br{\sum_{i=1}^n x_iA_i}^\alpha}
+\end{equation}
+
+where $\alpha = \sum_i \alpha_i$ and $x = \sum_i x_i$. For our case, we have something like
+
+\begin{align}
+  \frac{1}{ABC} &= 2\int_0^1 \dd x \int_0^1 \dd y \int_0^1 \dd z \frac{\delta(1-x-y-z)}{(Ax + By + Cz)^3} \\
+  &= 2 \int_0^1 \dd x \int_0^{1-x} \dd y \frac{1}{[Ax + By + (1-x-y)C]^3}.
+\end{align}
+
+Therefore,
+
+\begin{equation}
+  \frac{1}{[(p_2+k)^2 - m_e^2][(p_1-k)^2 - m_e^2]k^2} = 2\int_0^1 \dd x \int_0^{1-x} \dd y \; \frac{1}{[(p_2+k)^2x + (p_1-k)^2y - m_e^2(x+y) + (1-x-y)k^2]^3},
+\end{equation}
+
+meaning that our entire amplitude is given by
+
+\begin{equation}
+  i\mathcal{M} = \frac{2ie^4}{(p_1+p_2)^2} \overline{u}_4 \gamma_\mu v_3 \int_0^1 \dd x \int_0^{1-x} \dd y \int \frac{\dd^nk}{(2\pi)^n} \frac{\gamma^{\rho}(\psl_2 + \ksl - m_e)\gamma^{\mu}(\psl_1 - \ksl - m_e)\gamma_{\rho}}{[(p_2+k)^2x + (p_1-k)^2y - m_e^2(x+y) + (1-x-y)k^2]^3}.
+\end{equation}
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Test3"
+%%% End:

@@ -1,0 +1,74 @@
+\documentclass[titlepage]{article}
+\usepackage{PreambleCommon,PreambleHW}
+
+
+\title{HW11 \\[5pt] PHYS4500: Quantum Field Theory}
+\author{Casey Hampson}
+
+\begin{document}
+\maketitle
+\pagebreak
+
+
+
+From the lecture notes, we know already that
+
+\begin{multline}
+    \frac{\delta^2 Z_0[J]}{\delta J(x_1) \delta J(x_2)} = \left[ -D(x_1 - x_2) + \left( \int D(x-x_2) J(x) \;\dd^4x \right)\left( \int D(x-x_1) J(x) \;\dd^4x \right) \right] \\
+    \times \exp\left( -\frac{1}{2}\int J(x) D(x-y) J(y) \;\dd^4x\dd^4y \right).
+\end{multline}
+
+If we take $x_2 \rightarrow x_3$ and $x_1 \rightarrow x_2$, then
+
+\begin{multline}
+    \frac{\delta^3 Z_0[J]}{\delta J(x_1) \delta J(x_2) \delta J(x_3)} = \frac{\delta}{\delta J(x_1)}\Bigg\{\left[ -D(x_2 - x_3) + \left( \int D(x-x_3) J(x) \;\dd^4x \right)\left( \int D(x-x_2) J(x) \;\dd^4x \right) \right] \\
+    \times \exp\left( -\frac{1}{2}\int J(x) D(x-y) J(y) \;\dd^4x\dd^4y \right) \Bigg\}.
+\end{multline}
+
+Our goal is to show that
+
+\begin{equation}
+    G(x_1,x_2,x_3) = -i \frac{\delta^3 Z_0[J]}{\delta J(x_1) \delta J(x_2) \delta J(x_3)}\bigg|_{J=0} = 0.
+\end{equation}
+
+We have a product of two terms; the first is the expression in brackets, the second is the exponential. We will need to take derivatives of both. For notational simplicity, I will let
+
+\begin{equation}
+    Y_1(x_1,x_2) \equiv  -D(x_2 - x_3) + \left( \int D(x-x_3) J(x) \;\dd^4x \right)\left( \int D(x-x_2) J(x) \;\dd^4x \right),
+\end{equation}
+
+which is just the expression in brackets, and
+
+\begin{equation}
+    Y_2 \equiv \exp\left( -\frac{1}{2}\int J(x) D(x-y) J(y) \;\dd^4x\dd^4y \right).
+\end{equation}
+
+Then
+
+\begin{equation}
+    \frac{\delta^3 Z_0[J]}{\delta J(x_1) \delta J(x_2) \delta J(x_3)} = Y_2 \frac{\delta Y_1}{\delta J(x_1)} + Y_1 \frac{\delta Y_2}{\delta J(x_1)}.\label{eq:1}
+\end{equation}
+
+Looking at the first functional derivative:
+
+\begin{align}
+    \frac{\delta Y_1}{\delta J(x_1)} &= \frac{\delta}{\delta J(x_1)} \left[ -D(x_2 - x_3) + \left( \int D(x-x_3) J(x) \;\dd^4x \right)\left( \int D(x-x_2) J(x) \;\dd^4x \right) \right] \\
+    &= -D(x_1 - x_3)\int D(x-x_2) J(x) \;\dd^4x - D(x_1 - x_2)\int D(x-x_3) J(x) \;\dd^4x.
+\end{align}
+
+Our goal is to, at the end, evaluate this quantity at $J=0$. Since every term here contains a $J$, this will be zero. Further, the entire first term in Equation~\eqref{eq:1} is zero. Looking next at the second functional derivative:
+
+\begin{align}
+    \frac{\delta Y_2}{\delta J(x_1)} &= \frac{\delta}{\delta J(x_1)} \exp\left( -\frac{1}{2}\int J(x)D(x-y)J(y) \dd^4x \right) \\
+    &= \left( -\frac{1}{2}D(x-x_1)J(x)\;\dd^4x \right) \exp\left( -\frac{1}{2}\int J(x)D(x-y)J(y) \dd^4x \right).
+\end{align}
+
+There is really only one term here, and it contains a $J$, which, after evaluating it to zero, turns the entire expression zero. Therefore,
+
+\begin{equation}
+    G(x_1,x_2,x_3) = -i \frac{\delta^3 Z_0[J]}{\delta J(x_1) \delta J(x_2) \delta J(x_3)}\bigg|_{J=0} = 0,
+\end{equation}
+
+as we expect.
+
+\end{document}

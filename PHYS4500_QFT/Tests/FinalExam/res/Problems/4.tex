@@ -1,0 +1,134 @@
+\section{}
+
+First, we consider the process shown in this Feynman diagram:
+
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{feynman}[large]
+      \vertex (a);
+      \vertex[below left=1.25cm of a] (x1);
+      \vertex[right of=a] (b);
+      \vertex[below right=1.25cm of b] (x2);
+      \vertex[above left of=a] (i1) {$q$};
+      \vertex[below left=1.25cm of x1] (i2) {$q'$};
+      \vertex[above right of=b] (f1) {$t$};
+      \vertex[below right=1.25cm of x2] (f2) {$\bar{t}$};
+
+      \diagram* {
+        (i1) --[fermion, momentum=$p_1$] (a) --[gluon, momentum=$q$] (b) --[fermion, momentum=$p_3$] (f1),
+        (i2) --[anti fermion, momentum=$p_2$] (x1) --[anti fermion, momentum=$p_2-k$] (a),
+        (b) -- [anti fermion, momentum=$p_4-k$] (x2) --[anti fermion, momentum=$p_4$] (f2),
+        (x1) --[gluon, momentum'=$k$] (x2)
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{center}
+
+Using our Feynman rules:
+
+\begin{multline}
+  i\mathcal{M} = \int \frac{\dd^nk}{(2\pi)^n} \bar{u}_i(p_3) \br{-ig_s T^a_{ij'}\gamma^\mu} \br{\frac{i(-\psl_4 + \ksl + m)}{(k - p_4)^2 - m^2}} \br{-ig_sT^c_{j'j}\gamma^\sigma}v_j(p_4) \\
+  \times \br{\frac{-ig_{\mu\nu}\delta^{ab}}{q^2}}\br{\frac{-ig_{\rho\sigma}\delta^{cd}}{k^2}} \bar{v}_k(p_2) \br{-ig_s T^d_{kk'}\gamma^\sigma} \br{\frac{i(-\psl_2 + \ksl + m)}{(k - p_2)^2 - m^2}} \br{-ig_s T^b_{k'\ell} \gamma^\nu} u_\ell(p_1).
+\end{multline}
+\begin{multline}
+  i\mathcal{M} = g_s^4 (T^aT^c)_{ij}(T^cT^a)_{k\ell} \int \frac{\dd^4k}{(2\pi)^n} \frac{\bar{u}(p_3) \gamma^\mu (\ksl - \psl_4 + m) \gamma_\sigma v(p_4)}{(k - p_4)^2 - m^2} \\
+  \times \frac{1}{(p_1 + p_2 - k)^2k^2} \cdot \frac{\bar{v}(p_2) \gamma^\sigma (\ksl - \psl_2 + m)\gamma_\mu u(p_1)}{(k + p_2)^2 - m^2}.
+\end{multline}
+
+The generic formula for the Feynman parameters is
+
+\begin{equation}
+  \prod_{i=1}^n \frac{1}{A_i^{\alpha_i}} = \frac{\Gamma(\alpha)}{\prod_{i=1}^n \Gamma(\alpha_i)} \int_0^1 \br{\prod_{i=1}^n \dd x_i \;  x_i^{\alpha_i - 1}} \frac{\delta(1-x)}{\br{\sum_{i=1}^n x_iA_i}^\alpha},
+\end{equation}
+
+where $x = \sum_i x_i$ and $\alpha = \sum_i \alpha_i$. With this, then,
+
+\begin{align}
+  \frac{1}{ABCD} &= \Gamma(4) \int_0^1 \dd x \dd y \dd z \dd \alpha \; \frac{\delta(1-x-y-z-\alpha)}{(xA + yB + zC + \alpha D)^4} \\
+                 &= 6\int_0^1 \dd x \dd y \dd z \; \frac{1}{[xA + yB + zC + (1-x-y-z)D]^4}.
+\end{align}
+
+So,
+
+\begin{multline}
+  \frac{1}{[(k - p_4)^2 - m^2](p_1 + p_2 - k)^2k^2[(k - p_2)^2 - m^2]} = 6\int_0^1 \dd x \dd y \dd z \\
+  \times \frac{1}{\br{x\br{\br{k - p_4^2} - m^2} + y(p_1 + p_2 - k)^2 + zk^2 + (1-x-y-z)\br{\br{k - p_2}^2 - m^2}}^4 }
+\end{multline}
+
+Using Feynman parameters, our amplitude is
+
+\begin{multline}
+  i\mathcal{M} = g_s^4 (T^aT^c)_{ij}(T^cT^a)_{k\ell} \int_0^1 \dd x \dd y \dd z \int \frac{\dd^nk}{(2\pi)^n} \\
+  \times \frac{\bar{u}(p_3)\gamma^\mu(\ksl - \psl_4 + m)\gamma_\sigma v(p_4) \bar{v}(p_2) \gamma^\sigma (\ksl - \psl_2 + m) \gamma_\mu u(p_1)}{\br{x\br{\br{k - p_4}^2 - m^2} + y(p_1 + p_2 - k)^2 + zk^2 + (1-x-y-z)\br{\br{k - p_2}^2 - m^2}}^4 }
+\end{multline}
+
+This is as far as we are going, so I'll leave it here.
+
+Next, we have the diagram
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{feynman}[large]
+      \vertex (a);
+      \vertex[right of=a] (b);
+
+      \vertex[below left of =a] (i2) {$\bar{q}$};
+      \vertex[above right of=b] (f1) {$t$};
+      \vertex[below right of=b] (f2) {$\bar{t}$};
+
+      \vertex[above left=0.5cm of a]  (x2);
+      \vertex[above left=0.75cm of x2] (x1);
+      \vertex[above left=0.75cm of x1] (i1) {$q$};
+
+      \diagram* {
+        (i1) --[fermion, momentum'=$p_1$] (x1) -- (a) --[gluon, momentum=$q$] (b) --[fermion, momentum=$p_3$] (f1),
+        (i2) --[anti fermion, momentum'=$p_2$] (a),
+        (b) --[anti fermion, momentum'=$p_4$] (f2),
+        (x1) --[gluon, momentum=$k$, half left] (x2),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{center}
+
+Following the Feynman rules:
+
+\begin{multline}
+  i\mathcal{M} = \int \frac{\dd^nk}{(2\pi)^n} \; \bar{u}_i(p_3) (-ig_s T^a_{ij}\gamma^\mu) v_j(p_4) \br{\frac{-ig_{\mu\nu}\delta^{ab}}{q^2}} \bar{v}_k(p_2) (-ig_s T^b_{k\ell'}\gamma^\nu) \\
+  \times \frac{i(\psl_1 + m)}{p_1^2 - m^2 + i\varepsilon} (-ig_s T^c_{\ell'm} \gamma^\sigma) \frac{i(\psl_1 - \ksl + m)}{(p_1 - k)^2 - m^2 + i\varepsilon} (-ig_s T^d_{m'\ell}\gamma^\rho) u_{\ell}(p_1) \delta^{mm'}\delta^{\ell\ell'} \br{\frac{-ig_{\sigma\rho}\delta^{cd}}{k^2}}.
+\end{multline}
+\begin{multline}
+  i\mathcal{M} = \frac{g_s^4}{(p_1+p_2)^2} T^a_{ij}T^b_{k\ell'}T^c_{\ell'm}T^d_{m'\ell} \, \delta^{mm'}\delta^{\ell\ell'}\delta^{ab}\delta^{cd} \\
+  \times \int \frac{\dd^nk}{(2\pi)^n} \; \frac{\bar{u}(p_3) \gamma^\mu v(p_4) \bar{v}(p_2) \gamma_\mu (\psl_1 + m) \gamma^\sigma (\psl_1 - \ksl + m) \gamma_\sigma u(p_1)}{(p_1^2 - m^2 + i\varepsilon)[(p_1 - k)^2 - m^2 + i\varepsilon]k^2}.
+\end{multline}
+\begin{multline}
+  i\mathcal{M} = \frac{g_s^4 \, T^a_{ij} (T^aT^cT^c)_{k\ell}}{(p_1 + p_2)^2(p_1^2 - m^2 + i\varepsilon)} \int \frac{\dd^nk}{(2\pi)^n} \; \frac{\bar{u}(p_3) \gamma^\mu v(p_4) \bar{v}(p_2) \gamma_\mu (\psl_1 + m) \gamma^\sigma (\psl_1 - \ksl + m) \gamma_\sigma u(p_1)}{[(p_1 - k)^2 - m^2]k^2}.
+\end{multline}
+
+We have two propagator denominators in the integral:
+
+\begin{equation}
+  \frac{1}{AB} = \int_0^1 \dd x \; \frac{1}{[xA + (1-x)B]^2},
+\end{equation}
+
+so in our case we have
+
+\begin{equation}
+  \frac{1}{[(p_1 - k)^2 - m^2]k^2} = \int_0^1 \dd x \; \frac{1}{\{ x[(p_1 - k)^2 - m^2] + (1-x)k^2 \}^2},
+\end{equation}
+
+so our entire amplitude looks like:
+
+\begin{multline}
+  i\mathcal{M} = \frac{g_s^4 \, T^a_{ij} (T^aT^cT^c)_{k\ell}}{(p_1 + p_2)^2(p_1^2 - m^2 + i\varepsilon)} \int_0^1 \dd x \int \frac{\dd^nk}{(2\pi)^n} \\
+  \times \frac{\bar{u}(p_3) \gamma^\mu v(p_4) \bar{v}(p_2) \gamma_\mu (\psl_1 + m) \gamma^\sigma (\psl_1 - \ksl + m) \gamma_\sigma u(p_1)}{\{ x[(p_1 - k)^2 - m^2] + (1-x)k^2 \}^2}.
+\end{multline}
+
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../FinalExam"
+%%% End:

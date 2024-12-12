@@ -1,0 +1,120 @@
+%2) see the image in ./res: write amplitude squared for muon-electron scattering in terms of the mandelstam variables, then in the massless limit, then write d\sigma/dt in this limit.
+\section{}
+
+The amplitude squared for electron-muon scattering that we got in class was
+
+\begin{equation}
+    \abs{\mathcal{M}}^2 = \frac{8e^4}{t^2}[\dotprod{p_1}{p_2}\dotprod{p_3}{p_4} + \dotprod{p_1}{p_4}\dotprod{p_2}{p_3} - m_e^2\dotprod{p_2}{p_4} - m_{\mu}^2\dotprod{p_1}{p_3} + 2m_e^2m_{\mu}^2].
+\end{equation}
+
+First, we can write
+
+\begin{equation*}
+    s = (p_1 + p_2)^2 = m_e^2 + m_{\mu}^2 + 2\dotprod{p_1}{p_2},
+\end{equation*}
+
+so
+
+\begin{equation*}
+    \dotprod{p_1}{p_2} = \frac{s - m_e^2 - m_{\mu}^2}{2}.
+\end{equation*}
+
+But, since $s = (p_3 + p_4)^2$ from momentum conservation, then this is the same for $\dotprod{p_3}{p_4}$. This will also be the case for $p_1/p_4$ and $p_2/p_3$, since those momenta pairs are associated with both the muon and the electron, but not $p_1/p_3$ and $p_2/p_4$, since those are each associated with only one. We can make some simplifications in the amplitude squared:
+
+\begin{equation*}
+    \abs{\mathcal{M}}^2 = \frac{8e^4}{t^2}[(\dotprod{p_1}{p_2})^2 + (\dotprod{p_1}{p_4})^2 - m_e^2\dotprod{p_2}{p_4} - m_{\mu}^2\dotprod{p_1}{p_3} + 2m_e^2m_{\mu}^2].
+\end{equation*}
+
+Now,
+
+\begin{align*}
+    (\dotprod{p_1}{p_2})^2 &= \frac{1}{4}(s - m_e^2 - m_{\mu}^2)^2 = \frac{1}{4}(s^2 + m_e^4 + m_{\mu}^4 - 2sm_e^2 - 2sm_{\mu}^2 + 2m_e^2m_{\mu}^2), \\
+    (\dotprod{p_1}{p_4})^2 &= \frac{1}{4}(m_e^2 + m_{\mu}^2 - u)^2 = \frac{1}{4}(u^2 + m_e^4 + m_{\mu}^4 - 2um_e^2 - 2um_{\mu}^2 + 2m_e^2m_{\mu}^2).
+\end{align*}
+
+So,
+
+\begin{equation*}
+    (\dotprod{p_1}{p_2})^2 + (\dotprod{p_1}{p_4})^2 = \frac{1}{4}[s^2 + u^2 + 2m_e^4 + 2m_{\mu}^4 - 2(s+u)(m_e^2 + m_{\mu}^2) + 4m_e^2m_{\mu}^2].
+\end{equation*}
+
+For the other terms:
+
+\begin{equation*}
+    t = (p_1 - p_3)^2 = 2m_e^2 - 2\dotprod{p_1}{p_3} \quad \rightarrow \quad \dotprod{p_1}{p_3} = \frac{2m_e^2 - t}{2}, \quad \mathrm{and} \quad \dotprod{p_2}{p_4} = \frac{2m_{\mu}^2 - t}{2},
+\end{equation*}
+
+so
+
+\begin{equation*}
+    m_e^2 \dotprod{p_2}{p_4} = \frac{1}{2}(2m_e^2m_{\mu}^2 - m_e^2t) \quad \mathrm{and} \quad m_{\mu}^2 \dotprod{p_1}{p_3} = \frac{1}{2}(2m_e^2m_{\mu}^2 - m_{\mu}^2t),
+\end{equation*}
+
+hence
+
+\begin{equation*}
+    -m_e^2 \dotprod{p_2}{p_4} - m_{\mu}^2 \dotprod{p_1}{p_3} = \frac{1}{4}[-8m_e^2m_{\mu}^2 + 2t(m_e^2 + m_{\mu}^2)].
+\end{equation*}
+
+The quantity in the brackets in the amplitude squared is therefore
+
+\begin{gather*}
+    \frac{1}{4}[s^2 + u^2 + 2m_e^4 + 2m_{\mu}^4 - 2(s+u)(m_e^2 + m_{\mu}^2) + 4m_e^2m_{\mu}^2 - 8m_e^2m_{\mu}^2 + 2t(m_e^2 + m_{\mu}^2) + 8m_e^2m_{\mu}^2], \\
+    = \frac{1}{4}[s^2 + u^2 + 2m_e^4 + 2m_{\mu}^4 + 4m_e^2m_{\mu}^2 - 2(s-t+u)(m_e^2 + m_{\mu}^2)].
+\end{gather*}
+
+A nice property of the Mandelstam variables is that the sum of the Mandelstam variables is the sum of all involved masses squared:
+
+\begin{equation*}
+    s+t+u = 2m_e^2 + 2m_{\mu}^2,
+\end{equation*}
+
+so the last quantity in the brackets becomes:
+
+\begin{equation*}
+    2(s+t+u - 2t)(m_e^2 + m_{\mu}^2) = 4(m_e^2 + m_{\mu}^2)^2 - 4t(m_e^2 + m_{\mu}^2) = 4m_e^4 + 4m_{\mu}^4 + 8m_e^2m_{\mu}^2 - 4t(m_e^2 + m_{\mu}^2).
+\end{equation*}
+
+and our total expression is now
+
+\begin{equation*}
+    = \frac{1}{4}[s^2 + u^2 - 2m_e^4 - 2m_{\mu}^4 - 4m_e^2m_{\mu}^2 + 4t(m_e^2 + m_{\mu}^2)].
+\end{equation*}
+
+With this, the amplitude squared in terms of the Lorentz-invariant Mandelstam variables and the masses is given by
+
+\begin{equation}
+    \abs{\mathcal{M}}^2 = \frac{2e^4}{t^2}[s^2 + u^2 - 2m_e^4 - 2m_{\mu}^4 - 4m_e^2m_{\mu}^2 + 4t(m_e^2 + m_{\mu}^2)].
+\end{equation}
+
+We found in class that we can write the differential scattering cross section like
+
+\begin{equation*}
+    \od{\sigma}{t} = \frac{\abs{\mathcal{M}}^2}{16\pi \lambda(s, m_e^2, m_{\mu}^2)},
+\end{equation*}
+
+so
+
+\begin{equation*}
+    \od{\sigma}{t} = \frac{e^4}{8\pi t^2 \lambda(s, m_e^2, m_{\mu}^2)} [s^2 + u^2 - 2m_e^4 - 2m_{\mu}^4 - 4m_e^2m_{\mu}^2 + 4t(m_e^2 + m_{\mu}^2)].
+\end{equation*}
+
+In the limit where $m_e \rightarrow 0$, we get
+
+\begin{equation}
+    \abs{\mathcal{M}}^2 = \frac{2e^4}{t^2}[s^2 + u^2 - 2m_{\mu}^2 + 4tm_{\mu}^2].
+\end{equation}
+
+In the cross section, $\lambda$ can simplify enough that it looks nice to write:
+
+\begin{equation*}
+    \lambda(s, 0, m_{\mu}^2) = (s - m_{\mu}^2)^2,
+\end{equation*}
+
+so
+
+\begin{equation}
+    \od{\sigma}{t} = \frac{e^4}{8\pi t^2} \frac{s^2 + u^2 - 2m_{\mu}^2 + 4tm_{\mu}^2}{(s - m_{\mu}^2)^2}.
+\end{equation}
+
+I don't think this is really simplifiable. Of course, if we take the super high-energy limit where the muon mass also vanishes, it becomes a very nice expression, but that is not what was asked in the problem.

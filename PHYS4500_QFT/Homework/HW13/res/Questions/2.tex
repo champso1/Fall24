@@ -1,0 +1,57 @@
+% also in png
+\section{}
+
+We are considering the $t$-channel process for singly producing a top quark like $u(p_1) + b(p_2) \rightarrow d(p_3) + t(p_4)$
+\begin{figure}[ht]
+  \centering
+
+  \begin{tikzpicture}
+    \begin{feynman}[large]
+      \vertex (v1);
+      \vertex[below of=v1] (v2);
+
+      \vertex[above=4mm of v1] (x1);
+      \vertex[below=4mm of v2] (x2);
+
+      \vertex[left of=x1] (i1) {$u$};
+      \vertex[left of=x2] (i2) {$b$};
+      \vertex[right of=x1] (f1) {$d$};
+      \vertex[right of=x2] (f2) {$t$};
+
+      \diagram* {
+        (i1) --[fermion, edge label=$p_1$] (v1) --[fermion, edge label=$p_3$] (f1),
+        (v1) --[boson, edge label=$W$, momentum'=$q$] (v2),
+        (i2) --[fermion, edge label'=$p_2$] (v2) --[fermion, edge label'=$p_4$] (f2)
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  
+  \caption{The Feynman diagram for the $t$-channel process $u(p_1) + b(p_2) \rightarrow d(p_3) + t(p_4)$.}
+  \label{fig:1}
+\end{figure}
+
+
+Using our Feynman rules, we can pretty easily write down the amplitude:
+
+\begin{equation}
+  i\mathcal{M} = \bar{u}(p_3) \frac{(-ie)\gamma^\mu(1-\gamma^5)V_{ud}}{2\sqrt{2} \, \sin\theta_W} u(p_1) \frac{(-1) \br{g_{\mu\nu} - \frac{q_\mu q_\nu}{m_W^2}}}{q^2 - m_W^2 + i\epsilon} \bar{u}(p_4) \frac{(-ie) \gamma^\nu(1-\gamma^5)V_{bt}}{2\sqrt{2} \, \sin\theta_W} u(p_2).
+\end{equation}
+\begin{multline}
+  \mathcal{M} = \frac{e^2 V_{ud}V_{bt}}{8\sin^2\theta_W [(p_1 - p_3)^2 - m_W^2]} \bar{u}(p_3)\gamma^\mu(1-\gamma^5)u(p_1) \\ \times \br{g_{\mu\nu} - \frac{(p_1 - p_3)_\mu(p_1 - p_3)\nu}{m_W^2}} \bar{u}(p_4)\gamma^\nu(1-\gamma^5)u(p_2)
+\end{multline}
+
+I believe that this is as far as we can get for just the amplitude. If we want to make a similar assumption as in the notes where we consider $q^2 << m_W^2$, then this becomes
+
+\begin{equation}
+  \mathcal{M} = -\frac{e^2 V_{ud}V_{bt}}{8\sin^2\theta_W \, m_W^2} \bar{u}(p_3)\gamma^\mu(1-\gamma^5)u(p_1) \bar{u}(p_4)\gamma_\mu(1-\gamma^5)u(p_2)
+\end{equation}
+
+
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW13"
+%%% End:

@@ -1,0 +1,36 @@
+\section{}
+
+The expression for the real scalar field as a Fourier expansion over the creation and annihilation operators is
+
+\begin{equation}
+    \phi(x^{\mu}) = \int \frac{\dd^3p}{(2\pi)^3\sqrt{2E}} \left[a(p)e^{-i \dotprod{p}{x}} + a^{\dagger}(p)e^{i\dotprod{p}{x}}\right],
+\end{equation}
+
+and the Klein-Gordon equation for a real, free scalar field is
+
+\begin{equation}
+    (\ddp_{\mu}\ddp^{\mu} + m^2)\phi = 0.
+\end{equation}
+
+Starting with the first derivative, since we are looking at the free field, we will have that $\ddp_{\mu}p^{\mu}$ is zero, so anything which is a function of purely momentum (specifically, the creation/annihilation operators) will have its 4-gradient will be zero:
+
+\begin{align*}
+    \ddp^{\mu}\phi &= \int \frac{\dd^3p}{(2\pi)^3\sqrt{2E}} \ddp^{\mu} \left[a(p)e^{-i \dotprod{p}{x}} + a^{\dagger}(p)e^{i\dotprod{p}{x}}\right], \\
+    &= \int \frac{\dd^3p}{(2\pi)^3\sqrt{2E}} \left[a(p) \ddp^{\mu}e^{-i \dotprod{p}{x}} + a^{\dagger}(p) \ddp^{\mu}e^{i\dotprod{p}{x}}\right], \\
+    &= \int \frac{\dd^3p}{(2\pi)^3\sqrt{2E}} \left[-ip^{\mu} a(p)e^{-i \dotprod{p}{x}} + ip^{\mu} a^{\dagger}(p)e^{i\dotprod{p}{x}}\right].
+\end{align*}
+
+Doing the second derivative:
+
+\begin{align*}
+    \ddp_{\mu}\ddp^{\mu}\phi &= \int \frac{\dd^3p}{(2\pi)^3\sqrt{2E}} \left[-p_{\mu}p^{\mu} a(p)e^{-i \dotprod{p}{x}} -p_{\mu}p^{\mu} a^{\dagger}(p)e^{i\dotprod{p}{x}}\right], \\
+    &= \int \frac{\dd^3p}{(2\pi)^3\sqrt{2E}} (-m^2) \left[a(p)e^{-i \dotprod{p}{x}} + a^{\dagger}(p)e^{i\dotprod{p}{x}}\right],
+\end{align*}
+
+where I've used that $p^2 = m^2$. So,
+
+\begin{equation*}
+    \ddp_{\mu}\ddp^{\mu}\phi + m^2\phi = \int \frac{\dd^3p}{(2\pi)^3\sqrt{2E}} (m^2 -m^2) \left[a(p)e^{-i \dotprod{p}{x}} + a^{\dagger}(p)e^{i\dotprod{p}{x}}\right] = 0,
+\end{equation*}
+
+as expected.

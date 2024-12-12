@@ -1,0 +1,71 @@
+\section{}
+
+The gauge transformation that the gauge fields must satisfy in Yang-Mills theories is
+
+\begin{equation}
+  \label{eq:1}
+  \vv{\sigma}\cdot\vv{A}_{\mu} \rightarrow U\vv{\sigma}\cdot\vv{A}_{\mu}U^{-1} + \frac{i}{q} (\ddp_{\mu}U) U^{-1}.
+\end{equation}
+
+If we assume a small $\lambda$, then we can express an arbitary $SU(2)$ transformation like
+
+\begin{equation}
+  U = e^{iq\vv{\sigma}\cdot\vv{\lambda}} \rightarrow 1 + iq\vv{\sigma}\cdot\vv{\lambda}.
+\end{equation}
+
+Additionally, as an element of $SU(2)$, $U$ is unitary, meaning
+
+\begin{equation}
+  U^{-1} = U^{\dagger} = 1 - iq\vv{\sigma}\cdot\vv{\lambda}.
+\end{equation}
+
+Now, we just replace all occurrenced of $U$ in Equation~\eqref{eq:1} with the small $\lambda$ version:
+
+\begin{equation}
+  \vv{\sigma}\cdot{\vv{A}_{\mu}} \rightarrow (1 + iq\vv{\sigma}\cdot\vv{\lambda}) \vv{\sigma}\cdot\vv{\lambda} (1 - iq\vv{\sigma}\cdot\vv{\lambda}) + \frac{i}{q}[\ddp_{\mu}(1 + iq\vv{\sigma}\cdot\vv{\lambda})](1 -iq\vv{\sigma}\cdot\vv{\lambda})
+\end{equation}
+
+Looking at just the first term, we have
+
+\begin{equation}
+  \rightarrow iq\vv{\sigma}\cdot\vv{\lambda} + iq(\vv{\sigma}\cdot\vv{\lambda})(\vv{\sigma}\cdot\vv{A}_{\mu}) -iq(\vv{\sigma}\cdot\vv{A}_{\mu})(\vv{\sigma}\cdot\vv{\lambda}) + q^2(\vv{\sigma}\cdot\vv{\lambda})(\vv{\sigma}\cdot\vv{\lambda}).
+\end{equation}
+
+Based on the hint given in the problem, we know that the last term will be zero since it involves a cross product of the same vector ($\vv{\lambda}$) with itself. Thus,
+
+\begin{equation}
+  \rightarrow iq\vv{\sigma}\cdot\vv{\lambda} + iq(\vv{\lambda}\cdot\vv{A}_{\mu} + i\vv{\sigma}\cdot\vv{\lambda}\times\vv{A}_{\mu}) -iq(\vv{\lambda}\cdot\vv{A}_{\mu} + i\vv{\sigma}\cdot\vv{A}_{\mu}\times\vv{\lambda}).
+\end{equation}
+
+The dot product cancels, and we can switch the order of the cross product at the cost of a minus sign so that
+
+\begin{equation}
+  \rightarrow \vv{\sigma}\cdot\vv{A}_{\mu} - 2q\vv{\sigma} \cdot \vv{\lambda}\times\vv{A}_{\mu} \rightarrow \vv{\sigma} \cdot (\vv{A}_{\mu} - 2q\vv{\lambda}\times\vv{A}_{\mu}).
+\end{equation}
+
+For the second term, the derivative will only act on the $\vv{\lambda}$:
+
+\begin{align}
+  \rightarrow& \frac{i}{q}[\ddp_{\mu}(1 + iq\vv{\sigma}\cdot\vv{\lambda})](1 - iq\vv{\sigma}\cdot\vv{\lambda}) \\
+  \rightarrow& \frac{i}{q}[iq \vv{\sigma}\cdot(\ddp_{\mu}\vv{\lambda})](1 - iq\vv{\sigma}\cdot\vv{\lambda}) \\
+  \rightarrow& -\vv{\sigma} \cdot (\ddp_{\mu}\vv{\lambda}) + [\vv{\sigma} \cdot (\ddp_{\mu}\vv{\lambda})(\vv{\sigma}\cdot\vv{\lambda})].
+\end{align}
+
+Just as before, the last term sill be zero. So, putting it all together and pulling out a $\vv{\sigma}$:
+
+\begin{equation}
+  \vv{\sigma}\cdot\vv{A}_{\mu} \rightarrow \vv{\sigma} \cdot [\vv{A}_{\mu} - \ddp_{\mu}\vv{\lambda} - 2q\vv{\lambda} \times \vv{A}_{\mu}].
+\end{equation}
+
+Since we now have pulled out a $\vv{\sigma}$ on both sides, we can consider only the transformation on the field:
+
+\begin{equation}
+  \boxed{\vv{A}_{\mu} \rightarrow \vv{A}_{\mu} - \ddp_{\mu}\vv{\lambda} - 2q \vv{\lambda}\times\vv{A}_{\mu}.}
+\end{equation}
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Test3"
+%%% End:

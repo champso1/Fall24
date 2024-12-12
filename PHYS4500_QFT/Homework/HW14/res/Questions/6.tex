@@ -1,0 +1,48 @@
+\section{}
+
+\begin{figure}[ht]
+  \centering
+
+  \begin{tikzpicture}
+    \begin{feynman}[large]
+      \vertex (a);
+      \vertex[above=4.0mm of a] (x1);
+      \vertex[left of=x1] (i1) {$q$};
+      \vertex[right of=x1] (f1) {$q$};
+      \vertex[below of=a] (b);
+      \vertex[below=4.0mm of b] (x2);
+      \vertex[left of=x2] (i2) {$q'$};
+      \vertex[right of=x2] (f2) {$q'$};
+
+      \diagram* {
+        (i1) --[fermion, edge label'=$p_1$, edge label=$\ell$] (a) --[fermion, edge label'=$p_3$, edge label=$k$] (f1),
+        (a) --[gluon, momentum'=$q$] (b),
+        (i2) --[fermion, edge label=$p_2$, edge label'=$j$] (b) --[fermion, edge label=$p_4$, edge label'=$i$] (f2)
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  
+  \caption{Feynman diagram for $q+q' \rightarrow q+q'$.}
+  \label{fig:1}
+\end{figure}
+
+
+Figure~\ref{fig:1} shows the one diagram for the process $qq' \rightarrow qq'$ (I give the bottom vertex a space-time index of $\mu$ and a gluon index of $a$ and the top vertex gets a space-time index of $\nu$ and a gluon index of $b$). This is the only diagram since there is no $s$-channel as that would have a conversion from one quark to another and there is no $u$-channel since the two final state particles are distinct. We can use our Feynman rules to easily write down the amplitude:
+
+\begin{align}
+  i\mathcal{M} &= \bar{u}(p_4)(-ig_s \gamma^\mu T^a_{ij})u(p_2) \br{\frac{-ig_{\mu\nu}\delta^{ab}}{q^2}} \bar{u}(p_3)(-ig_s \gamma^\nu T^b_{k\ell})u(p_1) \\
+  \mathcal{M} &= \frac{g_s^2}{(p_1 - p_3)^2} [\bar{u}(p_4) \gamma^\mu u(p_3)] [\bar{u}(p_3) \gamma_\mu u(p_1)] \br{T^a_{ij}T^a_{k\ell}}.
+\end{align}
+
+We cannot do much with the color factor now. We can use the relation
+
+\begin{equation}
+  T^a_{ij}T^a_{k\ell} = \frac{1}{2}\br{\delta_{i\ell}\delta_{jk} - \frac{1}{N_c}\delta_{ij}\delta_{kl}},
+\end{equation}
+
+but this makes things even more complicated since we have nothing to use the delta functions with. We'd be able to calculate the full color factor when squaring the amplitude, but for now when just considering the amplitude, I'll leave it as is.
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW14"
+%%% End:

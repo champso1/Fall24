@@ -1,0 +1,32 @@
+\section{}
+
+\begin{align}
+  \lambda^5\lambda^8 &= \frac{1}{\sqrt{3}} \begin{pmatrix}0 & 0 & -i \\ 0 & 0 & 0 \\ i & 0 & 0\end{pmatrix}\begin{pmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -2\end{pmatrix} \\
+  &= \frac{1}{\sqrt{3}}\begin{pmatrix}0 & x & x \\ x & 0 & x \\ x & x & 0\end{pmatrix},
+\end{align}
+
+where, in the context of the trace, we don't care about the non-diagonal components, so I just labeled them with an $x$ and didn't bother computing them. We can see quite clearly that since all the diagonal elements are zero that
+
+\begin{equation}
+  \boxed{\Tr[\lambda^5\lambda^8] = 0.}
+\end{equation}
+
+We expect this, since
+
+\begin{equation}
+  \Tr[\lambda^i,\lambda^j] = 2\delta_{ij} = 0
+\end{equation}
+
+for $i \neq j$.
+
+
+
+
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW14"
+%%% End:

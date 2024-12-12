@@ -1,0 +1,27 @@
+\ProvidesPackage{Preamble}
+
+
+\newcommand{\FourierInt}{\int\frac{\dd^3p}{(2\pi)^3}}
+\newcommand{\FourierIntE}{\int\frac{\dd^3p}{(2\pi)^3\sqrt{2E}}}
+
+
+%question environment
+\usepackage{titlesec}
+\titleformat
+{\section}[block]
+{\normalfont\large\bfseries}
+{Problem \thesection.}{0.5em}{}
+
+
+\usepackage{enumitem}
+\newlist{parts}{enumerate}{3}
+\setlist[parts, 1]
+{
+    label=\alph{partsi}),
+    leftmargin=0.5in
+}
+\setlist[parts, 2]
+{
+    label=\textbf{\arabic{partsii}}),
+    leftmargin=0.25in
+}

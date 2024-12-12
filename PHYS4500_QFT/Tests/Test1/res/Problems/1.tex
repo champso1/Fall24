@@ -1,0 +1,36 @@
+\section{}
+
+The gamma matrices in the chiral representation are 
+
+\begin{equation}
+    \gamma^0 = \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}, \qquad \gamma^i = \begin{pmatrix}0 & -\sigma^i \\ \sigma^i & 0\end{pmatrix}.
+\end{equation}
+
+So,
+
+\begin{align*}
+    \gamma^5 &= i\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}\begin{pmatrix}0 & -\sigma^1 \\ \sigma^1 & 0\end{pmatrix}\begin{pmatrix}0 & -\sigma^2 \\ \sigma^2 & 0\end{pmatrix}\begin{pmatrix}0 & -\sigma^3 \\ \sigma^3 & 0\end{pmatrix}, \\
+    &= i \begin{pmatrix}\sigma^1 & 0 \\ 0 & -\sigma^1\end{pmatrix}\begin{pmatrix}\sigma^2\sigma^3 & 0 \\ 0 & \sigma^2\sigma^3\end{pmatrix}, \\
+    &= i \begin{pmatrix}-\sigma^1\sigma^2\sigma^3 & 0 \\ 0 & \sigma^1\sigma^2\sigma^3\end{pmatrix}.
+\end{align*}
+
+The Pauli spin matrices are 
+
+\begin{equation}
+    \sigma^1 = \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}, \quad \sigma^2 = \begin{pmatrix}0 & -i \\ i & 0\end{pmatrix}, \quad \sigma^3 = \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix},
+\end{equation}
+
+so
+
+\begin{align*}
+    \sigma^1\sigma^2\sigma^3 &= \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}\begin{pmatrix}0 & -i \\ i & 0\end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}, \\
+    &= \begin{pmatrix}i & 0 \\ 0 & -i\end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}, \\
+    &= \begin{pmatrix}i & 0 \\ 0 & i\end{pmatrix} = i \ (2\times2\ \mathrm{matrix})
+\end{align*}
+
+therefore
+
+\begin{gather*}
+    \gamma^5 = i\begin{pmatrix}-i & 0 \\ 0 & i\end{pmatrix}, \\
+    \rightarrow \ \boxed{\gamma^5 = \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}.}
+\end{gather*}

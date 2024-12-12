@@ -1,0 +1,179 @@
+\section{}
+
+
+There are two diagrams with a real emission of a photon from a fermion line:
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{feynman}
+    \vertex (i1) {$e^-$};
+    \vertex[right of=i1] (a1);
+    \vertex[below of=a1] (a2);
+    \vertex[left  of=a2] (i2) {$e^+$};
+    \vertex[right of=a1] (f1) {$\gamma$};
+    \vertex[right of=a2] (f2) {$\gamma$};
+
+    \vertex[right=0.75cm of i1] (x1);
+    \vertex[above=0.75cm of a1] (x2);
+    
+p
+    \diagram* {
+      (i1) --[fermion] (a1) --[photon] (f1),
+      (i2) --[anti fermion] (a2) --[photon] (f2),
+      (a1) --[fermion] (a2),
+      (x1) --[photon] (x2)
+    };
+  \end{feynman}
+\end{tikzpicture}
+\hspace*{5mm}
+\begin{tikzpicture}
+  \begin{feynman}
+    \vertex (i1) {$e^-$};
+    \vertex[right of=i1] (a1);
+    \vertex[below of=a1] (a2);
+    \vertex[left  of=a2] (i2) {$e^+$};
+    \vertex[right of=a1] (f1) {$\gamma$};
+    \vertex[right of=a2] (f2) {$\gamma$};
+
+    \vertex[right=0.75cm of i2] (x1);
+    \vertex[below=0.75cm of a2] (x2);
+    
+
+    \diagram* {
+      (i1) --[fermion] (a1) --[photon] (f1),
+      (i2) --[anti fermion] (a2) --[photon] (f2),
+      (a1) --[fermion] (a2),
+      (x1) --[photon] (x2)
+    };
+  \end{feynman}
+\end{tikzpicture}
+\end{center}
+
+
+
+Then there are two vertex correction diagrams along with a ``box'' diagram:
+
+\begin{center}
+\begin{tikzpicture}
+  \begin{feynman}
+    \vertex (i1) {$e^-$};
+    \vertex[right of=i1] (a1);
+    \vertex[below of=a1] (a2);
+    \vertex[left  of=a2] (i2) {$e^+$};
+    \vertex[right of=a1] (f1) {$\gamma$};
+    \vertex[right of=a2] (f2) {$\gamma$};
+
+    \vertex[right=0.75cm of i1] (x1);
+    \vertex[below=0.75cm of a1] (x2);
+
+    
+    \diagram* {
+      (i1) --[fermion] (a1) --[photon] (f1),
+      (i2) --[anti fermion] (a2) --[photon] (f2),
+      (a1) --[fermion] (a2),
+      (x1) --[photon] (x2)
+    };
+  \end{feynman}
+\end{tikzpicture}
+\hspace*{5mm}
+\begin{tikzpicture}
+  \begin{feynman}
+    \vertex (i1) {$e^-$};
+    \vertex[right of=i1] (a1);
+    \vertex[below of=a1] (a2);
+    \vertex[left  of=a2] (i2) {$e^+$};
+    \vertex[right of=a1] (f1) {$\gamma$};
+    \vertex[right of=a2] (f2) {$\gamma$};
+
+    \vertex[right=0.75cm of i2] (x1);
+    \vertex[above=0.75cm of a2] (x2);
+    
+
+    \diagram* {
+      (i1) --[fermion] (a1) --[photon] (f1),
+      (i2) --[anti fermion] (a2) --[photon] (f2),
+      (a1) --[fermion] (a2),
+      (x1) --[photon] (x2)
+    };
+  \end{feynman}
+\end{tikzpicture}
+\hspace*{5mm}
+\begin{tikzpicture}
+  \begin{feynman}
+    \vertex (i1) {$e^-$};
+    \vertex[right of=i1] (a1);
+    \vertex[below of=a1] (a2);
+    \vertex[left  of=a2] (i2) {$e^+$};
+    \vertex[right of=a1] (f1) {$\gamma$};
+    \vertex[right of=a2] (f2) {$\gamma$};
+
+    \vertex[right=0.75cm of i1] (x1);
+    \vertex[right=0.75cm of i2] (x2);
+    
+
+    \diagram* {
+      (i1) --[fermion] (a1) --[photon] (f1),
+      (i2) --[anti fermion] (a2) --[photon] (f2),
+      (a1) --[fermion] (a2),
+      (x1) --[photon] (x2)
+    };
+  \end{feynman}
+\end{tikzpicture}
+\end{center}
+
+
+
+Then there are two vacuum polarization diagrams:
+
+\begin{center}
+\hspace*{5mm}
+\begin{tikzpicture}
+  \begin{feynman}
+    \vertex (i1) {$e^-$};
+    \vertex[right of=i1] (a1);
+    \vertex[below of=a1] (a2);
+    \vertex[left  of=a2] (i2) {$e^+$};
+    \vertex[right=0.75cm of a1] (x1);
+    \vertex[right=0.5cm of x1] (x2);
+    \vertex[right=0.75cm of x2] (f1) {$\gamma$};
+    \vertex[right of=a2] (f2) {$\gamma$};
+    
+
+    \diagram* {
+      (i1) --[fermion] (a1) --[photon] (x1), (x2) --[photon] (f1),
+      (i2) --[anti fermion] (a2) --[photon] (f2),
+      (a1) --[fermion] (a2),
+      (x1) --[fermion, half left] (x2) --[fermion, half left] (x1)
+    };
+  \end{feynman}
+\end{tikzpicture}
+\hspace*{5mm}
+\begin{tikzpicture}
+  \begin{feynman}
+    \vertex (i1) {$e^-$};
+    \vertex[right of=i1] (a1);
+    \vertex[below of=a1] (a2);
+    \vertex[left  of=a2] (i2) {$e^+$};
+    \vertex[right=0.75cm of a2] (x1);
+    \vertex[right=0.5cm of x1] (x2);
+    \vertex[right=0.75cm of x2] (f2) {$\gamma$};
+    \vertex[right of=a1] (f1) {$\gamma$};
+    
+
+    \diagram* {
+      (i2) --[fermion] (a2) --[photon] (x1), (x2) --[photon] (f2),
+      (i1) --[anti fermion] (a1) --[photon] (f1),
+      (a1) --[fermion] (a2),
+      (x1) --[fermion, half left] (x2) --[fermion, half left] (x1)
+    };
+  \end{feynman}
+\end{tikzpicture}
+\end{center}
+
+There are also all of these diagrams but with the two final state photons switched, since they are identical particles and there is no way to tell which photon came from which vertex.
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Test3"
+%%% End:

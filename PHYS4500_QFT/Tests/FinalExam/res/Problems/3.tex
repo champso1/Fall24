@@ -1,0 +1,65 @@
+\section{}
+
+We are considering the process in the Feynman diagram below, where the boson is either a photon, a $Z$-boson, or a gluon.
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{feynman}[large]
+      \vertex (a);
+      \vertex[above=0.5cm of a] (aa);
+      \vertex[below of=a] (b);
+      \vertex[below=0.5cm of b] (bb);
+      \vertex[left of=aa] (i1) {$q$};
+      \vertex[right of=aa] (f1) {$q$};
+      \vertex[left of=bb] (i2) {$q'$};
+      \vertex[right of=bb] (f2) {$q'$};
+
+      \diagram* {
+        (i1) --[fermion, momentum=$p_1$] (a) --[fermion, momentum=$p_3$] (f1),
+        (i2) --[fermion, momentum'=$p_2$] (b) --[fermion, momentum'=$p_4$] (f2),
+        (a) --[photon, momentum=$k$] (b),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{center}
+
+Considering first the case when the boson is a photon we get:
+
+\begin{align}
+  i\mathcal{M} &= \bar{u}(p_4)\br{-ie\gamma^\mu}u(p_2) \br{\frac{-ig_{\mu\nu}}{k^2}} \bar{u}(p_3)\br{-ie\gamma^\nu}u(p_1) \\
+  \mathcal{M} &= \frac{e^2}{(p_1 - p_3)^2} [\bar{u}(p_4)\gamma^\mu u(p_2)][\bar{u}(p_3) \gamma_\mu u(p_1)].
+\end{align}
+
+If the boson is a $Z$-boson:
+
+\begin{equation}
+  i\mathcal{M} = \bar{u}(p_4) \br{\frac{-ie}{\sin(2\theta_W)}\gamma^\mu\br{c_v^1 - c_A^1\gamma^5}} u(p_2) \br{\frac{-i\br{g_{\mu\nu} - \frac{k_\mu k_\nu}{m_z^2}}}{k^2 - m_z^2}} \bar{u}(p_3)\br{\frac{-ie}{\sin(2\theta_W)}\gamma^\mu\br{c_v^2 - c_A^2\gamma^5}}u(p_1).
+\end{equation}
+\begin{multline}
+  \mathcal{M} = \frac{e^2}{[(p_1 - p_3)^2 - m_z^2]\sin^2(\theta_W)} \br{\bar{u}(p_4) \gamma^\mu \br{c_v^1 - c_A^1\gamma^5}u(p_2)} \\ \times
+  \br{g_{\mu\nu} - \frac{(p_1 - p_3)_\mu (p_1 - p_3)_\nu}{m_z^2}}\br{\bar{u}(p_3) \gamma^\mu \br{c_v^2 - c_A^2\gamma^5}u(p_1)}.
+\end{multline}
+
+where the superscripts on the $c_v$ and $c_A$ are meant to indicate the quark and primed quark.
+
+Or, in the case that we are at very low energies where $k^2 << m_z^2$, we can disregard the second term in the numerator of the propagator and simplify its denominator to get
+
+\begin{equation}
+  \mathcal{M} = \frac{-e^2}{m_z^2\sin^2(\theta_W)} [\bar{u}(p_4) \gamma^\mu(c_v^1 - c_A^1 \gamma^5)u(p_2)][\bar{u}(p_3) \gamma_\nu (c^2_v - c_A^2\gamma^5)u(p_1)].
+\end{equation}
+
+In the case that the boson is a gluon, we get
+
+\begin{align}
+  i\mathcal{M} &= \bar{u}_i(p_4) \br{-ig_sT^a_{ij}\gamma^\mu} u_j(p_2) \left[ \frac{-ig_{\mu\nu}\delta^{ab}}{k^2} \right] \bar{u}_k(p_3) \br{-ig_sT^b_{k\ell}\gamma^\nu}u_\ell(p_1) \\
+  \mathcal{M} &= \frac{g_s^2}{(p_1 - p_3)^2} [\bar{u}(p_4) \gamma^\mu u(p_2)][\bar{u}(p_3) \gamma_\mu u(p_1)] T^a_{ij}T^a_{k\ell}.
+\end{align}
+
+Just like with one of the previous homeworks, there is the possibility to use an identity for the color factor, but it wouldn't make any nice simplifications until we square it, so this is fine as it is for just the amplitude.
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../FinalExam"
+%%% End:

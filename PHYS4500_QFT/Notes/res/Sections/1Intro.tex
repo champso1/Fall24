@@ -1,0 +1,160 @@
+\section{Intro}
+This section will comprise a review of special relativity, particularly notation and whatnot.
+
+
+\begin{itemize}
+    \item In relativity, we know that space and time must be on equal footing, hence instead of ordinary 3-vectors that we deal with normally, we instead have the 4-vector: $x^{\mu}$. 
+    \item Specifically, this 4-vector is called a \textit{contravariant} 4-vector. Often, when we say ``4-vector'', we mean the contravariant 4-vector.
+    \item The position 4-vector is given by:
+        \begin{equation}
+            x^{\mu} = (ct, x, y, z)^{\intercal} = (x^0, x^1, x^2, x^3)^{\intercal}
+        \end{equation}
+    \item The ``other'' type of 4-vector is called the \textit{covariant} 4-vector, given with the greek index in the subscript rather than the superscript: $x_{\mu}$. This is given by contracting the normal (covariant) 4-vector with the Minkowski metric, the metric for the space-time in which we are working:
+        \begin{equation}
+            x_{\mu} = g_{\mu\nu}x^{\nu}.
+        \end{equation}
+    \item Since the metric is a rank-2 tensor, we can express it as an ordinary $4\times4$ matrix (since we are working in 4-d spacetime):
+        \begin{equation}
+            g_{\mu\nu} = 
+            \begin{pmatrix}
+                1 & 0 & 0 & 0 \\
+                0 & -1 & 0 & 0 \\
+                0 & 0 & -1 & 0 \\
+                0 & 0 & 0 & -1
+            \end{pmatrix}
+        \end{equation}
+    \item Two interesting things to note are that 1) the metric is symmetric, meaning $g_{\mu\nu} = g_{\nu\mu}$, and 2) it is equal to its inverse, meaning $g_{\mu\nu} = g^{\mu\nu}$. 
+    \item One important quantity we would be interested in in classical mechanics is the distances of things. Particularly, we were interested in the quantity $\vv{x} \cdot \vv{x}$ or $\abs{\vv{x}}^2$, where $\abs{\vv{x}}$ is the length of something. This quantity is always invariant under rotations and other changes of basis \textit{in classical mechanics}.
+    \item In special relativity, since we can now boost to super fast reference frames (we could do this before, but we didn't know that it would be weird), we have to take time into account, and this quantity is no longer an invariant under reference frame changes.
+    \item Now, we are looking at the dot product of the 4-vector with itself, incorporating time:
+        \begin{equation}
+            x_{\mu}x^{\mu} = g_{\mu\nu}x^{\nu}x^{\mu} = c^2t^2 - x^2 - y^2 - z^2 = \text{inv.}
+        \end{equation}
+    \item It is this quantity that is invariant under Lorentz transformations.
+\end{itemize}
+
+
+
+\begin{itemize}
+    \item Just as we used the 4-position to have distance and time on the same footing, we also have a similar case for momentum and energy: we call it the 4-momentum:
+        \begin{equation}
+            p^{\mu} = (E/c, p_x, p_y, p_z)^{\intercal}.
+        \end{equation}
+    \item The invariant quantity here is quite special:
+        \begin{equation}
+            p_{\mu}p^{\mu} = \frac{E^2}{c^2} - \vec{p}^2 = m^2c^2,
+        \end{equation}
+        from the ``Pythagorean relation'', given by:
+        \begin{equation}
+            E = \sqrt{(\vec{p}c)^2 + (mc^2)^2}.
+        \end{equation}
+    \item There is the interesting effect of this being that we now have the ``ability'' to have massless particles; or rather, they just make a lot more sense. They can also have energy and momentum.
+    \item Additionally, we can make the following definitions:
+        \begin{equation}
+            p_{\mu}p^{\mu} 
+            \begin{cases}
+                >0 \rightarrow \text{``time-like''} \\
+                =0 \rightarrow \text{``light-like''} \\
+                >0 \rightarrow \text{``space-like''}.
+            \end{cases}
+        \end{equation}
+    \item All massive particules, naturally, are time-like, since they have a positive mass, and the quantity $p_{\mu}p^{\mu} = m^2c^2$ will hence be positive. The photon, as a massless particle, is light-like 
+    \item There are no space-like particles, but it is still important to examine when considering something like the separation of two events in space-time. It is possible to have them be space-like separated, where they cannot influence each other; i.e. no light/information can travel between the two events before they happen.
+\end{itemize}
+
+
+
+\begin{itemize}
+    \item We may also be interested in infinitesimals: $\dd x^{\mu}$. We can form an invariant infinitesimal quantity like before: $\dd x_{\mu} \dd x^{\mu} = \text{inv.}$
+\end{itemize}
+
+
+\begin{itemize}
+    \item Lastly, derivatives are going to be very important. We define a derivative in special relativity as the following:
+        \begin{equation}
+            \partial_{\mu} \equiv \frac{\partial}{\partial x^{\mu}} = \left(\frac{1}{c}\diffp{}{t},\ \diffp{}{x},\ \diffp{}{y},\ \diffp{}{z}\right) = \left(\frac{1}{c}\diffp{}{t},\ \vv{\nabla}\right).
+        \end{equation}
+    \item There is also the special relativity version of the Laplacian, called the \textbf{d'Alembertian}:
+        \begin{equation}
+            \Box \equiv \partial_{\mu}\partial^{\mu} = \left(\frac{1}{c^2} \diffp[2]{}{t},\ \diffp[2]{}{x},\ \diffp[2]{}{y},\ \diffp[2]{}{z}\right)
+        \end{equation}
+\end{itemize}
+
+
+
+\begin{itemize}
+    \item Now we can turn to Lorentz transformations, which involve boosting to a frame $S^{\prime}$ that is moving at some speed $v$ with respect to the originalf frame $S$.
+    \item We have the following relations:
+        \begin{equation}
+            \begin{cases}
+                t' = \gamma\left(t - \frac{v}{c^2}\right) \\
+                x' = \gamma(x - vt) \\
+                y' = y \\
+                z' = z
+            \end{cases}
+            =
+            \begin{cases}
+                x^{0\prime} = \gamma\left(x^0 - \frac{v}{c} \right) \\
+                x^{1\prime} = \gamma\left(x^1 - \frac{v}{c}x^0\right) \\
+                x^{2\prime} = x^2 \\
+                x^{3\prime} = x^3.
+            \end{cases}
+        \end{equation}
+    \item We can simplify this by representing this transformation as a rank-2 tensor:
+        \begin{equation}
+            x^{\mu\prime} = \Lambda^{\mu\prime}_{\mu} x^{\mu}.
+        \end{equation}
+    \item We can again, as with the metric, represent this as a $4\times4$ matrix:
+        \begin{equation}
+            \Lambda = 
+            \begin{pmatrix}
+                \gamma & -\gamma \frac{v}{c} & 0 & 0 \\ 
+                -\gamma \frac{v}{c} & \gamma & 0 & 0 \\ 
+                0 & 0 & 1 & 0 \\
+                0 & 0 & 0 & 1
+            \end{pmatrix}.
+        \end{equation}
+    \item In fact, this is really a more mathematically correct definition of the 4-vector: an object that transforms in the above way due to a Lorentz Transformation.
+    \item Should we be interested in transforming a rank-2 tensor, we need another transformation matrix:
+        \begin{equation}
+            T^{\mu\prime \nu\prime} = \Lambda^{\mu\prime}_{\nu}\Lambda^{\nu\prime}_{\nu} T^{\mu\nu}.
+        \end{equation}
+\end{itemize}
+
+
+
+
+\begin{itemize}
+    \item The last thing we can look at is collisions, and the basics with the kinematics involved.
+    \item Let's consider a collision $A+B \rightarrow 1+2$. We know from simple energy/momentum conservation that:
+        \begin{equation}
+            P^{\mu}_a + P^{\mu}_b = P^{\mu}_1 + P^{\mu}_2.
+        \end{equation}
+    \item Now, these individual 4-vectors themselves don't mean  much, and the quantity on either (or both) sides can change depending on the frame we look at. We know, though, that we can form Lorentz invariant scalars by squaring both sides.
+    \item In such a case as this, with a $2\rightarrow2$ reaction, such squares have special names: the \textbf{Mandelstam variables}:
+        \begin{gather}
+            s = (P^{\mu}_a + P^{\mu}_b)^2 = (P^{\mu}_1 + P^{\mu}_2)^2 \\
+            t = (P^{\mu}_a - P^{\mu}_1)^2 = (P^{\mu}_b - P^{\mu}_2)^2 \\
+            u = (P^{\mu}_a - P^{\mu}_2)^2 = (P^{\mu}_b - P^{\mu}_1)^2
+        \end{gather}
+    \item Now, we can choose whatever frame we want to calculate these values, and since they are Lorentz invariant values, they will be the same no matter what frame.
+    \item Because of this, we should just choose the frame that makes the calculation the easiest. Often this is the \textit{center-of-mass} frame, where the total momentum $\sum \vv{p} = 0$. This gives us
+        \begin{equation}
+            P^{\mu}_a + P^{\mu}_b = \left(E_a^{CM} + E_b^{CM}, \vv{0}\right),
+        \end{equation}
+        where we have adopted natural units now, which means that we have set $\hbar = c = 1$ for simplicity.
+    \item Now, it is super easy to calculate $s$, for instance:
+        \begin{equation}
+            s = (P^{\mu}_a + P^{\mu}_b)^2 = (E_a^{CM} + E_b^{CM})^2
+        \end{equation}
+    \item $s$ specifically is a pretty important variable. From the above relation, we have that
+        \begin{equation}
+            \sqrt{s} = E_a^{CM} + E_b^{CM},
+        \end{equation}
+        which is the sum of the center-of-mass energies of the two incoming particles, which is a pretty universal and useful variable. This will be used later (probably, I don't know).
+    \item Lastly, we have a neat identity whose proof is relatively simple:
+        \begin{equation}
+            s + t + u = \sum_i m_i^2,
+        \end{equation}
+        for all the masses in the process.
+\end{itemize}

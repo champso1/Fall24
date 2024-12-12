@@ -1,0 +1,72 @@
+\section{(19.3)}
+
+\begin{parts}
+
+\item We are looking at a complex scalar Lagrangian
+    
+\begin{equation}
+    \lag = \ddp_{\mu}\phi\ddp^{\mu}\phi^* - m^2\phi^*\phi.
+\end{equation}
+
+We are considering a local transformation where $\phi \rightarrow \phi' = e^{-iq\theta(x^{\mu})}\phi$ and $\phi^* \rightarrow \phi^{*\prime} = \phi^*e^{iq\theta(x^{\mu})}$. Such a transformation, as we saw earlier, allowed us to change the 4-derivative into the \textit{covariant} derivative which included a term involving a gauge field $A_{\mu}$: $D_{\mu} = \ddp_{\mu} + iqA_{\mu}$. Our complex scalar Lagrangian is thus
+
+\begin{equation}
+    \lag = D_{\mu}\phi D^{\mu}\phi^* - m^2\phi^*\phi.
+\end{equation}
+
+Expanding out:
+
+\begin{align*}
+    \lag &= (\ddp_{\mu} + iqA_{\mu})\phi(\ddp^{\mu} - iqA^{\mu})\phi^* - m^2\phi^*\phi, \\
+    &= (\ddp_{\mu}\phi + iqA_{\mu}\phi)(\ddp^{\mu}\phi^* - iqA^{\mu}\phi^*) - m^2\phi^*\phi, \\
+    &= \ddp_{\mu}\phi\ddp^{\mu}\phi^* - iq\ddp_{\mu}\phi A^{\mu}\phi^* + iqA_{\mu}\phi\ddp^{\mu}\phi^* + q^2A_{\mu}A^{\mu}\phi^*\phi - m^2\phi^*\phi, \\
+    &= \ddp_{\mu}\phi\ddp^{\mu}\phi^* -iq\left( \ddp_{\mu}\phi A^{\mu}\phi^* - A_{\mu}\phi\ddp^{\mu}\phi^* \right) + q^2A_{\mu}A^{\mu}\phi^*\phi - m^2\phi^*\phi.
+\end{align*}
+
+Looking just at the term in perentheses, we can simplify a little bit:
+
+\begin{equation*}
+    = -iq(A_{\mu}\phi^* \ddp^{\mu}\phi - A_{\mu}\phi\ddp^{\mu}\phi) = -iqA_{\mu}(\phi^*\ddp^{\mu}\phi - \phi\ddp^{\mu}\phi^*).
+\end{equation*}
+
+But the term in parentheses (with the $-iq$ outside) is the conserved current for a complex scalar field under phase ($U(1)$) symmetry, so we can say that this term is just $A_{\mu}j^{\mu}$:
+
+\begin{equation*}
+    \lag = \ddp_{\mu}\phi\ddp^{\mu}\phi^* + A_{\mu}j^{\mu} + q^2A_{\mu}A^{\mu}\phi^*\phi - m^2\phi^*\phi.
+\end{equation*}
+
+So we have two additional terms: a ``mass'' term for the gauge field $A_{\mu}$ which is the third term, and an interaction term given by the second term, which, in the context of EM, can be interpreted as the interaction of a charged scalar field with the photon!
+
+
+
+
+\item Now, if the field is very weak, that means the quantity $A_{\mu}A^{\mu}$ is very small compared to the rest of the terms, so we can neglect it, meaning our Lagrangian is (expanding out the 4-current so we can more easily apply the Euler-Lagrange equations):
+
+\begin{equation*}
+    \lag = \ddp^{\mu}\phi\ddp_{\mu}\phi^* -iqA^{\mu}(\phi^*\ddp_{\mu}\phi - \phi\ddp_{\mu}\phi^*) - m^2\phi^*\phi.
+\end{equation*}
+
+The first term in the EL equations for $\phi^*$ is (which will give us the equation of motion for $\phi$):
+
+\begin{equation*}
+    \ddp_{\mu}\left( \diffp[]{\lag}{(\ddp_{\mu}\phi^*)} \right) = \ddp_{\mu} \left( \ddp^{\mu}\phi + iqA^{\mu}\phi \right) = \ddp_{\mu}\ddp^{\mu}\phi + iq\phi\ddp_{\mu}A^{\mu} + iqA^{\mu}\ddp_{\mu}\phi.
+\end{equation*}
+
+The second term is:
+
+\begin{equation*}
+    \diffp[]{\lag}{{\phi^*}} = - iqA^{\mu}\ddp_{\mu}\phi -m^2 \phi.
+\end{equation*}
+
+So,
+
+\begin{gather*}
+    \ddp_{\mu}\ddp^{\mu}\phi + iq\phi\ddp_{\mu}A^{\mu} + iqA^{\mu}\ddp_{\mu}\phi + iqA^{\mu}\ddp_{\mu}\phi + m^2 \phi = 0 \\
+    \rightarrow \ \boxed{\left( \ddp_{\mu}\ddp^{\mu} + iq\ddp_{\mu}A^{\mu} + 2iqA^{\mu}\ddp_{\mu} + m^2 \right)\phi = 0.}
+\end{gather*}
+
+
+
+
+\end{parts}
+

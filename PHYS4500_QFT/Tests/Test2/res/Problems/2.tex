@@ -1,0 +1,47 @@
+\section{}
+
+We are to show that the QED Lagrangian
+
+\begin{equation}
+    \lag_{\mathrm{QED}} = i\psib\gamma^{\mu}\ddp_{\mu}\psi - m\psib\psi - q\psib\gamma^{\mu}\psi A_{\mu} - \frac{1}{4}F_{\mu\nu}F^{\mu\nu}
+\end{equation}
+
+is invariant under a local phase transformation, where
+
+\begin{align*}
+    \psi &\rightarrow \psi' = e^{i\theta(x)}\psi, \\
+    \psib &\rightarrow \psib' = \psib e^{-i\theta(x)}, \quad\mathrm{and} \\
+    A_{\mu} &\rightarrow A_{\mu}' = A_{\mu} - \frac{1}{q}\ddp_{\mu}\theta(x),
+\end{align*}
+
+where $x$ is the four-vector $x^{\mu}$.
+
+We have seen a number of times already that the mass term will be invariant; there are no derivatives to push the exponentials past, so we are good there. For the first term:
+
+\begin{align*}
+    i\psib'\gamma^{\mu}\ddp_{\mu}\psi'
+    &= i\psib e^{-i\theta(x)} \gamma^{\mu}\ddp_{\mu} \br{e^{i\theta(x)}\psi} \\
+    &= i\psib e^{-i\theta(x)} \gamma^{\mu}\br{\ddp_{\mu}\psi}e^{i\theta(x)} + i\psib e^{-i\theta(x)}\gamma^{\mu}\br{\ddp_{\mu} e^{i\theta(x)}}\psi \\
+    &= i\psib \gamma^{\mu}\ddp_{\mu} \psi - \psib e^{-i\theta(x)}\gamma^{\mu}\br{\ddp_{\mu}\theta} e^{i\theta(x)\psi} \\
+    &= i\psib \gamma^{\mu}\ddp_{\mu} \psi - \psib \gamma^{\mu} \br{\ddp_{\mu}\theta} \psi.
+\end{align*}
+
+For the third term:
+
+\begin{align*}
+    -q\psib'\gamma^{\mu}\psi'A_{\mu}'
+    &= -q\psib e^{-i\theta(x)}\gamma^{\mu}e^{i\theta(x)}\psi \br{A_{\mu} - \frac{1}{q}\ddp_{\mu}\theta} \\
+    &= -q\psib\gamma^{\mu}\psi A_{\mu} + \psib \gamma^{\mu}\psi \br{\ddp_{\mu}\theta}.
+\end{align*}
+
+The last term in this expression exactly cancels the last term in the previous expression, leaving us with only terms from the original Lagrangian. Now, turning to the kinetic term for the gauge field, we can first examine just one of the stress-energy tensors:
+
+\begin{align*}
+    F_{\mu\nu}' 
+    &= (\ddp_{\mu}A_{\nu}' - \ddp_{\nu}A_{\mu}') = \br{\ddp_{\mu}\br{A_{\nu} - \frac{1}{q}\ddp\theta} - \ddp_{\nu}\br{A_{\mu} - \frac{1}{q}\ddp_{\mu}\theta}} \\
+    &= (\ddp_{\mu}A_{\nu} - \ddp_{\nu}A_{\mu} - \frac{1}{q}\ddp_{\mu}\ddp_{\nu}\theta + \frac{1}{q}\ddp_{\nu}\ddp_{\mu}\theta).
+\end{align*}
+
+But, the second and third terms are equal since we can exchange the four-gradients without incurring any extra terms, meaning that they cancel, and the field-strength tensor is invariant under this transformation, and so too is its contraction with itself.
+
+Therefore, the QED Lagrangian is invariant under a local $U(1)$ transformation.

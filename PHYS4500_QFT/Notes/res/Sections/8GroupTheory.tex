@@ -1,0 +1,41 @@
+\section{PLACEHOLDER}
+\subsection*{A Brief Look at Some Group Theory}
+
+\begin{itemize}
+    \item Going back to our local transformations, we saw that we could induce a phase transformation onto our field $\psi$ such that $\psi \rightarrow \psi' = e^{i\theta}\psi$, and that our Lagrangian (and hence the physics) remained invariant under such a transformation.
+    \item We now recognize that $e^{i\theta}$ is an element of the group $U(1)$, which consists of unitary $1\times1$ matrices. Now, a $1\times1$ matrix is just a scalar, so the unitary condition becomes: $U^{\dagger}U \rightarrow U^*U = 1$. It is trivial to check that this is satisfied in our case.
+    \item We also associated such transformations with electromagnetism; the local transformation gave rise to a vector field which, when incorporated into the Lagrangian, introduced terms that led naturally to Maxwell's equations, for instance. Hence, we can say that $U(1)$ invariance leads to electromagnetism.
+    \item Other forces, as we will see eventually, like the weak force and strong force, are associated with different symmetries, namely $SU(2)$ and $SU(3)$ respectively. Since those have more than 1 dimension, they are truly matrices, and therefore we impose that they be ``special'' (hence the `S' in the group name), which just means that they have a determinant of one.
+    \item What is also means is that there are going to be more free parameters. In just the complex space, there is only one rotation angle, but intuitively, as you increase the dimensions, you end up with more rotation angles. I mean, in 3-dim, we have 3 rotation angles about each axis. In group theory, we don't really talk about the angles in the space itself, but rather than number of free parameters that each group ``control''. The \textit{group} of rotations in 3-dim end up with 3 free parameters, which we can associated with the 3 rotation angles.
+    \item It is a little bit more abstract in the cases of these groups, but we find that in general, for $SU(n)$, there are $n^2-1$ free parameters, or ``rotation angles''. $SU(2)$ thus has 3 free parameters and $SU(3)$ has 8.
+    \item Additionally, an element of these higher dimensional groups is no longer just a simple scalar like $e^{i\theta}$. However, we can express an element of the group like $e^{iH}$, where now $H$ is a matrix (this exponential of a matrix is defined as its power series expansion). It turns out that is must be Hermitian; let's see this:
+        \begin{equation*}
+            U^{\dagger}U = e^{-iH^{\dagger}}e^{iH} = e^{i(H-H^{dagger})} = 1.
+        \end{equation*}
+        The only way for this to be satisfied is if $H = H^{\dagger}$, which means that it is Hermitian.
+    \item More specifically, we will be looking at \textbf{Lie groups}, which are special groups whose free parameters are continuous. A rotation angle is clearly continuous, so these groups are Lie groups. When looking at a Lie group, we can write an element of the group as:
+        \begin{equation*}
+            e^{i T^a \theta^a},
+        \end{equation*}
+        where $\theta^a$ is an $n^2-1$ dimensional vector capturing each free parameter (like the angle of rotation about each axis in 3-dim), and $T^a$ is a similarly sizes vector consisting of the \textbf{generators} of the group. These can be calculated in many ways, but their interpretation (and why they are called generators) is that they induce infinitesimal transformations in a particular direction. As an analogy, there would be a generator for each possible rotation in 3-dim, and the $x$-axis rotation generator would generate an infinitesimal rotation about that axis. In the power series representation, we can sort of see how, when combined with the corresponding rotation angle/free parameter(since, expanding for the 3-dim case, we would have something like $e^{i(T_x\theta_x)}$ if we were only considering $x$) we would end up getting a full rotation.
+    \item It turns out that for $SU(2)$, these generators are something we have seen before: the Pauli matrices! So, we can generate an $SU(2)$ transformation like so:
+        \begin{equation*}
+            e^{-\dotprodv{\sigma}{\theta}/2},
+        \end{equation*}
+        where we have used normal vector notation, since we know that $SU(2)$ has three free parameters. The factor of $1/2$ there for a nuanced reason: in the ``fundamental representation'', the generators are the Pauli matrices divived by two. This gets into representation theory, which is a nightmare.
+    \item Similarly, and element of $SU(3)$ can be found like:
+        \begin{equation*}
+            e^{i\lambda^a\theta^a/2},
+        \end{equation*}
+        where the $\lambda$'s are the Gell-Mann matrices, the analog of the Pauli spin matrices for $SU(3)$. Again, the $1/2$ is in there because in the fundamental representation the generators are the Gell-Mann matrices divided by two.
+    \item Another property of Lie groups is that these generators satisfy certain commutation relations:
+        \begin{equation*}
+            [T^a,T^a] = if^{abc}T^c,
+        \end{equation*}
+        where $f^{abc}$ are called the \textbf{structure constants} of the group, and, apart from the obvious fact of there being simply more/less generators in other groups, these sort of differentiate groups from each other and define how they operate.
+    \item Another interesting fact as our first application of this to physics stuff: when we enforce that a local gauge transformation of an element of $SU(n)$ in general, we still get a vector/gauge field as always, but we will also get some more complex terms when it comes to how they transform and interact. For instance, the ``field-strength'' tensor that arose from local $U(1)$ symmetry can be generalized as:
+        \begin{equation*}
+            G^{\mu\nu}_a = \ddp^{\mu}A^{\nu}_a - \ddp^{\nu}A^{\mu}_a + gf_{abc}A^{\mu}_bA^{\nu}_c,
+        \end{equation*}
+        where now we can see that we have interactions among the gauge fields themselves ($g$ is just a coupling constant, characterizing the strength of this interaction). This term was not present in our $U(1)$ case, and we know that the photon does not couple to itself; it mediates the electromagnetic force, so as a chargless particle, it obviously won't interact with itself!
+\end{itemize}

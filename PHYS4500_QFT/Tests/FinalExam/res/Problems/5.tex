@@ -1,0 +1,98 @@
+\section{}
+
+We are considering the eikonal rule for the outgoing anti-quark, meaning we are looking at the following diagram:
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{feynman}
+      \vertex[dot] (i) {};
+      \vertex[right of=a] (x);
+      \vertex[right of=x] (f);
+      \vertex[below of=x] (a);
+
+      \diagram* {
+        (i) --[anti fermion, momentum=$p-k$] (x) --[anti fermion, momentum=$p$] (f),
+        (x) --[gluon, rmomentum=$k$] (a),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{center}
+
+Since the propagator has a ``time'' direction opposite that of its momentum, its momentum picks up a minus, meaning we have
+
+\begin{align}
+  \rightarrow\quad & \frac{i(-\psl + \ksl + m)}{(p - k)^2 - m^2} (-ig_sT^a\gamma^\mu)v(p) \\
+  &= g_sT^a \frac{(-\psl + m)}{-2p \cdot k} \gamma^\mu v(p),
+\end{align}
+
+where I've taken $k \rightarrow 0$ here. Looking at the numerator and everything to the right of the fraction, we have
+
+\begin{align}
+  &= (-p_\nu\gamma^\nu\gamma^\mu + m\gamma^\mu)v(p) \\
+  &= [-p_\nu(2g^{\nu\mu} - \gamma^\mu\gamma^\nu) + m\gamma^\mu]v(p) \\
+  &= (-2p^\mu + \gamma^\mu\psl + m\gamma^\mu)v(p) \\
+  &= -2p^\mu v(p) + \gamma^\mu(\psl + m)v(p) \\
+  &= -2p^\mu,
+\end{align}
+
+where the last term in the second-to-last expression vanishes by virtue of the Dirac equation for anti-particles. Our Feynman rules then read
+
+\begin{equation}
+  \rightarrow\quad g_sT^a \frac{-2p^\mu}{-2p \cdot k} v(p) = g_sT^a \frac{v^\mu}{v \cdot k} v(p),
+\end{equation}
+
+where the $v$ in the fraction is the four-velocity.
+
+We now consider the one-loop cusp diagram
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{feynman}
+      \vertex[dot] (a) {};
+      \vertex[above right of=a]  (x1);
+      \vertex[above right of=x1] (f1);
+      \vertex[below right of=a]  (x2);
+      \vertex[below right of=x2] (f2);
+
+      \diagram* {
+        (a) --[anti fermion, momentum=$p_1-k$] (x1) --[anti fermion, momentum=$p_1$] (f1),
+        (a) --[fermion, momentum'=$p_2+k$] (x2) --[fermion, momentum'=$p_2$] (f2),
+        (x2) --[gluon, momentum'=$k$] (x1),
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{center}
+
+Just as in the lecture notes, I will ignore the color factors, since they amount to, just like in other calculations, a product of $SU(3)$ generators that isn't really simplifiable unless we square the amplitude. What this diagram amounts to is the product of the eikonal rule for an outgoing quark and that for an outgoing anti-quark, then we contract the two four-velocities with the gluon propagator (minus color factor terms). We also need an integral over all possible $k$ momenta, and we won't consider the external spinors since we just want to look at the integral itself:
+
+\begin{equation}
+  I = \int \frac{\dd^nk}{(2\pi)^n} \; g_s \frac{v_2^\mu}{v_2 \cdot k} \br{\frac{-ig_{\mu\nu}}{k^2}} g_s \frac{v_1^\nu}{v_1 \cdot k} = -ig_s^2 (v_2 \cdot v_1) \int \frac{\dd^nk}{(2\pi)^n} \; \frac{1}{(v_2 \cdot k)k^2(v_1 \cdot k)}.
+\end{equation}
+
+We can use Feynman parameters to simplify this. We have already done the case with $\frac{1}{ABC}$ before:
+
+\begin{equation}
+  \frac{1}{ABC} = 2\int_0^1\dd x \int_0^{1-x} \dd y \; \frac{1}{[xA + yB + (1-x-y)C]^3}.
+\end{equation}
+
+Therefore, in our case, we have that
+
+\begin{equation}
+  \frac{1}{(v_2 \cdot k)k^2(v_1 \cdot k)} = 2\int_0^1 \dd x \int_0^{1-x} \dd y \; \frac{1}{[x(v_2 \cdot k) + yk^2 + (1-x-y)(v_1 \cdot k)]^3},
+\end{equation}
+
+so the total integral for the one-loop cusp diagram is
+
+\begin{equation}
+  I = -2ig_s^2 (v_2 \cdot v_1) \int_0^1 \dd x \int_0^{1-x} \dd y \int \frac{\dd^nk}{(2\pi)^n} \; \frac{1}{[x(v_2 \cdot k) + yk^2 + (1-x-y)(v_1 \cdot k)]^3}.
+\end{equation}
+
+We are asked not to calculate the integral, so this is as far as I'll go.
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../FinalExam"
+%%% End:

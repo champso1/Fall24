@@ -1,0 +1,42 @@
+\section{(4.3)}
+
+We are told that a particle of mass $m$ moves in the $x$-direction under some potential $U = bx$.
+
+\begin{parts}
+%a
+\item The kinetic energy is simply the classical $T = \frac{1}{2}m\dot{x}^2$, and the potential is given, so our Lagrangian is:
+\begin{equation}
+    L = \frac{1}{2}m\dot{x}^2 - bx.
+\end{equation}
+
+%b
+\item The first term in the Euler-Lagrange equation is
+\begin{equation*}
+    \diffp{L}{x} = -b,
+\end{equation*}
+and the second term is:
+\begin{equation*}
+    \diff{}{t}\diffp[]{L}{\dot{x}} = \diff{}{t}[m\dot{x}] = m\ddot{x}.
+\end{equation*}
+So, the full Euler-Lagrange equation is:
+\begin{gather*}
+    \diffp{L}{x} - \diff{}{t}\diffp[]{L}{\dot{x}} = -b - m\ddot{x} = 0, \\
+    \rightarrow \boxed{m\ddot{x} + b = 0.}
+\end{gather*}
+
+
+%c
+\item To solve, we first get just $\ddot{x}$ on one side:
+\begin{equation*}
+    \ddot{x} = -\frac{b}{m}.
+\end{equation*}
+Then we just integrate:
+\begin{gather*}
+    \dot{x} = -\frac{b}{m}\int \;\ddt = -\frac{b}{m}t + \dot{x}_0, \\
+    x = \int \left(-\frac{b}{m}t + \dot{x}_0\right) \;\ddt = -\frac{b}{2m}t^2 + \dot{x}_0 t + x_0, \\
+    \rightarrow \boxed{x(t) = -\frac{b}{2m}t^2 + \dot{x}_0 t + x_0.}
+\end{gather*}
+
+
+
+\end{parts}

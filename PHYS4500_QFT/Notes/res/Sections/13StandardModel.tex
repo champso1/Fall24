@@ -1,0 +1,92 @@
+\section{The Standard Model}
+
+\begin{itemize}
+    \item Here we start to delve into some more stuff that is more related to the Standard Model. In class we started with describing particles and some basic conserved quantities as well as the CPT theorem, but I already know all this so I won't write it here. Instead, I will jump straight to the Yang-Mills theory stuff.
+\end{itemize}
+
+
+
+\subsection*{Yang-Mills Theories}
+
+\begin{itemize}
+    \item We now consider two spinor fields, $\psi_a$ and $\psi_b$. With this, the Lagrangian (without gauge field stuff yet) is basically two identical copies for each spinor field:
+        \begin{equation}
+            \lag_{\mathrm{Dirac}} = i\psib_a \gamma^{\mu}\ddp_{\mu} \psi_a - m\psib_a\psi_a + i\psib_b \gamma^{\mu}\ddp_{\mu} \psi_b - m\psib_b\psi_b.
+        \end{equation}
+    \item The next thing we can do is combine the two fields into one new field:
+        \begin{equation}
+            \psi = \begin{pmatrix}\psi_a \\ \psi_b\end{pmatrix} \quad\rightarrow\quad \psib = \begin{pmatrix}\psib_a & \psib_b\end{pmatrix}.
+        \end{equation}
+    \item With this, we recover (almost) the more familiar Lagrangian:
+        \begin{equation}
+            \lag_{\mathrm{Dirac}} = i\psib \gamma^{\mu}\ddp_{\mu} \psi - \psib M \psi,
+        \end{equation}
+        where now the capital $M$ is a matrix:
+        \begin{equation}
+            M = \begin{pmatrix}m_a & 0 \\ 0 & m_b\end{pmatrix}.
+        \end{equation}
+    \item Let's now do a global gauge transformation $\psi \rightarrow \psi' = U\psi$, where $U$ is some unitary $2\times2$ matrix (meaning $UU^{\dagger} = U^{\dagger}U = 1$; also $U^{\dagger} = U^{-1}$).
+    \item We know from before that we can write any unitary matrix as the complex exponential of a Hermitian matrix: $U = e^{iH}$ ($H$ is not the Hamiltonian here, but an arbitrary Hermitian matrix). Considering that we are working in the space of $2\times2$ matrices, this is the group $U(2)$.
+    \item The last simplification we can make is to assume mass degeneracy, meaning $m_a=m_b=m$, where we actually do recover the familiar Dirac Lagrangian (so I won't type it).
+    \item Just as before, doing a global transformation will leave this Lagrangian invariant. We can push the $U$ past the derivatives, and it commutes with the gammas since it is a completely different space ($U$ is a $2x2$, $\gamma^{\mu}$ is a 4-vector of $4\times4$ matrices), so everything cancels nicely.
+    \item Now, in general, in $U(2)$, we can express the Hermitian matrix as $H = \phi + \sigma^i\theta^i$, where $i=1,2,3$ (so I could've used normal 3-vector notation, but I choose to avoid that). Here, $\phi$ is just a phase factor. We associate this with $U(1)$ in EM, so we want to eliminate that here and just focus on the other part with the Pauli matrices. The way we can do this is to require that the determinant of $U$ is 1, which has the effect of removing that phase factor.
+    \item With this, we are now working in $SU(2)$, where $U = e^{i\sigma^i\theta^i}$.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item We now promote this symmetry to a local one, just like before, where the angles now depend on the space-time position: $\theta^i \rightarrow \theta^i(x)$ ($x$ is assumed to be the 4-vector $x^{\mu}$). Of course, we are no longer able to push the $U$ past the derivative anymore, and we pick up an extra term.
+    \item The way to alleviate this is to add another term in the Lagrangian involving gauge fields (3, to be exact, since we have 3 generators and three terms that come from the 4-derivative).
+    \item First, let's re-express the angles by bringing out a scalar in front: $\theta(x) \rightarrow q\lambda(x)$. Then, we can add the term $-q(\psib \gamma^{\mu} \sigma^i \psi) A_{\mu}^i$. There's a lot going on here! We have spinors with four terms, a 4-vector that is in a different space of the spinors containing $4\times4$ matrices that are back again in spinor space, a 3-vector of $2\times2$ matrices, etc. 
+    \item Anyway, these new scalar fields need to transform in a certain way to respect this local symmetry. Actually, we also need to consider the contraction between the Pauli matrices and the gauge fields:
+        \begin{equation}
+            \sigma^i A_{\mu}^i \rightarrow U \sigma^i A_{\mu}^i U^{\dagger} + \frac{i}{q}(\ddp_{\mu} U)U^{\dagger}.
+        \end{equation}
+    \item Our Lagrangian is now
+        \begin{equation}
+            \lag = i\psib \gamma^{\mu}\ddp_{\mu} \psi - m\psib\psi - q(\psib \gamma^{\mu} \sigma^i \psi) A_{\mu}^i.
+        \end{equation}
+    \item Testing out the local transformation:
+        \begin{align}
+            \lag' &= i\psib U^{\dagger} \gamma^{\mu}\ddp_{\mu}(U \psi) - m\psib U^{\dagger}U \psi - q\psib U^{\dagger} \gamma^{\mu} U\sigma^iA_{\mu}^i U^{\dagger}U \psi - q\psib U^{\dagger} \gamma^{\mu} \frac{i}{q}(\ddp_{\mu}U)U^{\dagger}U \psi \\
+            &= i\psib U^{\dagger} \gamma^{\mu}(\ddp_{\mu} U)\psi + i\psib \gamma^{\mu}\ddp_{\mu}\psi - m\psib\psi - q\psib \gamma^{\mu} \sigma^iA_{\mu}^i \psi - i\psib U^{\dagger} \gamma^{\mu} (\ddp_{\mu} U)\psi \\
+            &= i\psib \gamma^{\mu}\ddp_{\mu} - m\psib\psi - q\psib \gamma^{\mu} \sigma^iA_{\mu}^i \psi.
+        \end{align}
+    \item This is exactly our original Lagrangian, so this local $SU(2)$ transformation is a symmetry!
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item We can combine everything into the covariant derivative
+        \begin{equation}
+            D_{\mu} = \ddp_{\mu} + iq \sigma^iA_{\mu}^i,
+        \end{equation}
+        wherein our Lagrangian becomes
+        \begin{equation}
+            \lag = i\psib \gamma^{\mu}D_{\mu} \psi - m\psib\psi,
+        \end{equation}
+        which is essentially just the normal Dirac Lagrangian.
+    \item As before, when considering the gauge terms, mass terms like $\sim m_A^2 A_{\mu}^iA^{i,\mu}$ cannot be gauge invariant, so we must have that $m_A=0$. We will still have a similar looking kinetic term, but with just a few extra components. We will have $-F_{\mu\nu}^i F^{i,\mu\nu}$, where
+        \begin{equation}
+            F_{\mu\nu}^i = \ddp_{\mu}A_{\nu}^i - \ddp_{\nu}A_{\mu}^i + iqf^{ijk} A_{\mu}^j A_{\nu}^k.
+        \end{equation}
+    \item Here, $f^{ijk}$ are the structure constants for the group $SU(2)$, defined by 
+        \begin{equation}
+            [\sigma_i,\sigma_j] = if_{ijk}\sigma_k = 2i \epsilon_{ijk} \sigma_k,
+        \end{equation}
+        where $\epsilon_{ijk}$ is the Levi-Civita. Thus, in 3-vector land, we can write this as
+        \begin{equation}
+            F_{\mu\nu}^i = \ddp_{\mu}A_{\nu}^i - \ddp_{\nu}A_{\mu}^i + 2q(\vv{A}_{\mu} \times \vv{A}_{\nu})^i.
+        \end{equation}
+    \item To make it a bit more familiar, we can consider a small $\lambda$ where $\lambda$ was defined by $\vv{Q} = q{\lambda}$, where an element of $SU(2)$ can now be found by $U = e^{iq \sigma^i\lambda^i}$. For small $\lambda$, then, we can expand the exponential in a power series and just keep the linear term:
+        \begin{equation}
+            U = 1 + iq \sigma^i\lambda^i + O(\lambda^2).
+        \end{equation}
+    \item Then, it can be shown that instead of having a transformation rule for the combined quantity $\sigma^iA_{\mu}^i$, we can just impose
+        \begin{equation}
+            A_{\mu}^i \rightarrow A_{\mu}^i - \ddp_{\mu}\lambda^i - iq f^{ijk}\lambda^iA_{\mu}^k
+        \end{equation}
+        and still have our Lagrangian be gauge invariant.
+\end{itemize}

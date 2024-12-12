@@ -1,0 +1,81 @@
+\section{}
+
+We are to show that the spinor
+
+\begin{equation}
+    v^{(1)} = \sqrt{\frac{E+mc^2}{c}} \begin{pmatrix}\frac{c(p_x - ip_y)}{E+mc^2} \\[4pt] \frac{-cp_z}{E+mc^2} \\[4pt] 0 \\ 1\end{pmatrix}
+\end{equation}
+
+satisfies the momentum-space Dirac equation 
+
+\begin{equation}
+    \gamma^{\mu}p_{\mu}v^{(1)} = -mc v^{(1)}.
+\end{equation}
+
+For notational simplicity, I will just write $v^{(1)} \rightarrow v$, and I will use natural units where $c=1$. Additionally, since $v$ appears on both sides in the Dirac equation, we can eliminate the normalization term (the square root) and rewrite
+
+\begin{equation*}
+    v \rightarrow \begin{pmatrix}\frac{(p_x - ip_y)}{E+m} \\[4pt] \frac{-p_z}{E+m} \\[4pt] 0 \\ 1\end{pmatrix} = \begin{pmatrix} p_x - ip_y \\ -p_z \\ 0 \\ E+m \end{pmatrix}.
+\end{equation*}
+
+Lastly, to keep with the simpler $2\times2$ convention (at least at first), I will let
+
+\newcommand{\veeminus}{\begin{pmatrix}0 \\ E+m\end{pmatrix}}
+\newcommand{\veeplus}{\begin{pmatrix}p_x - ip_y \\ -p_z\end{pmatrix}}
+\begin{equation*}
+    v = \begin{pmatrix}v_+ \\ v_-\end{pmatrix}, \quad \mathrm{where}, \quad v_+ = \veeplus \quad \mathrm{and} \quad v_- = \veeminus.
+\end{equation*}
+
+Now let's look at $\gamma^{\mu}p_{\mu}$:
+
+\begin{align*}
+    \gamma^{\mu}p_{\mu} &= p_0 \gamma^0 + p_1\gamma^{1} + p_2\gamma^{2} + p_3\gamma^{3}, \\
+    &= E \gammazerostand - p_x \gammai{x} - p_y\gammai{y} - p_z\gammai{z}, \\
+    &= \begin{pmatrix}E & -\dotprodv{p}{\sigma} \\ \dotprodv{p}{\sigma} & -E\end{pmatrix}.
+\end{align*}
+
+So our momentum-space Dirac equation for $v$ is
+
+\begin{align*}
+    \begin{pmatrix}E & -\dotprodv{p}{\sigma} \\ \dotprodv{p}{\sigma} & -E\end{pmatrix}\begin{pmatrix}v_+ \\ v_-\end{pmatrix} &= -m\begin{pmatrix}v_+ \\ v_-\end{pmatrix}, \\
+    \begin{pmatrix}Ev_+ \\ \dotprodv{p}{\sigma}v_+\end{pmatrix} - \begin{pmatrix}\dotprodv{p}{\sigma}v_- \\ Ev_-\end{pmatrix} &= \begin{pmatrix}-mv_+ \\ -mv_-\end{pmatrix}.
+\end{align*}
+
+Now,
+
+\begin{align*}
+    \dotprodv{p}{\sigma} &= p_x\sigmax + p_y\sigmay + p_z\sigmaz, \\
+    &= \begin{pmatrix}p_z & p_x - ip_y \\ p_x + ip_y & -p_z\end{pmatrix},
+\end{align*}
+
+so,
+
+\begin{equation*}
+    \dotprodv{p}{\sigma}v_- = \begin{pmatrix}p_z & p_x - ip_y \\ p_x + ip_y & -p_z\end{pmatrix}\veeminus = \begin{pmatrix}(E+m)(p_x - ip_y) \\ -p_z(E+m)\end{pmatrix},
+\end{equation*}
+
+and
+
+\begin{align*}
+    \dotprodv{p}{\sigma} v_+ &= \begin{pmatrix}p_z & p_x - ip_y \\ p_x + ip_y & -p_z\end{pmatrix}\veeplus, \\
+    &=  \begin{pmatrix}
+            p_z(p_x - ip_y) - p_z(p_x - ip_y \\ (p_x + ip_y)(p_x - ip_y) + p_z^2)
+        \end{pmatrix}, \\
+    &= \begin{pmatrix}0 \\ \vv{p}^2 \end{pmatrix}.
+\end{align*}
+
+Returning back to the Dirac equation, we need to now expand fully to $4\times4$ matrices:
+
+\begin{align*}
+    \rightarrow \begin{pmatrix}E(p_x - ip_y) \\ -Ep_z \\ 0 \\ \vv{p}^2\end{pmatrix} - \begin{pmatrix}(E+m)(p_x - ip_y) \\ -p_z(E+m) \\ 0 \\ E(E+m)\end{pmatrix} &= -m\begin{pmatrix}p_x - ip_y \\ -p_z \\ 0 \\ E+m \end{pmatrix}, \\
+    \begin{pmatrix}-m(p_x - ip_y) \\ -mp_z \\ 0 \\ \vv{p}^2 - E(E+m)\end{pmatrix} &= \begin{pmatrix}-m(p_x - ip_y) \\ -mp_z \\ 0 \\ -Em - m^2\end{pmatrix}.
+\end{align*}
+
+The first three rows are obviously equal, so the last row's equality is all that's left to show:
+
+\begin{align*}
+    \vv{p}^2 - E^2 - Em &= -Em - m^2, \\
+    E^2 - \vv{p}^2 &= m^2,
+\end{align*}
+
+but the last line is just the mass-shell condition, so it must be true. At last, then, we have shown that the spinor $v^{(1)}$ satisfies the momentum space Dirac equation.

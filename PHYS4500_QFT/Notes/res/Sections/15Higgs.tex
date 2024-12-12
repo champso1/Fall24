@@ -1,0 +1,254 @@
+\section{The Higgs Mechanism}
+
+\begin{itemize}
+\item Let's define a complex scalar field $\phi$ called the \textbf{Higgs} field. It'll carry a weak isospin $I_w = 1/2$, and thus we represent it as a doublet like
+  \begin{equation}
+    \Phi = \begin{pmatrix}\phi^+ \\ \phi^0\end{pmatrix}.
+  \end{equation}
+\item It also carries hypercharge $Y=1$, so we have that
+  \begin{equation}
+    D_{\mu}\Phi = \ddp_{\mu}\Phi + \frac{i}{2}g \sigma^iW_{\mu\nu}^i\Phi + \frac{i}{2}g'B_{\mu}\Phi,
+  \end{equation}
+  and it will carry additional stuff in the Lagrangian from the Klein-Gordon Lagrangian:
+  \begin{equation}
+    \lag_{\Phi} = (D_{\mu}\Phi)^{\dagger}D^{\mu}\Phi - m^2\Phi^{\dagger}\Phi - \lambda(\Phi^{\dagger}\Phi)^2 - G(\bar{L}\Phi e_R + \bar{e}_R \Phi^{\dagger} L),
+  \end{equation}
+  where $G$ is some other coupling between the Higgs, the left-handed doublet, and the right-handed singlet. $\lambda$ is a Yukawa coupling, a coupling we parametrize differently as it is a coupling between scalar particles.
+\end{itemize}
+
+
+\subsection{Spontaneous Symmetry Breaking}
+
+\begin{itemize}
+\item (The previous section was I guess just an intro). To delve into the Higgs stuff, we consider a simpler model consisting of a single complex scalar field $\phi$ and some gauge field $A^\mu$ (meaning $\phi = (\phi_1 + i\phi_2)/\sqrt{2}$).
+\item The Klein-Gordon Lagrangian terms for this are
+  \begin{equation}
+    \lag_\phi = (D_\mu\phi)^*D^\mu\phi - m^2\phi^*\phi - \lambda(\phi^*\phi)^2,
+  \end{equation}
+  where, as always $D_\mu = \ddp_\mu + iqA_\mu$.
+\item Now, where this deviates from normal complex scalar theory is we consider $m^2 < 0$, and define $\mu^2 = -m^2$ so that
+  \begin{equation}
+    \lag_\phi = (D_\mu\phi)^*D^\mu\phi + \mu^2\phi^*\phi - \lambda(\phi^*\phi)^2.
+  \end{equation}
+  At this point, $\phi=0$ is no longer the ground state, it is actually a local maximum. Let's consider just the potential terms:
+  \begin{equation}
+    U = -\mu^2\phi^*\phi + \lambda(\phi^*\phi)^2,
+  \end{equation}
+  so, to find the value of $\phi$ for which the potential is a maximum we simply do the derivative and set it equal to zero:
+  \begin{gather}
+    \diff{U}{\phi} = 0 \rightarrow -\mu^2\phi^* + 2\lambda(\phi^*)^2\phi = 0 \\
+    \rightarrow \phi^*\phi = \frac{\mu^2}{2\lambda} \rightarrow \frac{1}{2}(\phi_1^2 + \phi_2^2) = \frac{\mu^2}{2\lambda} \rightarrow \phi_1^2 + \phi_2^2 = \frac{\mu^2}{\lambda}.
+  \end{gather}
+  We can select, for instance, $\phi_2=0$ and $\phi_1 = \mu/\sqrt{2}$ which gives us, after plugging in, that $U_{\mathrm{min}} = -\mu^4/4\lambda$.
+\item Now, we can select two new fields $\eta = \phi_1 - \mu/\sqrt{\lambda}$ and $\xi = \phi_2$ so that
+  \begin{equation}
+    \phi = \frac{1}{\sqrt{2}}\br{\eta + \frac{\mu}{\sqrt{\lambda}} + i\chi}.
+  \end{equation}
+  At this point, $U$ is now a minimum when both $\eta = \chi = 0$.
+
+\item With our new fields, we can do a bunch of algebra to rewrite the Lagrangian in terms of these new fields:
+  \begin{align}
+    \lag &= \frac{1}{2}\ddp_\mu\eta \ddp^\mu\eta - \mu^2\eta^2 + \frac{1}{2}\ddp_\mu\chi \ddp^\mu\chi + \frac{q^2\mu^2}{2\lambda}A_\mu A^\mu + \frac{\mu^4}{4\lambda} + \frac{1}{2}q^2A_\mu A^\mu \br{\eta^2 + \frac{2\eta\mu}{\sqrt{\lambda}} + \chi^2} \\
+    &+ qA^\mu\br{\eta\ddp_\mu\chi - \chi\ddp_\mu\eta + \frac{\mu}{\sqrt{2}}\ddp_\mu\chi} - \frac{\lambda}{4}\br{\eta^4 + \chi^4 + 4\eta^3 \frac{\mu}{\sqrt{\lambda}} + 2\eta^2\chi^2 + 4\eta \frac{\mu\chi^2}{\sqrt{\lambda}}}.
+  \end{align}
+\item That's a lot. However, what is important to notice here is that there is not actually a mass term for the $\chi$ field! We call such a field a \textbf{Goldstone Boson}. It is given a special name because any spontaneous breaking of a symmetry entails the existsence of some massless particle.
+\item Interestingly, though, the gauge field $A^\mu$ now has a mass. We can entirely eliminate the $\chi$ field by performing a phase rotation (valid under local gauge invariance) where $\tan\theta = -\phi_2/\phi_1$. If we perform this rotation on a complex number(/field), the imaginary part vanishes, thus eliminating the Goldstone boson field. With this, our Lagrangian is now:
+  \begin{equation}
+    \lag = \frac{1}{2}\ddp_\mu\eta\ddp^\mu\eta - \mu^2\eta^2 + \frac{1}{2}m_A^2A_\mu A^\mu + \frac{q^2}{2}A_\mu A^\mu \br{\eta^2 + \frac{2\mu}{\sqrt{\lambda}}\eta} - \frac{\lambda}{4}\br{\eta^4 + \frac{4\mu}{\sqrt{\lambda}}\eta^3} + \frac{\mu^4}{4\lambda}.
+  \end{equation}
+\item At this point, the interpretation of this is that we eliminated the Goldstone boson $\chi$, and the gauge field ``ate'' it, giving it mass. The remaining $\eta$ is now our massive scalar Higgs field.
+  
+\end{itemize}
+
+
+
+
+\subsection{Generalization to EW Theory}
+
+\begin{itemize}
+\item This generalizes to (GWS) EW theory. The difference is that now we must consider a doublet
+  \begin{equation}
+    \varphi(x) = \begin{pmatrix}0 \\ \rho + \frac{1}{\sqrt{2}}\phi(x)\end{pmatrix}
+  \end{equation}
+  where $\rho = \mu/\sqrt{2\lambda}$.
+\item I won't go into any of the funny business with what the Lagrangian looks like, especially because there is nothing really new involved. This time, though, we end up with four total gauge bosons, three $W$'s and one $B$. By doing rotations and eating up of Goldstone bosons, the $B$ remains massless and becomes the photon, the three $W$'s pick up mass, and the rotations recombine them in particular ways to give the $W^\pm$ and the $Z$ (sometimes written $Z^0$ boson).
+\end{itemize}
+
+
+
+
+
+\subsection{Feynman Rules for EQ Theory}
+
+\begin{itemize}
+\item With (precious little) formalism, we now present the Feynman rules for EW theory. The propagator for massive gauge bosons is given by
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{feynman}[large]
+        \vertex (a);
+        \vertex[right of=a] (b);
+        \diagram* {
+          a --[boson] (b)
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \hspace*{0.5cm}$\rightarrow$\hspace*{0.5cm}
+    $\displaystyle \frac{-i\left[g_{\mu\nu} - \frac{p_\mu p_\nu}{m^2} \right]}{p^2 - m^2 + i\epsilon}$.
+  \end{center}
+
+\item We can also write the possible verices. There can be a flavor changing reaction mediated by either $W$ which converts a lepton into its neutrino, or converts a quark to its corresponding other quark (for instance, from a $u$ to a $d$):
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{feynman}
+        \vertex (a) {$e^-$};
+        \vertex[above right of=a] (b);
+        \vertex[above of=b] (c) {$W^-$};
+        \vertex[below right of=b] (d) {$\nu_e$};
+        \diagram* {
+          (a) --[fermion] (b) --[fermion] (d),
+          (b) --[boson] (c)
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \hspace*{0.5cm}$\rightarrow$\hspace*{0.5cm}
+    $\displaystyle \frac{-i\left[g_{\mu\nu} - \frac{p_\mu p_\nu}{m^2} \right]}{p^2 - m^2 + i\epsilon}$.
+  \end{center}
+
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{feynman}
+        \vertex (a) {$u,c,t$};
+        \vertex[above right of=a] (b);
+        \vertex[above of=b] (c) {$W^-$};
+        \vertex[below right of=b] (d) {$d,s,b$};
+        \diagram* {
+          (a) --[fermion, edge label=$i$] (b) --[fermion, edge label=$j$] (d),
+          (b) --[boson] (c)
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \hspace*{0.5cm}$\rightarrow$\hspace*{0.5cm}
+    $\displaystyle \frac{-ie}{2\sqrt{2} \, \sin\theta_W}\gamma^\mu(1 - \gamma^5)V_{ij}$,
+  \end{center}
+  where $V_{ij}$ is an element of the CKM matrix, which defines how quark mixing occurs.
+
+\item There are also neutral current processes, but these cannot be flavor changing (in the current SM, at least):
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{feynman}
+        \vertex (a) {$t$};
+        \vertex[above right of=a] (b);
+        \vertex[above of=b] (c) {$Z$};
+        \vertex[below right of=b] (d) {$t$};
+        \diagram* {
+          (a) --[fermion] (b) --[fermion] (d),
+          (b) --[boson] (c)
+        };
+      \end{feynman}
+    \end{tikzpicture}
+    \hspace*{0.5cm}$\rightarrow$\hspace*{0.5cm}
+    $\displaystyle \frac{-ie}{\sin(2\theta_W)} \gamma^\mu(c_v^t - c_A^t)$,
+  \end{center}
+  where $c_v$ and $c_A$ are defined differently for the different quarks and leptons (hence the superscript $t$).
+
+\item This theory also admits self-interactions, so there are tons of different diagrams with three and four bosons interacting, including the Higgs. I won't write any of them thouhg, because I don't think we really look at them.
+\end{itemize}
+
+
+
+
+
+
+
+\subsection{Muon Decay}
+
+\begin{itemize}
+\item We are now in a position to write the amplitude for the decay of the muon into an electron, a muon neutrino, and an anti electron neutrino.
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{feynman}[large]
+        \vertex (i) {$\mu^-$};
+        \vertex[right of=i] (v1);
+        \vertex[above right of=v1] (f1) {$\nu_\mu$};
+        \vertex[below right of=v1] (v2);
+        \vertex[above right of=v2] (f2) {$e^-$};
+        \vertex[below right of=v2] (f3) {$\bar{\nu}_e$};
+
+        \diagram* {
+          (i) --[fermion, edge label'=$p_1$] (v1) --[fermion, edge label=$p_3$] (f1),
+          (v1) --[boson, edge label=$W^-$, momentum'=$q$] (v2) --[fermion, edge label'=$p_4$] (f2),
+          (v2) --[anti fermion, edge label'=$p_2$] (f3)
+        };
+      \end{feynman}
+    \end{tikzpicture}
+  \end{center}
+
+\item First, we note that $p_1 = p_2+p_3+p_4$ and $q = p_1-p_3 = p_2+p_4$. Now, we can write down that
+  \begin{equation}
+    i\mathcal{M} = \bar{u}(p_3) \frac{(-ie)\gamma^\mu(1-\gamma^5)}{2\sqrt{2} \, \sin\theta_W} u(p_1) \cdot \frac{(-i)\br{g_{\mu\nu} - \frac{q_\mu q_\nu}{m_W^2}}}{q^2 - m_W^2} \cdot \bar{u}(p_4) \frac{(-ie)\gamma^\nu(1-\gamma^5)}{2\sqrt{2} \, \sin\theta_W} v(p_2).
+  \end{equation}
+  We can assume that $q^2 << m_W^2$, in which the term in parentheses in the propagator simplifies to just the metric and the denominator turns into $q^2 - m_W^2 \rightarrow -m_W^2$. So,
+  \begin{equation}
+    \mathcal{M} = - \frac{e^2}{8\sin^2\theta_W \, m_W^2} \bar{u}(p_3)\gamma^\mu(1-\gamma^5)u(p_1) \bar{u}(p_4) \gamma_\mu(1-\gamma^5)v(p_2).
+  \end{equation}
+  After some more work we find that
+  \begin{equation}
+    \abs{\mathcal{M}}^2 = \frac{2e^4}{\sin^4\theta_W \, m_W^4} (p_1 \cdot p_2)(p_3 \cdot p_4).
+  \end{equation}
+\item From here, we can find the decay rate via Fermi's Golden Rule:
+  \begin{equation}
+    \dd\Gamma = \frac{\abs{\mathcal{M}}^2}{2E_1} (2\pi)^4 \delta^4(p_1 - p_2 - p_3 - p_4) \prod_{i=2}^4 \frac{\dd^3p_i}{(2\pi)^3 2E_i}.
+  \end{equation}
+\end{itemize}
+
+
+
+
+
+\subsection{Single Top-Quark Production}
+
+\begin{itemize}
+\item We also have the ability to singly produce top quarks via some flavor-changing process. As an example, we have the diagram of
+  \begin{center}
+    \begin{tikzpicture}
+      \begin{feynman}[large]
+        \vertex (v1);
+        \vertex[right of=v1] (v2);
+        \vertex[above left of=v1] (i1) {$u$};
+        \vertex[below left of=v1] (i2) {$\bar{d}$};
+        \vertex[above right of=v2] (f1) {$\bar{b}$};
+        \vertex[below right of=v2] (f2) {$t$};
+
+        \diagram* {
+          (i1) --[fermion, edge label=$p_1$] (v1) --[boson, edge label=$W$, momentum'=$q$] (v2) --[anti fermion, edge label=$p_3$] (f1),
+          (i2) --[fermion, edge label'=$p_2$] (v1),
+          (v2) --[fermion, edge label'=$p_4$] (f2)
+        };
+      \end{feynman}
+    \end{tikzpicture}
+  \end{center}
+
+\item Again, we note that $p_1 + p_2 = p_3 + p_4$ and $q = p_1 + p_2 + p_3 + p_4$. The amplitude is
+  \begin{equation}
+    i\mathcal{M} = \bar{u}(p_4) \frac{(-ie)\gamma^\mu(1-\gamma^5) V_{tb}}{2\sqrt{2}\sin\theta_W} v(p_3) \frac{(-i)\br{g_{\mu\nu} - \frac{q_\mu q_\nu}{m_W^2}}}{q^2 - m_W^2} \bar{v}(p_2) \frac{(-ie)\gamma^\nu(1-\gamma^5)V_{ud}}{2\sqrt{2} \sin\theta_W} u(p_1)
+  \end{equation}
+  \begin{multline}
+    \mathcal{M} = \frac{e^2 V_{tb}V_{ud}}{7\sin^2\theta_W [(p_1+p_2)^2 - m_W^2]} \bar{u}(p_4) \gamma^\mu(1-\gamma^5)v(p_3) \\ \times \br{g_{\mu\nu} - \frac{(p_1+p_2)_\mu(p_1+p_2)_\nu}{m_W^2}}\bar{v}(p_2) \gamma^\nu(1-\gamma^5)u(p_1).
+  \end{multline}
+  Again, after quite a bit more work, we find
+  \begin{equation}
+    \abs{\mathcal{M}}^2 = \frac{4\pi^2\alpha^2 V_{tb}^2 V_{ud}^2}{\sin^4\theta_W} \frac{t(t-m_t^2)}{(s-m_W^2)^2},
+  \end{equation}
+  and we can plug this into our formula for the differential cross section:
+  \begin{equation}
+    \diff{\sigma}{t} = \frac{\abs{\mathcal{M}}}{16\pi s^2}.
+  \end{equation}
+\end{itemize}
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Notes"
+%%% End:

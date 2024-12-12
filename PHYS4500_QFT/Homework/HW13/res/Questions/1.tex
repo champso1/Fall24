@@ -1,0 +1,57 @@
+% In the png
+\section{}
+
+With the definition of our Higgs field as a doublet
+
+\begin{equation}
+  \varphi(x) = \begin{pmatrix}0 \\ \rho + \frac{1}{\sqrt{2}}\phi(x)\end{pmatrix},
+\end{equation}
+
+we have that the covariant derivative $D_\mu\varphi$ has the form:
+
+\begin{align}
+  D_\mu\varphi &= \ddp_\mu\varphi + \frac{i}{2} g (\sigma^iW_\mu^i) \varphi + \frac{i}{2}g'B_\mu\varphi.
+\end{align}
+
+From the form of the Pauli matrices,
+
+\begin{equation}
+  \sigma^iW_\mu^i = \begin{pmatrix}W_\mu^3 & W_\mu^1 - iW_\mu^2 \\ W_\mu^1 + iW_\mu^2 & -W_\mu^3\end{pmatrix}.
+\end{equation}
+
+So, explicitly,
+
+\begin{align}
+  D_\mu\varphi &= \begin{pmatrix}0 \\ \frac{1}{\sqrt{2}} \ddp_\mu\phi\end{pmatrix} + \frac{ig}{2}\begin{pmatrix}W_\mu^3 & W_\mu^1 - iW_\mu^2 \\ W_\mu^1 + iW_\mu^2 & -W_\mu^3\end{pmatrix}\begin{pmatrix}0 \\ \rho + \frac{1}{\sqrt{2}}\phi\end{pmatrix} + \frac{ig'}{2}B_\mu \begin{pmatrix}0 \\ \rho + \frac{1}{\sqrt{2}}\phi\end{pmatrix}, \\
+               &= \begin{pmatrix}0 \\ \frac{1}{\sqrt{2}} \ddp_\mu\phi\end{pmatrix} + \frac{ig}{2}\begin{pmatrix}(W_\mu^1 - iW_\mu^2)(\rho + \phi/\sqrt{2}) \\ -W_\mu^3(\rho + \phi/\sqrt{2})\end{pmatrix} + \frac{ig'}{2}B_\mu \begin{pmatrix}0 \\ \rho + \frac{1}{\sqrt{2}}\phi\end{pmatrix}.
+\end{align}
+
+We can consider each component of the resultant matrix (which is a 2-component column vector) individually, and try to separate out similar forms that will ultimiately be replaced by new gauge fields. The top component will read
+
+\begin{align}
+  \mathrm{Top} \ \rightarrow\ &  \frac{i}{2}g (W_\mu^1 - iW_\mu^2)\br{\rho + \frac{1}{\sqrt{2}}\phi} \\
+  =& \frac{i}{2} (W_\mu^1 - iW_\mu^2)\br{g\rho + \frac{g\phi}{\sqrt{2}}} \\
+  =& \frac{i}{2}\br{g\rho \br{W_\mu^1 - iW_\mu^2} + \frac{g\phi}{\sqrt{2}} \br{W_\mu^1 - iW_\mu^2}}.
+\end{align}
+
+Similarly, the bottom component will read
+
+\begin{align}
+  \mathrm{Bottom} \ \rightarrow\ & \frac{1}{\sqrt{2}}\ddp_\mu\phi - \frac{ig}{2}W_\mu^3(\rho + \phi/\sqrt{2}) + \frac{ig'}{2}B_\mu(\rho + \phi/\sqrt{2}) \\
+  =& \frac{i}{2}\br{-i\sqrt{2}\ddp_\mu\phi - g\rho W_\mu^3 - \frac{g\phi}{\sqrt{2}}W_\mu^3 + g'\rho B_\mu + \frac{g'\phi}{\sqrt{2}}B_\mu} \\
+  =& \frac{i}{2}\br{-i\sqrt{2}\ddp_\mu\phi + \rho\br{-gW_\mu^3 + g'B_\mu} + \frac{\phi}{\sqrt{2}}\br{-gW_\mu^3 + g'B_\mu}}.
+\end{align}
+
+Putting everything together then:
+
+\begin{equation}
+  D_\mu\varphi = \frac{i}{2} \begin{pmatrix}g\rho \br{W_\mu^1 - iW_\mu^2} + \frac{g\phi}{\sqrt{2}} \br{W_\mu^1 - iW_\mu^2} \\ -i\sqrt{2}\ddp_\mu\phi + \rho\br{-gW_\mu^3 + g'B_\mu} + \frac{\phi}{\sqrt{2}}\br{-gW_\mu^3 + g'B_\mu}\end{pmatrix}
+\end{equation}
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW13"
+%%% End:

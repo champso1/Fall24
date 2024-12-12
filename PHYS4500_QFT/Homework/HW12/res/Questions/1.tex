@@ -1,0 +1,42 @@
+% In the png
+\section{}
+
+We are to show that the Dirac Lagrangian
+
+\begin{equation}
+    \lag = i\psib \gamma^{\mu}\ddp_{\mu} \psi - \psib M \psi
+\end{equation}
+
+with 
+
+\begin{equation}
+    \psi = \begin{pmatrix}\psi_a \\ \psi_b\end{pmatrix} \quad\mathrm{and}\quad M = \begin{pmatrix}m_a & 0 \\ 0 & m_b\end{pmatrix}
+\end{equation}
+
+simplifies to the sum of the individual Dirac Lagrangians for the individual spinors $\psi_a$ and $\psi_b$. First, we know that the quantity $\gamma^{\mu}\ddp_{\mu}$ is a matrix in spin-space, call it $\Gamma_{ij}$, where the $i$ and $j$ indices run from $1-4$ in spin space. Then, we can explicitly write out the indices in order to manipulate them more easily:
+
+\begin{align}
+    \psib \gamma^{\mu}\ddp_{\mu} \psi &\rightarrow \begin{pmatrix}\psib_a & \psib_b\end{pmatrix}_i \Gamma_{ij} \begin{pmatrix}\psi_a \\ \psi_b\end{pmatrix}_j \\
+    &= \begin{pmatrix}\psib_{a,i} \Gamma_{ij} & \psib_{b,i}\Gamma_{ij}\end{pmatrix} \begin{pmatrix}\psi_a \\ \psi_b\end{pmatrix}_j \\
+    &= \psib_{a,i}\Gamma_{ij}\psi_{a,j} + i\psib_{b,i}\Gamma_{ij}\psi_{b,j},
+\end{align}
+
+or, since our indices are in valid matrix multiplication order, we can remove them to say:
+
+\begin{equation}
+    \psib \gamma^{\mu}\ddp_{\mu} \psi = \psib_a \gamma^{\mu}\ddp_{\mu} \psi_a + \psib_b \gamma^{\mu}\ddp_{\mu} \psi_b.
+\end{equation}
+
+For the mass part:
+
+\begin{equation}
+    \psib M \psi = \begin{pmatrix}\psib_a & \psib_b\end{pmatrix}\begin{pmatrix}m_a & 0 \\ 0 & m_b\end{pmatrix}\begin{pmatrix}\psi_a \\ \psi_b\end{pmatrix} = \begin{pmatrix}m_a\psib_a & m_b\psib_b\end{pmatrix}\begin{pmatrix}\psi_a \\ \psi_b\end{pmatrix} = m_a\psib_a\psi_a + m_b\psib_b\psi_b.
+\end{equation}
+
+Thus, both parts have nicely separated out, so our new Lagrangian is:
+
+\begin{equation}
+    \lag = i\psib_a \gamma^{\mu}\ddp_{\mu} \psi_a + i\psib_b \gamma^{\mu}\ddp_{\mu} \psi_b - m_a\psib_a\psi_a - m_b\psib_b\psi_b,
+\end{equation}
+
+as desired.

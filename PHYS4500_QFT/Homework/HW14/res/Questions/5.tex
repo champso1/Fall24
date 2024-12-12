@@ -1,0 +1,49 @@
+\section{}
+
+There are four non-zero structure constants with $f^{5bc} \neq 0$. They are
+
+\begin{align}
+  &f^{516} = f^{572} = f^{534} = \frac{1}{2}, \quad\mathrm{and} \\
+  &f^{584} = \frac{\sqrt{3}}{2}.
+\end{align}
+
+So, for the relation
+
+\begin{equation}
+  f^{abc}T^bT^c = \frac{i}{2}C_A T^a \quad\rightarrow\quad f^{abc}\lambda^b\lambda^c = 3i\lambda^a,
+\end{equation}
+
+we will have a sum over all four possibilities:
+
+
+\begin{equation}
+  f^{5bc}T^bT^c = f^{516}T^1T^6 + f^{572}T^7T^2 + f^{534}T^3T^4 + f^{584}T^8T^4
+\end{equation}
+
+Doing these calculations:
+
+\begin{align}
+  f^{516}T^1T^6 &= \frac{1}{2}\begin{pmatrix}0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}\begin{pmatrix}0 & 0 & 0 \\ 0 & 0 & 1 \\ 0 & 1 & 0\end{pmatrix} = \frac{1}{2}\begin{pmatrix}0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0\end{pmatrix} \\
+  f^{572}T^7T^2 &= \frac{1}{2}\begin{pmatrix}0 & 0 & 0 \\ 0 & 0 & i \\ 0 & i & 0\end{pmatrix}\begin{pmatrix}0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0\end{pmatrix} = \frac{1}{2}\begin{pmatrix}0 & 0 & 0 \\ 0 & 0 & 0 \\ -1 & 0 & 0\end{pmatrix} \\
+  f^{534}T^3T^4 &= \frac{1}{2}\begin{pmatrix}1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 0\end{pmatrix}\begin{pmatrix}0 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 0\end{pmatrix} = \frac{1}{2}\begin{pmatrix}0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0\end{pmatrix} \\
+  f^{534}T^3T^4 &= \frac{\sqrt{3}}{2}\frac{1}{\sqrt{3}}\begin{pmatrix}1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 0\end{pmatrix}\begin{pmatrix}1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & -2\end{pmatrix} = \frac{1}{2}\begin{pmatrix}0 & 0 & 1 \\ 0 & 0 & 0 \\ -2 & 0 & 0\end{pmatrix}
+\end{align}
+
+So,
+
+\begin{equation}
+  f^{5bc}T^bT^c = \frac{3}{2}\begin{pmatrix}0 & 0 & 1 \\ 0 & 0 & 0 \\ -1 & 0 & 0\end{pmatrix} = \frac{3i}{2}\begin{pmatrix}0 & 0 & -i \\ 0 & 0 & 0 \\ i & 0 & 0\end{pmatrix} = \frac{3i}{2}\lambda^5.
+\end{equation}
+
+This matches with the relation
+
+\begin{equation}
+  f^{abc}T^bT^c = \frac{i}{2}C_AT^a
+\end{equation}
+
+where we have $a=5$ and $C_A = N_c = 3$ for 3 colors.
+
+
+%%% mode: LaTeX
+%%% TeX-master: "../../HW14"
+%%% End:

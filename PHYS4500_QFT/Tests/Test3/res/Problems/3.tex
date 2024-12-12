@@ -1,0 +1,57 @@
+\section{}
+
+
+
+\begin{figure}[ht]
+\centering
+
+  \begin{tikzpicture}
+    \begin{feynman}
+      \vertex (i1) {$e^+$};
+      \vertex[below right=0.75cm of i1] (x1);
+      \vertex[below right=0.75cm of x1] (a);
+      \vertex[below left=0.75cm of a]  (x2);
+      \vertex[below left=0.75cm of x2] (i2) {$e^-$};
+      \vertex[right of=a] (b);
+      \vertex[above right of=b] (f1) {$\mu^+$};
+      \vertex[below right of=b] (f2) {$\mu^-$};
+     \diagram* {
+        (i1) --[anti fermion, momentum=$p_1$] (a) --[photon, momentum=$q$] (b) --[anti fermion, momentum=$p_3$] (f1),
+        (i2) --[fermion, momentum'=$p_2$] (a),
+        (b) --[fermion, momentum'=$p_4$] (f2),
+        (x1) --[photon, momentum'=$k$] (x2)
+      };
+    \end{feynman}
+  \end{tikzpicture}
+  
+\caption{An vertex correction diagram at 1-loop for $e^++e^- \rightarrow \mu^+ \mu^-$.}
+\label{fig:2}    
+\end{figure}
+
+
+(I have no idea why this software is making the $e^-$ line longer than the other, but this is the right diagram) Figure~\ref{fig:2} contains the diagram that we are evaluating. Starting off:
+
+\begin{equation}
+  i\mathcal{M} = \bar{v}_1 i\Lambda^{\mu}u(2) \br{\frac{-ig_{\mu\nu}}{q^2}} \bar{u}_4 (-ie\gamma^{\nu})v_3,
+\end{equation}
+
+where $i\Lambda$ is the vertex correction amplitude:
+
+\begin{align}
+  i\Lambda^{\mu} &= \int \frac{\dd^nk}{(2\pi)^n}(-ie\gamma^{\rho})\br{\frac{i(\psl_2 + \ksl + m_e)}{(p_2+k)^2 - m_e^2}}(-ie\gamma^{\mu})\br{\frac{i(\psl_1 - \ksl + m_e)}{(p_1-k)^2 - m_e^2}}(-ie\gamma^{\lambda})\br{\frac{-ig_{\rho\lambda}}{k^2}} \\
+                 &= -e^3 \int \frac{\dd^nk}{(2\pi)^n} \frac{\gamma^{\rho}(\psl_2 + \ksl - m_e)\gamma^{\mu}(\psl_1 - \ksl - m_e)\gamma_{\rho}}{[(p_2+k)^2 - m_e^2][(p_1-k)^2 - m_e^2]k^2}.
+\end{align}
+
+So, the total amplitude is
+
+\begin{equation}
+  i\mathcal{M} = \frac{ie^4}{(p_1+p_2)^2}  \bar{v}_1\left(\int \frac{\dd^nk}{(2\pi)^n} \frac{\gamma^{\rho}(\psl_2 + \ksl - m_e)\gamma^{\mu}(\psl_1 - \ksl - m_e)\gamma_{\rho}}{[(p_2+k)^2 - m_e^2][(p_1-k)^2 - m_e^2]k^2}\right)u_2 \times (\overline{u}_4\gamma_\mu v_3).
+\end{equation}
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Test3"
+%%% End:

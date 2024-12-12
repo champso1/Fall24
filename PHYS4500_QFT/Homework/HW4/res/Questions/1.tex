@@ -1,0 +1,103 @@
+\section{(12.6)}
+
+
+\begin{parts}
+\item We are to argue that
+
+
+\begin{equation}
+    \hat{\phi}(\vv{x},0) \Ket{0} = \FourierInt{p} \frac{e^{-i\dotprodv{p}{x}}}{\sqrt{2p^0}} \Ket{\vv{p}}
+\end{equation}
+
+for a complex scalar field. The book gives a 1-particle Fock state with momentum $\vv{p}$ in terms of the creation operator on the vacuum state as
+
+\begin{equation}
+    \Ket{\vv{p}} = a^{\dagger}(\vv{p}) \Ket{0},
+\end{equation}
+
+with no normalization constant. Our convention is that
+
+\begin{equation}
+    \Ket{\vv{p}} = \sqrt{2p^0} a^{\dagger}(\vv{p}) \Ket{0},
+\end{equation}
+
+so I'll get the answer that the book wants then show what the answer would be with the normalization constant in our convention.
+
+To evaluate the field operator on the vacuum state, let's write out $\hat{\phi}(\vv{x},0)$ in terms of the creation and annihilation operators:
+
+\begin{equation*}
+    \hat{\phi}(\vv{x},t) = \FourierIntE{p} \left[ a(\vv{p})e^{-i\dotprod{p}{x}} + b^{\dagger}(\vv{p})e^{i\dotprod{p}{x}} \right].
+\end{equation*}
+
+Now, at $t=0$,
+
+\begin{equation*}
+    e^{-i\dotprod{p}{x}} = e^{-ip^0x_0}e^{-ip^ix_i} = e^{-ip^0t}e^{i\dotprodv{p}{x}} \rightarrow e^{i\dotprodv{p}{x}},
+\end{equation*}
+
+so
+
+\begin{equation*}
+    \hat{\phi}(\vv{x},0) = \FourierIntE{p} \left[ a(\vv{p})e^{i\dotprodv{p}{x}} + a^{\dagger}(\vv{p})e^{-i\dotprodv{p}{x}} \right].
+\end{equation*}
+
+Letting this act on the vacuum state:
+
+\begin{equation*}
+    \hat{\phi}(\vv{x},0) \Ket{0} = \FourierIntE{p} \left[ a(\vv{p})e^{i\dotprodv{p}{x}} + b^{\dagger}(\vv{p})e^{-i\dotprodv{p}{x}} \right] \Ket{0}.
+\end{equation*}
+
+The first term will look like $a(\vv{p})\Ket{0}$, which is the annihilation operator acting on the vacuum state, which is zero, so all we have left is
+
+\begin{equation*}
+    \hat{\phi}(\vv{x},0) \Ket{0} = \FourierIntE{p} b^{\dagger}(\vv{p})e^{-i\dotprodv{p}{x}} \Ket{0} = \FourierIntE{p} e^{-i\dotprodv{p}{x}} b^{\dagger}(\vv{p}) \Ket{0},
+\end{equation*}
+
+but from the book's convention this is
+
+\begin{equation*}
+    \hat{\phi}(\vv{x},0) \Ket{0} = \FourierInt{p} \frac{e^{-i\dotprodv{p}{x}}}{\sqrt{2p^0}} \Ket{\vv{p}},
+\end{equation*}
+
+as expected. In our notation, we would need an extra factor of $\sqrt{2p^0}$ in the numerator and hence also the denominator, so we'd have:
+
+\begin{equation*}
+    \hat{\phi}(\vv{x},0) \Ket{0} = \FourierInt{p} \frac{e^{-i\dotprodv{p}{x}}}{2p^0} \Ket{\vv{p}}.
+\end{equation*}
+
+
+
+
+
+
+\item Qualitatively, since $\hat{\phi}(\vv{x},0)\Ket{0}$ (roughly) creates an anti-particle at position $\vv{x}$, the naive assumption would be that $\hat{\phi}^{\dagger}(\vv{x},0)\Ket{0}$ creates a particle at position $\vv{x}$. Expanding out the Hermitian conjugate of the complex scalar field in terms of creation and annihilation operators:
+
+\begin{equation*}
+    \hat{\phi}^{\dagger}(\vv{x},t) = \FourierIntE{p} \left[ b(\vv{p})e^{-i\dotprod{p}{x}} + a^{\dagger}(\vv{p})e^{i\dotprod{p}{x}} \right],
+\end{equation*}
+
+or, when $t=0$, 
+
+\begin{equation*}
+    \hat{\phi}^{\dagger}(\vv{x},t) = \FourierIntE{p} \left[ b(\vv{p})e^{i\dotprodv{p}{x}} + a^{\dagger}(\vv{p})e^{-i\dotprodv{p}{x}} \right].
+\end{equation*}
+
+Letting this act on the vacuum state, we get a similar case where the term $b(\vv{p})\Ket{0}=0$, since $b(\vv{p})$ is the anti-particle annihilation operator. Hence (in the book's convention),
+
+\begin{equation*}
+    \hat{\phi}^{\dagger}(\vv{x},t)\Ket{0} = \FourierIntE{p} a^{\dagger}(\vv{p})e^{-i\dotprodv{p}{x}} \Ket{0} = \FourierIntE{p} e^{-i\dotprodv{p}{x}} \Ket{\vv{p}}.
+\end{equation*}
+
+Since 
+
+\begin{equation*}
+    \FourierIntE{p} e^{-i\dotprodv{p}{x}} = \delta^3(\vv{x}),
+\end{equation*}
+
+we can make the interpretation that having this act on a 1-particle Fock state $\Ket{\vv{p}}$ gives a state of definite position $\Ket{\vv{x}}$, because the delta function delivers a spike there. However, as described in the problem in the book, we have an extra factor of $1/\sqrt{2p^0}$, so this is not a perfect spike at $\vv{x}$, and hence not technically a perfect state of position $\Ket{\vv{x}}$. But, the idea of the problem was to get a \textit{rough} idea of what the field operator does, and we have found that \textit{roughly}
+
+\begin{equation*}
+    \hat{\phi}^{\dagger}(\vv{x},t)\Ket{0} \sim \Ket{\vv{x}}.
+\end{equation*}
+
+\end{parts}

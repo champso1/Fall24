@@ -1,0 +1,49 @@
+\section{}
+
+First, we found, from renormalization that
+
+\begin{align}
+  &Z_G = 1 + \frac{g_s^2}{24\pi^2\epsilon}(5C_A - 2n_f), \\
+  &Z_\psi = 1 - \frac{g_s^2}{8\pi^2\epsilon}C_F, \quad\text{and} \\
+  &Z_L = 1 - \frac{g_s^2}{8\pi^2\epsilon}(C_F + C_A).
+\end{align}
+
+We are to show the relation
+
+\begin{equation}
+  g_{s,b} = Z_L Z_\psi^{-1} Z_G^{-1/2} g_s \mu^{\epsilon/2}.
+\end{equation}
+
+To make things look a little cleaner, I will make the substitution
+
+\begin{equation}
+  \frac{g_s^2}{48\pi^2\epsilon} \rightarrow x,
+\end{equation}
+
+since this is a common factor in every term. With this,
+
+\begin{align}
+  \frac{g_{s,b}}{g_s \mu^{\epsilon/2}} &= \br{1 - 6x\br{\frac{4}{3} + C_A}}\br{1 - 8x}^{-1}\br{1 + 2x\br{5C_A - 2n_f}}^{-1/2} \\
+  &= \br{1 - 2x\br{4 + 3C_A}}\br{1 + 8x}\br{1 - x\br{5C_A - 2n_f}}
+\end{align}
+
+after expanding to $\mathcal{O}(x)$, or $\mathcal{O}\br{\epsilon^{-1}}$. In doing our multiplications of these terms, we can also drop terms of $\mathcal{O}(x^2)$ and higher. With this,
+
+\begin{align}
+  \frac{g_{s,b}}{g_s \mu^{\epsilon/2}} &= [1 + 8x - 2x(4 + 3C_A)][1 - x(5C_A - 2n_f)] \\
+          &= (1 - 6C_A)[1 - x(5C_A - 2n_f)] \\
+          &= 1 - x(5C_A - 2n_f) - 6xC_A \\
+          &= 1 - x(5C_A - 2n_f + 6C_A) \\
+          &= 1 - x(11C_A - 2n_f).
+\end{align}
+
+So, un-substituting for $x$ we find:
+
+\begin{equation}
+  \boxed{g_{s,b} = \br{1 - \frac{g_s^2}{48\pi^2\epsilon}\br{11C_A - 2n_f}}g_s \mu^{\epsilon/2}.}
+\end{equation}
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW15"
+%%% End:

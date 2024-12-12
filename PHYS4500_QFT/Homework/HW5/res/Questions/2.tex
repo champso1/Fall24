@@ -1,0 +1,59 @@
+%2) Using the relations for the electric and magnetic fields in terms of the vector potential, derive the matrix expression for F^{mu nu} as shown in page 2 of the Lecture-5a notes.
+\section{}
+
+We are looking to show that with $A^{\mu} = (V,\vv{A})$, we can derive the stress-energy tensor $F^{\mu\nu}$ using its definition and the equations for the electric and magnetic fields in terms of the potentials: 
+
+\begin{gather*}
+    \vv{E} = -\grad V - \diffp{\vv{A}}{t}, \quad \mathrm{and} \quad \vv{B} = \grad\times\vv{A}.
+\end{gather*}
+
+The field-strength tensor is defined like:
+
+\begin{equation*}
+    F^{\mu\nu} \equiv \ddp^{\mu}A^{\nu} - \ddp^{\nu}A^{\mu}.
+\end{equation*}
+
+First, we can quickly note that the tensor is fully anti-symmetric, meaning we really only need to find half of the components, and the other half will just be the same with a factor of -1. Additionally, all the diagonal components will be 0. First,
+
+\begin{equation*}
+    F^{0i} = \ddp^0A^i - \ddp^iA^0 = \diffp{\vv{A}}{t} + \grad V = -\vv{E},
+\end{equation*}
+
+where turning $\ddp^i$ into the 3-gradient picked up a minus since $\ddp^{\mu}$ transforms like a \textit{co}variant 4-vector, so its spatial indices have minus signs. From this, we know as well that $F^{i0} = \vv{E}$.
+
+Next,
+
+\begin{align*}
+    F^{12} = \ddp^1A^2 - \ddp^2A^1 = \diffp{A_x}{y} - \diffp{A_y}{x}, \\
+    F^{13} = \ddp^1A^3 - \ddp^3A^1 = \diffp{A_x}{z} - \diffp{A_z}{x}, \\
+    F^{23} = \ddp^2A^3 - \ddp^3A^2 = \diffp{A_y}{z} - \diffp{A_z}{y}.
+\end{align*}
+
+We can recognize these as components of a 3-vector as a result of a cross product. The two vectors in question are $\grad$ and $\vv{A}$ whose cross product is
+
+\newcommand{\ihat}{\hat{\vv{i}}}
+\newcommand{\jhat}{\hat{\vv{j}}}
+\newcommand{\khat}{\hat{\vv{k}}}
+\begin{equation*}
+    \grad\times\vv{A} = \left( \diffp{A_z}{y} - \diffp{A_y}{z} \right)\ihat - \left( \diffp{A_z}{x} - \diffp{A_x}{z} \right)\jhat + \left( \diffp{A_y}{x} - \diffp{A_x}{y} \right)\khat.
+\end{equation*}
+
+\newcommand{\GRADA}{\grad\times\vv{A}}
+Thus, we can identify 
+
+\begin{align*}
+    &F^{12} = -(\GRADA)_z = -B_z, \\
+    &F^{13} = \ \ (\GRADA)_y =\ \  B_y, \\
+    &F^{23} = -(\GRADA)_x = -B_x.
+\end{align*}
+
+The terms with indices flipped identical with a minus sign, so we now have all the components:
+
+\begin{equation*}
+    \boxed{F^{\mu\nu} = \begin{pmatrix}
+        0 & -E_x & -E_y & -E_z \\
+        E_x & 0 & -B_z & B_y \\
+        E_y & B_z & 0 & -B_x \\
+        E_z & -B_y & B_x & 0
+    \end{pmatrix}.}
+\end{equation*}

@@ -1,0 +1,40 @@
+\section{}
+
+First, we have that
+
+\begin{equation}
+  \lambda^1 = \begin{pmatrix}0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}, \quad\mathrm{and}\quad \lambda^2 = \begin{pmatrix}0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}.
+\end{equation}
+
+So,
+
+\begin{align}
+  [\lambda^1,\lambda^2] &= \begin{pmatrix}0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}\begin{pmatrix}0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0\end{pmatrix} - \begin{pmatrix}0 & -i & 0 \\ i & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}\begin{pmatrix}0 & 1 & 0 \\ 1 & 0 & 0 \\ 0 & 0 & 0\end{pmatrix} \\
+                        &= \begin{pmatrix}i & 0 & 0 \\ 0 & -i & 0 \\ 0 & 0 & 0\end{pmatrix} - \begin{pmatrix}-i & 0 & 0 \\ 0 & i & 0 \\ 0 & 0 & 0\end{pmatrix} \\
+                        &= 2i \begin{pmatrix}1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 0\end{pmatrix} \\
+  &= 2i\lambda^3 = 2if^{123}\lambda^3,
+\end{align}
+
+where $f^{123}=1$, as we expect. So, the relation is satisfied. Next, we have
+
+\begin{equation}
+  \lambda^3 = \begin{pmatrix}1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 0\end{pmatrix} \quad\mathrm{and}\quad \lambda^4 = \begin{pmatrix}0 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 0\end{pmatrix}.
+\end{equation}
+
+So,
+
+\begin{align}
+  [\lambda^3, \lambda^4] &= \begin{pmatrix}1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 0\end{pmatrix}\begin{pmatrix}0 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 0\end{pmatrix} - \begin{pmatrix}0 & 0 & 1 \\ 0 & 0 & 0 \\ 1 & 0 & 0\end{pmatrix}\begin{pmatrix}1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 0\end{pmatrix} \\
+                         &= \begin{pmatrix}0 & 0 & 1 \\ 0 & 0 & 0 \\ 0 & 0 & 0\end{pmatrix} - \begin{pmatrix}0 & 0 & 0 \\ 0 & 0 & 0 \\ 1 & 0 & 0\end{pmatrix} \\
+                         &= i \begin{pmatrix}0 & 0 & -i \\ 0 & 0 & 0 \\ i & 0 & 0\end{pmatrix} \\
+                         &= 2i \cdot \frac{1}{2} \cdot \lambda^5 = 2i f^{345} \lambda^5,
+\end{align}
+
+where $f^{345} = 1/2$, as we expect. The relation is again satisfied.
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW14"
+%%% End:

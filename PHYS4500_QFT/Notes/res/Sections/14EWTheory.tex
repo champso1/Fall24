@@ -1,0 +1,85 @@
+\section{Electroweak Theory}
+
+\begin{itemize}
+    \item We will now apply this Yang-Mills theory stuff to some more concrete field theories. 
+    \item Recall: back when we were discussing the Dirac equation and stuff, we found that we were able to write a generic spinor in terms of its left and right handed components:
+        \begin{equation}
+            \psi = \begin{pmatrix}\psi_R \\ \psi_L\end{pmatrix},
+        \end{equation}
+        where 
+        \begin{equation}
+            (\vv{\sigma}\cdot\vv{p})\psi_R = \psi_R \quad\mathrm{and}\quad (\vv{\sigma}\cdot\vv{p})\psi_L = -\psi_L,
+        \end{equation}
+        with $\vv{\sigma}\cdot\vv{p}$ being the helicity operator. This means that right-handed particles have positive helicity and left-handed particles have negative helicity.
+    \item We also had the fifth gamma matrix, which is generally defined as $\gamma^5 = i\gamma^0\gamma^1\gamma^2\gamma^3$. In the chiral representation, we have
+        \begin{equation}
+            \gamma^5 = \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix}.
+        \end{equation}
+    \item This matrix can be used to define the projection operator:
+        \begin{equation}
+            \psi_R = \frac{1-\gamma^5}{2}\psi \quad\mathrm{and}\quad \psi_L = \frac{1+\gamma^5}{2}\psi.
+        \end{equation}
+    \item Now, with this, we can actually split up the Dirac equation into the sum of the left and right handed bits. Ignoring gauge and mass terms for now, 
+        \begin{equation}
+            \lag = i\psib_R \gamma^{\mu} \ddp_{\mu} \psi_R + i\psib_L \gamma^{\mu} \ddp_{\mu} \psi_L.
+        \end{equation}
+    \item In light of this, we can consider the left and right handed components of the leptons (the same prescription will work for the quark sector). The left-handed component will actually be a doublet, which we will denote as capital $L$:
+        \begin{equation}
+            L = \begin{pmatrix}\nu_{e,L} \\ e_L\end{pmatrix} = \begin{pmatrix}\nu_e \\ e\end{pmatrix}_L.
+        \end{equation}
+    \item Since (for this more simple, older theory) there are no right handed neutrinos, the right handed component is just a singlet consisting of the right handed electron $e_R$.
+    \item Now, each of these handed components will get assigned an $SU(2)$ ``charge'', called \textbf{weak isospin}.\footnote{This naming comes from the earlier idea that the proton and neutron were really eigenstates of the same particle, differing only by their ``isospin''. This is honestly a bit of a unfortunate naming convention, but it's easier to stick with it than try and make up a bunch of new stuff.} The doublet gets $I_w = \frac{1}{2}$, while the singlet gets $I_w=0$, signifying that with a neutral charge, it does not interact with the force decscribed by this theory.
+    \item Just as with ordinary spin in quantum mechanics, we only consider one of the three components, specifically the third, $I_w^3$, and the $\nu_e$ gets $I_w^3=\frac{1}{2}$ and the (left-handed) $e$ gets $I_w^3=-\frac{1}{2}$.
+    \item With this, we can write the Lagrangian (still without gauge or mass terms) as 
+        \begin{equation}
+            \lag = i \bar{e}_R \gamma^{\mu} \ddp_{\mu} e_R + i\bar{L} \gamma^{\mu}\ddp_{\mu} L.
+        \end{equation}
+    \item We can now consider the application of our Yang-Mills $SU(2)$ to this new handed theory. As I mentioned before, we know already that an element of this group will not transform the singlet (so $e_R \rightarrow e_R$.) The doublet will transform like
+        \begin{equation}
+            L \rightarrow e^{i \sigma^i\theta^i/2},
+        \end{equation}
+        where the factor of $\frac{1}{2}$ is because the generators of $SU(2)$ in the fundamental representation are different from the Pauli matrices by a factor of two.\footnote{My complete guess of why we choose to use something that is only such a factor off has to do with the fact that our eigenvalues and such are all $1/2$, as the doublet has $I_w=1/2$ and the two eigenstates (the electron and electron neutrino) have $I_w^3=\pm1/2$, so it is natural to define the generators in that way.}
+    \item However, there is nothing saying that we cannot also still have $U(1)$ phase rotations. This will not be exactly the EM symmetry we have already studied, but it will be close (and the machinery will of course be the same).
+    \item With this, both of the handed components will transform this time:
+        \begin{equation}
+            L \rightarrow e^{i\beta_1/2}L \quad\mathrm{and}\quad e_R \rightarrow e^{i\beta_2/2}e_R.
+        \end{equation}
+    \item As I just mentioned, this $U(1)$ is different from EM; the ``charge'' here is called \textbf{(weak) hypercharge} $Y$ (or if we choose to add the ``weak'' to the name, we would write $Y_w$. I won't do this, though). There is a relation (that I have no idea how it was derived) that relates the hypercharge, ordinary EM charge, and the third component of weak isospin together called the \textbf{Gell-Mann-Nishijima relation}:
+        \begin{equation}
+            Q = I_w^3 + \frac{Y}{2}.
+        \end{equation}
+    \item Since we of course already know the charges of the particles and we just defined their weak isospins, we find that $Y(e_L) = Y(\nu_{e,L}) = -1$ and $Y(e_R)=-2$. We can then relate $\beta_1$ and $\beta_2$ to a singular $\beta$ and write
+        \begin{equation}
+            L \rightarrow e^{i\beta/2}L \quad\mathrm{and}\quad e_R \rightarrow e^{i\beta}e_R.
+        \end{equation}
+    \item Putting all this together, and bringing in interactions through the covariant derivative that I'll define in just a moment, our Lagrangian is
+        \begin{equation}
+            \lag = i\bar{L} \gamma^{\mu}D_{\mu} L + i\bar{e}_R \gamma^{\mu}D_{\mu} e_R.
+        \end{equation}
+    \item As a quick note: $L$ is a doublet consisting of two \textit{spinors}, named $e_L$ and $\nu_{e,L}$. Similarly, $e_R$ is a \textit{spinor}, we are just naming it this way to differentiate between the other spinors.
+    \item This Lagrangian is now invariant under $SU(2)_L \otimes U(1)_Y$. We will have a single vector gauge field corresponding to the $U(1)_Y$ symmetry which we will denote as $B_{\mu}$, and a similar case for our Yang-Mills formulation for $SU(2)_L$, where we will denote the three gauge bosons as $W_{\mu\nu}^i$.
+    \item Therefore, we can define the action of the covariant derivatives per group. Generally, the total covariant derivative can be written as a sum of the contributions from each group:
+        \begin{equation}
+            D_{\mu} = \ddp_{\mu} + \frac{i}{2}g \sigma^iW_{\mu}^i + \frac{i}{2}g' Y B_{\mu},
+        \end{equation}
+        where $g$ and $g'$ are the couplings to the gauge fields.
+    \item Now, the action of this will be different on the different representations of the groups. For instance, considering the action of the covariant derivative on the left-handed doublet, we have both contributions:
+        \begin{equation}
+            D_{\mu}L = \br{\ddp_{\mu} + g\frac{i}{2}\sigma^iW_{\mu}^i - \frac{i}{2}g' B_{\mu}}L,
+        \end{equation}
+        where $Y=-1$ for the left-handed components. It is understood that the $SU(2)_L$ part acts on the doublet itself, while the $U(1)$ part acts on each Weyl spinor individually.
+    \item Similarly,
+        \begin{equation}
+            D_{\mu}e_R = \br{\ddp_{\mu} - ig'B_{\mu}}e_R,
+        \end{equation}
+        where there is no action from $SU(2)_L$ since it is a singlet under that representation.
+    \item We also distinguish between the kinetic terms for the $B$ boson and the $W$ bosons individually:
+        \begin{equation}
+            B_{\mu\nu} = \ddp_{\mu}B_{\nu} - \ddp_{\nu}B_{\mu} \quad\mathrm{and}\quad W_{\mu\nu}^i = \ddp_{\mu}W_{\nu}^i - \ddp_{\nu}\ddp_{\mu}^i + ig f^{ijk}W_{\mu}^jW_{\nu}^k.
+        \end{equation}
+    \item Writing out everything, we have:
+        \begin{equation}
+            \lag = i\bar{L} \gamma^{\mu}D_{\mu} L + i\bar{e}_R \gamma^{\mu}D_{\mu} e_R - \frac{1}{4}B_{\mu\nu}B^{\mu\nu} - \frac{1}{4}W_{\mu\nu}^iW^{i,\mu\nu}.
+        \end{equation}
+    \item It is important to note that we have all fields as being massless currently. This is intended, as all this will eventually lead to the Higgs mechanism, which breaks this symmetry down to just a $U(1)_{\mathrm{em}}$ symmetry and gives the fields masses.
+\end{itemize}

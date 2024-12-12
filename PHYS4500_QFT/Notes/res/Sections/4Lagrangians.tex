@@ -1,0 +1,320 @@
+\section{Lagrangians and the Principle of Least Action}
+
+\begin{itemize}
+    \item For a system of $N$ particles, we can label the positions and velocities with $q_i$ and $\dot{q}_i$, respectively, where $q$ is a ``generalized'' coordinate that can be cartesian, polar, etc, so long as it completely describes the system, and $i = 1,2,\ldots,\ N$.
+    \item We can define the \textbf{Lagrangian}:
+        \begin{equation}
+            L = L(\left\{q_i,\dot{q}_i\right\},\ t) = T-V,
+        \end{equation}
+        where $T$ and $V$ are the kinetic and potential energies, and $\left\{q_i,\dot{q}_i\right\}$ = $\left\{q_1,q_2,\ldots, q_N,\ \dot{q}_1,\dot{q}_2,\ldots, \dot{q}_N\right\}$.
+    \item The \textbf{action} is defined as
+        \begin{equation}
+            S \equiv \int_{t_1}^{t_2} L \;\dd t,
+        \end{equation}
+        and the \textbf{principle of least action} by Hamilton states that for a real/physical trajectory/path of a particle, this action is extremized, or more specifically, it is minimized. What that means is that if we introduce an infinitesimal perturbation $q(t) \rightarrow q'(t) = q(t) + \delta q(t)$, then the action should remain extremized; i.e. it shouldn't change. Here, $\delta$ is small \textit{variation}, similar to the differential.
+    \item Formally:
+        \begin{equation}
+            \delta S = \int_{t_1}^{t_2} \delta L \;\dd t.
+        \end{equation}
+    \item Additionally, we want to enforce that t`his variation leaves the endpoints the same: $q'(t_1) = q(t_1)$,and $q'(t_2) = q(t_2)$.
+    \item Now, we can expand out the variation similar to the derivative chain rule:
+        \begin{equation*}
+            \delta S = \int_{t_1}^{t_2} \left(\diffp{L}{q}\delta q + \diffp[]{L}{\dot{q}}\delta\dot{q}\right) \;\dd t.
+        \end{equation*}
+        Doing integration by parts on the second term:
+        \begin{equation*}
+            \delta S = \int_{t_1}^{t_2} \diffp{L}{q}\delta q \;\dd t + \left[\diffp[]{L}{\dot{q}} \delta q\right]_{t_1}^{t_2} - \int_{t_1}^{t_2} \diff{}{t}\left(\diffp[]{L}{\dot{q}}\right) \delta \;\dd t.
+        \end{equation*}
+        Since we want the endpoints to be unaffected by our perturbation, the middle term vanishes. So,
+        \begin{equation*}
+            \delta S = \int_{t_1}^{t_2} \left[\diffp{L}{q} - \diff{}{t}\left(\diffp[]{L}{\dot{q}}\right)\right]\delta q \;\dd t = 0.
+        \end{equation*}
+        Now, we want this to be valid for \textit{any} variation $\delta q$, meaning we can't put any restrictions on it. Therefore, the only way we can have the integral evaluate to zero is for the quantity in brackets to be zero:
+        \begin{equation}
+            \boxed{\diffp[]{L}{q_i} - \diff{}{t}\left(\diffp[]{L}{\dot{q}_i}\right) = 0.}\label{EulerLagrange}
+        \end{equation}
+    \item Eq.~\eqref{EulerLagrange} is called the \textbf{Euler-Lagrange Equation}, or in the case of multiple particles, the \textbf{Euler-Lagrange Equations}.
+\end{itemize}
+
+
+\begin{itemize}
+    \item To show that this works, we can use a ``default'' Lagrangian and see that we get Newton's second law from it. Using 
+        \begin{equation*}
+            L = \frac{1}{2}m\dot{q}^2 - V(q),
+        \end{equation*}
+        the Euler-Lagrange equation becomes
+        \begin{gather*}
+            -\diff{V}{q} - \diff{}{t} \left[m\dot{q}\right] = -\diff{V}{q} - m\ddot{x}, \\
+            \rightarrow\ -\diff{V}{q} = m\ddot{q}.
+        \end{gather*}
+        Since $\ddot{q} = a$ and we know that for conservative forces $F = -\grad V$, we retrieve $F=ma$, as expected.
+    \item We can also define the \textbf{conjugate momentum}, which can be found by:
+        \begin{equation}
+            p = \diffp[]{L}{\dot{q}},
+        \end{equation}
+        which is the quantity in parentheses in Eq.~\eqref{EulerLagrange}. For our default Lagrangian, we have that
+        \begin{equation*}
+            p = m\dot{q} = mv,
+        \end{equation*}
+        which is also expected. It also allows us to find the more general version of Newton's 2nd law:
+        \begin{equation*}
+            F = \diff{p}{t}.
+        \end{equation*}
+    \item The Hamiltonian is also closely related; in fact, it can be derived from the Lagrangian like so:
+        \begin{equation}
+            H = H(q,p) = p\dot{q} - L = \diffp[]{L}{\dot{q}}\dot{q} - L.
+        \end{equation}
+        This Hamiltonian is a function of position and momentum, rather than position and its time derivative (i.e. velocity). From this definition we can retrieve
+        \begin{equation*}
+            H = (m\dot{q})\dot{q} - \left(\frac{1}{2}m\dot{q}^2 - V\right) = \frac{1}{2}m\dot{q}^2 + V,
+        \end{equation*}
+        which is the kinetic plus the potential energy, as expect.
+\end{itemize}
+
+
+
+\sep
+
+
+
+
+\begin{itemize}
+    \item Turning to relativity, let's write the Lagrangian for a free (so $V=0$) relativistic particle. We need our Lagrangian (and hence our action) to be invariant under Lorentz transformations. So, we can say that our Lagrangian should be proportional to the integral over the space-time interval $\dd s$, since $\dd s^2 = c^2\ddt^2 - \ddx^2 - \ddy^2 - \ddz^2$ is a relativistic invariant.
+        \begin{equation*}
+            S = \int_{t_1}^{t_2} L \;\dd t = -A \int_a^b \;\dd s,
+        \end{equation*}
+        where $A$ is some constant we want to find; it'll give us the Lagrangian. We can just look at the time component, or more specifically, the \textit{proper} time $\tau$:
+        \begin{equation*}
+            S = -A\int_{\tau_1}^{\tau_2} c \;\dd\tau = -A\int_{t_1}^{t_2} c\sqrt{1-\beta^2} \;\dd t
+        \end{equation*}
+        Now that we have our integral back in terms of normal time, we can compare to the original equation for the action and find an equation for the Lagrangian:
+        \begin{equation*}
+            L = -Ac\sqrt{1-\beta^2}.
+        \end{equation*}
+        To find $A$ now, we can take the classical limit and compare to what we expect to get from Newtonian physics. This limit is $\beta << 1$, so we can Taylor expand the square root to get:
+        \begin{equation*}
+            L = -Ac \left(1 - \frac{1}{2}\frac{v^2}{c^2}\right) = -Ac + A\frac{1}{2}\frac{v^2}{c}.
+        \end{equation*}
+        The first term is simply a constant, and since the Euler-Lagrange equation contains only derivates of the Lagrangian, we might as well just get rid of that term:
+        \begin{equation*}
+            L = A\frac{1}{2}\frac{v^2}{c}.
+        \end{equation*}
+        We expect, for a free classical particle, the Lagrangian to just be its kinetic energy $L = \frac{1}{2}mv^2$. So, we just set the two equal and solve for $A$:
+        \begin{equation*}
+            A\frac{1}{2}\frac{v^2}{c} = \frac{1}{2}mv^2,
+        \end{equation*}
+        so $A = mc$. Thus, the Lagrangian for a free relativistic particle is
+        \begin{equation*}
+            \boxed{L = -mc^2 \sqrt{1-\beta^2}.}
+        \end{equation*}
+    \item We can write this a little differently by defining
+        \begin{equation}
+            \dot{x}^{\mu} = \begin{pmatrix}t & \dot{x} & \dot{y} & \dot{z}\end{pmatrix}^{\intercal},
+        \end{equation}
+        so that we can form the relativistically-invariant quantity
+        \begin{equation}
+            \dot{x}_{\mu}\dot{x}^{\mu} = c^2 - v^2.
+        \end{equation}
+        Now we can say
+        \begin{equation*}
+            L = -mc\sqrt{\dot{x}_{\mu}\dot{x}^{\mu}},
+        \end{equation*}
+        so the action is
+        \begin{equation*}
+            S = -mc \int_{t_1}^{t_2} \sqrt{g_{\mu\nu}\dot{x}^{\nu}\dot{x}^{\mu}} \;\ddt.
+        \end{equation*}
+\end{itemize}
+
+
+
+
+\sep 
+
+
+
+\begin{itemize}
+    \item Bringing this to fields, we have that $q \rightarrow \phi(x^{\mu})$ and $\dot{q} \rightarrow \ddp_{\mu}\phi(x^{\mu})$.
+    \item Although, we have the problem that space and time are not treated equally, as the action only integrates over time. So, we can define
+        \begin{equation}
+            L = \int \lag \;\dd^3 x,
+        \end{equation}
+        where $\lag$ is called the \textbf{Lagrangian density}. In particle physics, we almost solely work with this quantity, so we often just call it the Lagrangian, and we will do so in this course.
+    \item We can now derive the analog of the Euler-Lagrange Equation(s) for fields. Again considering an infinitesimal variance in the field $\phi \rightarrow \phi' = \phi + \delta\phi$, we can, using the chain rule analog for variations, find the variation in the action as
+        \begin{equation*}
+            \delta S = \int \left(\diffp[]{\lag}{\phi}\delta\phi + \diffp[]{\lag}{(\ddp_{\mu}\phi)}\delta(\ddp_{\mu}\phi)\right) \;\dd^4 x.
+        \end{equation*}
+        Doing integration by parts on the second term, we find
+        \begin{equation*}
+            \delta S = \int \diffp[]{\lag}{\phi}\delta\phi \;\dd^4 x + \left[\diffp[]{\lag}{(\ddp_{\mu}\phi)}\delta\phi\right]_{t_1}^{t_2} - \int \ddp_{\mu} \left(\diffp[]{\lag}{(\ddp_{\mu}\phi)}\right)\delta\phi \;\dd^4 x.
+        \end{equation*}
+        Again, the middle term will vanish due to our restriction that the perturbation be zero at the end points, so
+        \begin{equation*}
+            \delta S = \int \left[\diffp[]{\lag}{\phi} - \ddp_{\mu}\left(\diffp[]{\lag}{(\ddp_{\mu}\phi)}\right)\right]\delta\phi \;\dd^4 x = 0,
+        \end{equation*}
+        so
+        \begin{equation}
+            \boxed{\diffp[]{\lag}{\phi} - \ddp_{\mu}\left(\diffp[]{\lag}{(\ddp_{\mu}\phi)}\right) = 0.}
+        \end{equation}
+        This is the field version of the Euler-Lagrange equation.
+    \item Similarly to the classical single-particle case, we can define a conjugate momentum
+        \begin{equation}
+            \pi(x^{\mu}) = \diffp[]{\lag}{(\ddp_0 \phi)},
+        \end{equation}
+        where we are only taking the time derivative rather than the full 4-derivative. This also keeps the conjugate momentum a scalar, as otherwise it'd be a 4-vector.
+\end{itemize}
+
+
+\sep
+
+
+\begin{itemize}
+    \item We can derive a Lagrangian density for the Klein-Gordon field such that when applying the Euler-Lagrange (EL) equations, we get back the Klein-Gordon equation. This is seemingly a little strange, but the Lagrangian has a whole slew of other important things that revolve around the Lagrangian. This Lagrangian is:
+        \begin{equation}
+            \lag = \frac{1}{2}\ddp_{\mu}\phi\ddp^{\mu}\phi - \frac{1}{2}m^2\phi^2.
+        \end{equation}
+        The first term in the EL equation is
+        \begin{equation*}
+            \diffp[]{\lag}{\phi} = -m^2\phi.
+        \end{equation*}
+        The second term is a little harder, as it is a bit nuanced (but only as a consequence of hiding summations in the Einstein summation convention). First, let's rewrite the Lagrangian to have all covariant derivatives by introducing the metric:
+        \begin{equation*}
+            \lag = \frac{1}{2} g^{\mu\nu} \ddp_{\nu} \phi \ddp_{\mu} \phi - \frac{1}{2}m^2\phi^2.
+        \end{equation*}
+        Now when go to solve the second term in the EL equation, the presence of the index implies we need to sum over all the covariant 4-derivatives in the Lagrangian. So, the second term is really
+        \begin{equation*}
+            \ddp_{\mu}\left(\diffp[]{\lag}{(\ddp_{\mu}\phi)}\right) + \ddp_{\nu}\left(\diffp[]{\lag}{(\ddp_{\nu}\phi)}\right) = \frac{1}{2}\ddp_{\mu}\left(g^{\mu\nu}\ddp_{\nu}\phi\right) + \frac{1}{2}\ddp_{\nu} \left(g^{\mu\nu}\ddp_{\nu}\phi\right) = \ddp_{\mu}\ddp^{\mu}\phi = \Box \phi.
+        \end{equation*}
+        Plugging these into the full EL equation:
+        \begin{equation*}
+            \boxed{\left(\Box + m^2\right)\phi = 0,}
+        \end{equation*}
+        which is the KG equation, as expected.
+\end{itemize}
+
+
+
+
+
+\sep
+
+
+
+\subsection{Noether's Theorem}
+
+\begin{itemize}
+    \item Going back to classical stuff for a moment: imagine we make an infinitesimal transformation in the coordinates of our system by some function $f$, defined by some parameter $\epsilon$ such that when $\epsilon=0$, we have no transformation. We are looking at something like $q_i^{\prime} = f(q_i,\epsilon)$, with $q_i = f(q_i,0)$ for no transformation. Assessing the change in the Lagrangian with respect to this parameter is:
+        \begin{equation*}
+            \diff{L}{\epsilon} = \sum_i \left[\diffp[]{L}{q_i'}\diff{q_i'}{\epsilon} + \diffp[]{L}{\dot{q}_i'}\diff{\dot{q}_i'}{\epsilon}\right].
+        \end{equation*}
+        Now, if we are to evaluate this at $\epsilon=0$, we have
+        \begin{equation*}
+            \diff{L}{\epsilon}\bigg|_0 = \sum_i \left[\diffp[]{L}{q_i'}\diff{q_i'}{\epsilon} + \diffp[]{L}{\dot{q}_i'}\diff{\dot{q}_i'}{\epsilon}\right]_0 = \sum_i \left\{\diffp[]{L}{q_i}\left[\diff{q_i'}{\epsilon}\right]_0 + \diffp[]{L}{\dot{q}_i} \left[\diff{\dot{q}_i'}{\epsilon}\right]\right\},
+        \end{equation*}
+        where, when we evaluate the derivatives of $L$ with respect to the primed coordinates at $\epsilon=0$, we recall that $q_i = f(q_i,0)$, so such evaluation essentially entails a dropping of the prime. The other evaluation, the one of the derivative of the coordinate with respect to $\epsilon$ is not trivial.
+        If we now use the EL equations and apply an reverse product rule, we get that:
+        \begin{equation*}
+            \diff{L}{\epsilon}\bigg|_0 = \sum_i \left\{\diff{}{t}\left(\diffp[]{L}{\dot{q}_i}\right)\left[\diff{q_i'}{\epsilon}\right]_0 + \diffp[]{L}{\dot{q}_i} \left[\diff{\dot{q}_i'}{\epsilon}\right]\right\} = \sum_j \diff{}{t} \left\{\diffp[]{L}{\dot{q}_i}\left[\diff{q_i'}{\epsilon}\right]_0\right\}.
+        \end{equation*}
+        Now, we want our Lagrangian to be invariant/symmetric under such coordinate transformations, so ideally, its derivative with respect to the parameter characterizing that transformation should be zero. Again, the derivative of the coordinate with respect to $\epsilon$ remains, as it depends on the coordinate and the nature fo the parameter. Thus, the quantity in brackets must be equal to a constant:
+        \begin{equation}
+            \sum_i \diffp[]{L}{\dot{q}_i} \left[\diff{q_i'}{\epsilon}\right]_0 = \text{const}.\label{ClassicalConsQuantity}
+        \end{equation}
+        While the Lagrangian itself should remain invariant under such a transformation, the coordinates themselves obviously change, so we are keeping the evaluation at $\epsilon=0$ to enforce that this conserved quantity itself remain invariant for the unmodified coordinates, as those are the ones that the EL equations use, and it is the ones that the system actually follows.
+    \item Let's consider a specific Lagrangian such as
+        \begin{equation*}
+            L = \frac{1}{2}m\dot{x}^2 + \frac{1}{2}m\dot{z}^2 - mgz.
+        \end{equation*}
+        Making the transformation $x \rightarrow x' = x + \epsilon$, we immediately note that $x$ itself does not appear and $\dot{x} = x$, so $\epsilon$ appears nowhere in the Lagrangian, and we can confirm that $\diff{L}{\epsilon}=0$ here.
+        Now using Eq.~\eqref{ClassicalConsQuantity},
+        \begin{equation*}
+            \diffp[]{L}{\dot{x}}\left[\diff{x'}{\epsilon}\right] = m\dot{x},
+        \end{equation*}
+        which is $x$-component of linear momentum. 
+    \item What we have found is that for space translations, the corresponding conserved quantity is linear momentum. We can also find that for a time translation, we get something of the form:
+        \begin{equation*}
+            \diff{}{t} \left[\sum_i \diffp[]{L}{\dot{q}_i}\dot{q}_i - L\right] = 0,
+        \end{equation*}
+        where the quantity in brackets in the right-most expression is the Hamiltonian. Hence, for time-translational symmetry, the corresponding conserved quantity is energy.
+    \item This is the essence of \textbf{Noether's Theorem}: for every symmetry in a system there is a corresponding conserved quantity given by Eq.~\eqref{ClassicalConsQuantity}. We are also able to find that for rotational symmetry, the corresponding conserved quantity is angular momentum.
+    \item We now turn to \textbf{currents}, which are another way to express conserved quantities. From Physics II, we know that both charge density $\rho$ and current density $\vv{J}$ are conserved. We can express this cleanly by placing them in a 4-vector where the charge density is the time component and the current density is/are the spatial components. Then, we have that
+        \begin{equation*}
+            \ddp_{\mu}J^{\mu} = 0
+        \end{equation*}
+        corresponds to what we found in Physics II:
+        \begin{equation*}
+            \diff{Q}{t} = -\oint \vv{J} \cdot \dd\vv{A}.
+        \end{equation*}
+    \item In general, then, we are looking for conserved \textit{currents} $j^{\mu}$ which give us our conservation laws.
+\end{itemize}
+
+
+\sep
+
+
+\begin{itemize}
+    \item Making the jump to fields, we can easily show that Eq.~\eqref{ClassicalConsQuantity} in terms of fields is
+        \begin{equation}
+            \diff{\lag}{\epsilon}\bigg|_0 = \ddp_{\mu} \left[\sum_n \diffp[]{\lag}{(\ddp_{\mu}\phi_n)} \diff[]{\phi_n'}{\epsilon}\bigg|_0\right].\label{QFTConsQuantity1}
+        \end{equation}
+        This is different than the classical case, because we can transform both the fields themselves like we did with our derivation of the field version of the EL equation, and also the coordinates themselves. Field transformations would ideally leave the Lagrangian invariant, but transforming the coordinates, which the fields are a function of, would generally change the Lagrangian's value. Thus, in general, we cannot make the same assumption that $\dd\lag/\dd\epsilon=0$ like in the classical case. But, using the chain rule, we can write
+        \begin{equation*}
+            \diff{\lag}{\epsilon}\bigg|_0 = \frac{\ddp\lag}{\ddp x^{\mu}} \diff[]{x^{\mu\prime}}{\epsilon}\bigg|_0 = (\ddp_{\mu}\lag)\diff[]{x^{\mu\prime}}{\epsilon} = \ddp_{\mu}\left(\lag \diff{x^{\mu\prime}}{\epsilon}\bigg|_0\right) - \lag\left[\ddp_{\mu}\left(\diff[]{x^{\mu\prime}}{\epsilon}\right)\right]_0.
+        \end{equation*}
+        It turns out that for most if not all transformations of interest, this last term will be zero; i.e. our transformations will have the property that $\ddp_{\mu}(\dd x^{\mu\prime}{\epsilon}) = 0$. Now we can subtract this from Eq.~\eqref{QFTConsQuantity1} to get zero:
+        \begin{equation}
+            0 = \ddp_{\mu} \left\{\sum_n \diffp[]{\lag}{(\ddp_{\mu}\phi_n)}\left[\diff[]{\phi_n'}{\epsilon}\right]_0 - \lag\left[\diff[]{x^{\mu\prime}}{\epsilon}\right]_0\right\},\label{QFTConsQuantity2}
+        \end{equation}
+        where the quantity in the braces can be identified with our conserved current $j^{\mu}$.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item Let's now look at a coordinate transformation $x^{\nu} \rightarrow x^{\nu\prime} = x^{\nu} + \epsilon^{\nu}$. This transformation now contains both time and position displacement. For the Lagrangians that we have seen so far, we never see any actual coordinates, only the fields which are functions of coordinates, so the value of the Lagrangian will change due to this transformation (as discussed above). Now,
+        \begin{equation*}
+            \ddp_{\mu} \frac{\dd x^{\mu\prime}}{\dd\epsilon^{\nu}} = \ddp_{\mu} \delta^{\mu}_{\nu} = 0,
+        \end{equation*}
+        which confirms our previous assumption. Our conserved current also picks up an additional covariant index due to the derivative with respect to the contravariant $\epsilon^{\mu}$ (recall that derivatives with respect to contravariant 4-vectors behave as covariant 4-vectors). The derivative with respect to the field is (dropping the $n$ subscript for simplicity):
+        \begin{equation*}
+            \frac{\dd\phi'}{\dd\epsilon^{\nu}}\bigg|_0 = \frac{\ddp\phi}{\ddp x^{\mu}} \left[\frac{\dd x^{\mu\prime}}{\dd\epsilon^{\nu}}\right] = \frac{\ddp\phi}{\ddp x^{\mu}} \delta^{\mu}_{\nu} = \frac{\ddp\phi}{\dd x^{\nu}} = \ddp_{\nu}\phi.
+        \end{equation*}
+        Plugging into our formula for the conserved current $T^{\mu}_{\nu}$ (Eq.~\eqref{QFTConsQuantity2}):
+        \begin{equation*}
+            T^{\mu}_{\nu} = \diffp[]{\lag}{(\ddp_{\mu}\phi)}\ddp_{\nu}\phi - \delta^{\mu}_{\nu}\lag.
+        \end{equation*}
+        It will be easier to work with if we raise the $\nu$ index, which turns the Kronecker delta unto the metric (as it stands, it's the identity matrix; by raising one of the indices, we are reversing the sign on the spatial components, and thus, we get the metric!):
+        \begin{equation}
+            T^{\mu\nu} = \left[\sum_n \diffp[]{\lag}{(\ddp_{\mu}\phi_n)} \ddp^{\nu}\phi_n\right] - g^{\mu\nu}\lag.\label{StressEnergyTensor}
+        \end{equation}
+    \item This is the \textbf{Stress-Energy tensor}, and it describes a number of quantities:
+        \begin{enumerate}
+            \item[a)] $T^{00}$ is the field's energy density.
+            \item[b)] $T^{0i}$ is the field's $i$th momentum density.
+        \end{enumerate}
+        To show (a):
+        \begin{equation*}
+            T^{00} = \diffp[]{\lag}{(\ddp_0)\phi} \ddp^0\phi - \lag = \diffp[]{\lag}{\dot\phi} \dot\phi - \lag,
+        \end{equation*}
+        Hamiltonian \textit{density}, which is just like the Lagrangian density in that
+        \begin{equation}
+            H = \int \mathcal{H} \;\ddx^3.\label{HamiltonianDensity}
+        \end{equation}
+\end{itemize}
+
+
+\sep
+
+
+\begin{itemize}
+    \item Looking at the KG field
+        \begin{equation*}
+            \lag = \frac{1}{2}\ddp^{\mu}\phi\ddp_{\mu}\phi - \frac{1}{2}m^2\phi^2,
+        \end{equation*}
+        we can compute the energy density
+        \begin{align*}
+            \mathcal{H} &= \diffp[]{\lag}{(\ddp_0\phi)}\ddp^0\phi - \left(\frac{1}{2}\ddp^{\mu}\phi\ddp_{\mu}\phi - \frac{1}{2}m^2\phi^2\right) \\
+            &= (\ddp_0\phi)^2 - \frac{1}{2}\left[(\ddp^{0}\phi)^2 - (\grad\phi)^2 \frac{1}{2}m^2\phi^2\right], \\
+            &= \left[(\ddp_0\phi)^2 + (\grad\phi)^2 + m^2\phi^2\right].
+        \end{align*}
+        This quantity is positive definite! We have now solved the negative energy problem too!
+\end{itemize}

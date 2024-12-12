@@ -1,0 +1,31 @@
+\section{(6.2b)}
+
+We are given the Lagrangian
+\begin{equation}
+    \lag = \frac{1}{2}\ddp_{\mu}\phi_1\ddp^{\mu}\phi_1 - \frac{1}{2}m_1^2\phi_1^2 + \frac{1}{2}\ddp_{\mu}\phi_2\ddp^{\mu}\phi_2 - \frac{1}{2}m_2^2\phi_2^2 - \lambda\phi_1^2\phi_2^2.
+\end{equation}
+
+
+The energy density is given as:
+
+\begin{align*}
+    \mathcal{H} \equiv T^{00} &= \left[\sum_n \diffp[]{\lag}{(\ddp_{0}\phi_n)}\ddp^{0}\phi_n\right] - g^{00}\lag, \\
+    &= \left[\sum_n \diffp[]{\lag}{\dot{\phi}_n}\dot{\phi}_n\right] - \lag.
+\end{align*}
+
+Writing the Lagrangian in a more suggestive way:
+\begin{align*}
+    \lag &= \frac{1}{2}\ddp_{0}\phi_1\ddp^{0}\phi_1 + \frac{1}{2}\ddp_{i}\phi_1\ddp^{i}\phi_1 + \frac{1}{2}\ddp_{0}\phi_2\ddp^{0}\phi_2 + \frac{1}{2}\ddp_{i}\phi_2\ddp^{i}\phi_2 - \frac{1}{2}m_1^2\phi_1^2 - \frac{1}{2}m_2^2\phi_2^2 - \lambda\phi_1^2\phi_2^2, \\
+    &= \frac{1}{2}\left(\dot{\phi}_1\right)^2 + \frac{1}{2}\left(\dot{\phi}_2\right)^2 - \frac{1}{2}\left(\grad\phi_1\right)^2 - \frac{1}{2}\left(\grad\phi_2\right)^2 - \frac{1}{2}m_1^2\phi_1^2 - \frac{1}{2}m_2^2\phi_2^2 - \lambda\phi_1^2\phi_2^2.
+\end{align*}
+
+Now, we compute
+\begin{align*}
+    \ham &= \dot{\phi}_1^2 + \dot{\phi}_2^2 - \left[\frac{1}{2}\dot{\phi}_1^2 + \frac{1}{2}\dot{\phi}_2^2 - \frac{1}{2}\grad\phi_1^2 - \frac{1}{2}\grad\phi_2^2 - \frac{1}{2}m_1^2\phi_1^2 - \frac{1}{2}m_2^2\phi_2^2 - \lambda\phi_1^2\phi_2^2\right], \\
+    \Aboxed{\ham &= \frac{1}{2} \left[\dot{\phi}_1^2 + \dot{\phi}_2^2 + (\grad\phi_1)^2 + (\grad\phi_2)^2 + m_1^2\phi_1^2 + m_2\phi_2^2 + 2\lambda\phi_1^2\phi_2^2\right].}
+\end{align*}
+
+Or, maybe slightly more compactly (and more generally):
+\begin{equation*}
+    \boxed{\ham = \frac{1}{2}\sum_{n=1}^2 \left[\dot{\phi}_n^2 + (\grad\phi_n)^2 + (m_n\phi_n)^2\right] + 2\lambda\prod_{n=1}^{2}\phi_n^2.}
+\end{equation*}

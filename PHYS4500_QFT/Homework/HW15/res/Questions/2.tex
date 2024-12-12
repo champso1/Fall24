@@ -1,0 +1,34 @@
+\section{}
+
+We know that we can choose a QCD scale $\Lambda$ such that
+
+\begin{equation}
+  \ln\Lambda^2 = \ln\mu_0^2 - \frac{4\pi}{\beta_0 \alpha_s(\mu_0)},
+\end{equation}
+
+where
+
+\begin{equation}
+  \beta_0 = \frac{11}{3}C_A - \frac{2}{3}n_f \quad\rightarrow\quad \frac{33}{3} - \frac{10}{3} = \frac{23}{3}
+\end{equation}
+
+when we take $n_f = 5$ and $C_A = N_c = 3$. With this, then, we can solve for $\Lambda$
+
+\begin{gather}
+  \rightarrow \Lambda^2 = \mu_0^2 \exp\br{-\frac{12\pi}{23 \alpha_s(\mu_0)}} \\
+  \rightarrow \Lambda = \mu_0 \sqrt{\exp\br{-\frac{12\pi}{23 \alpha_s(\mu_0)}}}.
+\end{gather}
+
+For an initial choice of $\mu_0 = m_Z = \qty{91.1876}{\giga\electronvolt}$, we have that $\alpha_s(m_Z) = 0.1179$ meaning that our QCD scale is, after plugging into a calculator, $\boxed{\Lambda = \qty{0.08731}{\giga\electronvolt} = \qty{87.31}{\mega\electronvolt}.}$ This roughly matches the general scale of $\Lambda \sim \qty{200}{\mega\electronvolt}.$ Now, once we know this energy scale, we can use the relation
+
+\begin{equation}
+  \alpha_s(\mu) = \frac{4\pi}{\beta_0 \ln \frac{\mu^2}{\Lambda^2}} = \frac{12\pi}{23\ln \frac{\mu^2}{\Lambda^2}}
+\end{equation}
+
+to determine the strong coupling constant at a new energy scale $\mu$. Choosing now $\mu = m_t = \qty{172.5}{\giga\electronvolt}$, we find that $\boxed{\alpha_s(m_t) = 0.1080.}$ As expected of the strong coupling constant, it has decreased at a higher energy scale.
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW15"
+%%% End:

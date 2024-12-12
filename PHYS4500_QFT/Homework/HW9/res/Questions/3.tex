@@ -1,0 +1,22 @@
+% show that in n-dim, \gamma^{\mu}\gamma_{\mu} = n.
+\section{}
+
+We are to show that 
+
+\begin{equation}
+    \gamma^{\mu}\gamma_{\mu} = n
+\end{equation}
+
+in $n$ dimensions. First:
+
+\begin{equation*}
+    \gamma^{\mu}\gamma_{\mu} = g_{\mu\nu}\gamma^{\mu}\gamma^{\nu} = g_{\mu\nu}\br{\{\gamma^{\mu}, \gamma^{\nu}\} - \gamma^{\nu}\gamma^{\mu}}.
+\end{equation*}
+
+The anti-commutator of the gamma matrices is independent of the dimension - it's just $2g^{\mu\nu}$, so
+
+\begin{align*}
+    \gamma^{\mu}\gamma_{\mu} &= g_{\mu\nu}\br{2g^{\mu\nu} - \gamma^{\nu}\gamma^{\mu}} = 2g_{\mu\nu}g^{\mu\nu} - \gamma^{\mu}\gamma_{\mu} \\
+    2\gamma^{\mu}\gamma_{\mu} &= 2g_{\mu}^{\mu} \\
+    \gamma^{\mu}\gamma_{\mu} &= n.
+\end{align*}

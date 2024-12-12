@@ -1,0 +1,31 @@
+% 3) Show explicitly the missing details for the derivation of Gauss's law and the Ampere-Maxwell law as shown in page 2 of the Lecture-5a notes.
+\section{}
+
+The 4-current is defined like $j^{\mu} = (\rho,\vv{j})$, and the Euler-Lagrange equation for the QED Lagrangian gives us
+
+\begin{equation}
+    \ddp_{\mu}F^{\mu\nu} = j^{\nu}.
+\end{equation}
+
+For $\nu=0$, we have
+
+\begin{equation*}
+    \ddp_{\mu}F^{\mu0} = \diffp{E_x}{x} + \diffp{E_y}{y} + \diffp{E_z}{z} = \boxed{\dotprodv{\grad}{E} = \rho,}
+\end{equation*}
+
+which is Gauss's Law. Moving to $\nu=i$:
+
+\begin{align*}
+    i=1 \quad\rightarrow\quad &\ddp_{\mu}F^{\mu 1} = -\diffp{E_x}{t} + \diffp{B_z}{y} - \diffp{B_y}{z} = -\diffp{E_x}{t} + (\grad\times\vv{B})_x, \\
+    i=2 \quad\rightarrow\quad &\ddp_{\mu}F^{\mu 2} = -\diffp{E_y}{t} - \diffp{B_z}{x} + \diffp{B_x}{z} = -\diffp{E_y}{t} + (\grad\times\vv{B})y, \\
+    i=3 \quad\rightarrow\quad &\ddp_{\mu}F^{\mu 3} = -\diffp{E_z}{t} + \diffp{B_y}{x} - \diffp{B_x}{y} = -\diffp{E_z}{t} + (\grad\times\vv{B})_z
+\end{align*}
+
+We can rewrite this as a vector since each component only carries its own subscript:
+
+\begin{equation*}
+    \ddp_{\mu}F^{\mu i} = \boxed{\grad\times\vv{B} - \diffp{\vv{E}}{t} = \vv{j},}
+\end{equation*}
+
+which is the Ampere-Maxwell law.
+

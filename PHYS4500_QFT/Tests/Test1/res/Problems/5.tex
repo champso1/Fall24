@@ -1,0 +1,86 @@
+\section{}
+
+We are given the Fourier expansion for the creation and annihilation operators in terms of the fields for the real scalar (KG) field:
+
+\begin{equation}
+    a^{\dagger}(\vv{p}) = i\int \;\dd^3x \sqrt{2p^0} \left[ \phi(\vv{x}) \ddp_0 e^{-i\dotprod{p}{x}} - (\ddp_0\phi(\vv{x}))e^{-i\dotprod{p}{x}} \right].
+\end{equation}
+
+To simplify this, we know that the conjugate momentum is given by $\pi(\vv{x}) \equiv \ddp_0\phi$ and 
+
+\begin{equation*}
+    \ddp_0e^{-i\dotprod{p}{x}} = e^{-i\dotprodv{p}{x}}\diff{}{t}\left[ -ip^0t \right] e^{-ip^0t} = -ip^0e^{-ip^0t}e^{-i\dotprodv{p}{x}},
+\end{equation*}
+
+Thus,
+
+\begin{align*}
+    a^{\dagger}(\vv{p}) &= i\sqrt{2p^0}e^{-ip^0t} \int \dd^3x\; e^{-i\dotprodv{p}{x}} \left[ -ip^0\phi(\vv{x}) - \pi(\vv{x}) \right], \\
+    &= \sqrt{2p^0}e^{-ip^0t} \int \dd^3x\; e^{-i\dotprodv{p}{x}} \left[ p^0\phi(\vv{x}) - i\pi(\vv{x}) \right],
+\end{align*}
+
+or we can just let $t=0$ to eliminate the first exponential outside the integral:
+
+\begin{equation*}
+    a^{\dagger}(\vv{p}) = \sqrt{2p^0}\int \dd^3x\; e^{-i\dotprodv{p}{x}} \left[ p^0\phi(\vv{x}) - i\pi(\vv{x}) \right]
+\end{equation*}
+
+The quantity $a^{\dagger}(\vv{p})a^{\dagger}(\vv{q})$ is found by integrating over the dummy variable $y$ for the $a^{\dagger}(\vv{q})$ term:
+
+\begin{equation*}
+    a^{\dagger}(\vv{p})a^{\dagger}(\vv{q}) = 2\sqrt{p^0q^0}\int \dd^3x\dd^3y \; e^{-i(\dotprodv{p}{x} + \dotprodv{q}{y})} \left[ p^0\phi(\vv{x}) - i\pi(\vv{x}) \right]\left[ q^0\phi(\vv{y}) - i\pi(\vv{y}) \right]
+\end{equation*}
+
+Looking just at the product of the two expressions in the brackets:
+
+\begin{align*}
+    = p^0q^0 \phi(\vv{x})\phi(\vv{y}) - ip^0\phi(\vv{x})\pi(\vv{y}) - iq^0\pi(\vv{x})\phi(\vv{y}) - \pi(\vv{x})\pi(\vv{y}).
+\end{align*}
+
+When we do the commutator, the second term will have a term in brackets that looks identical with $\vv{x} \leftrightarrow \vv{y}$ and $\vv{p} \leftrightarrow \vv{q}$:
+
+\begin{equation*}
+    = p^0q^0 \phi(\vv{y})\phi(\vv{x}) - iq^0\phi(\vv{y})\pi(\vv{z}) - ip^0\pi(\vv{y})\phi(\vv{x}) - \pi(\vv{y})\pi(\vv{x}).
+\end{equation*}
+
+Subtracting the two (as the definition of the commutator requires), these terms in brackets become:
+
+\begin{equation*}
+    p^0q^0 [\phi(\vv{x}),\phi(\vv{y})] - ip^0[\phi(\vv{x}),\pi(\vv{y})] - iq^0[\pi(\vv{x}),\phi(\vv{y})] - [\pi(\vv{x}),\pi(\vv{y})].
+\end{equation*}
+
+From the equal time-commutation relations, we know the first and fourth terms are zero, so all we are left with is
+
+\begin{equation*}
+    -ip^0(i\delta^3(\vv{x}-\vv{y})) - iq^0(-i\delta^3(\vv{x}-\vv{y})) = (p^0-q^0)\delta^3(\vv{x}-\vv{y}),
+\end{equation*}
+
+so the full commutator is
+
+\begin{equation*}
+    [a^{\dagger}(\vv{p}),a^{\dagger}(\vv{q})] = 2\sqrt{p^0q^0} \int \dd^3x\dd^3y \; e^{-i(\dotprodv{p}{x}+\dotprodv{q}{y})} (p^0-q^0)\delta^3(\vv{x}-\vv{y}).
+\end{equation*}
+
+The delta function kills, say, the $y$ integral, leaving:
+
+\begin{equation*}
+    [a^{\dagger}(\vv{p}),a^{\dagger}(\vv{q})] = 2\sqrt{p^0q^0}(p^0-q^0) \int \dd^3x \; e^{-i(\vv{p}+\vv{q})\cdot\vv{x}} 
+\end{equation*}
+
+The remaining integral leaves another delta function:
+
+\begin{equation*}
+    [a^{\dagger}(\vv{p}),a^{\dagger}(\vv{q})] = 2\sqrt{p^0q^0}(p^0-q^0) (2\pi)^3 \delta^3(\vv{p}+\vv{q}).
+\end{equation*}
+
+Now, when $\vv{p} \neq -\vv{q}$, the commutator is automatically zero via the delta function. When $\vv{p} = -\vv{q}$, we can take a closer look at $p^0$ and $q^0$; they are defined by:
+
+\begin{equation*}
+    p^0 = \sqrt{\vv{p}^2 + m^2} \quad \mathrm{and} \quad q^0 = \sqrt{\vv{q}^2 + m^2}.
+\end{equation*}
+
+Since the 3-vectors only appear squared, when $\vv{q} = -\vv{p}$, $q^0 = \sqrt{\vv{p}^2 + m^2} = p^0$, so the quantity $(p^0 - q^0) \rightarrow (p^0 - p^0) = 0$. Hence,
+
+\begin{equation*}
+    \boxed{[a^{\dagger}(\vv{p}),a^{\dagger}(\vv{q})] = 0.}
+\end{equation*}

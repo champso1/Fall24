@@ -1,0 +1,125 @@
+\section{Scattering Cross Sections and Decay Rates}
+
+
+\begin{itemize}
+    \item Now that we know how to calculate the amplitudes for processes, let's now turn to the aforementioned quantities that are proportional to the amplitudes squared. We will consider scattering cross sections first.
+    \item Let's imagine we have two beams being shot at each other with velocities $\vv{v}_1$ and $\vv{v}_2$, masses $m_1$ and $m_2$, and number densities (total number of particles per unit volume) $n_1$ and $n_2$. The relative velocity of $\vv{v}_2$ from the reference frame of $\vv{v}_1$ is given by $\vv{v}_{\mathrm{rel}} = \vv{v}_1 - \vv{v}_2$. If $\vv{v}_2$ is zero, this is called a \textit{fixed-target} experiment.
+    \item The quantity we are interested in examining is the number of events per unit volume per unit time. This is, intuitively, proportional to the product of the number densities and the relative velocity. The proportionality constant we will denote with $\sigma$, which is the cross section:
+        \begin{equation*}
+            \frac{\dd N}{\dd V \dd t} = \sigma \vv{v}_{\mathrm{rel}} n_1n_2.
+        \end{equation*}
+    \item The quantity $\dd N$ is Lorentz-invariant, since otherwise, it'd violate causality. Because of this, we can choose whatever reference frame we want to evaluate this. We will choose the reference frame of the second beam so that $\vv{v}_2 = 0$ and $\vv{v}_{\mathrm{rel}} = \vv{v}_1$. Additionally, we will have that $\dotprod{p_1}{p_2} = E_1E_2$, or since $E = \gamma m = m/\sqrt{1-\vv{v}^2}$, we can say:
+        \begin{equation*}
+            \dotprod{p_1}{p_2} = \frac{m_1m_2}{\sqrt{1 - \vv{v}_{\mathrm{rel}}^2}}
+        \end{equation*}
+    \item Solving for $\vv{v}_{\mathrm{rel}}$, we get (after a little bit of work)
+        \begin{equation*}
+            \abs{\vv{v}_{\mathrm{rel}}} = \frac{\sqrt{(\dotprod{p_1}{p_2})^2 - m_1^2m_2^2}}{E_1E_2}.
+        \end{equation*}
+    \item We can plug this into our previous number of events equation to get
+        \begin{align*}
+            \dd N &= \sigma \frac{\sqrt{(\dotprod{p_1}{p_2})^2 - m_1^2m_2^2}}{E_1E_2} n_1n_2 \dd V \dd t, \\
+            &= \sigma \frac{\sqrt{(\dotprod{p_1}{p_2})^2 - m_1^2m_2^2}}{E_1E_2} \frac{N_1N_2}{V_0^2}\dd V \dd t, \\
+            &= \sigma \frac{\sqrt{(\dotprod{p_1}{p_2})^2 - m_1^2m_2^2}}{E_1E_2} \frac{N_1N_2}{V}t,
+        \end{align*}
+        where the volume in the denominator in the second line is a constant volume based on the beams, so I indexed it like $V_0$ to differentiate it from the integration volume $V$; it won't be affected. As such, we just get a factor of $V$ after the integration, which is the constant $V_0$, so one cancels, and I drop the subscript again in the third line. Similarly, nothing is dependent on time, so we just pick up a multiplicative $t$.
+    \item Now the actual derivation for the cross section is a little more tricky, we just did this to sort of visually motivate the form of it. It can be shown that the above expression is proportional to the amplitude squared, so after the necessary work, we arrive at
+        \begin{equation}
+            \dd\sigma = \frac{\abs{\mathcal{M}}^2}{\sqrt{(\dotprod{p_1}{p_2})^2 - m_1^2m_2^2}} (2\pi)^4 \delta^4\br{p_1+p_2 - \sum_{i=3}^{n}p_i} \prod_{i=3}^n \frac{\dd^3\vv{p}_i}{(2\pi)^3 2E_i},
+        \end{equation}
+        for an arbitrary $p_1 + p_2 \rightarrow p_3 + p_4 + \ldots + p_n$ process.
+    \item Everything to the right of the first fraction is called the \textbf{phase space}, because it essentially states that we are considering every possible final state, all while placing momentum conservation restrictions.
+    \item If we restrict ourselves to just a $2\rightarrow2$ process, this becomes:
+        \begin{align*}
+            \dd\sigma &= \frac{\abs{\mathcal{M}}^2}{\sqrt{(\dotprod{p_1}{p_2})^2 - m_1^2m_2^2}} (2\pi)^4 \delta^4\br{p_1 + p_2 - p_3 - p_4} \frac{\dd^3\vv{p}_3\dd^3\vv{p}_4}{(2\pi)^3 2E_3 (2\pi)^3 2E_4}, \\
+            \sigma &= \iint \frac{\abs{\mathcal{M}}^2}{64\pi^2 E_3E_4} \frac{\delta^4(p_1 + p_2 + p_3 + p_4)}{\sqrt{(\dotprod{p_1}{p_2})^2 - m_1^2m_2^2}} \dd^3\vv{p}_3 \dd^3\vv{p}_4.
+        \end{align*}
+    \item To make it so we can actually do these integrals, we can split up the delta function like so:
+        \begin{equation*}
+            \delta^4(p_1 + p_2 + p_3 + p_4) = \delta(E_1 + E_2 - E_3 - E_4)\delta^3(\vv{p}_1 + \vv{p}_2 - \vv{p}_3 - \vv{p}_4).
+        \end{equation*}
+        This way, we can use the 3-dim delta to kill the $\vv{p}_4$ integral:
+        \begin{equation*}
+            \sigma = \int \frac{\abs{\mathcal{M}}^2}{64\pi^2 E_3E_4} \frac{\delta(E_1 + E_2 - E_3 - E_4)}{\sqrt{(\dotprod{p_1}{p_2})^2 - m_1^2m_2^2}} \dd^3\vv{p}_4.
+        \end{equation*}
+    \item Let's look at the center of mass frame. In this frame, it can be shown that $\sqrt{(\dotprod{p_1}{p_2})^2 - m_1^2m_2^2} = (E_1 + E_2)\abs{\vv{p}_1}$. Additionally, we will expand out energies into the form $E = \sqrt{\vv{p}^2 + m^2}$ so that we have everything that is dependent on $\vv{p}_3$ (the energies) written in terms of it. Lastly, in the CM frame, we have that $\vv{p}_3 + \vv{p}_4 = 0 \rightarrow \vv{p}_4 = -\vv{p}_3$, so
+        \begin{equation*}
+            \sigma = \frac{1}{64\pi^2 (E_1+E_2)\abs{\vv{p}_1}} \int \frac{\abs{\mathcal{M}}^2 \dd^3\vv{p}_3}{\sqrt{\vv{p}_3^2 + m_3^2}\sqrt{\vv{p}_3^2 + m_4^2}} \delta\br{E_1 + E_2 - \sqrt{\vv{p}_3^2 + m_3^2} - \sqrt{\vv{p}_3^2 + m_4^2}}.
+        \end{equation*}
+    \item From here, we can switch to spherical coordinates with $\dd^3\vv{p}_3 = \abs{\vv{p}_3}^2 \dd\abs{\vv{p}_3}\dd\Omega$, then do a couple of suitable u-substitutions, which are a lot of work, but relatively trivial. After all this, we get the rather simple result
+        \begin{equation}
+            \od{\sigma}{\Omega} = \frac{\abs{\mathcal{M}}^2}{64\pi^2 s}\frac{\abs{\vv{p}_3}}{\abs{\vv{p}_1}}.
+        \end{equation}
+    \item Further, if our scattering process happens to be elastic (which has a different meaning in quantum field theory; here, it means the same particles that go in come out), we have that $m_1 = m_3$ (and $m_2 = m_4$), so $\abs{\vv{p}_3} = \abs{\vv{p}_1}$, so the right-most term is just one:
+        \begin{equation}
+            \od{\sigma}{\Omega} = \frac{\abs{\mathcal{M}}^2}{64\pi^2 s}.
+        \end{equation}
+    \item Often, we are interested in finding the differential scattering cross section against $\dd t$, the Mandelstam variable. This seems a little strange: why $t$ and not $s$ or $u$? Well, as we just saw, $\vv{p}_1$ and $\vv{p}_3$ were involved, which leads to $t$. Also, as we will see, it is quite a nice result.
+    \item First, 
+        \begin{equation*}
+            t = (p_1 - p_3)^2 = m_1^2 + m_3^2 - 2\dotprod{p_1}{p_3} = m_1^2 + m_3^2 - 2E_1E_2 + 2\abs{\vv{p}_1}\abs{\vv{p}_3}\cos\theta,
+        \end{equation*}
+        so
+        \begin{equation*}
+            \dd t = 2\abs{\vv{p}_1}\abs{\vv{p}_3}\dd(\cos\theta).
+        \end{equation*}
+        Multiplying by the differential aziumathal angle:
+        \begin{equation*}
+            \ddt \dd\phi = 2\abs{\vv{p}_1}\abs{\vv{p}_3}\dd(\cos\theta)\dd\phi = 2\abs{\vv{p}_1}\abs{\vv{p}_3}\dd\Omega,
+        \end{equation*}
+        so
+        \begin{equation*}
+            \od{\sigma}{t} = \int\dd\phi \frac{1}{2\abs{\vv{p}_1}\abs{\vv{p}_3}} \od{\sigma}{\Omega}.
+        \end{equation*}
+    \item Thus, dropping the elastic assumption, we have
+        \begin{equation*}
+            \od{\sigma}{t} = \int\dd\phi \frac{\abs{\mathcal{M}}^2}{2\abs{\vv{p}_1}\abs{\vv{p}_3}} \frac{\abs{\vv{p}_3}}{\abs{\vv{p}_1}} \frac{1}{64\pi^2 s}.
+        \end{equation*}
+        The $\abs{\vv{p}_3}$ cancels! Further, usually, the kinematics are independent of the azimuthal angle, so we do the integration and get a factor of $2\pi$:
+        \begin{equation}
+            \od{\sigma}{t} = \frac{\abs{\mathcal{M}}^2}{64\pi s \abs{\vv{p}_1}^2}.
+        \end{equation}
+    \item This is not Lorentz-invariant, since we have just a raw momentum. It can be shown that this can be rewritten like
+        \begin{equation*}
+            \od{\sigma}{t} = \frac{\abs{\mathcal{M}}^2}{16\pi \lambda(s,m_1^2,m_2^2)},
+        \end{equation*}
+        where $\lambda$ is the ``triangle-function'', defined like
+        \begin{equation}
+            \lambda(s, m_1^2, m_2^2) = (s - m_1^2 - m_2^2)^2 - 4m_1^2m_2^2.
+        \end{equation}
+    \item In the massless/high-energy limit, this simplifies to
+        \begin{equation}
+            \od{\sigma}{t} = \frac{\abs{\mathcal{M}}^2}{16\pi s^2}.
+        \end{equation}
+\end{itemize}
+
+\sep
+
+
+\begin{itemize}
+    \item Moving to decays, we have, as an example, the muon decaying into an electron and two neutrinos: $\mu^- \rightarrow e^- + \bar{\nu}_e + \nu_{\mu}$. Of course, decay rates are probabilistic, and what's more, elementary particles don't have an ``age'', meaning that a particle that was just created has the exact same probability of decaying in the next instant as does an identical particle that has been around for 1000 years.
+    \item We denote the decay rate with $\Gamma$, just as normal decay rates. This is defined by considering a group of $N(t)$ unstable particles at some time $t$. The rate of change of the number of particles is proportional to the decay rate:
+        \begin{equation*}
+            \dd N = - \Gamma N(t) \;\ddt.
+        \end{equation*}
+        This is a simple ordinary differential equation:
+        \begin{equation*}
+            N(t) = N(0)e^{-\Gamma t}.
+        \end{equation*}
+    \item The average lifetime is given by $\tau \equiv 1/\Gamma$, and the half-life is given by $t_{1/2} \equiv t\ln2$. This can be found by considering that $N(t_{1/2}) = N(0)/2$, then solving for $t_{1/2}$.
+    \item Turning now to QFT, let's consider a decay process wherein a particle decays into an arbitrary number of particles: $p \rightarrow p_1 + p_2 + \ldots + p_n$. It turns out that the formula for the decay rate is almost identical to that for the scattering cross section:
+        \begin{equation}
+            \dd\Gamma = \frac{\abs{\mathcal{M}}^2}{2E} (2\pi)^4 \delta^4\br{p - \sum_{i=1}^n} \prod_{i=1}^n \frac{\dd^3\vv{p}_i}{(2\pi)^3 2E_i}.
+        \end{equation}
+    \item Actually, this particular phase space integration is special; it is called the ``$n$-body phase space'':
+        \begin{equation}
+            \dd\Phi^{(n)} = (2\pi)^4 \delta^4\br{p - \sum_{i=1}^n} \prod_{i=1}^n \frac{\dd^3\vv{p}_i}{(2\pi)^3 2E_i}.
+        \end{equation}
+    \item With this, we can more compactly write the differential decay rate:
+        \begin{equation}
+            \dd\Gamma = \frac{\abs{\mathcal{M}}^2}{2E} \dd\Phi^{(n)}.
+        \end{equation}
+\end{itemize}
+
+
+

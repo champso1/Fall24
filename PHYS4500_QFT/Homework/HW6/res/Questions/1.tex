@@ -1,0 +1,80 @@
+\section{(13.1)} 
+
+
+We have the Lagrangian
+
+\begin{equation}
+    \lag = \frac{1}{2}\abs{\phi\ddp_{\mu}\phi}^2 - \frac{1}{2}m_{\phi}^2\phi^2 + \frac{1}{2}\abs{\ddp_{\mu}\eta}^2 - \frac{1}{2}m_{\eta}^2\eta^2 - \lambda n\phi.
+\end{equation}
+
+We can define the rotated fields
+
+\begin{align}
+    &\phi' = \cos(\theta)\phi + \sin(\theta)\eta, \quad \mathrm{and} \\
+    &\eta' = -\sin(\theta)\phi + \cos(\theta)\eta,
+\end{align}
+
+and recover another Lagrangian 
+
+or, since this is an element of $SO(2)$ we can get its inverse by taking the transpose, so we can also state that
+
+\begin{align}
+    &\phi = \cos\theta\;\phi' - \sin\theta\;\eta, \quad \mathrm{and}\label{eq:Prblm1Phi} \\
+    &\eta = \sin\theta\;\phi' + \cos\theta\;\eta.\label{eq:Prblm1Eta}
+\end{align}
+
+We want to show that this Lagrangian, under a rotation of the fields like this, is physically equivalent to the Lagrangian:
+
+\begin{equation}
+    \lag = \frac{1}{2}\abs{\phi\ddp_{\mu}\phi'}^2 - \frac{1}{2}m_1^2\phi^{\prime2} + \frac{1}{2}\abs{\ddp_{\mu}\eta'}^2 - \frac{1}{2}m_2^2\eta^{\prime2}
+\end{equation}
+
+for a suitable value of $\theta$. To look at this, let's plug Eqs.~\eqref{eq:Prblm1Phi} and~\eqref{eq:Prblm1Eta} into the original Lagrangian. First, we consider the kinetic terms; also, for notational simplicity, we will let $c \equiv \cos\theta$ and $s \equiv \sin\theta$:
+
+\begin{align*}
+    \abs{\ddp_{\mu}\phi}^2 &= \left( c\ddp_{\mu}\phi' - s\ddp_{\mu}\eta' \right)\left( c\ddp^{\mu}\phi' - s\ddp^{\mu}\eta' \right) = c^2\abs{\ddp_{\mu}\phi^{\prime}}^2 + s^2\abs{\ddp_{\mu}\eta^{\prime}}^2 - 2sc\ddp_{\mu}\phi'\ddp^{\mu}\eta', \\
+    \abs{\ddp_{\mu}\eta}^2 &= s^2\abs{\ddp_{\mu}\phi^{\prime}}^2 + c^2\abs{\ddp_{\mu}\eta^{\prime}}^2 + 2sc\ddp_{\mu}\phi'\ddp^{\mu}\eta'.
+\end{align*}
+
+Adding the two together removes the cross terms, and by using the all famous $c^2 + s^2 = 1$, any $\theta$ dependence cancels too, so it turns out the kinetic terms are invariant under this change. For the mass terms, we have
+
+\begin{align*}
+    -\frac{1}{2}m_{\phi}^2\phi^2 &= -\frac{1}{2}m_{\phi}^2(c^2\phi^{\prime2} + s^2\eta^{\prime2} - 2cs\phi'\eta'), \\
+    -\frac{1}{2}m_{\eta}^2\eta^2 &= -\frac{1}{2}m_{\eta}^2(s^2\phi^{\prime2} + c^2\eta^{\prime2} + 2cs\phi'\eta'),
+\end{align*}
+
+and for the cross term:
+
+\begin{equation*}
+    -\lambda\phi\eta = -\lambda(cs\phi^{\prime2} -cs\eta^{\prime2} + c^2 \phi'\eta' - s^2\phi'\eta').
+\end{equation*}
+
+Grouping terms proportial to $\phi^{\prime2}$, $\eta^{\prime2}$, and $\phi'\eta'$:
+
+\begin{equation*}
+    -\frac{1}{2}\phi^{\prime2}(m_{\phi}^2 c^2 + m_{\eta}^2 s^2 + 2\lambda cs) - \frac{1}{2}\eta^{\prime2}(m_{\phi}^2 s^2 + m_{\eta}^2 c^2 - 2\lambda cs) - \phi'\eta'(-m_{\phi}^2 cs + m_{\eta}^2 cs + \lambda c^2 - \lambda s^2).
+\end{equation*}
+
+Now, in our new Lagrangian, we want to eliminate this last term, so we can set the expression in the parentheses equal to zero:
+
+\begin{gather*}
+    cs(m_{\eta}^2 - m_{\phi}^2) + \lambda(c^2 - s^2) = 0, \\
+    \lambda = \frac{cs(m_{\phi}^2 - m_{\eta}^2)}{(c^2-s^2)} = \frac{1}{2} \frac{\sin2\theta(m_{\phi}^2 - m_{\eta}^2)}{\cos2\theta} = \frac{1}{2}\tan2\theta(m_{\phi}^2 - m_{\eta}^2).
+\end{gather*}
+
+Now if we solve for $\theta$, we find:
+
+\begin{equation*}
+    \theta = \frac{1}{2}\tan^{-1}\left( \frac{2\lambda}{m_{\phi}^2 - m_{\eta}^2} \right).
+\end{equation*}
+
+So, rotating our fields by this angle will eliminate the cross term. Now, we need to determine what the new mass terms are in relation to the previous mass terms and the coupling constant:
+
+\begin{equation*}
+    \begin{cases}
+        m_1^2 = m_{\phi}^2 c^2 + m_{\eta}^2 s^2 + 2\lambda cs, \\
+        m_1^2 = m_{\phi}^2 s^2 + m_{\eta}^2 c^2 - 2\lambda cs.
+    \end{cases}
+\end{equation*}
+
+I'm not sure if we have to simplify this any further; with our definition of $\theta$, it'll get a little ugly, so I'll leave it here since we have everything we need: we've defined $\theta$, and we have it in terms of $m_{\phi}^2$, $m_{\eta}^2$, and $\lambda$.

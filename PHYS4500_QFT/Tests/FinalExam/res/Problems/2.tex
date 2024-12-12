@@ -1,0 +1,86 @@
+\section{}
+
+The parts of the QCD Lagrangian containing only the spinors is:
+
+\begin{equation}
+  \lag = i\psib \gamma^\mu D_\mu \psi - m\psib\psi,
+\end{equation}
+
+where the covariant derivative is
+
+\begin{equation}
+  D_\mu\psi = \ddp_\mu\psi + ig_s T^aG^a_\mu \psi.
+\end{equation}
+
+Under a local $SU(3)$ gauge transformation, we have that
+
+\begin{align}
+  \psi' &\rightarrow e^{iT^a\theta^a}\psi, \\
+  \psib' &\rightarrow \psib e^{-iT^a\theta^a}, \quad\text{and} \\
+  G^a_\mu &\rightarrow G^a_\mu - \frac{1}{g_s}\ddp_\mu\theta^a - f^{abc}\theta^b G^c_\mu.
+\end{align}
+
+If we can show how the covariant derivative transforms first, then it will be trivial to show how the Lagrangian as a whole will change, so I'll do that one first. We have that
+
+\begin{equation}
+  \br{D_\mu\psi}' = \ddp_\mu\br{e^{iT^a\theta^a}\psi} + ig_sT^a\br{G^a_\mu - \frac{1}{g_s}\br{\ddp_\mu\theta^a} - f^{abc}\theta^b G^c_\mu}e^{iT^d\theta^d}\psi
+\end{equation}
+
+where I have used different dummy indices in the exponentials in each term to differentiate them from the indices in the rest of the term. Working this out,
+
+\begin{gather}
+  = iT^a\br{\ddp_\mu\theta^a}e^{iT^b\theta^b}\psi + e^{iT^a\theta^a}\ddp_\mu\psi + ig_sT^aG^a_\mu e^{iT^b\theta^b}\psi - i\br{\ddp_\mu\theta^a}T^a e^{iT^b\theta^b}\psi - ig_s f^{abc}\theta^bT^aG^c_\mu e^{iT^d\theta^d}\psi
+\end{gather}
+
+The first and fourth terms cancel:
+
+\begin{equation}
+  = e^{iT^a\theta^a}\ddp_\mu\psi + ig_s T^aG^a_\mu e^{iT^b\theta^b}\psi - ig_sf^{abc}\theta^bT^aG^c_\mu e^{iT^d\theta^d}\psi.
+\end{equation}
+
+In the last term, we have that
+
+\begin{equation}
+  if^{abc}T^a = if^{bca}T^a = [T^b,T^c].
+\end{equation}
+
+Additionally, since we are using the assumption that $\theta$ is small, we can expand the exponentials out in their power series expansion and eliminate terms of order $\mathcal{O}(\theta^2)$. With this,
+
+\begin{equation}
+  = e^{iT^a\theta^a}\ddp_\mu\psi + ig_s T^aG^a_\mu (1 + iT^b\theta^b)\psi - g_s \theta^b [T^b,T^c] G^c_\mu (1 + iT^d\theta^d)\psi.
+\end{equation}
+
+No $T^d$ terms remain in the final term since they would be of $\mathcal{O}(\theta^2)$. We can also rename some indices and flip the commutator at the cost of a minus:
+
+\begin{equation}
+  = e^{iT^a\theta^a}\ddp_\mu\psi + ig_s T^aG^a_\mu\psi - g_s\theta^b T^aT^b G^a_\mu \psi + g_s \theta^b [T^a,T^b] G^a_\mu\psi.
+\end{equation}
+
+The third term cancels with the first term from the commutator:
+
+\begin{align}
+  &= e^{iT^a\theta^a}\ddp_\mu\psi + ig_s T^aG^a_\mu\psi - g_s\theta^bT^b T^aG^a_\mu \psi \\
+  &= e^{iT^a\theta^a}\ddp_\mu\psi + (1 + iT^b\theta^b)\br{ig_s T^aG^a_\mu\psi}.
+\end{align}
+
+Undoing the power series expansion:
+
+\begin{equation}
+  \br{D_\mu\psi}' = e^{iT^b\theta^b}\br{\ddp_\mu\psi + ig_sT^aG^a_\mu\psi} = \boxed{e^{iT^b\theta^b}D_\mu\psi.}
+\end{equation}
+
+With this, then:
+
+
+\begin{align}
+  \lag^{\prime} = i\psib \gamma^\mu e^{-iT^a\theta^a} e^{iT^a\theta^a} D_\mu \psi - m\psib e^{-iT^a\theta^a} e^{iT^a\theta^a} \psi = i\psib \gamma^\mu D_\mu \psi - m\psib\psi = \lag.
+\end{align}
+
+As expected, these terms are invariant under a local $SU(3)$ gauge transformation.
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../FinalExam"
+%%% End:

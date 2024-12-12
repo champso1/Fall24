@@ -1,0 +1,30 @@
+\ProvidesPackage{Preamble}
+
+\usepackage[compat=1.1.0]{tikz-feynman}
+
+\newcommand{\emsq}{\abs{\mathcal{M}}^2}
+\newcommand{\psl}{\slashed{p}}
+\newcommand{\ksl}{\slashed{k}}
+\newcommand{\Tr}{\mathrm{Tr}}
+\newcommand{\pdot}[2]{\dotprod{p_{#1}}{p_{#2}}}
+
+%question environment
+\usepackage{titlesec}
+\titleformat
+{\section}[block]
+{\normalfont\large\bfseries}
+{Problem \thesection.}{0.5em}{}
+
+
+\usepackage{enumitem}
+\newlist{parts}{enumerate}{3}
+\setlist[parts, 1]
+{
+    label=\alph{partsi}),
+    leftmargin=0.5in
+}
+\setlist[parts, 2]
+{
+    label=\textbf{\arabic{partsii}}),
+    leftmargin=0.25in
+}

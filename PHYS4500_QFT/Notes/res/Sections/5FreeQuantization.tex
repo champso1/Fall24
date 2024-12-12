@@ -1,0 +1,290 @@
+\section{Quantization of Free Fields}
+
+
+
+\begin{itemize}
+    \item It can be shown that we can do a Fourier Expansion for a real scalar field $\phi$ like so:
+        \begin{equation}
+            \phi(x^{\mu}) = \int \frac{\dd^4p}{(2\pi)^4} (2\pi) \delta\left(p^2-m^2\right)\Theta\left(p^0\right) \left[a\left(p^{\mu}\right)e^{-ip^{\mu}x_{\mu}} + a^{\dagger}\left(p^{\mu}\right)e^{ip^{\mu}x_{\mu}}\right] (2p_0)^{1/2}.
+        \end{equation}
+        Here, $\Theta$ is the step function, ensuring that the energy is positive, and the delta function handles the on-shell condition. The $a$'s and $a^{\dagger}$'s are annihilation operators, respectively.
+    \item If we integrate over $p_0$, we only have to focus on the delta function:
+        \begin{equation*}
+            \delta\left(p^2 - m^2\right) = \delta\left((p^0)^2 - \vv{p}^2 - m^2\right),
+        \end{equation*}
+        so the integral sends $(p^0)^2 \rightarrow \vv{p}^2 + m^2 = E^2$, but again, this is just the mass-shell condition, so this doesn't really tell is much. Our integral is now:
+        \begin{equation}
+            \phi(x^{\mu}) = \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E}} \left[a(p)e^{-i p\cdot x} + a^{\dagger}(p) e^{i p\cdot x}\right].
+        \end{equation}
+    \item In non-relativistic QM, we have that position and momentum are operators and time is a parameter. The position and momentum operators satisfy certain commutation relations, namely:
+        \begin{equation}
+            \left[\hat{x}, \hat{p}_x\right] = i, \qquad \text{and} \qquad \left[\hat{x},\hat{x}\right] = \left[\hat{p}_x,\hat{p}_x\right] = 0.\label{QMCommRelations}
+        \end{equation}
+    \item In QFT, we now need space and time on the same footing, so they both become parameters, and we promote the field itself to be the operator. The momentum operator here is the field version of the conjugate momentum $\hat{\pi}$, and these operators also satisfy certain commutation relations:
+        \begin{equation}
+            \left[\hat{\phi}(\vv{x},t),\hat{\pi}(\vv{y},t)\right] = i\delta^3(\vv{x} - \vv{y}), \qquad \text{and} \qquad \left[\hat{\phi}(\vv{x},t),\hat{\phi}(\vv{y},t)\right] = \left[\hat{\pi}(\vv{x},t),\hat{\pi}(\vv{y},t)\right] = 0.\label{QFTCommRelations1}
+        \end{equation}
+        These are called the \textbf{equal time commutation relations}, since, clearly, the (anti-)commutators are taken for an equal time $t$.
+    \item We can also find the commutation relations for the creation and annilihation operators by doing an inverse Fourier transform:
+        \begin{equation}
+            a(p) = \int \frac{\dd^3x}{\sqrt{2E}} i \left[e^{ip\cdot x} \ddp_0\phi(x) - \left(\ddp_0 e^{ip\cdot x}\right)\phi(x)\right],\label{QFTCreationAnnihilation}
+        \end{equation}
+        and we find that
+        \begin{equation}
+            \left[a(p),a^{\dagger}(p)\right] = (2\pi)^3 \delta^3(\vv{p}-\vv{p}'), \qquad \text{and} \qquad [a(p),a(p')] = \left[a^{\dagger}(p),a^{\dagger}(p')\right]=0.\label{QFTCommRelations2}
+        \end{equation}
+    \item From here, we can define the \textbf{number operator} $N(p) \equiv a^{\dagger}(p)a(p)$ whose eigenvalues are $n(p)$, the number of particles at momentum $p$, and whose eigenkets are $\ket{n(p)}$ such that
+        \begin{equation*}
+            N(p)\ket{n(p)} = n(p)\ket{n(p)}.
+        \end{equation*}
+    \item From this, we can show that $a(p)$ is the annihilation operator and $a^{\dagger}(p)$ is the creation operator by considering applying $a(p)$ to an eigenket of the number operator, then applying the number operator:
+        \begin{gather*}
+            N(p)a(p)\ket{n(p)} = ([N(p),a(p)] + a(p)N(p))\ket{n(p)}.
+        \end{gather*}
+        It can be shown that the above commutator is $-a(p)$, so
+        \begin{align*}
+            N(p)a(p)\ket{n(p)} &= -a(p)\ket{n(p)} + a(p)N(p)\ket{n(p)}, \\
+            &= (n(p)-1)a(p)\ket{n(p)}.
+        \end{align*}
+        So, we see that we get one less particle when we apply the $a(p)$ operator; hence, it is the annihilation operator. We can find similarly that $a^{\dagger}(p)$ is the creation operator.
+    \item These are analogous to the raising and lowering operators for the simple harmonic oscillator in QM.
+    \item It is a bit length, so we won't show it, but by using the defintion of the fields in terms of the Fourier expension of the creation and annihilation operators we can express the Hamiltonian as
+        \begin{align*}
+            H &= \int \frac{\dd^3p}{(2\pi)^3} \frac{p^0}{2} \left[ a^{\dagger}(p)a(p) + a(p)a^{\dagger}(p) \right], \\
+            &= \int \frac{\dd^3p}{(2\pi)^3} p^0 \left[ N(p) + \frac{1}{2} \right].
+        \end{align*}
+    \item However, the $1/2$ part leads to an infinity since we are integrating over all momenta. So, as good physicist, since it is unphysical, we just ignore it! (Shortly we will give a \textit{slightly} more technical reason as to why we should remove it.) Hence, the Hamiltonian operator is given as:
+        \begin{equation}
+            H = \int \frac{\dd^3p}{(2\pi)^3} p^0 N(p).
+        \end{equation}
+    \item This makes sense; we multiply the number of particles from $N(p)$ by the energy from $p^0$ to get the total energy.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item Now let's make some more definitions. The \textbf{ground state} or \textbf{vacuum state} is given by the ket $\ket{\mathcal{O}}$, however in particle physics we just use a 0 rather than a calligraphic $\mathcal{O}$. It will be very apparent as to whether we are looking at just a 0 ket or the vacuum state ket.
+    \item Obviously, applying the annihilation operator should return 0: $a(p)\ket{0} = 0$, and so should applying the number operator: $N(p)\ket{0} = 0$.
+    \item On the other hand, applying the creation operator $a^{\dagger}\ket{0}$ gives a 1-particle state. We will explore this in just a little bit.
+    \item The vacuum expectation value of the energy is given by the braket
+        \begin{equation*}
+            \bra{0}H\ket{0} = \bra{0} \FourierInt{p} p^0N(p) \ket{0} = \FourierInt{p} p^0 \bra{0} a^{\dagger}(p) a(p) \ket{0} = 0,
+        \end{equation*}
+        since $N(p)\ket{0} = 0$, meaning the expectation value for the energy in vacuum is zero, as expected. We could also have stated that $(a(p)\ket{0})^{\dagger}$ = $\bra{0}a^{\dagger}(p)$, so this bit is also zero.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item We now introduce the aforementioned ``technical'' way to get rid of the $1/2$ that led to infinity: \textbf{normal ordering}. Normal ordering is a convention that states that all creation operators should come to the left of all annihilation operators, so we should always have terms like $a^{\dagger}a$ and never have any terms like $aa^{\dagger}$. So, the Hamiltonian
+        \begin{equation*}
+            H = \FourierInt{p} \frac{p^0}{2} \left[ a^{\dagger}a = aa^{\dagger} \right] \rightarrow \FourierInt{p} \frac{p^0}{2} \left[ a^{\dagger}a + a^{\dagger}a \right] = \FourierInt{p} p^0 N(p),
+        \end{equation*}
+        as we found. It will become increasingly clear that a significant part of our job as particle physicists is figuring out ways to systematically ``sweep the infinities under the rug''.
+    \item The notation for this is the colon ``:'' that we place once before the operators we want to normal order and again after, meaning that $: aa^{\dagger} : = a^{\dagger}a$.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item Now let's consider a 1-particle state with momentum $p$, which we get from applying the creation operator to the vacuum state along with a factor based on convention:
+        \begin{equation*}
+            \ket{p} = \sqrt{2p^0} a^{\dagger}(p)\ket{0}.
+        \end{equation*}
+    \item The corresponding bra is given by
+        \begin{equation*}
+            \bra{p} = \sqrt{2p^0} \bra{0}a(p).
+        \end{equation*}
+    \item Therefore, the braket $\braket{p | p'}$ is
+        \begin{align*}
+            \braket{p | p'} &= \sqrt{2p^0}\sqrt{2p^{0\prime}} \bra{0} a(p) a^{\dagger}(p') \ket{0}, \\
+            &= 2\sqrt{EE'} \bra{0} [a(p),a^{\dagger}(p)] + a^{\dagger}(p)a(p) \ket{0}.
+        \end{align*}
+        The second term will be zero because $a(p)\ket{0} = 0$, so
+        \begin{equation*}
+            \braket{p | p'} = 2\sqrt{EE'} \bra{0} [a(p),a^{\dagger}(p)] \ket{0}.
+        \end{equation*}
+        But we know what the commutator of these operators is from Eq.~\eqref{QFTCommRelations2}:
+        \begin{equation*}
+            \braket{p | p'} = 2E(2\pi)^3 \delta^3(p - p') \braket{0 | 0}.
+        \end{equation*}
+        By normalization we have that $\braket{0|0} = 1$, so:
+        \begin{equation}
+            \braket{p|p'} = 2E (2\pi)^3 \delta^3(p-p').\label{BraketPPprime}
+        \end{equation}
+    \item We can now use this result to determine a 1-particle wavefunction as in non-relativistic QM. We normally wouldn't ever do this, but it is a good test of our machinery.
+    \item It turns out that we can do so by the following:
+        \begin{equation}
+            \psi(x) = \bra{0} \phi(x) \ket{p}.
+        \end{equation}
+        Expanding:
+        \begin{equation*}
+            \psi(x) = \Braket{0 | \FourierInt{p} \frac{1}{\sqrt{2p^{0\prime}}} \left[a(p')e^{-i p'\cdot x} + a^{\dagger}(p') e^{i p'\cdot x}\right] | p}
+        \end{equation*}
+        Since the vacuum state $\bra{0}$ doesn't depend on anything, we can just bring it inside the integral and see that the second term in brackets (the creation term) will be zero since $\bra{0}a^{\dagger} = 0$:
+        \begin{equation*}
+            \psi(x) = \Braket{0 | \FourierInt{p} \frac{1}{\sqrt{2E'}} a(p')e^{-ip' \cdot x} | p}.
+        \end{equation*}
+        Since $\bra{p} = \sqrt{2E} \bra{0} a(p)$, then $\bra{0}a(p) = \bra{p}/\sqrt{2E}$, so
+        \begin{equation*}
+            \psi(x) = \FourierInt{p} \frac{1}{2E'} \Braket{p' | e^{-i p' \cdot x} | p}.
+        \end{equation*}
+        But the exponential is just a number, so we can pull it out and use Eq.~\eqref{BraketPPprime}:
+        \begin{equation}
+            \psi(x) = \FourierInt{p} \frac{1}{2E'} e^{-i p' \cdot x} \cdot 2E(2\pi)^3\delta^3(p'-p).
+        \end{equation}
+        The integral just makes $p=p'$, so everything nicely cancels and we get:
+        \begin{equation*}
+            \boxed{\psi(x) = e^{-i \dotprod{p}{x}}.}
+        \end{equation*}
+        This is just a plane-wave solution, exactly what we would expect!
+\end{itemize}
+
+\sep
+
+\subsection*{The Complex Scalar Field}
+
+\begin{itemize}
+    \item We can combine two fields $\psi_1$ and $\psi_2$ into one complex field like so
+        \begin{equation*}
+            \phi = \frac{1}{\sqrt{2}} (\phi_1 + i\phi_2) \quad \mathrm{and} \quad \phi^* = \frac{1}{\sqrt{2}} (\phi_1 - i\phi_2).
+        \end{equation*}
+        Now our Lagrangian is
+        \begin{equation}
+            \lag = \ddp_{\mu}\phi^*\ddp^{\mu}\phi - m^2\phi^*\phi,\label{ComplexScalarLag}
+        \end{equation}
+        and we have two Euler-Lagrange equations, one for $\phi$ and the other for $\phi^*$, giving us two equations:
+        \begin{equation}
+            (\ddp_{\mu}\ddp^{\mu} + m^2)\phi = 0 \quad \mathrm{and} \quad (\ddp_{\mu}\ddp^{\mu} + m^2)\phi^* = 0.{ComplexScalarELEQs}
+        \end{equation}
+    \item The Fourier expansions for these two fields become
+        \begin{align}
+            &\phi(x) = \FourierIntE{p} \left[ a(p)e^{-i\dotprod{p}{x}} + b^{\dagger}(p)e^{i\dotprod{p}{x}} \right],\label{ComplexScalarFourierExp} \\
+            &\phi^{\dagger}(x) = \FourierIntE{p} \left[ b(p)e^{-i\dotprod{p}{x}} + a^{\dagger}(p)e^{i\dotprod{p}{x}} \right].\label{ComplexScalarFourierExpConj}
+        \end{align}
+    \item The interpretation here is that $a(p)$ annihilates particles and $b^{\dagger}(p)$ creates anti-particles, and $b(p)$ annihilates anti-particles and $a^{\dagger}(p)$ creates particles.
+    \item These $a$'s and $b$'s behave identically as the $a$'s for the real scalar field, and they also do commute between each other.
+    \item In normal ordering, the Hamiltonian operator is 
+        \begin{equation}
+            H = \FourierInt{p} p^0 \left[ a^{\dagger}(p)a(p) + b^{\dagger}(p)b(p) \right].
+        \end{equation}
+\end{itemize}
+
+
+\sep
+
+
+\subsection*{The Dirac Spinor Field}
+
+\begin{itemize}
+    \item The Lagrangian for the Dirac field is
+        \begin{equation*}
+            \lag = i\psib\gamma^{\mu}\ddp_{\mu}\psi - m\psib\psi = \psib(\slashed{\ddp} - m)\psi .
+        \end{equation*}
+    \item Since we have a spinor and the adjoint spinor fields, we have two Euler-Lagrange equations here as well. The one for the normals spinor field is
+        \begin{align*}
+            \ddp_{\mu}\left( \diffp[]{\lag}{(\ddp_{\mu}\psi)} \right) &= \diffp[]{\lag}{\psi}, \\
+            \ddp_{\mu} \left( i\psib\gamma^{\mu} \right),
+        \end{align*}
+        so
+        \begin{equation*}
+            i\psib\slashed{\ddp} + m\psib = \psib(i\slashed{\ddp} + m) = 0.
+        \end{equation*}
+        Following a similar process with the adjoint spinor gives us
+        \begin{equation*}
+            (i\slashed{\ddp} - m)\psi = 0.
+        \end{equation*}
+        These are the adjoint and normal Dirac equations.
+    \item The conjugate momentum is 
+        \begin{equation*}
+            \pi(x) = d^0\psi = \diffp[]{\lag}{(\ddp_0\psi)}.
+        \end{equation*}
+        Expanding out the Lagrangian:
+        \begin{equation*}
+            \lag = i\psib\gamma^0\ddp_0\psi + i\psib\gamma^i\ddp_i\psi - m\psib\psi,
+        \end{equation*}
+        so
+        \begin{equation*}
+            \pi(x) = i\psib\gamma^0 = i\psi^{\dagger}\gamma^0\gamma^0 = i\psi^{\dagger}.
+        \end{equation*}
+    \item From here we can find the Hamiltonian density:
+        \begin{align*}
+            \ham &= \pi\dot{\psi} - \lag, \\
+            &= i\psi^{\dagger}\dot{\psi} - i\psib\gamma^{\mu}\ddp_{\mu}\psi + m\psib\psi, \\
+            &= i\psi^{\dagger}\dot{\psi} - \psib(i\slashed{\ddp}-m)\psi.
+        \end{align*}
+        If our spinor satisfies the Dirac equation, which we obviously want, then since the second term \textit{is} the Dirac equation, it's zero, so
+        \begin{equation}
+            \ham = i\psi^{\dagger}\dot{\psi}.\label{DiracHamiltonianDensity}
+        \end{equation}
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item We also expand out the spinors in terms of creation and annihilation operators:
+        \begin{align}
+            &\psi(x) = \FourierIntE{p} \sum_{d=1,2} \left[ a_d(\vv{p})u^{(d)}(\vv{p})e^{-i\dotprod{p}{x}} + b_d^{\dagger}(\vv{p})v^{(d)}(\vv{p})e^{i\dotprod{p}{x}} \right], \quad \mathrm{and} \\
+            &\psib(x) = \FourierIntE{p} \sum_{d=1,2} \left[ a^{\dagger}_d(\vv{p})\bar{u}^{(d)}(\vv{p})e^{i\dotprod{p}{x}} + b_d(\vv{p})\bar{v}^{(d)}(\vv{p})e^{-i\dotprod{p}{x}} \right].\label{DiracSpinorFourierExpan}
+        \end{align}
+    \item The $a$'s and $b$'s follow identical commutation relations and interpretations as they did for the complex scalar field.
+    \item The Hamiltonian now, writing Eq.~\eqref{DiracHamiltonianDensity} in terms of the creation and annihilation operators, is
+        \begin{multline*}
+            H = \int\dd^3x\; i\FourierIntE{p} \sum_{d=1,2} \left[ a^{\dagger}_d(\vv{p})\bar{u}^{(d)}(\vv{p})e^{i\dotprod{p}{x}} + b_d(\vv{p})\bar{v}^{(d)}(\vv{p})e^{-i\dotprod{p}{x}} \right] \\ 
+            \times \gamma^0 \FourierIntE{q} \sum_{d'=1,2} \left[ (-iq^0)a_{d'}(\vv{q})u^{(d')}(\vv{q})e^{-i\dotprodv{q}{x}} + (iq^0) b^{\dagger}_{d'}(\vv{q})v^{(d')}(\vv{q})e^{-i\dotprodv{q}{x}} \right],
+        \end{multline*}
+        \begin{equation*}
+            H = \int\frac{\dd^3x\dd^3p\dd^3q}{(2\pi)^3 2\sqrt{p^0q^0}} q^0 \sum_{d,d'=1,2} \left[ a_d^{\dagger}(\vv{p})u^{\dagger(d)}(\vv{p})e^{i\dotprodv{p}{x}}a_{d'}(\vv{q})u^{(d')}(\vv{q})e^{-i\dotprodv{q}{x}} + \ldots \right],
+        \end{equation*}
+        where in the evaluation of the time derivatives, we should end up with exponentials containing $q^0$ and $p^0$. These, however, cancel later on, so we will avoid writing them for clariry. Additionally, there will be three more terms (hence the $\ldots$); writing them out will be a pain, so for more notational simplification, we will just consider what happens with the first term. Lastly, the simplification of $\bar{u}\gamma^0u = u^{\dagger}\gamma^0\gamma^0u = u^{\dagger}u$ was made so that we no longer have gammas. We are left with
+            \begin{equation*}
+                H = \int\frac{\dd^3x\dd^3p\dd^3q}{(2\pi)^3 2\sqrt{p^0q^0}} q^0 \sum_{d,d'=1,2} \left[ a_d^{\dagger}(\vv{p})u^{\dagger(d)}(\vv{p}) a_{d'}(\vv{q})u^{(d')}(\vv{q})e^{i(\vv{p}-\vv{q})\cdot\vv{x}} \right].
+            \end{equation*}
+            If we now do the $x$ integral, we can use the identity that
+            \begin{equation*}
+                \FourierInt{x} e^{i\dotprodv{p}{x}} = \delta^3(\vv{p}),
+            \end{equation*}
+            with $\vv{p} \rightarrow \vv{p}-\vv{q}$ to say
+            \begin{equation*}
+                H = \int \frac{\dd^3p\dd^3q}{(2\pi)^3 2\sqrt{p^0q^0}} iq^0 \sum_{d,d'=1,2} \left[ a_d^{\dagger}(\vv{p})u^{\dagger(d)}(\vv{p})a_{d'}(\vv{q})u^{(d')}(\vv{q}) \right]\delta^3(\vv{p}-\vv{q}).
+            \end{equation*}
+            We can now kill the $q$ integral, say, where the delta function sends $\vv{q} \rightarrow \vv{p}$:
+            \begin{equation*}
+                H = \int \frac{\dd^3p}{2(2\pi)^3} \sum_{d,d'=1,2} \left[ a_d^{\dagger}(\vv{p})u^{\dagger(d)}(\vv{p})a_{d'}(\vv{p})u^{(d')}(\vv{p}) + \ldots \right].
+            \end{equation*}
+            Now, we can show that:
+            \begin{equation*}
+                u^{\dagger(d)}(\vv{p}) u^{(d')}(\vv{p}) = 2p^0\delta^{dd'},
+            \end{equation*}
+            so,
+            \begin{equation*}
+                H = \FourierInt{p} p^0 \sum_{d=1,2} \left[ a^{\dagger}_d(\vv{p})a_d(\vv{p}) - b_d{\vv{p}}b^{\dagger}_d{\vv{p}} \right],
+            \end{equation*}
+            where the middle two terms have canceled.
+        \item This is disastrous! This term is not positive definite! Even if we apply normal ordering by using the commutator of the operators, we still have the possibility of getting negative energy solutions, which is not good.
+        \item To fix this, we impose \textit{anti}commutation relations on the operators rather than commutation relations:
+            \begin{equation}
+                \left\{ a_d(\vv{p}),a^{\dagger}_{d'}(\vv{p'}) \right\} = \left\{ b_d(\vv{p}),b^{\dagger}_{d'}(\vv{p'}) \right\} = (2\pi)^3 \delta^3(\vv{p}-\vv{p'}) \delta^{dd'},\label{SpinorOpAnticommRels}
+            \end{equation}
+            and all other combos are zero.
+            Now, we can reverse the order of the $b$'s in the second term to pick up a plus sign. We end up with a cross term, but this is the same as the 0-point energy from before: it diverges, so we just ignore it! We are at last left with:
+            \begin{equation}
+                H = \FourierInt{p} p^0 \sum_{d=1,2} \left[ a^{\dagger}_d(\vv{p})a_d(\vv{p}) + b^{\dagger}_d(\vv{p})b_d(\vv{p}) \right].
+            \end{equation}
+        \item Imposing anti-commutation relations has another consequence: $a^{\dagger}$ is the particle creation operator; imposing it twice on the vacuum state gives $a^{\dagger}a^{\dagger} \Bra{0} = 0$, meaning we cannot have two particles in the same state! This is the \textbf{Pauli Exclusion Principle}.
+        \item We also have charge, given by:
+            \begin{equation}
+                Q = \int :\psi^{\dagger}(x)\psi(x): \;\dd^3x = \FourierInt{p} \sum_{d=1,2} \left[ a^{\dagger}_d(\vv{p})a_d(\vv{p}) - b^{\dagger}_d(\vv{p})b_d(\vv{p}) \right].
+            \end{equation}
+            We have the possibility for negative charge here, but that's okay this time, since negatively charged particles exist in nature.
+        \item Lastly, we can promote the spinors fields to operators and get (equal time) \textit{anti}commutation relations:
+            \begin{equation}
+                \left\{ \psi_a(\vv{x},t),\psi^{\dagger}_b(\vv{y},t) \right\} = \delta^3(\vv{x}-\vv{y})\delta_{ab},\label{SpinorAnticommRels}
+            \end{equation}
+            and the others are zero.
+        \item As a final note, this is all called \textbf{canonical quantization}.
+\end{itemize}
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Notes"
+%%% End:

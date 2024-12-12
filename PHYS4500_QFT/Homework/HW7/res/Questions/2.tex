@@ -1,0 +1,30 @@
+%2) Prove the relations for the gamma matrices in the attachment below. 
+\section{}
+
+\newcommand{\psl}{\slashed{p}}
+\newcommand{\gsl}{\slashed{q}}
+
+\begin{parts}
+    \item First:
+        \begin{align*}
+            \psl\gsl + \gsl\psl &= \gamma^{\mu}p_{\mu}\gamma^{\nu}q_{\nu} + \gamma^{\nu}q_{\nu}\gamma^{\mu}p_{\mu} \\
+            &= p_{\mu}q_{\nu}(\gamma^{\mu}\gamma^{\nu} + \gamma^{\mu}\gamma^{\nu}) \\
+            &= 2g^{\mu\nu}p_{\mu}q_{\nu} = \boxed{2\dotprod{p}{q}}
+        \end{align*}
+    
+    \item 
+        \begin{align*}
+            \gamma^{\mu}\gamma_{\mu} = \frac{1}{2}(\gamma^{\mu}\gamma_{\mu} + \gamma^{\nu}\gamma_{\nu}) = \frac{1}{2}g_{\mu\nu}(\gamma^{\mu}\gamma^{\nu} + \gamma^{\nu}\gamma^{\mu}) = g_{\mu\nu}g^{\mu\nu} = \boxed{4.}
+        \end{align*}
+
+    \item 
+        \begin{align*}
+            \gamma_{\mu}\gamma^{\nu}\gamma^{\mu} &= \gamma_{\mu}(\gamma^{\nu}\gamma^{\mu} + \gamma^{\mu}\gamma^{\nu} - \gamma^{\mu}\gamma^{\nu}), \\
+            &= \gamma_{\mu}(2g^{\mu\nu} - \gamma^{\mu}\gamma^{\nu}) \\
+            &= 2g^{\nu} - \gamma_{\mu}\gamma^{\mu}\gamma^{\nu} = 2\gamma^{\nu} - 4\gamma^{\nu} = \boxed{-2\gamma^{\nu}.}
+        \end{align*}
+        Since the components of the 4-momentum are just scalars, we can move them around however we want to easily say
+        \begin{equation*}
+            \gamma_{\mu}\psl\gamma^{\mu} = \gamma_{\mu}\gamma^{\nu}\gamma^{\mu}p_{\nu} = -2\gamma^{\nu}p_{\nu} = \boxed{-2\psl.}
+        \end{equation*}
+\end{parts}

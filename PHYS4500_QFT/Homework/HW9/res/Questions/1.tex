@@ -1,0 +1,277 @@
+% Draw the NLO diagrams for e^- + e^+ -> u^- + u^+
+\section{}
+
+There are four real-emission diagrams since any of the four external particles can emit a photon.
+
+
+\begin{center}
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (a);
+    \vertex[right of=a] (b);
+    \vertex[above left of=a] (i1) {$e^-$};
+    \vertex[below left of=a] (i2) {$e^-$};
+    \vertex[above right of=b] (f1) {$\mu^-$};
+    \vertex[below right of=b] (f2) {$\mu^+$};
+
+    \vertex[above left=0.75cm of a] (x1);
+    \vertex[above right=0.75cm of x1] (x2);
+
+    \diagram* {
+        (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+        (i2) --[anti fermion] (a), (b) --[anti fermion] (f2),
+        (x1) --[photon] (x2)
+    };
+\end{feynman}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (a);
+    \vertex[right of=a] (b);
+    \vertex[above left of=a] (i1) {$e^-$};
+    \vertex[below left of=a] (i2) {$e^-$};
+    \vertex[above right of=b] (f1) {$\mu^-$};
+    \vertex[below right of=b] (f2) {$\mu^+$};
+
+    \vertex[below left=0.75cm of a] (x1);
+    \vertex[below right=0.75cm of x1] (x2);
+
+    \diagram* {
+        (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+        (i2) --[anti fermion] (a), (b) --[anti fermion] (f2),
+        (x1) --[photon] (x2)
+    };
+\end{feynman}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (a);
+    \vertex[right of=a] (b);
+    \vertex[above left of=a] (i1) {$e^-$};
+    \vertex[below left of=a] (i2) {$e^-$};
+    \vertex[above right of=b] (f1) {$\mu^-$};
+    \vertex[below right of=b] (f2) {$\mu^+$};
+
+    \vertex[above right=0.75cm of b] (x1);
+    \vertex[above left=0.75cm of x1] (x2);
+
+    \diagram* {
+        (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+        (i2) --[anti fermion] (a), (b) --[anti fermion] (f2),
+        (x1) --[photon] (x2)
+    };
+\end{feynman}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (a);
+    \vertex[right of=a] (b);
+    \vertex[above left of=a] (i1) {$e^-$};
+    \vertex[below left of=a] (i2) {$e^-$};
+    \vertex[above right of=b] (f1) {$\mu^-$};
+    \vertex[below right of=b] (f2) {$\mu^+$};
+
+    \vertex[below right=0.75cm of b] (x1);
+    \vertex[below left=0.75cm of x1] (x2);
+
+    \diagram* {
+        (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+        (i2) --[anti fermion] (a), (b) --[anti fermion] (f2),
+        (x1) --[photon] (x2)
+    };
+\end{feynman}
+\end{tikzpicture}
+\end{center}
+
+
+There are four fermion propagator self-energies, as well as two vertex corrections and a photon vacuum-polarization diagram:
+
+
+\begin{center}
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (a);
+    \vertex[right of=a] (b);
+    \vertex[above left of=a] (i1) {$e^-$};
+    \vertex[below left of=a] (i2) {$e^-$};
+    \vertex[above right of=b] (f1) {$\mu^-$};
+    \vertex[below right of=b] (f2) {$\mu^+$};
+
+    \vertex[above left=0.25cm of a] (x2);
+    \vertex[above left=0.6cm of x2] (x1);
+
+    \diagram* {
+        (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+        (i2) --[anti fermion] (a), (b) --[anti fermion] (f2),
+        (x1) --[photon, half left] (x2)
+    };
+\end{feynman}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (a);
+    \vertex[right of=a] (b);
+    \vertex[above left of=a] (i1) {$e^-$};
+    \vertex[below left of=a] (i2) {$e^-$};
+    \vertex[above right of=b] (f1) {$\mu^-$};
+    \vertex[below right of=b] (f2) {$\mu^+$};
+
+    \vertex[below left=0.25cm of a] (x2);
+    \vertex[below left=0.6cm of x2] (x1);
+
+    \diagram* {
+        (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+        (i2) --[anti fermion] (a), (b) --[anti fermion] (f2),
+        (x1) --[photon, half right] (x2)
+    };
+\end{feynman}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (a);
+    \vertex[right of=a] (b);
+    \vertex[above left of=a] (i1) {$e^-$};
+    \vertex[below left of=a] (i2) {$e^-$};
+    \vertex[above right of=b] (f1) {$\mu^-$};
+    \vertex[below right of=b] (f2) {$\mu^+$};
+
+    \vertex[above right=0.25cm of b] (x2);
+    \vertex[above right=0.6cm of x2] (x1);
+
+    \diagram* {
+        (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+        (i2) --[anti fermion] (a), (b) --[anti fermion] (f2),
+        (x1) --[photon, half right] (x2)
+    };
+\end{feynman}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (a);
+    \vertex[right of=a] (b);
+    \vertex[above left of=a] (i1) {$e^-$};
+    \vertex[below left of=a] (i2) {$e^-$};
+    \vertex[above right of=b] (f1) {$\mu^-$};
+    \vertex[below right of=b] (f2) {$\mu^+$};
+
+    \vertex[below right=0.25cm of b] (x2);
+    \vertex[below right=0.6cm of x2] (x1);
+
+    \diagram* {
+        (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+        (i2) --[anti fermion] (a), (b) --[anti fermion] (f2),
+        (x1) --[photon, half left] (x2)
+    };
+\end{feynman}
+\end{tikzpicture}
+\end{center}
+
+
+\begin{center}
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (a);
+    \vertex[right of=a] (b);
+    \vertex[above left of=a] (i1) {$e^-$};
+    \vertex[below left of=a] (i2) {$e^-$};
+    \vertex[above right of=b] (f1) {$\mu^-$};
+    \vertex[below right of=b] (f2) {$\mu^+$};
+
+    \vertex[above left=0.75cm of a] (x1);
+    \vertex[below left=0.75cm of a] (x2);
+
+    \diagram* {
+        (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+        (i2) --[anti fermion] (a), (b) --[anti fermion] (f2),
+        (x1) --[photon] (x2)
+    };
+\end{feynman}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (a);
+    \vertex[right of=a] (b);
+    \vertex[above left of=a] (i1) {$e^-$};
+    \vertex[below left of=a] (i2) {$e^-$};
+    \vertex[above right of=b] (f1) {$\mu^-$};
+    \vertex[below right of=b] (f2) {$\mu^+$};
+
+    \vertex[above right=0.75cm of b] (x1);
+    \vertex[below right=0.75cm of b] (x2);
+
+    \diagram* {
+        (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+        (i2) --[anti fermion] (a), (b) --[anti fermion] (f2),
+        (x1) --[photon] (x2)
+    };
+\end{feynman}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (a);
+    \vertex[right of=a] (x1);
+    \vertex[right of=x1] (x2);
+    \vertex[right of=x2] (b);
+    \vertex[above left of=a] (i1) {$e^-$};
+    \vertex[below left of=a] (i2) {$e^-$};
+    \vertex[above right of=b] (f1) {$\mu^-$};
+    \vertex[below right of=b] (f2) {$\mu^+$};
+
+
+    \diagram* {
+        (i1) --[fermion] (a) --[photon] (x1),
+        (x2) --[photon] (b) --[fermion] (f1),
+        (i2) --[anti fermion] (a), (b) --[anti fermion] (f2),
+        (x1) --[fermion, half left] (x2) --[fermion, half left] (x1)
+    };
+\end{feynman}
+\end{tikzpicture}
+\end{center}
+
+
+
+There are two ``box'' diagrams where either the electron or positron emits a virtual photon that is then absorbed by either the muon or anti-muon:
+
+
+\begin{center}
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (ul);
+    \vertex[below of=ul] (bl);
+    \vertex[right of=ul] (ur);
+    \vertex[below of=ur] (br);
+
+    \vertex[above left=of ul] (i1) {$e^-$};
+    \vertex[below left=of bl] (i2) {$e^+$};
+    \vertex[above right=of ur] (f1) {$\mu^-$};
+    \vertex[below right=of br] (f2) {$\mu^+$};
+
+    \diagram *{
+        (i1) --[fermion] (ul) --[photon] (ur) --[fermion] (f1),
+        (i2) --[anti fermion] (bl) --[photon] (br) --[anti fermion] (f2),
+        (ul) --[fermion] (bl), (ur) --[fermion] (br)
+    };
+\end{feynman}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{feynman}
+    \vertex (ul);
+    \vertex[below of=ul] (bl);
+    \vertex[right of=ul] (ur);
+    \vertex[below of=ur] (br);
+
+    \vertex[above left=of ul] (i1) {$e^-$};
+    \vertex[below left=of bl] (i2) {$e^+$};
+    \vertex[above right=of ur] (f1) {$\mu^-$};
+    \vertex[below right=of br] (f2) {$\mu^+$};
+
+    \diagram *{
+        (i1) --[fermion] (ul) --[photon] (ur) --[anti fermion] (f2),
+        (i2) --[anti fermion] (bl) --[photon] (br) --[fermion] (f1),
+        (ul) --[fermion] (bl), (ur) --[fermion] (br)
+    };
+\end{feynman}
+\end{tikzpicture}
+\end{center}

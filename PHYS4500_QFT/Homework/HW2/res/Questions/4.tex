@@ -1,0 +1,43 @@
+\section{}
+
+Here, we are to prove that the spinor 
+
+\begin{equation}
+    u^{(2)}(p) = \sqrt{\frac{E+mc^2}{c}}
+        \begin{pmatrix}
+            0 \\ 1 \\ \frac{c(p_x - ip_y)}{(E+mc^2)} \\ -\frac{cp_z}{(E+mc^2)}
+        \end{pmatrix}
+        \label{Prblm4Spinor}
+\end{equation}
+
+satisfies the normalization condition
+
+\begin{equation}
+    u^{(2)\dagger}(p)u^{(2)}(p) = \frac{2E}{c}.\label{Prblm4Normalization}
+\end{equation}
+
+All we really need to do here is just plug in:
+
+\begin{align*}
+    u^{(2)\dagger}u^{(2)} &= \left(\frac{E+mc^2}{c}\right) 
+        \begin{pmatrix}
+            0 & 1 & \frac{c(p_x + ip_y)}{(E+mc^2)} & -\frac{cp_z}{(E+mc^2)}
+        \end{pmatrix}
+        \begin{pmatrix}
+            0 \\ 1 \\ \frac{c(p_x - ip_y)}{(E+mc^2)} \\ -\frac{cp_z}{(E+mc^2)}
+        \end{pmatrix}, \\
+    &= \left(\frac{E+mc^2}{c}\right)\left[1 + \frac{c^2(p_x + ip_y)(p_x - ip_y)}{(E+mc^2)^2} + \frac{c^2p_z^2}{(E+mc^2)^2}\right], \\
+    &= \left(\frac{E+mc^2}{c}\right) \left[1 + \frac{\vv{p}^2c^2}{(E+mc^2)^2}\right].
+\end{align*}
+
+From the energy-momentum relation:
+
+\begin{equation*}
+    \vv{p}^2c^2 = E^2 - m^2c^4 = (E-mc^2)(E+mc^2),
+\end{equation*}
+
+so
+
+\begin{equation*}
+    u^{(2)\dagger}u^{(2)} = \left(\frac{E+mc^2}{c}\right) \left[1 + \frac{E-mc^2}{E+mc^2}\right] = \frac{E+mc^2}{c} + \frac{E-mc^2}{c} = \frac{2E}{c}.\ \checkmark
+\end{equation*}

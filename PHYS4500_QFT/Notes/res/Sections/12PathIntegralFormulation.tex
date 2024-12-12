@@ -1,0 +1,298 @@
+\section{Path Integral Formulation}
+
+\subsection*{Path Integrals in QM}
+
+\begin{itemize}
+    \item In the Schrodinger picture in Quantum Mechanics, we have a wave function $\psi(q, t)$ ($q$ is a generic coordinate) which is given by the braket of the generic state $\ket{\psi_S}$ with $\bra{q}$ to put it in the position basis:
+        \begin{equation}
+            \psi(q,t) = \braket{q | \psi_S}.
+        \end{equation}
+    \item We know that in the Heisenberg picture, the wave-functions are not time-dependent; the relation between states in either picture is given by
+        \begin{equation}
+            \ket{\psi_S} = e^{-iHt}\ket{\psi_H},
+        \end{equation}
+        which means that
+        \begin{equation}
+            \psi(q,t) = \bra{q | e^{-iHt} | \psi_s} = \braket{q,t | \psi_H}.
+        \end{equation}
+    \item From here on out, we will continue to sit in the Heisenberg picture, so any generic wavefunction $\psi$ is really $\psi_H$.
+    \item Now, some arbitrary final state can be written as $\braket{q_f,t_f | \psi}$, where $q_f$ is the final position and $t_f$ is the final time. We can then express it as an integral over all possible intermediate states, like so:
+        \begin{equation}
+            \braket{q_f,t_f | \psi} = \int \braket{q_f,t_f | q_i,t_i}\braket{q_i,t_i | \psi} \;\dd q_i.
+        \end{equation}
+    \item This holds due to the completeness relation in Hilbert space. Specifically:
+        \begin{equation}
+            \int \ket{x}\bra{x} \;\dd x = 1.
+        \end{equation}
+        Essentially, then, all we have done is insert 1 into the first final state bracket.
+    \item We can see that the first term is just the propagator, since its the braket of the final state with the initial state:
+        \begin{equation}
+            K(q_f,t_f,q_i,t_i) \equiv \braket{q_f,t_f | q_i,t_i}.
+        \end{equation}
+    \item In principle, we can do this (write the propagator) for any arbitrary number of intermediate states:
+        \begin{equation}
+            \braket{q_f,t_f | q_i,t_i} = \int \braket{q_f,t_f | q_n,t_n}\braket{q_n,t_n | q_{n-1},t_{n-1}} \ldots \braket{q_1,t_1 | q_i,t_i} \;\dd q_1 \dd q_2 \ldots \dd q_n.
+        \end{equation}
+    \item What we have now is an integral over not just every possible \textit{single} intermediate \textit{state}, but rather every possible \textit{path}.
+    \item Let's consider an arbitrary braket in this integral:
+        \begin{align}
+            \braket{q_{m+1},t_{m+1},q_m,t_m} &= \Braket{q_{m+1}| e^{iHt_{m+1}} e^{-iHt_m} | q_{m}} \\
+            &= \Braket{q_{m+1} | e^{-iH\tau} | q_m} \\
+            &= \braket{q_{m+1} | 1 - iH\tau + \mathcal{O}(\tau^2) | q_m} \\
+            &= \braket{q_{m+1} | q_m} - i\tau \braket{q_{m+1} | H | q_m} + \mathcal{O}(\tau^2).
+        \end{align}
+    \item In the first step, we brought out the exponentials which removed the time dependence then combined them with $\tau = t_{m+1} - t_m$. Then, we just expanded the exponential.
+    \item Now, the first term is the delta function by the orthonormality of Hilbert space, so
+        \begin{align}
+            &= \delta(q_{m+1} - q_m) - i\tau\braket{q_{m+1} | H | q_m} \\
+            &= \frac{1}{2\pi}\int e^{ip\Delta q} \;\dd p - i\tau\Braket{q_{m+1} | \frac{p^2}{2m} + U(q) | q_m}.
+        \end{align}
+    \item Let's consider just the second term, with the Hamiltonian:
+        \begin{align}
+            \rightarrow &\Braket{q_{m+1} | \frac{p^2}{2m} | q_m} + \braket{q_{m+1} | U(q) | q_m} \\
+            &= \int \braket{q_{m+1} | p'} \Braket{p' | \frac{\hat{p}^2}{2m} | p} \braket{p | q_m} \;\dd p' \dd p + U\left( \frac{q_{m+1} + q_m}{2} \right) \braket{q_{m+1} | q_m}.
+        \end{align}
+    \item Now obviously $\hat{p}^2\bra{p} = p^2\bra{p}$. We also expressed the potential as a function of the average distance between the two positions assuming that they are close, which they are; we can define $\bar{q}_m$ as this quantity to make things a bit more simple. Again expressing the delta functions as exponentials:
+        \begin{align}
+            &= \frac{1}{2\pi}\int e^{ip'q_{m+1}} \frac{p^2}{2m} \delta(p' - p) e^{-ipq_m} \;\dd p' \dd p + U(\bar{q}_m)\Delta(q_{m+1} - q_m) \\
+            &= \frac{1}{2\pi}\int \dd p_m \; e^{ip_m \Delta q_m} H(p_m, \bar{q}_m).
+        \end{align}
+    \item If we plug this all back into our propagator $K$ and do a bunch of tedious algebra, we find
+        \begin{equation}
+            K(q_f,t_f,q_i,t_i) = \int \prod_{j=0}^n \dd q_m \prod_{k=0}^n \frac{\dd p_m}{2\pi} \exp\left\{ \sum_{\ell=0}^n i[p_m \Delta q_m - \tau H(p_m,\bar{q}_m)] \right\}
+        \end{equation}
+    \item In the continuum limit (where $n\rightarrow\infty$), we can express the sum in the exponential as an integral after multiplying and dividing by a $\Delta t$ and also rewrite the infinite product of differentials as:
+        \begin{equation}
+            = \int \mathcal{D}q\mathcal{D}p \;\exp\left\{ i\int_{t_i}^{t_f} \ddt [p\dot{q} - H(q,p)] \right\}.
+        \end{equation}
+    \item But the quantity in the exponential is just the Lagrangian! Further, integrating it over time is just the action! After all this, then we have that
+        \begin{equation}
+            \boxed{K = \int \mathcal{D}q \; e^{iS}.}
+        \end{equation}
+    \item We will not use this itself, especially not for anything related to QM, but it is built off of in QFT, as we will see shortly.
+\end{itemize}
+
+\sep 
+
+\subsubsection*{Source Theory (Schwinger)}
+\begin{itemize}
+    \item Before looking at path integrals in QFT, we consider a ``source'' of a field $J(t)$. This source is analogous to the electromagnetic current in EM which is a ``source'' for the electromagnetic field.
+    \item We then define the functional $Z[J]$ as the vacuum-to-vacuum transition amplitude of particle creation in the presence of the source $J$. With this, we have that
+        \begin{equation}
+            Z[J] \propto \braket{0,\infty | 0,-\infty}.
+        \end{equation}
+    \item It turns out that this takes the Lagrangian $L \rightarrow L + J(t)q(t)$. And our functional $Z[J]$ is just the propagator $K$ we found before but with this ``modified'' Lagrangian:
+        \begin{equation}
+            \boxed{Z[J] = \int\mathcal{D}q \; \exp\left\{ i\int_{t_i}^{t_f} \ddt \;(L + Jq) \right\}}.
+        \end{equation}
+\end{itemize}
+
+
+
+\subsection*{Path Integrals in QFT}
+
+\begin{itemize}
+    \item In QFT, we make some simple generalizations/substitutions:
+        \begin{equation}
+            Z[J] = \int\mathcal{D}\phi \;\exp\left\{ i\int\dd^x \; [\lag + J(x)\phi(x)] \right\}.
+        \end{equation}
+    \item For a free particle, we use $Z_0[J]$ and input the Lagrangian without any interaction term. For a scalar field, as we used above, this means that we have
+        \begin{equation}
+            Z_0[J] = \int\mathcal{D}\phi \;\exp\left\{ i\int\dd^4x \; \left[ \frac{1}{2}\ddp_{\mu}\phi\ddp^{\mu}\phi - \frac{1}{2}m^2\phi^2 + J\phi \right] \right\}.
+        \end{equation}
+    \item Using integration by parts on the kinetic term in the Lagrangian gives us
+        \begin{equation}
+            \int \ddp_{\mu}\phi\ddp^{\mu}\phi \;\dd^4x = \int \ddp_{\mu}(\phi\ddp^{\mu}\phi) \;\dd^4x - \int \phi\ddp_{\mu}\ddp^{\mu}\phi \;\dd^4x.
+        \end{equation}
+    \item Doing the integration on the first term just removes the 4-derivitave from the front, so all we are left with is what's in parentheses evaluated at $\pm\infty$, but we assume the fields vanish at infinity, so that term is zero, meaning 
+        \begin{equation}
+            Z_0[J] = \int\mathcal{D}\phi \;\exp\left\{ i\int\dd^4x \; \left[ -\frac{1}{2}\phi\ddp_{\mu}\ddp^{\mu}\phi - \frac{1}{2}m^2\phi^2 + J\phi \right] \right\}.
+        \end{equation}
+    \item Now we can take $\phi \rightarrow \phi + \phi_0$, where 
+        \begin{equation}
+            \ddp_{\mu}\ddp^{\mu}\phi_0 + m^2\phi_0 = J,
+        \end{equation}
+        which nets us
+        \begin{equation}
+            Z_0[J] = \int\mathcal{D}\phi \;\exp\left\{ -i\int\dd^4x \; \left[ \frac{1}{2}\phi\ddp_{\mu}\ddp^{\mu}\phi  \frac{1}{2}m^2\phi^2 + J\phi_0 \right] \right\}.
+        \end{equation}
+    \item Because $\phi_0$ satisfies the EL equations for the KL Lagrangian, we can write it like so:
+        \begin{equation}
+            \phi_0(x) = i\int D(x-y)J(y) \;\dd^4y,
+        \end{equation}
+        where $D(x-y)$ is, as usual, the Feynman propagator.
+    \item Therefore, we can write
+        \begin{equation}
+            Z_0[J] = \exp\left\{ -\frac{1}{2}\int J(x)D(x-y)J(y)\;\dd^4x\dd^4y \right\} \int\mathcal{D}\phi \;\exp\left\{ i\int\dd^4x \; \left[ -\frac{1}{2}\phi\ddp_{\mu}\ddp^{\mu}\phi - \frac{1}{2}m^2\phi^2\right] \right\},
+        \end{equation}
+    \item We have effectively separated out the $\phi_0$ and $\phi$, meaning that the $\mathcal{D}\phi$ integral is no longer dependent on $J$, so in light of the functional being a function of $J$, that entire integral might as well be a constant, call it $N$, and we will take it so that the whole thing is normalized to 1.
+    \item After this, we can Taylor expand the exponential to get
+        \begin{equation}
+            Z_0[J] = N\left[ 1 - \frac{1}{2}\int J(x)D(x-y)J(y) \;\dd^4x\dd^4y + \ldots \right].
+        \end{equation}
+    \item Using complex integration, we can write the integrand as
+        \begin{equation}
+            -\frac{1}{2}J(x)D(x-y)J(x)\;\dd^4x\dd^4y = -\frac{i}{2(2\pi)^4} \int J(x) \frac{e^{-i(x-y)}}{p^2 - m^2 + i\epsilon} J(y) \;\dd^4p\dd^4x\dd^4y.
+        \end{equation}
+    \item If we define the Fourier transform of $J(x)$ as 
+        \begin{equation}
+            J(x) = \frac{1}{(2\pi)^4}\int J(p) e^{-ipx} \;\dd^4p,
+        \end{equation}
+        then 
+        \begin{equation}
+            = -\frac{i}{2}(2\pi)^4 \int \frac{J(-p)J(p)}{p^2 - m^2 + i\epsilon} \;\dd^4p.
+        \end{equation}
+        Or, using the definition for the Feynman propagator in momentum space:
+        \begin{equation}
+            = \frac{1}{2}(2\pi)^4 \int J(-p)D(p)J(p) \;\dd^4p.
+        \end{equation}
+    \item Now, if we make the new association that the term $i(2\pi)^4 J(p)$ looks something like
+        \begin{center}
+        \feynmandiagram[small, horizontal=a to b] {
+            a[particle=$J$] --[insertion=0] b
+        };
+        \end{center}
+        
+        then the term we found as a result of the integral is something like
+
+        \begin{center}
+        \feynmandiagram[small, horizontal=a to b] {
+            a[particle=$J$] --[insertion=0, insertion=1] b[particle=$J$]
+        };
+        \end{center}
+        
+    \item These are generating functions! In fact, this functional is a generator of Green's functions! Diagramatically,
+        \begin{center}
+            $Z_0[J] = 1 + \dfrac{1}{2}$
+                \feynmandiagram[small, horizontal=a to b] {
+                    a --[insertion=0, insertion=1] b
+                };
+             $+ \dfrac{1}{2 \cdot 2!}$ 
+                \begin{tikzpicture}
+                \begin{feynman}[small]
+                    \vertex (a);
+                    \vertex[right of=a] (b);
+                    \vertex[below=4mm of a] (c);
+                    \vertex[right of=c] (d);
+                    \diagram* {
+                        (a) --[insertion=0, insertion=1] (b),
+                        (c) --[insertion=0, insertion=1] (d)
+                    };
+                \end{feynman}
+                \end{tikzpicture}
+             $+ \ldots$
+        \end{center}
+    \item Recall
+        \begin{equation}
+            G(x_1,x_2,\ldots,x_n) = \Braket{0 | T\left\{ \phi(x_1)\phi(x_2)\ldots\phi(x_n) \right\} | 0},
+        \end{equation}
+        and
+        \begin{equation}
+            D(x-y) = \Braket{0 | T\left\{ \phi(x_1)\phi(x_2) \right\} | 0}.
+        \end{equation}
+    \item It turns out that 
+        \begin{equation}
+            G(x_1,x_2,\ldots,x_n) = (-i)^n \frac{\delta Z_0[J]}{\delta J(x_1) \delta J(x_2) \ldots \delta J(x_n)}\bigg|_{J=0}.\label{eq:CH12-FuncDerivGreensFunc}
+        \end{equation}
+\end{itemize}
+
+\sep 
+
+\begin{itemize}
+    \item To show this, let's first write down the only functional derivative identity we will need:
+        \begin{equation}
+            \frac{\delta J(y)}{\delta J(x)} = \delta^4(x-y),
+        \end{equation}
+        where the deltas on the left-hand side are the functional derivative symbol and the delta on the right-hand side is the Dirac delta.
+    \item From this, we can write that
+        \begin{equation}
+            \frac{\delta}{\delta J(x)} \int J(y) \phi(y) \;\dd^4y = \phi(x).
+        \end{equation}
+    \item Now, from Equation~\eqref{eq:CH12-FuncDerivGreensFunc}, we know that
+        \begin{equation}
+            \Braket{0 | T\left[ \phi(x_1) \right] | 0} = i \frac{\delta Z_0[J]}{\delta J(x_1)}\bigg|_{J=0}.
+        \end{equation}
+    \item Plugging in:
+        \begin{equation}
+            \frac{\delta Z_0[J]}{\delta J(x_1)} = \frac{\delta}{\delta J(x_1)} \exp\left( -\frac{1}{2}\int J(x)D(x-y)J(y) \;\dd^4x\dd^4y \right),
+        \end{equation}
+        \begin{multline}
+            = \left[ -\frac{1}{2}\int D(x_1-y) J(y) \;\dd^4y - \frac{1}{2}\int J(x) D(x-x_1) \;\dd^4x \right] \\ \times \exp\left( -\frac{1}{2}\int J(x)D(x-y)J(y)\;\dd^4x\dd^4y \right).
+        \end{multline}
+    \item Since our goal is to evaluate this for $J=0$, we can see that the entire thing vanishes, meaning
+        \begin{equation}
+            \braket{0 | T\{\phi(x_1)\} | 0} = 0,
+        \end{equation}
+        as we expect.
+    \item Similarly, by continuing to do derivatives, we find that
+        \begin{align}
+            \braket{0 | T\{\phi(x_1)\phi(x_2)\} | 0} &= D(x_1 - x_2) \ & \\
+            \braket{0 | T\{\phi(x_1)\phi(x_2)\phi(x_3)\} | 0} &= 0 \ & \\
+            \braket{0 | T\{\phi(x_1)\phi(x_2)\phi(x_3)\phi(x_4)\} | 0} &= D(x_1 - x_2)D(x_3 - x_4)&\\ 
+            \ &\  + D(x_1 - x_3)D(x_2 - x_4) + D(x_1 - x_4)D(x_2 - x_3),
+        \end{align}
+        also as we expect.
+\end{itemize}
+
+
+\subsection*{QFT Path Integrals: Interacting Fields}
+
+\begin{itemize}
+    \item This has been using the generating functional $Z_0[J]$, which was defined using the Lagrangian for a free scalar field. Let's now include an interaction term. Continuing with our scalar field stuff, we have that 
+        \begin{equation}
+            \lag_{\mathrm{int}} = -\frac{\lambda}{4!}\phi^4.
+        \end{equation}
+    \item Our total generating functional now is
+        \begin{align}
+            Z[J] &= \int\mathcal{D}\phi \; \exp\left[ i\int\dd^4x \; (\lag + J(x)\phi(x)) \right] \\
+            &= \int\mathcal{D}\phi \; \exp\left( iS + i\int\dd^4x \; J\phi \right).
+        \end{align}
+    \item Similarly to before, we define a normalization factor $N$ as the inverse of $\int\mathcal{D}\phi \; e^{iS}$. Thus, then $\lag_{\mathrm{int}} \rightarrow 0$, $Z[J] \rightarrow Z_0[J]$.
+    \item Now, it can be shown that
+        \begin{equation}
+            Z[J] = N \exp\left[ i\int\lag_{\mathrm{int}}\left( \frac{\delta}{\delta J} \;\dd^4x \right) \right]Z_0[J].
+        \end{equation}
+    \item For example, in $\phi^4$ theory,
+        \begin{equation}
+            \lag_{\mathrm{int}}\left( \frac{\delta}{\delta J} \right) = -\frac{\lambda}{4!}\left( \frac{\delta}{\delta J} \right)^4.
+        \end{equation}
+    \item With this, we still have that the Green's functions are
+        \begin{equation}
+            G(x_1,x_2,\ldots,x_n) = (-i)^n \frac{\delta^n Z[J]}{\delta J(x_1) \delta J(x_2) \ldots \delta J(x_n)}\bigg|_{J=0}.
+        \end{equation}
+\end{itemize}
+
+
+\subsubsection*{Path Integrals with Spinor Fields}
+
+\begin{itemize}
+    \item We will not prove anything relating to spinor fields, but rather just present some results.
+    \item First, we know that spinors are different, by which the fields obey \textit{anti}-commutation relations. Because of this, we introduct anti-commuting numbers, called the \textbf{Grassmann algebra}. For such numbers $\zeta,\theta$, we have
+        \begin{equation}
+            \left\{ \zeta,\theta \right\} = \zeta\theta + \theta\zeta = 0, \quad \mathrm{or} \quad \zeta\theta = -\theta\zeta.
+        \end{equation}
+    \item Interestingly, this implies that $\zeta^2 = \theta^2 = 0$, meaning that any polynominal we construct with these terms truncates after the linear term.
+    \item Now, the free Dirac field (thus only containing a kinetic and mass term for a spinor field) is given by
+        \begin{equation}
+            \lag = i\psib \gamma^{\mu}\ddp_{\mu} \psi - m\psib\psi,
+        \end{equation}
+    \item We now introduce two sources, $\eta$ for $\psib$ and $\bar{\eta}$ for $\psi$. With this,
+        \begin{equation}
+            Z_0[\eta,\bar{\eta}] = N\int\mathcal{D}\psib\mathcal{D}\psi \; \exp\left[ i\int (i\psib \gamma^{\mu}\ddp_{\mu} \psi - m\psib\psi + \bar{\eta}\psi + \psib\eta) \right].
+        \end{equation}
+    \item With this, the Dirac propagator comes out from
+        \begin{equation}
+            S(x-y) = \Braket{0 | T\left\{ \psi(x)\psib(y) \right\} | 0} = -\frac{\delta^2 Z_0[\eta,\bar{\eta}]}{\delta \bar{\eta}(x) \delta \eta(y)}\bigg|_{\eta=\bar{\eta}=0}.
+        \end{equation}
+    \item For interacting spinor fields, we have a similar story where
+        \begin{equation}
+            Z[\eta,\bar{\eta}] = \exp\left[ i\int \lag_{\mathrm{int}}\left( \frac{\delta}{\delta\eta}, \frac{\delta}{\delta\bar{\eta}} \right) \;\dd^4x \right] Z_0[\eta,\bar{\eta}].
+        \end{equation}
+\end{itemize}
+
+
+\subsection*{Final Note}
+
+\begin{itemize}
+    \item This path integral formalism was done very quickly, and with little derivation. Rather, it was just to present some results so that they are familiar, and so we could get a taste of another type of formalism as opposed to canonical quantization that we did before. We will continue no further with this subject.
+\end{itemize}

@@ -1,0 +1,52 @@
+%2.2 a,c,d
+
+\section{(2.2)}
+    We are given $p^{\mu} = \begin{bmatrix}5m & -4m & 0 & 0 \end{bmatrix}^{\intercal}$.
+
+    \begin{parts}
+        \item We know that the 4-momentum has the following property:
+            \begin{equation}
+                p_{\mu}p^{\mu} = M^2,
+            \end{equation}
+            so
+            \begin{gather}
+                p_{\mu}p^{\mu} = (5m)^2 - (-4m)^2 = 25m^2 - 16m^2 = 9m^2 = M^2 \\
+                \rightarrow \boxed{M = 3m}.
+            \end{gather}
+        \item[c)] This simple, since $p^0 = E$ and we just solved for $M$:
+            \begin{gather}
+                K = E - M = 5m - 3m = 2m. \\
+                \rightarrow \boxed{K = 2m}.
+            \end{gather}
+        \item[d)] We apply the Lorentz transformation $p^{\mu\prime} = \Lambda^{\mu\prime}_{\mu} p^{\mu}$:
+            \begin{equation}
+                \begin{bmatrix} p^{0\prime} \\ p^{1\prime} \\ p^{2\prime} \\ p^{3\prime} \end{bmatrix}
+                =
+                \begin{bmatrix}
+                    \gamma & -\beta\gamma & 0 & 0 \\
+                    -\beta\gamma & \gamma & 0 & 0 \\
+                    0 & 0 & 1 & 0 \\
+                    0 & 0 & 0 & 1
+                \end{bmatrix}
+                \begin{bmatrix}
+                    p^0 \\ p^1 \\ p^2 \\ p^3
+                \end{bmatrix}.
+            \end{equation}
+
+        We must determine the value of $\gamma$:
+
+            \begin{equation}
+                \gamma = \frac{1}{\sqrt{1-\left(\frac{4}{5}\right)^2}} = \frac{1}{\sqrt{1-\frac{16}{25}}} = \frac{1}{\sqrt{\frac{9}{25}}} = \frac{5}{3}.
+            \end{equation}
+        Now,
+            \begin{align}
+                p^{0\prime} &= \gamma p^0 - \beta\gamma p^1 = \frac{5}{3}(5m) - \frac{4}{5}\frac{5}{3}(-4m) = \frac{25}{3}m + \frac{16}{3}m = \frac{41}{3}m, \\
+                p^{1\prime} &= -\beta\gamma p^0  + \gamma p^1 = -\frac{4}{5}\frac{5}{3}(5m) + \frac{5}{3}(-4m) = -\frac{20}{m} - \frac{20}{m} = -\frac{40}{3}m, \\
+                p^{2\prime} &= p^2 = 0, \\
+                p^{3\prime} &= p^3 = 0.
+            \end{align}
+        So,
+            \begin{equation}
+                \boxed{p^{\mu\prime} = \begin{bmatrix} 41m/3 \\ -40m/3 \\ 0 \\ 0 \end{bmatrix}}.
+            \end{equation}
+    \end{parts}

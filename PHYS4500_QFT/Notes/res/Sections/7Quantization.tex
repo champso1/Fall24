@@ -1,0 +1,80 @@
+\section{Quantization of Gauge Fields}
+
+\subsection*{Quantization of QED Lagrangian}
+
+\begin{itemize}
+    \item In the quantization of the free Dirac field, we had the $u$ and $v$ spinors, each with 2 components, or degrees of freedom. Here, with only 1 vector, we'd ordinarily have 4 degrees of freedom, but under the Lorenz gauge we have restricted it to only two, meaning that when we expand the field into the creation and annihilation operators, we only sum over two polarizations:
+        \begin{equation}
+            A_{\mu}(x) = \FourierIntE{p} \sum_{\lambda=1,2} \left[ \epsilon_{\mu}^{(\lambda)}(\vv{p})a_{\lambda}(\vv{p}) e^{-i\dotprod{p}{x}} + \epsilon_{\mu}^{*(\lambda)}(\vv{p}) a_{\lambda}^{\dagger}(\vv{p})e^{i\dotprod{p}{x}} \right].
+        \end{equation}
+    \item Photons are bosons, meaning they satisfy commutation relations; the only non-zero ones are:
+        \begin{equation}
+            \left[ a_{\lambda}(\vv{p}),a_{\lambda'}^{\dagger}(\vv{p}') \right] = (2\pi)^3\delta^3(\vv{p}-\vv{p}')\delta^{\lambda\lambda'}.
+        \end{equation}
+    \item We can also write the QED Lagrangian for a free photon:
+        \begin{equation*}
+            \lag = -\frac{1}{4}F^{\mu\nu}F_{\mu\nu},
+        \end{equation*}
+        so our conjugate momenum is
+        \begin{equation}
+            \pi^i = \frac{\partial\lag}{\partial\dot{A}^i} = -F^{0i} = E_i.
+        \end{equation}
+        Using these definitions, we can find the equal-time commutation relations for the field and the conjugate momentum:
+        \begin{equation}
+            \left[ \hat{A}^{\mu}(\vv{x},t), \hat{\pi}^{\mu}(\vv{y},t) \right] = \FourierInt{p} e^{i\vv{p}\cdot(\vv{x}-\vv{y})} \left( \delta^{ij} - \frac{p^ip^j}{\abs{\vv{p}}^2} \right).
+        \end{equation}
+    \item We also find that the Hamiltonian is 
+        \begin{equation}
+            H = \frac{1}{2}\int (\abs{\vv{E}}^2 + \abs{\vv{B}}^2)\;\dd^3x,
+        \end{equation}
+        and in terms of operators:
+        \begin{equation*}
+            \ham = \FourierInt{p} \frac{p^0}{2} \left[ a_{\lambda}(\vv{p})a_{\lambda}^{\dagger}(\vv{p}) + a_{\lambda}^{\dagger}(\vv{p})a_{\lambda}(\vv{p}) \right],
+        \end{equation*}
+        or with normal ordering:
+        \begin{equation}
+            \ham = \FourierInt{p} p^0  a_{\lambda}^{\dagger}(\vv{p})a_{\lambda}(\vv{p}).
+        \end{equation}
+        This is positive definite, which is a good sign.
+\end{itemize}
+
+
+
+
+\subsection*{Going to the Lorenz Gauge}
+\begin{itemize}
+    \item All of the above was done in the Coulomb gauge, but we want to be more general, so let's take a step back to the Lorenz gauge, meaning that we no longer have that $A^{0} = \pi^0 = 0$, and our commutation relations for the fields becomes:
+        \begin{equation}
+            \left[ \hat{A}^{\mu}(\vv{x},t),\hat{\pi}^{\mu}(\vv{y},t) \right] = ig^{\mu\nu}\delta^3(\vv{x}-\vv{y}),
+        \end{equation}
+        and all others are zero, like before.
+    \item However, even in this more general gauge, we end up finding that $\pi^0=0$ still is zero, meaning our new commutator won't work; i.e. it just reduces to what we had before. What we can do is add a \textit{gauge fixing} term to the Lagrangian that keeps the physics the same but helps us with this gauge issue:
+        \begin{equation*}
+            \lag \rightarrow -\frac{1}{4}F{\mu\nu}F_{\mu\nu} - \frac{1}{2}(\ddp_{\mu}A^{\mu})^2.
+        \end{equation*}
+        Doing the EL equations for this new Lagrangian, we get:
+        \begin{equation*}
+            \diffp[]{\lag}{A_{\nu}} - \ddp_{\mu}\left( \diffp[]{\lag}{(\ddp_{\mu}A_{\nu})} \right) \rightarrow \ddp_{\mu}\left( -\ddp^{\mu}A^{\nu} + \ddp^{\nu}A^{\mu} - g^{\mu\nu}\ddp_{\rho}A^{\rho} \right) = 0.
+        \end{equation*}
+        But in the Lorenz gauge, $\ddp_{\mu}A^{\mu}=0$, so all that remains is $\ddp_{\mu}\ddp^{\mu}A^{\nu} = 0$, which is just the KG equation for a vector field, as we found before.
+    \item With this, $\pi^0 = -\ddp_{\mu}A^{\mu}$, but this is still zero\ldots. 
+    \item Now what we do is reinterpret the Lorenz gauge to no longer say that the quantity $\ddp_{\mu}A^{\mu}=0$ itself, but rather that its \textit{expection value} is zero, meaning the quantity itself doesn't have to be zero, only $\Braket{\psi | \ddp_{\mu}A^{\mu} | \psi} = 0$. With this, then, we have solved our issue.
+    \item When we expand the vector field now into the creation and annihilation operators, we now have to sum over all 4 possible polarizations, rather than two as before when we were restricted. However, we there still will be only two physical ones, meaning we have to go in afterwards and remove the unphysical ones. This is the consequence of choosing a more general gauge: carrying around spurious degrees of freedom. Doing this expansion:
+        \begin{equation}
+            A_{\mu}(x) = \FourierIntE{p} \sum_{\lambda=0}^3 \left[ \epsilon_{\mu}^{(\lambda)}(\vv{p})a_{\lambda}(\vv{p})e^{-i\dotprod{p}{x}} + \epsilon_{\mu}^{*(\lambda)}(\vv{p})a_{\lambda}^{\dagger}(\vv{p})e^{i\dotprod{p}{x}} \right].
+        \end{equation}
+    \item Now let's imagine choosing the simplest case for a vector field with momentum $p^{\mu} = \begin{pmatrix}p & 0 & 0 & p\end{pmatrix}^{\intercal}$ and the following basis vectors:
+        \begin{equation*}
+            \epsilon^{\mu(1)} = \begin{pmatrix}1 \\ 0 \\ 0 \\ 0\end{pmatrix},\quad \epsilon^{\mu(2)} = \begin{pmatrix}0 \\ 1 \\ 0 \\ 0\end{pmatrix},\quad \epsilon^{\mu(3)} = \begin{pmatrix}0 \\ 0 \\ 1 \\ 0\end{pmatrix},\quad \epsilon^{\mu(4)} = \begin{pmatrix}0 \\ 0 \\ 0 \\ 1\end{pmatrix}.
+        \end{equation*}
+        With this, since we need $\dotprodv{\epsilon}{p}=0$, we know that only $\epsilon^{\mu(2)}$ and $\epsilon^{\mu(3)}$ are the physical solutions.
+    \item It turns out, as well, that these are the only terms that end up contributing to the Hamiltonian, which makes sense.
+    \item With all of this, then, we have that generally:
+        \begin{equation*}
+            \pi^{\mu} = F^{\mu0} - g^{\mu0}\ddp_{\nu}A^{\nu},\quad \pi^0 = -\ddp_{\mu}A^{\mu} = -\dot{A}_0 + \dotprodv{\grad}{A},\quad \pi^i = \ddp^iA^0 - \dot{A}^i,
+        \end{equation*}
+        and that the creation and annihilation operators obey the familiar commutation relations:   
+        \begin{equation}
+            \left[ a_{\lambda}(\vv{p}),a_{\lambda}^{\dagger}(\vv{p}') \right] = (2\pi)^3 \delta^3(\vv{p}-\vv{p}').
+        \end{equation}
+\end{itemize}

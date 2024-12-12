@@ -1,0 +1,49 @@
+%3.2 a,b,c
+
+\section{(3.2)}
+We are given $A^{\mu} = \begin{bmatrix} a(t^2 - x^2) & bx^2 & cx & 0 \end{bmatrix}^{\intercal}$.
+
+\begin{parts}
+
+%a
+\item Using the metric tensor:
+    \begin{equation}
+        A_{\mu} = g_{\mu\nu} A^{\nu}.      
+    \end{equation}
+
+    This really just involves a negating of the sign on all the spatial terms, so we have:
+
+    \begin{equation}
+        A_{\mu} = \begin{bmatrix}a(t^2 - x^2) & -bx^2 & -cx & 0 \end{bmatrix}.
+    \end{equation}
+
+
+%b
+\item Since the indicies are different, this quantity is a rank-2 tensor:
+    \begin{equation}
+        \ddp_{\mu}A_{\nu} = T_{\mu\nu} = 
+        \begin{bmatrix}
+            \dfrac{1}{c}\diffp{}{t} \left[a(t^2 - x^2)\right] & \dfrac{1}{c}\diffp{}{t} \left[bx^2\right] & \dfrac{1}{c}\diffp{}{t} \left[cx\right] & 0 \\[8pt]
+            \diffp{}{x} \left[a(t^2 - x^2)\right] & \diffp{}{x} \left[bx^2\right] & \diffp{}{x} \left[cx\right] & 0 \\[8pt]
+            \diffp{}{y} \left[a(t^2 - x^2)\right] & \diffp{}{y} \left[bx^2\right] & \diffp{}{y} \left[cx\right] & 0 \\[8pt]
+            \diffp{}{z} \left[a(t^2 - x^2)\right] & \diffp{}{z} \left[bx^2\right] & \diffp{}{z} \left[cx\right] & 0 
+        \end{bmatrix}
+        =
+        \begin{bmatrix}
+            2at/c & 0 & 0 & 0 \\
+            -2ax & 2bx & c & 0 \\
+            0 & 0 & 0 & 0 \\
+            0 & 0 & 0 & 0
+        \end{bmatrix}.
+    \end{equation}
+    As a note about the problem's construction, the constants in $A^{\mu}$ should have been chosen such that there were not 2 $c$'s. The $c$ in the top left matrix element is the speed of light, while the one in the second row and third column is just a constant.
+
+
+%c
+\item This time we have a contraction, so it will just be a scalar:
+    \begin{align}
+        \ddp_{\mu}A^{\mu} &= \frac{1}{c}\diffp{}{t} \left[a(t^2 - c^2)\right] + \diffp{}{x}\left[bx^2\right] + \diffp{}{y} \left[cx\right] \\
+        &= \boxed{\frac{2at}{c} + 2bx}
+    \end{align}
+
+\end{parts}

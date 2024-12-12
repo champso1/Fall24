@@ -1,0 +1,65 @@
+\section{}
+
+We are given a Lagrangian for a scalar field:
+
+\begin{equation}
+    \lag = \frac{1}{2}\ddp^{\mu}\phi\ddp_{\mu}\phi - \frac{1}{2}m^2\phi^2 - \frac{\lambda}{4!}\phi^4
+\end{equation}
+
+where $\lambda$ is some constant.
+
+The first term in the Euler-Lagrange equation
+
+\begin{equation*}
+    \ddp_{\mu}\left( \diffp[]{\lag}{(\ddp_{\mu}\phi)} \right) = \ddp_{\mu} \left( \ddp^{\mu}\phi \right) = \ddp_{\mu}\ddp^{\mu}\phi.
+\end{equation*}
+
+The second term is:
+
+\begin{equation*}
+    \diffp[]{\lag}{\phi} = -m^2\phi - \frac{\lambda}{6}\phi^3.
+\end{equation*}
+
+So the solution to the Euler-Lagrange equation is:
+
+\begin{equation*}
+    \ddp_{\mu}\ddp^{\mu}\phi + m^2\phi + \frac{\lambda}{6}\phi^3 = 0.
+\end{equation*}
+
+The conjugate momentum can be found by
+
+\begin{equation}
+    \pi(x) = \diffp[]{\lag}{(\ddp_0\phi)}.
+\end{equation}
+
+We can rewrite the Lagrangian to make this a little more clear:
+
+\begin{equation*}
+    \lag = \frac{1}{2}\ddp_0\phi\ddp^0\phi + \frac{1}{2}\ddp_i\phi\ddp^i\phi - \frac{1}{2}m^2\phi^2 - \frac{\lambda}{4!}\phi^4,
+\end{equation*}
+
+so now the conjugate momentum is simply:
+
+\begin{equation*}
+    \pi(x) = \ddp^0\phi = \dot{\phi}.
+\end{equation*}
+
+The stress energy tensor is given by
+
+\begin{align}
+    T^{\mu\nu} &= \diffp[]{\lag}{(\ddp_{\mu})}\ddp^{\nu}\phi - g^{\mu\nu}\lag \\
+    &= \ddp^{\mu}\phi\ddp^{\nu}\phi - g^{\mu\nu}\left( \frac{1}{2}\ddp_{\rho}\phi\ddp^{\rho}\phi - \frac{1}{2}m^2\phi^2 - \frac{\lambda}{4!}\phi^4 \right).
+\end{align}
+
+We have to use different indices for the 4-gradients inside the parentheses, since they are meant to be contracted only with each other, not the metric outside.
+
+The Hamiltonian density $\ham$ is given with $T^{00}$, so
+
+\begin{align*}
+    \ham &= T^{00} = \ddp^0\phi\ddp^0\phi - \frac{1}{2}\left(\ddp_{\mu}\phi\ddp^{\mu}\phi - m^2\phi^2 - \frac{2\lambda}{4!}\phi^4\right), \\
+    &= (\ddp_0\phi)^2 - \frac{1}{2}\left( \ddp_0\phi\ddp^0\phi + \ddp_i\phi\ddp^i\phi - m^2\phi^2 - \frac{2\lambda}{4!}\phi^4 \right), \\
+    &= (\ddp_0\phi)^2 - \frac{1}{2}\left( (\ddp_0)^2 - (\grad\phi)^2 - m^2\phi^2 - \frac{2\lambda}{4!}\phi^4 \right), \\
+    &= \frac{1}{2} \left[ (\ddp_0)^2 + (\grad\phi)^2 + m^2\phi^2 + \frac{2\lambda}{4!}\phi^4  \right].
+\end{align*}
+
+As expected, this is the same as the Hamiltonian energy density for the free real KG field plus an extra $\phi^4$ term. Additionally, it is also positive-definite, which is a good sign.

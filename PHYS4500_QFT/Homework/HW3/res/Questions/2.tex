@@ -1,0 +1,35 @@
+\section{(5.5)}
+
+We are given the Lagrangian density
+\begin{equation}
+    \lag = \frac{1}{2}\ddp^{\mu}\phi\ddp_{\mu}\phi + a + b\phi - \frac{1}{2}m^2\phi^2.
+\end{equation}
+
+\begin{parts}
+%a
+\item The Euler-Lagrange equation contains only derivatives of the Lagrangian, meaning that any pure constants, like $a$, have no effect on the resulting equation(s) of motion, so we might as well remove it to get
+\begin{equation}
+    \lag = \frac{1}{2}\ddp^{\mu}\phi\ddp_{\mu}\phi + b\phi - \frac{1}{2}m^2\phi^2.
+\end{equation}
+
+
+%b
+\item By shifting the field like $\phi \rightarrow \phi' = \phi + d$ where $d$ is some constant, we can eliminate the $b\phi$ term using the mass term, in which there is a $\phi^2$. Leaving it as $d$, we have:
+\begin{equation*}
+    \frac{1}{2}m^2(\phi+d)^2 = \frac{1}{2}m^2(\phi^2 + 2\phi d + d^2).
+\end{equation*}
+Again, since constants have no effect on the resulting equations of motion, we might as well get rid of the $d^2$ term. Expanding:
+\begin{equation*}
+    = \frac{1}{2}m^2\phi^2 + m^2d\phi.
+\end{equation*}
+Plugging this into the Lagrangian Density (and recognizing that the extra factor of $d$ might as well disappear inside the 4-derivatives as well):
+\begin{equation*}
+    \lag = \frac{1}{2}\ddp^{\mu}\phi\ddp_{\mu}\phi + b\phi - \frac{1}{2}m^2\phi^2 - m^2d\phi.
+\end{equation*}
+The first and third terms are the Klein-Gordon Lagrangian, so we just need to choose $d$ such that the second and fourth terms cancel. This choice is
+\begin{equation*}
+    d = \frac{b}{m^2}
+\end{equation*}
+So, by shifting the field $\phi' = \phi + \frac{b}{m^2}$, we can eliminate the $b\phi$ term and recover the original Klein-Gordon field Lagrangian.
+
+\end{parts}

@@ -1,0 +1,34 @@
+\section{(20.1a)}
+
+
+We are to show that
+
+\begin{equation}
+    \Tr[\gamma^{5}\gamma^{\mu}\gamma^{\nu}] = 0.
+\end{equation}
+
+First, if $\mu=\nu$, then we have a square of a gamma matrix which is $\pm 1$, so we can say
+
+\begin{equation*}
+    \Tr[\gamma^{5}\gamma^{\mu}\gamma^{\nu}] = \pm\Tr[\gamma^5].
+\end{equation*}
+
+We calculated $\gamma^5$ in the test:
+
+\begin{equation*}
+    \Tr[\gamma^5] = \Tr\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix} = 0.
+\end{equation*}
+
+If $\mu\neq\nu$, then we can expand out $\gamma^5$:
+
+\begin{equation*}
+    \Tr[\gamma^{5}\gamma^{\mu}\gamma^{\nu}] = i\Tr[\gamma^0\gamma^1\gamma^2\gamma^3\gamma^{\mu}\gamma^{\nu}].
+\end{equation*}
+
+Now, the two indices are different, and using the main anti-commutation relation for the gammas, we can cycle $\gamma^{\mu}$ through until it reaches the gamma matrix it matches. For instance, if $\mu=1$, we use the anti-commutation relation twice to cycle it through so that it lays right next to $\gamma^1$. Since it therefore is different from the ones it moves through, we only pick up negatives. Then, we have its square, basically, which is also just $\pm 1$. What we have done, then, is eliminate $\gamma^{\mu}\gamma^{\nu}$ as well as two of the gammas from $\gamma^5$, and picked up a $\pm1$. The two leftover gammas must necessary be different, and again using the main anti-commutation relation, this trace is zero.
+
+These two cases exhaust all possible index combinations, so we can safely say
+
+\begin{equation*}
+    \boxed{\Tr[\gamma^{5}\gamma^{\mu}\gamma^{\nu}] = 0.}
+\end{equation*}

@@ -1,0 +1,556 @@
+\section{NLO Calculations}
+
+\begin{itemize}
+    \item As we alluded two before, calculations with more vertices (and hence higher powers of the coupling constant) are going to be more challenging to approach. The main issue that we will find is that suddenly lots of things start diverging.
+    \item There are two types of diagrams we will consider when we go to NLO - they are \textit{real emission} diagrams shown in the left of Figure~\ref{fig:BaseNLODiagrams}, and \textit{loop diagrams} as shown in right of the same figure. This particular loop diagram is called a \textit{vertex correction} diagram, since the structure of an ordinary vertex is still there, but with an extra photon in there. There are also self-energy diagrams and vacuum polarization diagrams as we will see soon enough.
+\end{itemize}
+
+\begin{figure}[ht]
+    \centering
+
+    \begin{tikzpicture}
+    \begin{feynman}
+        \vertex (a);
+        \vertex[right of=a] (b);
+        \vertex[above left of=a] (i1);
+        \vertex[below left of=a] (i2);
+        \vertex[above right of=b] (f1);
+        \vertex[below right of=b] (f2);
+
+        \vertex[above right=5mm of b] (x);
+        \vertex[below=1cm of f1] (y);
+
+        \diagram* {
+            (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+            (i2) --[anti fermion] (a),
+            (b) --[anti fermion] (f2),
+            (x) --[photon] (y)
+        };
+    \end{feynman}
+    \end{tikzpicture}
+    \hspace*{3cm}
+    \begin{tikzpicture}
+    \begin{feynman}
+        \vertex (a);
+        \vertex[right of=a] (b);
+        \vertex[above left of=a] (i1);
+        \vertex[below left of=a] (i2);
+        \vertex[above right of=b] (f1);
+        \vertex[below right of=b] (f2);
+
+        \vertex[above left=7.5mm of a] (x);
+        \vertex[below left=7.5mm of a] (y);
+
+        \diagram* {
+            (i1) --[fermion] (a) --[photon] (b) --[fermion] (f1),
+            (i2) --[anti fermion] (a),
+            (b) --[anti fermion] (f2),
+            (x) --[photon] (y)
+        };
+    \end{feynman}
+    \end{tikzpicture}
+
+    \caption{An example of a real emission diagram (left) and a loop diagram (right) at NLO.}
+    \label{fig:BaseNLODiagrams}
+\end{figure}
+
+
+
+\begin{itemize}
+    \item Now, in both scenarios, we get divergences in terms whenever the energy is relatively small - these are called \textbf{infrared (IR) divergences}. This gets its name from the relatively lower energy the infrared spectrum has compared to visible light. These come from when we have low energies in propagator terms that go like $\frac{1}{k^2}$.
+    \item Further, in real emission diagrams specifically, we can have \textbf{soft} (low energy) or \textbf{colinear} emissions, which, in the IR range, give divergences. This is because we end up getting terms like
+        \begin{equation*}
+            \sim \frac{1}{E(1-\cos\theta)},
+        \end{equation*}
+        which, for colinear emission $\theta=0$ so $1-\cos\theta=1-1=0$, which is a divergence. Similarly, for soft emission, we also get divergences.
+    \item Loop diagrams are a little different. They carry similar IR divergences for propagator terms, but they also carry divergences in the high energy limit - these are called \textbf{ultraviolet (UV) divergences} for a similar reason as for IR divergences. These come from the fact that these have undetermined loop momenta, which requires an integration over all possible momenta. In the high momenta case, we will find divergences in terms where we have something like
+        \begin{equation*}
+            \int\frac{\dd^4p}{k^m},
+        \end{equation*}
+        which diverges for $m\leq4$, and we often get terms with an $m\leq4$.
+    \item There is a nice theorem that states that if we consider (and sum) over all possible final states, including all possible angles of real emission and energies of emitted particles, then the IR divergences will end up canceling in the end, which is great!
+    \item There is no such theorem for UV divergences though, so there is a process by which we take care of these. The first step is called \textbf{regularizing} the integral, and there are a number of different methods by which this is done. In general, though, every method attempts to consolidate all of the infinites into singular terms, so that in the second step which we call \textbf{renormalization}, we can absorb these terms into redefinitions of charge/mass/coupling constants.
+    \item The method we will be using to do regularization is called \textbf{dimensional regularization (DR)}. All of these methods, by the way, are purely mathematical. One step involves motivation from a physical point of view, but apart from that, it is just mathematical tricks. In DR, we recognize that such a diverging integral as above is not divergent in a different dimension, so we just integrate over a different dimension $D=4-\epsilon$. After doing all the work, we end up getting isolated divergences represented as poles in $\epsilon$, which we then renormalize (there are a number of renormalization techniques as well, but they are more closely related than the regularization techniques).
+    \item Let's look at an example of vacuum polarizaiton; the Feynman diagram for this process in the reaction $e^- + \mu^- \rightarrow e^- + \mu^-$ is given in Figure~\ref{fig:VacuumPolarizationDiagram}.
+\end{itemize}
+
+
+\begin{figure}[ht]
+    \centering
+    
+    \begin{tikzpicture}
+    \begin{feynman}[large]
+        \vertex(a);
+        \vertex[above=5mm of a] (aa);
+
+        \vertex[left of=aa] (i1) {$e^-$};
+        \vertex[right of=aa] (f1) {$\mu^-$};
+
+        \vertex[below=1.25cm of a] (x1);
+        \vertex[below=1cm of x1] (x2);
+
+        \vertex[below=1.25cm of x2] (b);
+        \vertex[below=5mm of b] (bb);
+
+        \vertex[left of=bb] (i2) {$e^-$};
+        \vertex[right of=bb] (f2) {$\mu^-$};
+
+        \diagram* {
+            (i1) --[fermion, momentum=$p_1$] (a) --[fermion, momentum=$p_3$] (f1),
+            (a) --[photon, momentum=$q$] (x1),
+            (x2) --[photon, momentum=$q$] (b),
+            (x1) --[fermion, half left, momentum={[arrow shorten=0.33]$k$}] (x2) --[fermion, half left, momentum={[arrow shorten=0.33]$k-q$}] (x1),
+            (i2) --[fermion, momentum'=$p_2$] (b) --[fermion, momentum'=$p_4$] (f2)
+        };
+    \end{feynman}
+    \end{tikzpicture}
+
+    \caption{$t$-channel vacuum polarization diagram.}
+    \label{fig:VacuumPolarizationDiagram}
+\end{figure}
+
+\begin{itemize}
+    \item To evaluate this, we really only need one (two, really) Feynman rules that we didn't have before: \textit{for a closed fermion loop, we pick up a factor of minus one and take the trace}. 
+    \item We can constrain $q$ nicely to be $p_1 - p_3$, but as for $k$, it can be anything, there is nothing constraining it, so we must integrate over this. Doing the integation and applying the familiar Feynman rules as well as this new one we get
+        \begin{multline*}
+            i\mathcal{M} = \bar{u}_3 (-ie\gamma^{\mu})u_1 \left[ \frac{-ig_{\mu\nu}}{q^2} \right] \\ \times \int\frac{\dd^4k}{(2\pi)^4}\frac{-\Tr[i(\ksl - \slashed{q} + m)(-ie\gamma^{\rho})i(\ksl + m)(-ie\gamma^{\sigma})]}{[(k-q)^2 - m^2](k^2 - m^2)} \left[ \frac{-ig_{\sigma\nu}}{q^2} \right]\bar{u}_4(-ie\gamma^{\nu})u_2.
+        \end{multline*}
+    \item Doing some simplifications, we arrive at
+        \begin{equation*}
+            \mathcal{M} = \frac{ie^4}{(p_1-p_3)^2}[\bar{u}_3\gamma^{\mu}u_1] \int\frac{\dd^4k}{(2\pi)^4} \frac{\Tr[(\ksl - \psl_{1} + \psl_{3} + m)\gamma_{\nu}(\ksl + m)\gamma_{\mu}]}{[(k - p_1 + p_3)^2 - m^2](k^2 - m^2)}[\bar{u}_4\gamma^{\nu}u_2].
+        \end{equation*}
+    \item We could continue with the trace stuff, but we can already see that we are in trouble. We have, in the denominator of the integrand, a factor of order $4$, so no matter what's on top we will satisfy the $m\leq4$ condition, meaning this will diverge no matter what.
+\end{itemize}
+
+
+
+
+
+\subsection*{Dimensional Regularization}
+
+\begin{itemize}
+    \item We start with regularization, and we choose the method of \textbf{Dimensional Regularization (DR)}, where we essentially just convert the integral to $n = 4-\epsilon$ dimensions, and take epsilon to zero at the end. The goal is to take the diverging into and turn it into an analytic expression in terms of this $\epsilon$, where the infinites are now just poles like $1/\epsilon$. These are then reabsorbed into the definitions of our constants in the renormalization step.
+    \item Before jumping in to a full calculation, let's lay out all the pieces that we are going to need. Let's consider an integral of the form:
+        \begin{equation*}
+            I(q) = \int \frac{\dd^n p}{(p^2 + 2\dotprod{p}{q} - m^2)^{\alpha}},
+        \end{equation*}
+        where $\alpha$ is any number.
+    \item To start, we move to spherical coordinates in $n$-dimensions. In any dimensional space-time, we have a single time dimensions and $n-1$ spatial dimensions, so we really are going to spherical in the $n-1$ dimenional space. Regardless - we will have the single time coordinate, the radial coordinate, the azimuthal angle, and the rest of the $n-3$ coordinates we will denote with $\theta_i$ as the polar angles.
+    \item So, we have a four-vector that looks like this in spherical $n$-dimensional space-time: 
+        \begin{equation*}
+            p^{\mu} = \br{p^0,\ r,\ \phi,\ \theta_1,\ \theta_2,\ \ldots,\ \theta_{n-3}}.
+        \end{equation*}
+    \item The 4-dim differential in spherical coordinates is
+        \begin{equation*}
+            \dd^4 p = \dd p^0 \dd^3\vv{r} = \dd p^0 r^2\sin\theta \,\dd r\dd \theta\dd \phi.
+        \end{equation*}
+    \item where the power of $r$ is one less than the number of spatial dimensions. In $n$-dimensions, each subsequent polar angle picks up an additional factor of sine, so what we have in $n$-dim is
+        \begin{equation*}
+            \dd^n p = \dd p^0 r^{n-2} \dd r \dd\phi \prod_{k=1}^{n-3}\sin^k\theta_k \dd\theta_k.
+        \end{equation*}
+    \item The $\theta$ is the only non-trivial one (usually); it can be shown that
+        \begin{equation}
+            \int_0^{\pi} \sin^k\theta \;\dd\theta = \sqrt{\pi} \frac{\Gamma\br{\frac{k+1}{2}}}{\Gamma\br{\frac{k+2}{2}}},
+        \end{equation}
+        where the Gamma function is defined for a complex $z$ like so:
+        \begin{equation}
+            \Gamma(z) = \int_0^{\infty} x^{z-1} e^{-x} \;\ddx.
+        \end{equation}
+        For real integer $z$, call it $\ell$, it turns out that
+        \begin{equation}
+            \Gamma(\ell) = (\ell - 1)!.
+        \end{equation}
+    \item With this,
+        \begin{equation*}
+            I(q) = \intinf \dd p^0 \int_0^{\infty} \dd r \int_0^{2\pi} \dd\phi \int_0^{\pi} \prod_{i=1}^{n-3}\sin^k\theta_k \;\dd\theta_k \cdot \frac{r^{n-2}}{(p^2 + 2\dotprod{p}{q} - m^2)^{\alpha}}.
+        \end{equation*}
+    \item The $\phi$ integral is trivial; there is no phi dependence anywhere, so that's just $2\pi$. The sine integrals can be treated separately so that
+        \begin{equation*}
+            \int_0^{\pi} \prod_{i=1}^{n-3}\sin^k\theta_k \;\dd\theta_k = \sqrt{\pi} \frac{\Gamma(1)}{\Gamma(3/2)} \sqrt{\pi} \frac{\Gamma(3/2)}{\Gamma(2)}\sqrt{\pi} \frac{\Gamma(2)}{\Gamma(5/2)}\ldots
+        \end{equation*}
+        What ends up happening here is all the intermediate gamma functions cancel, leaving only the numerator of the very first term and the denominator of the very last term. Additionally, $\Gamma(1) = 1$, so we get that
+        \begin{equation*}
+            I(q) = \frac{2\pi^{(n-1)/2}}{\Gamma\br{\frac{n-1}{2}}} \intinf \dd p^0 \int_0^{\infty} \dd r \frac{r^{n-2}}{[(p^0)^2 - r^2 + 2\dotprod{p}{q} - m^2]^{\alpha}}.
+        \end{equation*}
+    \item These two integrals can be done; they are a bit tedious, so we will just quote the result:
+        \begin{equation}
+            I(q) = i\pi^{n/2} \frac{\Gamma\br{\alpha - \frac{n}{2}}}{\alpha} (-q^2 - m^2)^{(n/2) - \alpha}.
+        \end{equation}
+    \item There are two more things that we will need before moving on. The first is that in $n$-dimensions, gamma matrix identities are a little different. The two that we will use are 
+        \begin{enumerate}
+            \item $\gamma^{\mu}\gamma_{\mu} = n$,
+            \item $\gamma^{\mu}\gamma^{\nu}\gamma_{\mu} = (2-n)\gamma^{\nu}$.
+        \end{enumerate}
+    \item The other thing is \textbf{Feynman parametrization}. This involves turning a product of two propagators into an integral like so:
+        \begin{equation}
+            \frac{1}{AB} = \int_0^1 \frac{\ddx}{[Ax + (1-x)B]^2}.
+        \end{equation}
+        This can be generalized to any number and any power of propagators:
+        \begin{equation}
+            \frac{1}{\prod_{i=1}^{n}A_i^{\alpha_i}} = \frac{\Gamma(\alpha)}{\prod_{i=1}^{n} \Gamma(\alpha_i)} \int_0^1 \prod_{i=1}^{n} \ddx_i \; x_i^{\alpha_i - 1} \frac{\delta(1-x)}{\left[ \sum_{i=1}^{n} x_iA_i \right]^{\alpha}},
+        \end{equation}
+        where $\alpha \equiv \sum_{i=1}^{n} \alpha_i$ and $x \equiv \sum_{i=1}^{n} x_i$.
+\end{itemize}
+
+
+
+\subsection*{The Electron Self-Energy}
+
+
+\begin{figure}[ht]
+    \centering
+    
+    \begin{tikzpicture}
+    \begin{feynman}
+        \vertex (i);
+        \vertex[right of=i] (v1);
+        \vertex[right of=v1] (v2);
+        \vertex[right of=v2] (f);
+
+        \diagram* {
+            (i) --[fermion, momentum'=$p$] (v1) --[fermion, momentum'=$p-k$] (v2) --[fermion, momentum'=$p$] (f),
+            (v1) --[photon, half left, momentum={[arrow shorten=0.2]$k$}] (v2)
+        };
+    \end{feynman}
+    \end{tikzpicture}
+
+    \caption{Feynman diagram for the electron (or any fermion, really) self-energy.}
+    \label{fig:ElectronSelfEnergyDiagram}
+\end{figure}
+
+
+\begin{itemize}
+    \item We are now ready to tackle one of the aforementioned primitively divergent integrals called the \textit{electron self-energy}, whose Feynman diagram is given in Figure~\ref{fig:ElectronSelfEnergyDiagram}.
+    \item When solving for these primitive diagrams, we don't solve for the traditional amplitude since it's usually part of a larger diagram, so we denote this amplitude with a $\Sigma(p)$. With this, since we also omit the Dirac spinors for the external lines since we don't know if they are actually external lines in this larger diagram or whether they are internal. With this we can use our Feynman rules to write down the amplitude
+        \begin{align*}
+            i\Sigma(p) &= \int \frac{\dd^n k}{(2\pi)^n} (-ie\gamma^{\mu}) \frac{i(\slashed{p} - \slashed{k} + m)}{(p-k)^2 - m^2}(-ie\gamma^{\nu}) \frac{-ig_{\mu\nu}}{k^2}, \\
+            &= -e^2 \int \frac{\dd^n k}{(2\pi)^n} \frac{\gamma^{\mu}(\slashed{p} - \slashed{k} + m)}{[(p-k)^2 - m^2]k^2}.
+        \end{align*}
+    \item Now we see the motivation for the Feynman parameter stuff. It might have seemed ridiculous to further complicate a simple product in the denominator to an additional integral, but now we see that by doing that, we get a result that is somewhat similar $I(q)$ which we know how to integrate. So, if we take $A = (p-k)^2 - m^2$ and $B=k^2$, we can write this as
+        \begin{equation*}
+            i\Sigma(p) = -\frac{e^2}{(2\pi)^n} \int \dd^4k' \int_0^1 \ddx \; \frac{\gamma^{\mu}(\slashed{p} - \slashed{k} + m)}{\br{\br{\br{p-k}^2 - m^2}x + k^2(1-x)}^2}.
+        \end{equation*}
+    \item We are almost to a form that is like $I(q)$. With a little bit of trivial algebra, we can massage the denominator to look like $[(k-xp)^2 + p^2x(1-x) - m^2x]$, and define a shifted momentum $k' = k-xp$ such that 
+        \begin{equation*}
+            i\Sigma(p) = -\frac{e^2}{(2\pi)^n} \int \dd^4k' \int_0^1 \ddx \; \frac{\gamma^{\mu}((1-x)\slashed{p} - \slashed{k}' + m)}{[k^{\prime2} + p^2x(1-x) - m^2x]^2}.
+        \end{equation*}
+    \item Now this is of an identical form as in $I(q)$, except that we have no linear term in $k'$, which is what happens when $q=0$. Then, if we let $L \equiv -x[(1-x)p^2 - m^2]$, it can take the place of the $-m^2$ in the denominator so we have
+        \begin{equation*}
+            i\Sigma(p) = -\frac{e^2}{(2\pi)^n} \int \dd^4k' \int_0^1 \ddx \; \frac{\gamma^{\mu}((1-x)\slashed{p} - \slashed{k}' + m)}{[k^{\prime2} - L]^2}.
+        \end{equation*}
+    \item If we do a little more work and re-express things in terms of $\epsilon$, we get something like
+        \begin{equation*}
+            i\Sigma(p) = \frac{-ie^2}{2^{4-\epsilon} \pi^{2 - (\epsilon/2)}} \Gamma\br{\frac{\epsilon}{2}} \int_0^1 \ddx \; \gamma^{\mu}[\slashed{p}(1-x) + m]\gamma_{\mu}[p^2x(1-x) - m^2x].
+        \end{equation*}
+        I had started to work on my own during the lecture and so my form might not be exactly similar, but regardless, this is what you get.
+    \item Now if we do Laurent expansions in terms of $\epsilon$ we get something like
+        \begin{equation*}
+            \Sigma(p) = \frac{-e^2}{16\pi^2} \frac{2}{\epsilon} \int_0^1 \ddx \; [-2\slashed{p}(1-x_ + 4m)] + \mathcal{O}(\epsilon),
+        \end{equation*}
+        where we have gotten rid of every linear in epsilon, since when we take it zero those terms will go to zero. We can go a little further and say
+        \begin{equation*}
+            \Sigma(p) = \frac{e^2}{8m^2} \frac{1}{\epsilon} (\slashed{p} - 4m).
+        \end{equation*}
+    \item At this stage, we have successfully isolated the diverging terms into an analytical expression in $\epsilon$ which contains a single pole. This is what we will renormalize into redefinitions of the constants in the next step.
+\end{itemize}
+
+
+
+\sep
+
+
+\begin{itemize}
+    \item Now, our leading-order no-loop propagator we indicate with $S_0(p)$:
+        \begin{equation}
+            S_0(p) = \frac{i}{\slashed{p} - m}
+        \end{equation}
+    \item In general, though, there can be loops and such. We consider all 1-loop diagrams as the \textbf{dressed} propagator $S(p)$. Diagrammatically, this looks like\footnote{Notice that we don't have a scenario where emits a second photon before absorbing again the first. This is considered a two-loop diagram. More specifically, the dressed propagator considers only \textbf{1-particle irreducable} diagrams, which, roughly speaking, incorporates diagrams that can be ``cut'' into parts that each are valid Feynman diagrams.}
+        \begin{center}
+            $S(p)$ = 
+                \begin{tikzpicture}
+                \begin{feynman}[small]
+                    \vertex (a);
+                    \vertex[right of=a] (b);
+                    \diagram* {
+                        (a) --[fermion] (b)
+                    };
+                \end{feynman}
+                \end{tikzpicture}
+            $+$ 
+                \begin{tikzpicture}
+                \begin{feynman}[small]
+                    \vertex (a);
+                    \vertex[right=0.5cm of a] (x1);
+                    \vertex[right of=x1] (x2);
+                    \vertex[right=0.5cm of x2] (b);
+                    \diagram* {
+                        (a) --[fermion] (b),
+                        (x1) --[photon, half left] (x2)
+                    };
+                \end{feynman}
+                \end{tikzpicture}
+            $+$
+                \begin{tikzpicture}
+                \begin{feynman}[small]
+                    \vertex (a);
+                    \vertex[right=0.5cm of a] (x1);
+                    \vertex[right of=x1] (x2);
+                    \vertex[right=0.25cm of x2] (y1);
+                    \vertex[right of=y1] (y2);
+                    \vertex[right=0.5cm of y2] (b);
+                    \diagram* {
+                        (a) --[fermion] (b),
+                        (x1) --[photon, half left] (x2),
+                        (y1) --[photon, half left] (y2)
+                    };
+                \end{feynman}
+                \end{tikzpicture}
+            $+ \ldots$
+        \end{center}
+    \item Mathematically,
+        \begin{align*}
+            S(p) &= S_0(p) + S_0(p) i\Sigma(p) S_0(p) + S_0(p) i\Sigma(p) S_0(p) i\Sigma(p) S_0(p) + \ldots \\
+            &= S_0(p) [1 + i\Sigma(p)S_0(p) + i\Sigma(p)S_0(p)i\Sigma(p)S_0(p) + \ldots].
+        \end{align*}
+    \item The quantity in brackets is just the power series expansion for $1/(1-x)$ where $x = i\Sigma(p)S_0(p)$:
+        \begin{align*}
+            S_0(p) &= [1 - i\Sigma(p)S_0(p)]^{-1} \\
+            &= [S_0(p) - i\Sigma(p)]^{-1}.
+        \end{align*}
+    \item Plugging in the normal propagator:
+        \begin{equation}
+            S(p) = [-i(\psl - m) - i\Sigma(p)]^{-1} = \frac{i}{\psl - m + \Sigma(p)}.
+        \end{equation}
+    \item Interestingly, this looks identical to the normal propagator but with a little ``correction'' that is the self-energy part. If we plug this in we get (note the inverse)
+        \begin{equation}
+            S^{-1}(p) = -i(\psl - m) - \frac{ie^2}{8\pi^2\epsilon}(\psl - 4m) + \mathcal{O}(\epsilon^0),
+        \end{equation}
+        where we have isolated only the $1/\epsilon$ poles and disregarded any linear terms. The constant terms are encapsulated in the $\mathcal{O}(\epsilon^0)$ terms, because as we will see in the next step, what of those terms we consider is dependent on the scheme we choose.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item We have now completed the regularization step! We have successfully got a full dressed propagator term with the infinites isolated as $1/\epsilon$ poles.
+    \item Next, we move to renormalization where we basically absorb all of these infinities into the electric charge, the mass, or the fields.
+    \item There are a number of ways in which to do this which correspond to the different schemes. One of the more simple ones is called the \textbf{minimal subtraction (MS)} scheme, in which we only look at the divergent terms (hence why we moved all the constant terms into $\mathcal{O}(\epsilon^0)$).
+    \item The \textbf{modified minimal subtraction ($\overline{\mathrm{MS}}$)} scheme is similar but also takes into account some other things like a $\ln4\pi$ and the Euler-Mascheroni constant $\gamma_E$. The latter is more commonly used, but the former is a little easier.
+    \item First, let's rewrite the dressed propagator:
+        \begin{equation}
+            S^{-1}(p) = -i\psl  \br{1 + \frac{e^2}{8\pi^2\epsilon}} + im \br{1 + \frac{e^2}{2\pi^2\epsilon}}.
+        \end{equation}
+    \item Recall, the QED Lagrangian is (with our gauge fixing term since we continue to work in the Feynman gauge)
+        \begin{equation}
+            \lag_{\mathrm{QED}} = i\psib \gamma^{\mu}\ddp_{\mu} \psi - m\psib\psi - q\psib \gamma^{\mu} \psi A_{\mu} - \frac{1}{4}F_{\mu\nu}F^{\mu\nu} - \frac{1}{2}(\ddp_{\mu}A^{\mu})^2.
+        \end{equation}
+    \item What we will now do is add \textit{counterterms} to the Lagrangian that effectively cancel the infinities. We will only consider the Dirac part (the kinetic and mass terms for the spinor fields), and just tack on similar looking terms but with undetermined constants out front:
+        \begin{equation}
+            \lag_{\mathrm{Dirac}} \rightarrow i\psib \gamma^{\mu}\ddp_{\mu} \psi - m\psib\psi + iB\psib \gamma^{\mu}\ddp_{\mu} \psi - iM\psib\psi.
+        \end{equation}
+    \item If we let 
+        \begin{equation}
+            B = -\frac{e^2}{8\pi^2\epsilon} \quad\mathrm{and}\quad M = -\frac{me^2}{2\pi^2\epsilon},
+        \end{equation}
+        then we have
+        \begin{equation}
+            \lag_{\mathrm{Dirac}} = i\br{1 - \frac{e^2}{8\pi^2\epsilon}}\psib \gamma^{\mu}\ddp_{\mu}\psi - \br{m - \frac{me^2}{2\pi^2\epsilon}}\psib\psi.
+        \end{equation}
+    \item It turns out that this exactly cancels the infinities! I'm not really 100\% but I trust it. Now if we define
+        \begin{equation}
+            Z_{\psi} = 1+B = 1 - \frac{e^2}{8\pi^2\epsilon} \quad\mathrm{and}\quad m_b = \frac{m+M}{Z_{\psi}},
+        \end{equation}
+        we get
+        \begin{equation}
+            \lag_{\mathrm{Dirac}} = iZ_{\psi} \psib \gamma^{\mu}\ddp_{\mu} \psi - Z_{\psi}m_b\psib\psi.
+        \end{equation}
+    \item The $b$ subscript indicates ``bare''. I'll explain in just a minute.
+    \item Lastly, we define the ``bare'' field $\psi_b \equiv \sqrt{Z_{\psi}}\psi$ so that we have
+        \begin{equation}
+            \lag_{b,\mathrm{Dirac}} = i\psib_b \gamma^{\mu}\ddp_{\mu} \psi_b - m_b \psib_b\psi_b.
+        \end{equation}
+    \item This is the original Lagrangian in terms of bare quantities! We have absorbed the infinities into these bare quantities.
+    \item The reason why these are called ``bare'' is because they represent the quantities if we were able to get infinitely close to it. We will see the charge renormalization later, but that's the best example. If we get infinitely close to the electron, there are no loops or particles coming from the vacuum to ``shield'' the charge; we see the \textit{bare} charge, which turns out to be infinity.
+    \item But we are never truly able to measure this bare charge because it would require an infinite amount of energy to get infinitely close.
+    \item So our motivation for doing this is that we can just absorb the infinities into these new bare quantities without any side effects because we aren't able to measure them anyways, so it won't affect anything. This is a little unsettling, hence why people like Dirac and Feynman were so against it, but it works very well so we just accept it.
+\end{itemize}
+
+
+
+
+
+
+\subsection*{The Photon Self-Energy / Vacuum Polarization}
+
+\begin{itemize}
+    \item The next primitive divergent diagram is the photon self-energy or the vacuum polarization:
+    \begin{center}
+        \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a);
+            \vertex[right of=a] (x1);
+            \vertex[right of=x1] (x2);
+            \vertex[right of=x2] (b);
+            \diagram* {
+                (a) --[photon, momentum'=$k$] (x1),
+                (x1) --[fermion, half left, edge label=$p$] (x2) --[fermion, half left, edge label=$p-k$] (x1),
+                (x2) --[photon, momentum'=$k$] (b)
+            };
+        \end{feynman}
+        \end{tikzpicture}
+    \end{center}
+    \item We denote this particle amplitude with an uppercase $\Pi$:
+        \begin{align}
+            i\Pi^{\mu\nu}(k) &= \int \frac{\dd^n p}{(2\pi)^n} (-1) \frac{\Tr[(-ie\gamma^{\mu})i(\psl + m)(-ie\gamma^{\nu})i(\psl - \ksl + m)]}{(p^2 - m^2)[(p-k)^2 - m^2]} \\
+            \Pi^{\mu\nu}(k) &= ie^2 \int_0^1 \ddx \int \frac{\dd^n p}{(2\pi)^n} \frac{\Tr[\gamma^{\mu}(\psl + m)\gamma^{\nu}(\psl - \ksl + m)]}{[(p-k)^2x - m^2x + (p^2-m^2)(1-x)]^2}.
+        \end{align}
+    \item We only wrote a few of the intermediate steps in class, but I'll skip them here and just write the final answer after doing all of the integrations and stuff:
+        \begin{equation}
+            \Pi^{\mu\nu}(k) = \frac{e^2}{6\pi^2\epsilon}(k^{\mu}k^{\nu} - g^{\mu\nu}k^2) + \mathcal{O}(\epsilon^0).
+        \end{equation}
+    \item Doing the same stuff as before, we can write the dressed propagator as a sum of all the 1-particle irreducible vacuum polarization diagrams:
+        \begin{align}
+            D_{\mu\nu}(k) &= D_{0,\mu\nu} + D_{0,\mu\rho} i\Pi^{\rho\sigma}(k) D_{0,\sigma\nu}(k) + \ldots \\
+            &= -\frac{ig_{\mu\nu}}{k^2} - \frac{ig_{\mu\rho}}{k^2} \frac{ie^2}{6\pi^2\epsilon}(k^{\rho}k^{\sigma} - g^{\rho\sigma}k^2)\frac{(-ig_{\sigma\nu})}{k^2} + \ldots \\
+            &= -\frac{ig_{\mu\nu}}{k^2} - \frac{ie^2}{6\pi^2\epsilon}\frac{k_{\mu}k_{\nu}}{k^4} + \frac{ie^2}{6\pi^2\epsilon}\frac{g_{\mu\nu}}{k^2} + \ldots \\
+            &= -\frac{ig_{\mu\nu}}{k^2} \br{1 - \frac{e^2}{6\pi^2\epsilon}} - \frac{ie^2}{6\pi^2\epsilon}\frac{k_{\mu}k_{\nu}}{k^4} + \ldots
+        \end{align}
+    \item We again add counterterms to the Lagrangian, but this time we are only going to look at the gauge term:
+        \begin{equation}
+            \lag_{\mathrm{gauge}} \rightarrow -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} - \frac{1}{2}(\ddp_{\mu}A^{\mu})^2 - \frac{1}{4}CF_{\mu\nu}F^{\mu\nu} - \frac{1}{2}N(\ddp_{\mu}A^{\mu})^2.
+        \end{equation}
+    \item We find that 
+        \begin{equation}
+            C = N = -\frac{e^2}{6\pi^2\epsilon},
+        \end{equation}
+        so
+        \begin{equation}
+            \lag_{\mathrm{gauge}} = -\frac{1}{4}\br{1 - \frac{e^2}{6\pi^2\epsilon}}F_{\mu\nu}F^{\mu\nu} - \frac{1}{2}\br{1 - \frac{e^2}{6\pi^2\epsilon}}(\ddp_{\mu}A^{\mu})^2.
+        \end{equation}
+    \item With another renormalization constant $Z_A = 1+C$:
+        \begin{equation}
+            \lag_{b,\mathrm{gauge}} = -\frac{1}{4}Z_AF_{\mu\nu}F^{\mu\nu} - \frac{1}{2}Z_A(\ddp_{\mu}A^{\mu})^2.
+        \end{equation}
+    \item We can then absorb this new renormalization constant into the gauge field in a similar way to get
+        \begin{equation}
+            \lag_{b,\mathrm{gauge}} = -\frac{1}{4}F_{b,\mu\nu}F_b^{\mu\nu} - \frac{1}{2}(\ddp_{\mu}A_b^{\mu})^2.
+        \end{equation}
+\end{itemize}
+
+
+\subsection*{Vertex Correction}
+
+\begin{itemize}
+    \item The last thing that we consider is the vertex correction:
+        \begin{center}
+        \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a);
+            \vertex[above right of=a] (x1);
+            \vertex[above right of=x1] (b);
+            \vertex[below right of=b] (x2);
+            \vertex[below right of=x2] (c);
+            \vertex[above of=b] (q);
+
+            \diagram* {
+                (a) --[fermion, edge label=$p$] (x1) --[fermion, edge label=$p-k$] (b) --[fermion, edge label=$p+q-k$] (x2) --[fermion, edge label=$p+q$] (c),
+                (q) --[photon, momentum'=$q$] (b),
+                (x1) --[photon, momentum'=$k$] (x2)
+            };
+        \end{feynman}
+        \end{tikzpicture}
+        \end{center}
+    \item The amplitude is
+        \begin{align}
+            i\Lambda^{\mu}(p,q) &= \int \frac{\dd^n p}{(2\pi)^n} (-ie\gamma^{\nu}) \frac{i(\psl + \qsl - \ksl + m)}{(p+q-k)^2 - m^2}(-ie\gamma^{\mu}) \frac{i(\psl - \ksl + m)}{(p-k)^2 - m^2} (-ie\gamma^{\rho}) \frac{-ig_{\rho\nu}}{k^2} \\
+            \Lambda^{\mu}(p,q) &= ie^3 \int \frac{\dd^n p}{(2\pi)^n} \frac{\gamma^{\nu}(\psl + \qsl - \ksl + m)\gamma^{\mu}(\psl - \ksl + m)\gamma_{\nu}}{[(p+q-k)^2 - m^2][(p-k)^2 - m^2]k^2} \\
+            &= 2ie^3 \int_0^1 \ddx \int_0^{1-x}\dd y \int \frac{\dd^n p}{(2\pi)^n} \frac{\gamma^{\nu}(\psl + \qsl - \ksl + m)\gamma^{\mu}(\psl - \ksl + m)\gamma_{\nu}}{\{x[(p+q-k)^2 - m^2] + y[(p-k)^2 - m^2] + (1-x-y)k^2\}^3}.
+        \end{align}
+    \item Doing all the steps we arrive at a final answer of
+        \begin{equation}
+            \Lambda^{\mu}(p,q) = -\frac{e^3}{8\pi^2\epsilon}\gamma^{\mu} + \mathcal{O}(\epsilon^0).
+        \end{equation}
+    \item Again, we add counterterms to the Lagrangian, this time specifically to the interaction term:
+        \begin{equation}
+            \lag_{\mathrm{int}} \rightarrow -e(1+L)\psib \gamma^{\mu} \psi A_{\mu},
+        \end{equation}
+        where 
+        \begin{equation}
+            L = -\frac{e^2}{8\pi^2\epsilon},
+        \end{equation}
+        so
+        \begin{equation}
+            \lag_{\mathrm{int}} = -e\br{1 - \frac{e^2}{8\pi^2\epsilon}} \psib\gamma^{\mu}\psi A_{\mu}.
+        \end{equation}
+    \item If we go back and check we will find that the quantity in parentheses is identical to $Z_{\psi}$ that we defined earlier.\footnote{It turns out that this is a/the \textbf{Ward identity}, which is quite interesting because it is nothing at all like I thought it was from what we did last semester in Directed Methods.} With this, then,
+        \begin{equation}
+            \lag_{b,\mathrm{int}} = -e\psib_b \gamma^{\mu} \psi_b A_{\mu}.
+        \end{equation}
+    \item We can multiply and divide by $\sqrt{Z_A}$ and define $e_b \equiv e/\sqrt{Z_A}$ so that we get
+        \begin{equation}
+            \lag_{b,\mathrm{int}} = -e_b\psib_b\gamma^{\mu}\psi_b A_{b,\mu}.
+        \end{equation}
+    \item Thus, with all of the primitively divergent diagrams, we have been able to successfully renormalize the divergences into redefinitions of the fundamental quantities in the Lagrangian!
+\end{itemize}
+
+
+
+
+\subsection*{Dimensional Analysis}
+
+\begin{itemize}
+    \item Let's take a step back and look at the dimensions and units of all this stuff. We will find a super interesting result by the end!
+    \item First, in the context of DR, we have that the action is now an integral over $n$-dimensions:
+        \begin{equation}
+            S = \int \lag \;\dd^n x.
+        \end{equation}
+    \item With this, then we know that $\lag$ must have dimensions of $[\mathrm{length}]^{-1}$ (the brackets denote the dimension of the quantity inside - ordinarily we'd use the letter corresponding to lenghth, like $E$ for energy, but this works).
+    \item But since we are using natural units, $[E] = [\mathrm{length}]^{-1} = [p] = [m]$, so the action must have $n$ mass dimensions. From here on out, we will consider specifically the \textit{mass} dimension of things, so $[m] = 1$, since obviously one mass has one mass dimension.
+    \item Each term in the Lagrangian must therefore have $n$ mass dimensions; let's look at the mass term first: $[m\psib\psi] = [m] + [\psib] + [\psi] = n$. Again, obviously mass has 1 mass dimension, and the field and its adjoint must have the same mass dimension. With this, then
+        \begin{equation*}
+            [\psi] = \frac{n-1}{2}.
+        \end{equation*}
+    \item Turning to the kinetic term for the gauge field, $[F_{\mu\nu}F^{\mu\nu}] = n$ so $[F_{\mu\nu}] = n/2$. With this, then $[\ddp_{\mu}A_{\nu}] = n/2$. The derivative will take away one of the length dimensions, so $A_{\nu}$ must have an additional length dimension, or one less mass dimension: 
+        \begin{equation}
+            [A_{\mu}] = \frac{n-2}{2}.
+        \end{equation}
+    \item Lastly, let's look at the interaction term:
+        \begin{align}
+            [e\psib \psi A_{\mu}] = n &\rightarrow [e] + [\psib] + [\psi] + [A_{\mu}] = n \\
+            &= [e] + 2\br{\frac{n-1}{2}} + \br{\frac{n-2}{2}} = n \\
+            &= [e] + \frac{n-4}{2} = n \\
+            \rightarrow [e] &= \frac{4-n}{2} = \frac{\epsilon}{2}.
+        \end{align}
+    \item Obviously, in our normal four space-time dimensions, this goes to zero, meaning the electric charge is a constant. However in the context of dimensional regularization this is not the case!
+    \item This is a bit of an issue. To fix this, we introduce an arbitrary ``renormalization scale'' $\mu$ that absorbs this dimensionality, so $[\mu] = [e]^{-1}$. Then,
+        \begin{equation}
+            \lag_{\mathrm{int}} = -e \mu^{(4-n)/2} \psib\gamma^{\mu}\psi A_{\mu},
+        \end{equation}
+        where this $e$ is back to being a real constant.
+    \item However, we have now picked up an arbitrary energy scale that we must set ourselves. We typically choose it to be characteristic of the experiment we are conducting. For instance, we'd set it to the mass of the top quark if we are pair producing them, or if we are just going stuff with leptons we'd set it lower.
+    \item Now, the bare mass of the electron is given as
+        \begin{equation}
+            e_b = \frac{e\mu^{\epsilon/2}}{\sqrt{Z_A}} = \frac{e\mu^{\epsilon/2}}{\sqrt{1 - \frac{e^2}{6\pi^2\epsilon}}} = e\mu^{\epsilon/2}\br{1 + \frac{e^2}{12\pi^2\epsilon} + \ldots},
+        \end{equation}
+        where we used the taylor expansion for $(1-x)^{-1/2}$.
+    \item We know that the bare mass cannot be a function anything, let alone the bare quark mass, meaning that 
+        \begin{equation}
+            \pd{e_b}{\mu} = 0.
+        \end{equation}
+        But using our definition for the bare mass we just described tells us that
+        \begin{equation}
+            \mu\pd{e}{\mu} \equiv b(e) = -\frac{\epsilon}{2} + \frac{e^3}{12\pi^2} + \ldots.
+        \end{equation}
+    \item Going back to four dimensions, we have that 
+        \begin{equation}
+            b(e) = \mu\pd{e}{\mu} = \frac{e^3}{12\pi^2} > 0,
+        \end{equation}
+        which essentially says that the electron charge grows when we increase our energy scale! In fact, we can solve the differential equation to find that, if we know the electron charge at some initial energy scale $\mu_0$, then the energy scale at any $\mu$ is
+        \begin{equation}
+            e^2(\mu) = \frac{e^2(\mu_0)}{1 - \frac{e^2(\mu_0)}{6\pi^2}\ln\br{\frac{\mu}{\mu_0}}}.
+        \end{equation}
+    \item Indeed, the electron charge blows up at super high energy scales!
+    \item This is also the reasoning behind the ``running coupling'' idea, since the coupling is directly proportional to the electric charge (squared):
+        \begin{equation}
+            \alpha_{\mathrm{em}} = \frac{e^2}{4\pi} \approx \frac{1}{137} \quad \text{for low energy}.
+        \end{equation}
+\end{itemize}

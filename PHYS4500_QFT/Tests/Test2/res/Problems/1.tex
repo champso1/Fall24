@@ -1,0 +1,33 @@
+\section{}
+
+We are to show that the first component of the conjugate momentum for the free Lagrangian for a gauge field with the Feynman gauge fixing term given by 
+
+\begin{equation}
+    \lag = -\frac{1}{4}F_{\mu\nu}F^{\mu\nu} - \frac{1}{2}(\ddp_{\mu}A^{\mu})^2
+\end{equation}
+
+is
+
+\begin{equation}
+    \pi^0 = \pd{\lag}{\dot{A}_0} = -\ddp_{\mu}A^{\mu}.
+\end{equation}
+
+Firstly, it is easy to note that 
+
+\begin{equation*}
+    \pd{}{\dot{A}_0}{-\frac{1}{4}F_{\mu\nu}F^{\mu\nu}} = 0,
+\end{equation*}
+
+since the only components containing $\ddp_0A_0$ at all are the $F^{00}$ terms, which are zero. Turning to the other term, we have:
+
+\begin{equation*}
+    -\frac{1}{2}\br{\ddp_{\mu}A^{\mu}}^2 = -\frac{1}{2}\br{\ddp_0A^0  + \ddp_iA^i}^2 = -\frac{1}{2}\br{\dot{A}_0  + \ddp_iA^i}^2.
+\end{equation*}
+
+With this,
+
+\begin{equation*}
+    \pd{}{\dot{A}_0}{-\frac{1}{2}(\ddp_{\mu}A^{\mu})^2} = -\br{\dot{A}_0  + \ddp_i A^i} = -\ddp_{\mu}A^{\mu},
+\end{equation*}
+
+as expected.

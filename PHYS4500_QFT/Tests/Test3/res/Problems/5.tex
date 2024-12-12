@@ -1,0 +1,49 @@
+\section{}
+
+The generating functional for non-interacting spinor fields is given by
+
+\begin{equation}
+  Z_0[\eta,\bar{\eta}] = \exp\left\{- \int \dd^4x\dd^4y \; \bar{\eta}(x) S(x-y) \eta(y)\right\},
+\end{equation}
+
+which, as a generating functional, has
+
+\begin{equation}
+  S(x-y) = \Braket{0 | T\{\psi(x)\psib(y)\} | 0} = - \frac{\delta^2Z_0[\eta,\bar{\eta}]}{\delta\bar{\eta}(x)\delta\eta(y)}\bigg|_{\eta = \bar{\eta}=0}.
+\end{equation}
+
+Doing the differentiation, we note that the $x$ and $y$ in the exponential are dummy, so to differentiate with respect to $\eta(y)$, for instance, we should switch them to primes:
+
+\begin{align}
+  \frac{\delta}{\delta\eta(y)}Z_0[\eta,\bar{\eta}] &= \frac{\delta}{\delta\eta(y)} \exp\left\{- \int \dd^4x'\dd^4y' \; \bar{\eta}(x') S(x'-y') \eta(y')\right\}, \\
+                                                         &= \left(-\int \dd^4x' \bar{\eta}(x) S(x'-y) \right)Z_0[\eta,\bar{\eta}].
+\end{align}
+
+Doing the next functional derivative:
+
+\begin{align}
+  \frac{\delta^2}{\delta\bar{\eta}(x)\eta(y)} = -S(x-y)Z_0[\eta,\bar{\eta}] + \left(-\int \dd^4x' \bar{\eta}(x) S(x'-y) \right)\left(-\int \dd^4y' S(x-y') \eta(y) \right)Z_0[\eta,\bar{\eta}].
+\end{align}
+
+Now, obviously $Z[0,0] = 1$ since the exponent will be zero. Also, since each term in parentheses has a surviving Grassman source, they also vanish, leaving:
+
+\begin{equation}
+  \frac{\delta^2 Z_0[\eta,\bar{\eta}]}{\delta\bar{\eta}(x)\eta(y)}\bigg|_{\eta = \bar{\eta} = 0} = -S(x-y)
+\end{equation}
+
+or, considering the $(-i)^n$ factor:
+
+\begin{equation}
+  \boxed{S(x-y) = -\frac{\delta^2 Z_0[\eta,\bar{\eta}]}{\delta\bar{\eta}(x)\eta(y)}\bigg|_{\eta = \bar{\eta} = 0},}
+\end{equation}
+
+as expected.
+  
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Test3"
+%%% End:

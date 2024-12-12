@@ -1,0 +1,174 @@
+\section{QCD}
+
+\begin{itemize}
+\item QCD is the consideration of local $SU(3)$ gauge transformations which come in the form
+
+  \begin{equation}
+    \psi(x) \rightarrow \psi'(x) = e^{iT^a\theta^a},
+  \end{equation}
+
+  where $T^a$ is a vector of the 8 generators of $SU(3)$, which are the analog of the Pauli matrices (times two).
+
+\item In this ``dimension'', we admit three types of \textbf{color charge}, along with 8 gluons.
+\item The generators follow the same generalized commutation relations:
+
+  \begin{equation}
+    [T^a,T^b] = if^{abc}T^c.
+  \end{equation}
+
+\item We define the covariant derivative as
+
+  \begin{equation}
+    D_\mu = \ddp_\mu + ig_s T^aG^a_\mu,
+  \end{equation}
+
+  where $G^a_\mu$ denote the 8 gluon fields. Under a local $SU(3)$ gauge transformation, these fields must transform like
+
+  \begin{equation}
+    G^a_\mu \rightarrow G^a_\mu - \frac{1}{g_s}\ddp_\mu \theta^a - f^{abc}\theta^bG^c_\mu.
+  \end{equation}
+
+\item The QCD Lagrangian, at this point, is given by
+
+  \begin{equation}
+    \lag = i\psib \gamma^\mu D_{\mu} \psi - m\psib\psi  - \frac{1}{4}G^a_{\mu\nu}G^{a,\mu\nu},
+  \end{equation}
+
+  where there are implicit color (and flavor) indices on the quarks.
+
+\item The generators, just like with the $SU(2)$ generators, have a more common matrix representation which is $T^a = \frac{1}{2}\lambda^a$, where $\lambda^a$ are the \textbf{Gell-Mann matrices}, and it is these that are analogous to the Pauli matrices. I'm not going to write any of them out here.
+\item There is a more complicated case when it comes to the structure constants, though. Fortunately, most of them are zero. I also will not write those here, nor will I write any of the identies or anything else that I can just look up in the back of a QFT book or something.
+  
+\end{itemize}
+
+
+\subsection{Ghosts}
+
+\begin{itemize}
+\item Now that gluons are able to couple to themselves, we admit spurious degrees of freedom that we parametrize via what are called ``ghost'' diagrams. These only appear in close loops and take into account these extra degrees of freedom. We either need to include diagrams containing these ghosts, or use a different (and more often more complex) gauge.
+\end{itemize}
+
+
+
+\section{QCD Renormalization}
+
+\begin{itemize}
+\item Let's first consider the analog of the lepton self-energy, in which we have a quark and gluon (and color factors). The kinematics are actually identical, so we can say that
+
+  \begin{equation}
+    \Sigma_{\mathrm{QCD}}(p) = C_F \Sigma_{\mathrm{QED}}(p) = \frac{g_s^2}{6\pi^2\epsilon}(\psl - 4m) + \mathcal{O}(\epsilon^0).
+  \end{equation}
+
+  Note that this is not just arbitrary, i.e. we are not just adding this color factor because there \textit{should} be one; if we do the actual calculation we find that this just happens to be the case.
+
+\item Next, we do a similar move by redefining the field like so:
+
+  \begin{equation}
+    \psi_b = \sqrt{Z_\psi}\psi \quad\text{with}\quad Z_\psi = 1 - \frac{g_s^2}{6\pi^2\epsilon}.
+  \end{equation}
+
+\end{itemize}
+
+\begin{itemize}
+  
+\item The vacuum polarization diagrams are a little more complex, since the gluon can self couple. Additionally, as it is a loop, there is also the contribution from ghosts (assuming a Feynman gauge). We won't do any of these calculations, but it turns out, the 4-gluon vertex is zero as it is proportional to $\int \dd^nk / k^2$, which we have found to be zero.
+\item The quark loop one is $n_f/2$ times the QED result, where $n_f$ is proportional to the number of flavors under consideration. In general this is of course 6, but when doing calculations we often neglect top quarks or even bottom quarks due to their high mass, in which case we'd only consider the other four quarks and set $n_f=4$. So,
+
+  \begin{equation}
+    \Pi^{\mu\nu}_{ab,\text{quark-loop}}(k) = \frac{n_f}{2}\delta_{ab} \frac{g_s^2}{6\pi^2\epsilon}(k^\mu k^\nu - g^{\mu\nu}k^2) + \mathcal{O}(\epsilon^0).
+  \end{equation}
+
+\item The gluon loop is a little more complex, but still follows the same structure:
+
+  \begin{equation}
+    \Pi^{\mu\nu}_{ab,\text{gluon-loop}}(k) =  \frac{-g_s^2}{16\pi^2\epsilon} f^{acd}f^{bcd} (\frac{11}{3} k^\mu k^\nu - \frac{19}{6}g^{\mu\nu}k^2) + \mathcal{O}(\epsilon^0).
+  \end{equation}
+
+\item Lastly, the ghost loop looks like
+
+  \begin{equation}
+    \Pi^{\mu\nu}_{ab,\text{ghost-loop}}(k) =  \frac{g_s^2}{16\pi^2\epsilon} f^{acd}f^{bcd} (\frac{1}{3} k^\mu k^\nu + \frac{1}{6}g^{\mu\nu}k^2) + \mathcal{O}(\epsilon^0).
+  \end{equation}
+
+\item Summing over all contributions:
+
+  \begin{equation}
+    \Pi^{\mu\nu}_{ab}(k) =  \frac{g_s^2}{24\pi^2\epsilon}\delta_{ab}(5C_A - 2n_f) (g^{\mu\nu}k^2 - k^\mu k^\nu) + \mathcal{O}(\epsilon^0).
+  \end{equation}
+
+\item With all of this, we redefine the gluon field like so:
+
+  \begin{equation}
+    (G_b)^a_\mu = \sqrt{Z_G} G^a_\mu, \quad\text{with}\quad Z_G = 1 + \frac{g_s^2}{24\pi^2\epsilon}(5C_A - 2n_f).
+  \end{equation}
+
+
+\item Vertex diagrams follow similarly. There is the QED analog, then one with a 3-gluon vertex, and end up with
+
+  \begin{equation}
+    \Lambda^a_\mu = - \frac{g_s^3}{8\pi^2\epsilon}(C_F + C_A)\gamma_\mu T^a.
+  \end{equation}
+
+  With some dimensional analysis, we redefine the bare coupling like so
+
+  \begin{equation}
+    g_{b,s} = \frac{Z_L}{Z_\psi \sqrt{Z_G}}g_s \mu^{\epsilon/2},
+  \end{equation}
+
+  where $\mu$ is a renormalization scale that keeps the actual coupling dimensionless, and $Z_L$ is defined like $\lag_{b,\mathrm{int}} = Z_L \lag_{\mathrm{int}}$.
+
+\item We find that
+
+  \begin{equation}
+    g_{b,s} = \br{1 - \frac{g_s^2}{48\pi^2\epsilon}\br{11C_A - 2n_f}}g_s \mu^{\epsilon/2}.
+  \end{equation}
+\end{itemize}
+
+\begin{itemize}
+  
+\item Now, the \textit{bare} strong coupling should be entirely independent of the renormlization scale, as it is the coupling we are supposed to be able to see at an infinitely large scale:
+
+  \begin{equation}
+    \diffp{g_{b,s}}{\mu} = 0 \quad\rightarrow\quad \beta(g_s) = \mu\diffp{g_s}{\mu} = - \frac{g_s^3}{48\pi^2}(11C_A - 2n_f) = - \frac{g_s^3}{16\pi^2} \beta_0.
+  \end{equation}
+
+\item This time, we find that $\beta(g_s) < 0$, meaning that with increaing energy, we get a decreasing coupling. This phenomena is called \textbf{Asymptotic Freedom}, and was an absolutely massive discovery.
+
+\item We can make the alternative definition (after a little bit of work)
+
+  \begin{equation}
+    \alpha_s(\mu) = \frac{\alpha_s(\mu_0)}{1 + \alpha_s(\mu_0) \frac{\beta_0}{4\pi}\log \frac{\mu^2}{\mu_0^2}},
+  \end{equation}
+
+  where we must know the coupling at some initial energy scale $\mu_0$. If we do, then we can calculate the new energy scale at any $\mu$.
+
+\item What we can also do is define a ``QCD Scale'' $\Lambda$ that is characteristic of typical QCD energies (usually it is around $\sim \qty{200}{\mega\electronvolt}$ like
+
+  \begin{equation}
+    \log\Lambda^2 = \log\mu_0^2 - \frac{4\pi}{\beta_0 \alpha_s(\mu_0)}.
+  \end{equation}
+
+  With this,
+
+  \begin{equation}
+    \alpha_s(\mu) = \frac{4\pi}{\beta_0 \log \frac{\mu^2}{\Lambda^2}}.
+  \end{equation}
+
+  
+\end{itemize}
+
+
+
+\section{Final Words}
+
+We covered some stuff specific to soft gluons on the final day. I won't be including any of that here, mostly because I am lazy, but also because it is less related to a more general QFT course, and is something more specific to what Dr. Kidonakis does for his research. I doubt it is what I'm going to go into specifically; this is the other reason why I won't be typing it all out.
+
+
+
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../Notes"
+%%% End:

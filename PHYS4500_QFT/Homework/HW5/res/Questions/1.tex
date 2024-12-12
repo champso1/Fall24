@@ -1,0 +1,98 @@
+\section{(19.4)}
+
+We are looking at the Proca Lagrangian:
+
+\begin{equation}
+    \lag = -\frac{1}{4}F^{\mu\nu}F_{\mu\nu} + \frac{1}{2}M^2A^{\mu}A_{\mu}.
+\end{equation}
+
+
+\begin{parts}
+
+%a
+\item The derivates get a little crazy here, so to make it as easy as possible, let's rewrite the Lagrangian with all the indices lowered, since that's how the derivatives are taken:
+
+\begin{equation*}
+    \lag = -\frac{1}{4}g^{\mu\lambda}g^{\nu\rho}F_{\lambda\rho}F_{\mu\nu} + \frac{1}{2}M^2 g^{\mu\nu}A_{\nu}A_{\mu}.
+\end{equation*}
+
+We can pretty easily find, quoting previous results, that
+
+\begin{equation*}
+    \diffp[]{\lag}{A_{\nu}} = M^2A^{\nu},
+\end{equation*}
+
+but the other term is not quite as easy:
+
+\newcommand{\FMUNUPROD}[4]{\ddp_{#1}A_{#2}\ddp_{#3}A_{#4}}
+\newcommand{\FMUNU}[2]{\ddp_{#1}A_{#2}}
+\begin{equation*}
+    \diffp[]{\lag}{(\ddp_{\mu}A_{\nu})} = -\frac{1}{4}g^{\mu\lambda}g^{\nu\rho} \diffp[]{}{(\ddp_{\mu}A_{\nu})} \left( \FMUNUPROD{\lambda}{\rho}{\mu}{\nu} - \FMUNUPROD{\lambda}{\rho}{\nu}{\mu} - \FMUNUPROD{\rho}{\lambda}{\mu}{\nu} + \FMUNUPROD{\rho}{\lambda}{\nu}{\mu} \right).
+\end{equation*}
+
+Now, in each term, we have something like $(\ddp_aA_b)(\ddp_cA_d)$. This total term is equivalent to a term with the indices swapped within each individual term in parentheses, meaning this is equivalent to $(\ddp_bA_a)(\ddp_dA_c)$. Therefore, for our Euler-Lagrange EQ term, we have that the first and fourth terms are really identical, and the second and third terms are also identical:
+
+\begin{equation*}
+    \diffp[]{\lag}{(\ddp_{\mu}A_{\nu})} = -\frac{1}{2}g^{\mu\lambda}g^{\nu\rho} \diffp[]{}{(\ddp_{\mu}A_{\nu})} \left( \FMUNUPROD{\lambda}{\rho}{\mu}{\nu} - \FMUNUPROD{\rho}{\lambda}{\mu}{\nu} \right).
+\end{equation*}
+
+Looking at the following term:
+
+\begin{align*}
+    \diffp[]{}{(\ddp_{\mu}A_{\nu})}\left( \FMUNUPROD{\lambda}{\rho}{\mu}{\nu} \right) &= \FMUNU{\mu}{\nu}\diffp[]{(\FMUNU{\lambda}{\rho})}{(\ddp_{\mu}A_{\nu})} + \FMUNU{\lambda}{\rho}\diffp[]{(\FMUNU{\mu}{\nu})}{(\FMUNU{\mu}{\nu})}, \\
+    &= \FMUNU{\mu}{\nu} \delta^{\mu}_{\lambda}\delta^{\nu}_{\rho} + \FMUNU{\lambda}{\rho} = 2\FMUNU{\rho}{\lambda}.
+\end{align*}
+
+So,
+
+\begin{equation*}
+    \diffp[]{\lag}{(\FMUNU{\mu}{\nu})} = -g^{\mu\lambda}g^{\nu\rho}(\FMUNU{\lambda}{\rho} - \FMUNU{\rho}{\lambda}) = -F^{\mu\nu}.
+\end{equation*}
+
+Plugging this all in, we have that:
+
+\begin{equation*}
+    \diffp[]{\lag}{A_{\nu}} - \ddp_{\mu}\left( \diffp[]{\lag}{(\FMUNU{\mu}{\nu})} \right) = \boxed{\ddp_{\mu}F^{\mu\nu} + M^2A^{\nu} = 0.}
+\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
+\item Plugging the solution $A^{\mu}(x) = \epsilon^{\mu}(\vv{p})e^{-i\dotprod{p}{x}}$ into the Euler-Lagrange equation above (and noting that, as in a previous HW, we are looking at a free field, so any 4-gradients of momentum are 0):
+
+\begin{gather*}
+    \ddp_{\mu}\left[ \ddp^{\mu}(\epsilon^{\nu}e^{-i\dotprod{p}{x}}) - \ddp^{\nu}(\epsilon^{\mu}e^{-i\dotprod{p}{x}}) \right] + M^2 \epsilon^{\nu}e^{-i\dotprod{p}{x}} = 0, \\
+    \ddp_{\mu} \left( -ip^{\mu} e^{\nu}e^{-i\dotprod{p}{x}} + ip^{\nu}e^{\mu}e^{-i\dotprod{p}{x}} \right) + M^2 \epsilon^{\nu}e^{-i\dotprod{p}{x}} = 0, \\
+    - p^{\mu}p_{\mu}\epsilon^{\nu}e^{-i\dotprod{p}{x}} + p^{\nu}\epsilon^{\mu}p_{\mu}e^{-i\dotprod{p}{x}} + M^2\epsilon^{\nu}e^{-i\dotprod{p}{x}} = 0.
+\end{gather*}
+
+The first and last terms are identical, since $p^{\mu}p_{\mu} = M^2$, so all we are left with is:
+
+\begin{equation*}
+    p^{\nu} \dotprod{\epsilon}{p}e^{-i\dotprod{p}{x}} = 0.
+\end{equation*}
+
+Since neither the exponential nor the momentum are zero, we must have that
+
+\begin{equation*}
+    \boxed{\dotprod{e}{p} = 0}.
+\end{equation*}
+
+As noted in the book, this is independent of the mass, meaning that the above equation is satisfied by massive vector fields in addition to the photon.
+
+
+
+
+
+
+
+
+
+\end{parts}

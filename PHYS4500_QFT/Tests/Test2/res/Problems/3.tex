@@ -1,0 +1,83 @@
+\section{}
+
+We want to prove the completeness relation for the spinors $u^{(s)}(p)$:
+
+\begin{equation}
+    \sum_{s=1,2}u^{(s)}(p)\bar{u}^{(s)}(p) = \slashed{p} + m.
+\end{equation}
+
+We are going to use the standard representation for the gamma matrices:
+
+\begin{equation}
+    \gamma^0 = \begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix} \quad \mathrm{and} \quad \gamma^i = \begin{pmatrix}0 & \sigma^i \\ -\sigma^i & 0\end{pmatrix}.
+\end{equation}
+
+The spinors in question are (in natural units):
+
+\begin{equation}
+    u^{(1)}(p) = \sqrt{E + m}\begin{pmatrix}1 \\ 0 \\ \frac{p_z}{E+m} \\ \frac{p_x + ip_y}{E+m}\end{pmatrix}, \quad\mathrm{and}\quad u^{(2)}(p) = \sqrt{E + m}\begin{pmatrix}0 \\ 1 \\ \frac{p_x - ip_y}{E+m} \\ \frac{-p_z}{E+m}\end{pmatrix}.
+\end{equation}
+
+Considering the $s=1$ case first:
+
+\begin{equation*}
+    u^{(1)}(p)\bar{u}^{(1)}(p) = u^{(1)}(p)u^{\dagger(1)}(p)\gamma^0 = (E+m)\begin{pmatrix}1 \\ 0 \\ \frac{p_z}{E+m} \\ \frac{p_x + ip_y}{E+m}\end{pmatrix}\begin{pmatrix}1 & 0 & \frac{p_z}{E+m} & \frac{p_x - ip_y}{E+m}\end{pmatrix} \gamma^0.
+\end{equation*}
+
+We can easily see how the gamma interacts with this expression by considering
+
+\begin{equation*}
+    \begin{pmatrix}a & b\end{pmatrix}\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix} = \begin{pmatrix}a & -b\end{pmatrix}
+\end{equation*}
+
+So it makes the second half of the row vector to its left negative. Now,
+
+
+\begin{align*}
+    &= \begin{pmatrix}E+m \\ 0 \\ p_z \\ p_x + ip_y\end{pmatrix}\begin{pmatrix}1 & 0 & \frac{-p_z}{E+m} & \frac{-p_x + ip_y}{E+m}\end{pmatrix}, \\
+    &= \begin{pmatrix}E+m & 0 & -p_z & -p_x+ip_y \\ 0 & 0 & 0 & 0 \\ p_z & 0 & \frac{-p_z^2}{E+m} & \frac{-p_z(p_x - ip_y)}{E+m} \\ p_x+ip_y & 0 & -\frac{p_z(p_x+ip_y)}{E+m} & -\frac{\abs{p_x+ip_y}^2}{E+m}\end{pmatrix}.
+\end{align*}
+
+Now for the $s=2$ case:
+
+\begin{align*}
+    u^{(2)}(p)\bar{u}^{(2)}(p) &= (E+m)\begin{pmatrix}0 \\ 1 \\ \frac{p_x-ip_y}{E+m} \\ -\frac{p_z}{E+m}\end{pmatrix}\begin{pmatrix}0 & 1 & \frac{p_x+ip_y}{E+m} & \frac{-p_z}{E+m}\end{pmatrix}\gamma^0 \\
+    &= \begin{pmatrix}0 \\ E+m \\ p_x-ip_y \\ -p_z\end{pmatrix}\begin{pmatrix}0 & 1 & -\frac{(p_x+ip_y)}{E+m} & \frac{p_z}{E+m}\end{pmatrix}, \\
+    &= \begin{pmatrix}0 & 0 & 0 & 0 \\ 0 & E+m & -(p_x+ip_y) & p_z \\ 0 & p_x-ip_y & -\frac{\abs{p_x-ip_y}^2}{E+m} & \frac{p_z(p_x-ip_y)}{E+m} \\ 0 & -p_z & \frac{p_z(p_x+ip_y)}{E+m} & -\frac{p_z^2}{E+m}\end{pmatrix}.
+\end{align*}
+
+Summing the two together (which is the completeness relation) gives us:
+
+\begin{equation*}
+    \sum_{s=1,2}u^{(s)}\bar{u}^{(s)}(p) = \begin{pmatrix}p^0+m & 0 & -p_z & -p_x+ip_y \\ 0 & p^0+m & -p_x-ip_y & p_z \\ p_z & p_x-ip_y & -\frac{\vv{p}^2}{p^0+m} & 0 \\ p_x+ip_y & -p_z & 0 & -\frac{\vv{p}^2}{p^0+m} \end{pmatrix}.
+\end{equation*}
+
+Simplifying the two terms in the bottom right ``quadrant'':
+
+\begin{equation*}
+    \frac{-\vv{p}^2}{E+m} = \frac{E^2 - \vv{p}^2 - E^2}{E+m} = \frac{m^2 - E^2}{E+m} = \frac{(m-E)(m+E)}{E+m} = -p^0 + m,
+\end{equation*}
+
+so we have:
+
+\begin{equation*}
+    \sum_{s=1,2}u^{(s)}\bar{u}^{(s)}(p) = \begin{pmatrix}p^0+m & 0 & -p_z & -p_x+ip_y \\ 0 & p^0+m & -p_x-ip_y & p_z \\ p_z & p_x-ip_y & -p^0+m & 0 \\ p_x+ip_y & -p_z & 0 & -p^0+m \end{pmatrix}.
+\end{equation*}
+
+We can easily note the additive factor of $+m$ down the diagonal corresponding to the $+m \bm{1}$ in the completeness relation. Additionally, we can note the positive $p^0$'s in the diagonal in the top left and the negiatve $p^0$'s in the diagonal in the bottom right, which is the $\gamma^0p^0$ factor. Let's now consider
+
+\begin{equation*}
+    \dotprodv{p}{\sigma} = p_x\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix} + p_y\begin{pmatrix}0 & -i \\ i & 0\end{pmatrix} + p_z\begin{pmatrix}1 & 0 \\ 0 & -1\end{pmatrix} = \begin{pmatrix}p_z & p_x-ip_y \\ p_x+ip_y & -p_z\end{pmatrix}.
+\end{equation*}
+
+This is exactly what are in the off-diagonal quadrants; what we have then is
+
+\begin{equation*}
+    \sum_{s=1,2}u^{(s)}\bar{u}^{(s)}(p) = \begin{pmatrix}p_0 & -\dotprodv{p}{\sigma} \\ \dotprodv{p}{\sigma} & -p_0\end{pmatrix} + m = \gamma^0p_0 + \begin{pmatrix}0 & -\dotprodv{p}{\sigma} \\ \dotprodv{p}{\sigma} & 0\end{pmatrix} + m.
+\end{equation*}
+
+Now, $\gamma^{\mu}p_{\mu} = \gamma^0p_0 + \gamma^ip_i = \gamma^0p_0 - \dotprodv{\gamma}{p}$, so if we bring back Lorentz indices in the middle term, we undo a minus sign, so
+
+\begin{equation*}
+    \sum_{s=1,2}u^{(s)}\bar{u}^{(s)}(p) = \gamma^0p_0 + p_i\begin{pmatrix}0 & \sigma^i \\ -\sigma^i & 0\end{pmatrix} + m = \gamma^0p_0 + \gamma^ip_i + m = \boxed{\slashed{p} + m}.
+\end{equation*}

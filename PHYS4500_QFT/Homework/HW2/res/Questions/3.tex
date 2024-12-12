@@ -1,0 +1,46 @@
+\section{(17.1 a,b)}
+
+\begin{parts}
+    \item The definition of rapidity is
+        \begin{equation}
+            \theta = \tanh \beta.
+        \end{equation}
+        Using the definition of $\tanh^{-1} x$, we can expand this into
+        \begin{equation*}
+            \theta = \frac{1}{2}\tanh \left(\frac{1+\beta}{1-\beta}\right).
+        \end{equation*}
+        When $\beta \rightarrow -1^+$, we have
+        \begin{equation*}
+            \lim_{\beta\rightarrow -1^+} \theta = \frac{1}{2}\ln \left(\frac{1-1^+}{1+1^+}\right).
+        \end{equation*}
+        The quantity inside the natural log approaches zero, so we have that
+        \begin{equation*}
+            \boxed{\lim_{\beta \rightarrow -1^+} \theta = -\infty.}
+        \end{equation*}
+        When $\beta \rightarrow 1^-$, we have
+        \begin{equation*}
+            \lim_{\beta \rightarrow 1^-} \theta = \frac{1}{2}\ln\left(\frac{1+1^-}{1-1^-}\right).
+        \end{equation*}
+        The denominator will continue growing while remaining positive, and the numerator will also remain positive. So,
+        \begin{equation*}
+            \boxed{\lim_{\beta \rightarrow 1^-} = \infty.}
+        \end{equation*}
+
+    \item Starting with $\sinh\theta$, we just plug in the $\tanh\theta$ expansion and simplify:
+        \begin{align*}
+            \sinh\theta &= \frac{1}{2}\left[\exp\left(\frac{1}{2}\ln\frac{1+\beta}{1-\beta}\right) - \exp\left(-\frac{1}{2}\ln\frac{1+\beta}{1-\beta}\right)\right], \\
+            &= \frac{1}{2}\left[\exp\left(\ln\left(\frac{1+\beta}{1-\beta}\right)^{1/2}\right) - \exp\left(\ln\left(\frac{1+\beta}{1-\beta}\right)^{-1/2}\right)\right], \\
+            &= \frac{1}{2} \left[\sqrt{\frac{1+\beta}{1-\beta}} - \sqrt{\frac{1-\beta}{1+\beta}}\right], \\
+            &= \frac{1}{2} \left[\sqrt{\frac{(1+\beta)^2}{1-\beta^2}} - \sqrt{\frac{(1-\beta^2)}{1-\beta^2}}\right], \\
+            &= \frac{1}{2}\left[\gamma(1+\beta) - \gamma(1-\beta)\right], \\
+            \Aboxed{\sinh\theta &= \gamma\beta.}
+        \end{align*}
+        For $\cosh\theta$, we have an identical expression in the final line above, except we flip the sign of the third and fourth terms in the brackets due to the definition of $\cosh$ compared to that of $\sinh$. Thus,
+        \begin{equation*}
+            \cosh\theta = \frac{1}{2}\left[\gamma(1+\beta) + \gamma(1-\beta)\right],
+        \end{equation*}
+        so
+        \begin{equation*}
+            \boxed{\cosh\theta = \gamma.}
+        \end{equation*}
+\end{parts}

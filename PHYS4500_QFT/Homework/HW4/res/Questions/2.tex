@@ -1,0 +1,43 @@
+\section{(18.5a)}
+
+The momentum density is given by
+
+\begin{equation}
+    \pi^i = T^{0i} = \left[ \sum_n \diffp[]{\lag}{(\ddp_0 \psi_n)}\ddp^i \psi_n \right] - g^{0i}\lag,
+\end{equation}
+
+and the Dirac Lagrangian is given by
+
+\begin{equation}
+    \lag = i\psib\gamma^{\mu}\ddp_{\mu}\psi - m\psib\psi.
+\end{equation}
+
+For the brackets in the formula for the momentum density, we will have a sum over the normal field $\psi$ and the adjoint field $\psib$. Before doing either, it will be helpful to rewrite the Lagrangian and split the time and spatial components of the 4-gradient:
+
+\begin{equation*}
+    \lag = i\psib\gamma^0\ddp_0\psi + i\psib\gamma^i\ddp_i\psi - m\psib\psi.
+\end{equation*}
+
+Now, looking at $\psi$ first:
+
+\begin{equation*}
+    \diffp[]{\lag}{(\ddp_0 \psi)}\ddp^i \psi = i\psib\gamma^0\ddp^i\psi.
+\end{equation*}
+
+Now for $\psib$:
+
+\begin{equation*}
+    \diffp[]{\lag}{(\ddp_0 \psib)}\ddp^i \psib = 0,
+\end{equation*}
+
+since there are no derivatives of the adjoint field present in the Dirac Lagrangian. Hence,
+
+\begin{equation*}
+    T^{0i} = i\psib\gamma^0\ddp^i\psi - g^{0i}\left( i\psib\gamma^{\mu}\ddp_{\mu}\psi - m\psib\psi \right).
+\end{equation*}
+
+However, $g^{0i}$ is always zero, since $i$ is a spatial index and is never zero, and $g^{\mu\nu}=0$ when $\mu\neq\nu$. Hence,
+
+\begin{equation*}
+    T^{0i} = i\psib\gamma^0\ddp^i\psi.
+\end{equation*}

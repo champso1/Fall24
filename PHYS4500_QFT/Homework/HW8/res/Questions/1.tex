@@ -1,0 +1,69 @@
+\section{(20.6)}
+
+There are two Feynman diagrams here, and the reason (which was given in the book) is that even though we can differentiate between the two final-state particles, it isn't an elastic process, meaning that the photons are annihilated somewhere in the middle and then we get an electron-positron pair. As such, it is just as likely for the electron to come from the first photon than from the second photon, meaning we have to consider both, which involves inclusion of both the $t$-channel and $u$-channel diagrams. If it were elastic, like $e^+/e^-$ scattering, then the electron can only come from the vertex the initial electron goes into, so in that case there'd be no $u$-channel diagram.
+
+The two Feynman diagrams are:
+
+\begin{center}
+\begin{tikzpicture}
+\begin{feynman}[large]
+    \vertex (aa);
+    \vertex [below=5mm of aa] (a);
+    \vertex [below=of aa] (bb);
+    \vertex [above=5mm of bb] (b);
+
+    \vertex [above left =of a] (i1) {$\gamma$};
+    \vertex [below left =of b] (i2) {$\gamma$};
+    \vertex [above right=of a] (f1) {$e^+$};
+    \vertex [below right=of b] (f2) {$e^-$};
+
+    \diagram* {
+        (i1) -- [photon, momentum'=$p_1$] (aa) -- [anti fermion, momentum'=$p_3$] (f1),
+        (i2) -- [photon, momentum=$p_2$] (bb) -- [fermion, momentum=$p_4$] (f2),
+        (aa) -- [fermion, momentum=$q$, edge label'=$\ell$] (bb)
+
+    };
+\end{feynman}
+\end{tikzpicture}
+\hspace*{2cm}
+\begin{tikzpicture}
+\begin{feynman}[large]
+    \vertex (aa);
+    \vertex [below=5mm of aa] (a);
+    \vertex [below=of aa] (bb);
+    \vertex [above=5mm of bb] (b);
+
+    \vertex [above left =of a] (i1) {$\gamma$};
+    \vertex [below left =of b] (i2) {$\gamma$};
+    \vertex [above right=of a] (f1) {$e^-$};
+    \vertex [below right=of b] (f2) {$e^+$};
+
+    \diagram* {
+        (i1) -- [photon, momentum'=$p_1$] (aa) -- [anti fermion, momentum={[arrow shorten=0.3, xshift=3mm, yshift=-4mm]$p_3$}] (f2),
+        (i2) -- [photon, momentum=$p_2$] (bb) -- [fermion, momentum'={[arrow shorten=0.3, xshift=3mm, yshift=4mm]$p_4$}] (f1),
+        (aa) -- [fermion, momentum'=$q$, edge label=$\ell$] (bb)
+    };
+\end{feynman}
+\end{tikzpicture}
+\end{center}
+
+With electron-electron scattering, we kept the locations of the $p_3$ and $p_4$ momenta the same, but this time since we can distinguish the two final state particles, they keep the same momentum, so we also switch the momentum labels. Using the Feynman rules, we can pretty easily write down the amplitude for the $t$-channel diagram. For notational simplicity, I will define $u_i = u^{(s_i)}(p_i)$:
+
+\begin{align*}
+    i\mathcal{M}_t &= \bar{u}_4 (-ie\gamma_{\mu}) \left[ \frac{i(\slashed{q} + m)}{q^2 - m^2} \right] (-ie\gamma_{\nu})v_3 (\epsilon^{\mu}_2\epsilon^{\nu}_1), \\
+    &= -ie^2 \left[ \bar{u}_4 \slashed{\epsilon}_2 \frac{\slashed{p}_1 - \slashed{p}_3 + m}{(p_1 - p_3)^2 - m^2} \slashed{\epsilon}_1 v_3 \right].
+\end{align*}
+
+For the other diagram, it is identical except that the polarization vectors become associated with the opposite vertex, so they are in effect switched. Additionally, the virtual lepton momentum is determind by $p_1 - p_4$ now, so:
+
+\begin{equation*}
+    i\mathcal{M}_u = -ie^2 \left[ \bar{u}_4 \slashed{\epsilon}_1 \frac{\slashed{p}_1 - \slashed{p}_4 + m}{(p_1 - p_4)^2 - m^2} \slashed{\epsilon}_2 v_3 \right].
+\end{equation*}
+
+There is no anti-symmetrization, because we are unable to twist lines around and go from one diagram to the other. Summing the two contributions and multiplying by $-i$:
+
+\begin{equation}
+    \mathcal{M} = -e^2 \left[ \bar{u}_4 \slashed{\epsilon}_2 \frac{\slashed{p}_1 - \slashed{p}_3 + m}{(p_1 - p_3)^2 - m^2} \slashed{\epsilon}_1 v_3 + \bar{u}_4 \slashed{\epsilon}_1 \frac{\slashed{p}_1 - \slashed{p}_4 + m}{(p_1 - p_4)^2 - m^2} \slashed{\epsilon}_2 v_3 \right].
+\end{equation}
+
+The book writes matrix elements as $-i\mathcal{M}$, so that's why the book's one is positive and this is negative. It doesn't really matter, though, because the important quantity, the cross section, involves the square of the amplitude.

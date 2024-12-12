@@ -1,0 +1,21 @@
+\section{}
+
+For this, we basically matrix multiply each $T$ matrix with itself and only grab the $(1,1)$ term. This can easily be done just by looking at the Gell-Mann matrices, so I won't write them out or anything:
+
+\begin{align}
+  T^a_{1j}T^a_{j1} &= \frac{1}{4}\lambda^a_{1j}\lambda^a_{j1} = \frac{1}{4}\br{1 + 1 + 1 + 1 + 1 + 0 + 0 + \frac{1}{3}} \\
+                   &= \frac{1}{4}\br{5 + \frac{1}{3}} = \frac{1}{4} \cdot \frac{16}{3} = \frac{4}{3}.
+\end{align}
+
+We also have the general relation that
+
+\begin{equation}
+  T^a_{ij}T^a_{j\ell} = C_F \delta_{i\ell} = C_F = \frac{4}{3}
+\end{equation}
+
+if $i = \ell$, which we have, and also if we are in the fundamental representation then $C_F = 4/3$, which matches what we got explicitly.
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: "../../HW14"
+%%% End:
