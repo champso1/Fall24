@@ -1,0 +1,281 @@
+\documentclass[titlepage]{article}
+\usepackage{PreambleCommon,Preamble}
+\usepackage{import}
+
+\title{1-loop correction to the QED vertex}
+\date{\today}
+\author{Casey Hampson}
+
+\begin{document}
+\maketitle
+\pagebreak
+
+
+\section{Calculation}
+
+
+\begin{figure}[ht]
+    \centering
+    \input{./res/FeynmanDiagrams/Diagram.tex}
+    \caption{1-loop correction to QED vertex.}
+    \label{fig:MainDiagram}
+\end{figure}
+
+The diagram for a 1-loop correction to the QED vertex is given in Figure~\ref{fig:MainDiagram}. Evidently, there is an undetermined momentum $k$ that must be integrated over, and we know that it will diverge. The amplitude considering massless leptons is given by:
+
+\begin{align}
+    i\Lambda^{\mu}(p,q) &= \int \frac{\dd^nk}{(2\pi)^n} (-ie\gamma^{\nu})\left[ \frac{i(\qsl - \ksl)}{(q-k)^2} \right] (-ie \gamma^{\mu}) \left[ \frac{i(\psl - \ksl)}{(p-k)^2} \right] (-ie\gamma^{\sigma}) \left[ \frac{-ig_{\sigma\nu}}{k^2} \right] \\
+    i\Lambda^{\mu}(p,q) &= -e^3 \int \frac{\dd^nk}{(2\pi)^n} \frac{\gamma^{\nu}(\qsl - \ksl)\gamma^{\mu}(\psl - \ksl)\gamma_{\nu}}{(q-k)^2(p-k)^2k^2}.
+\end{align}
+
+Introducing the Feynman parametrization, we will need
+
+\begin{equation}
+    \frac{1}{ABC} = 2\int_0^1 \ddx \int_0^1 \dd y \int_0^1 \ddz \frac{\delta(1-x-y-z)}{[Ax + By + Cz]^3} = 2\int_0^1 \dd x \int_0^{1-x}\dd y \frac{1}{[Ax + By + C(1-x-y)]^3}.
+\end{equation}
+
+Thus,
+
+\begin{equation}
+    \frac{1}{(p-k)^2(q-k)^2k^2} = 2\int_0^1 \dd x \int_0^{1-x} \dd y \frac{1}{[(p-k)^2x + (q-k)^2y + (1-x-y)k^2]^3}.
+\end{equation}
+
+Our amplitude is therefore:
+
+\begin{equation}
+    i\Lambda^{\mu}(p,q) = -2e^3 \int_0^1 \dd x \int_0^{1-x} \dd y \int \frac{\dd^nk}{(2\pi)^n} \frac{\gamma^{\nu}(\qsl - \ksl)\gamma^{\mu}(\psl - \ksl)\gamma_{\nu}}{[(p-k)^2x + (q-k)^2y + (1-x-y)k^2]^3}.
+\end{equation}
+
+We can rearrange the denominator and cleverly add zero to get:
+
+\begin{align}
+    &= p^2x = k^2x - 2pkx + q^2y + k^2y - 2qky + k^2 - xk^2 - yk^2 \\
+    &= k^2 - 2pkx - 2qky + 2pqxy + p^2x^2 + q^2y^2 - p^2x^2 + p^2x - q^2y^2 + q^2y - 2pqxy \\
+    &= (k - px - qy)^2 + x(1-x)p^2 + y(1-y)q^2 - 2pqxy.
+\end{align}
+
+We can now define the shifted momentum $\ell \equiv k-px-qy$ which has (nicely) that $\dd^n\ell = \dd^nk$. Further, this means that to get the numerator in terms of $\ell$ we have that $k = \ell+px+qy$. So, defining $\Delta \equiv -x(1-x)p^2 - y(1-y)q^2 - 2pqxy$, we have
+
+\begin{equation}
+    i\Lambda^{\mu}(p,q) = -2e^3 \int_0^1 \dd x \int_0^{1-x} \dd y \int \frac{\dd^n\ell}{(2\pi)^n} \frac{\gamma^{\nu}[\qsl - (\lsl + \psl x + \qsl y)]\gamma^{\mu}[\psl - (\lsl + \psl x + \qsl y)]\gamma_{\nu}}{[\ell^2 - \Delta]^3}.
+\end{equation}
+
+At this point, we can tell that we will get terms in the numerator that are quadratic, linear, and constant in terms of $\ell$. The terms constant in $\ell$ will leave an integration like
+
+\begin{equation}
+    \sim \int \frac{\dd^n\ell}{\ell^6},
+\end{equation}
+
+which is convergent. The terms linear in $\ell$ will integrate to zero as it makes the integrand odd, and terms quadratic in $\ell$ will diverge. Considering just this divergent term first:
+
+\begin{align}
+    i\Lambda^{\mu}_{\mathrm{div}}(p,q) &= -2e^3 \int_0^1 \dd x \int_0^{1-x} \dd y \int \frac{\dd^n\ell}{(2\pi)^n} \frac{\gamma^{\nu}\lsl\gamma^{\mu}\lsl\gamma_{\nu}}{(\ell^2 - \Delta)^3} \\
+    &= -2e^3 \gamma^{\nu}\gamma^{\rho}\gamma^{\mu}\gamma^{\sigma}\gamma_{\nu} \int_0^1 \ddx \int_0^{1-x} \dd y \int \frac{\dd^n\ell}{(2\pi)^n} \frac{\ell_{\rho}\ell_{\sigma}}{(\ell^2 - \Delta)^3}.
+\end{align}
+
+
+In $n$-dim, we have that
+
+\begin{equation}
+    \ell_{\rho}\ell_{\sigma} = \frac{g_{\rho\sigma}g^{\rho\sigma}}{n}\ell_{\rho}\ell_{\sigma} = \frac{g_{\rho\sigma}}{n}\ell^2.
+\end{equation}
+
+Then,
+
+\begin{equation}
+    \Lambda^{\mu}_{\mathrm{div}}(p,q) = \frac{2ie^3}{n}\gamma^{\nu}\gamma^{\rho}\gamma^{\mu}\gamma_{\rho}\gamma_{\nu} \int_0^1\ddx \int_0^{1-x}\ddy \int \frac{\dd^n\ell}{(2\pi)^n} \frac{\ell^2}{(\ell^2 - \Delta)^3}
+\end{equation}
+
+In $n$-dim, we have the identity that
+
+\begin{equation}
+    \gamma^{\nu}\gamma^{\mu}\gamma_{\nu} = (2-n)\gamma^{\mu},
+\end{equation}
+
+so
+
+\begin{equation}
+    \Lambda^{\mu}_{\mathrm{div}}(p,q) = 2ie^3 \frac{(2-n)^2}{n} \int_0^1\ddx \int_0^{1-x}\ddy \int \frac{\dd^n\ell}{(2\pi)^n} \frac{\ell^2}{(\ell^2 - \Delta)^3}
+\end{equation}
+
+We now perform a Wick rotation to move our integral into Euclidean space. This consists of taking $\ell^0 \rightarrow iL^0$ and $\vv{\ell} \rightarrow \vv{L}$ so that we find $\ell^2 - L^2$ and $\dd\ell = i\dd L$. With all this, we have
+
+\begin{equation}
+    \Lambda^{\mu}_{\mathrm{div}}(p,q) = -2e^3 \frac{(2-n)^2}{n} \int_0^1\ddx \int_0^{1-x}\ddy \int \frac{\dd^nL}{(2\pi)^n} \frac{L^2}{(L^2 + \Delta)^3}
+\end{equation}
+
+We can split up the integrand like so
+
+\begin{equation}
+    \frac{L^2}{(L^2 + \Delta)^3} = \frac{L^2 + \Delta - \Delta}{(L^2 + \Delta)^3} = \frac{1}{(L^2 + \Delta)^2} - \frac{\Delta}{(L^2 + \Delta)^3},
+\end{equation}
+
+meaning we now have two $L$ integrals to do. We have the general result that
+
+\begin{equation}
+  \label{eq:GeneralResult}
+    \int \frac{\dd^nL}{(2\pi)^n} \frac{1}{(L^2 + \Delta)^a} = \frac{\Gamma\br{a - \frac{n}{2}}}{(4\pi)^{n/2}\Gamma(a)}\Delta^{(n/2)-a}.
+\end{equation}
+
+Our first $L$ integral is
+
+\begin{equation}
+    \int \frac{\dd^nL}{(2\pi)^n} \frac{1}{(L^2 + \Delta)^2} = \frac{\Gamma\br{2 - \frac{n}{2}}}{(4\pi)^{n/2}}\Delta^{(n/2)-2}.
+\end{equation}
+
+The second is
+
+\begin{equation}
+    -\Delta\int \frac{\dd^nL}{(2\pi)^n} \frac{1}{(L^2 + \Delta)^3} = -\Delta\frac{\Gamma\br{3 - \frac{n}{2}}}{2(4\pi)^{n/2}}\Delta^{(n/2)-3} = -\frac{\Gamma\br{3 - \frac{n}{2}}}{2(4\pi)^{n/2}}\Delta^{(n/2)-2}.
+\end{equation}
+
+Plugging this all back in:
+
+\begin{equation}
+    i\Lambda^{\mu}_{\mathrm{div}}(p,q) = -\frac{2ie^3}{(4\pi)^{n/2}}\frac{(2-n)^2}{n}\gamma^{\mu} \int_0^1\ddx \int_0^{1-x}\ddy \; \Delta^{(n/2)-2}\br{\Gamma\br{2 - \frac{n}{2}} - \frac{1}{2}\Gamma\br{3 - \frac{n}{2}}}.
+\end{equation}
+
+We can use some identities relating to the Gamma function to say that $\Gamma(z+1) = z\Gamma(z)$, meaning we can rewrite the term in brackets in the integrand as
+
+\begin{equation}
+    = \Gamma\br{2 - \frac{n}{2}} - \frac{2 - \frac{n}{2}}{2}\Gamma\br{2 - \frac{n}{2}} = \Gamma\br{2 - \frac{n}{2}}\br{1 - \frac{2 - \frac{n}{2}}{2}} = \Gamma\br{2 - \frac{n}{2}} \frac{n}{4}.
+\end{equation}
+
+So,
+
+\begin{equation}
+    i\Lambda^{\mu}_{\mathrm{div}}(p,q) = -\frac{ie^3}{2(4\pi)^{n/2}}(2-n)^2\gamma^{\mu} \Gamma\br{2 - \frac{n}{2}} \int_0^1\ddx \int_0^{1-x}\ddy \; \Delta^{(n/2)-2}.\label{eq:1}
+\end{equation}
+
+With the exception of the gamma function, everything is now convergent, so we can take $d=4$ there and $d=4-2\epsilon$ inside the gamma function to get
+
+\begin{equation}
+    i\Lambda^{\mu}_{\mathrm{div}}(p,q) = -\frac{ie^3}{8\pi^2}\gamma^{\mu} \Gamma\br{\epsilon} \int_0^1\ddx \int_0^{1-x}\ddy.
+\end{equation}
+
+The integrals trivially evaluate to $1/2$ and we can expand the gamma function to get
+
+\begin{equation}
+    i\Lambda^{\mu} = \frac{ie^3}{16\pi^2}\gamma^\mu\br{-\frac{1}{\epsilon} + \gamma_E + \mathcal{O}(\epsilon)} + \mathcal{O}(\epsilon^0).
+\end{equation}
+
+This matches with Ryder (Equation~(9.102)) up to an overall constant.
+
+
+
+\section{Convergent Part}
+
+All of the above was for the integral whose numerator had quadratic dependence, and thus was divergent. There is still the convergent part whose numerator was constant in $k$:
+
+\begin{equation}
+  i\Lambda^\mu(p,q)_{\mathrm{conv}} = -2e^3 \int_0^1 \dd x \int_0^{1-x} \dd y \int \frac{\dd^n\ell}{(2\pi)^n} \frac{N^\mu}{(\ell^2 - \Delta)^3}.
+\end{equation}
+
+where
+
+\begin{equation}
+  N^\mu  = \gamma^\nu[(1-y)\qsl - x\psl]\gamma^\mu[(1-x)\psl - y\qsl]\gamma_\nu.
+\end{equation}
+
+Expanding this out, we get four terms:
+
+\begin{align}
+  N^\mu &= (1-y)(1-x) \gamma^\nu\qsl\gamma^\mu\psl\gamma_\nu \\
+        &= -y(1-y) \gamma^\nu\qsl\gamma^\mu\qsl\gamma_\nu \\
+        &= -x(1-x) \gamma^n\psl\gamma^\mu\psl\gamma_\nu \\
+  &= + xy\gamma^\nu\psl\gamma^\mu\qsl\gamma_\nu.
+\end{align}
+
+Using the identity
+
+\begin{equation}
+  \gamma^\nu\gamma^\rho\gamma^\mu\gamma^\sigma\gamma_\nu = -2\gamma^\sigma\gamma^\mu\gamma^\rho + (4-n)\gamma^\rho\gamma^\mu\gamma^\sigma,
+\end{equation}
+
+we can write
+
+\begin{align}
+  N^\mu &= (1-y)(1-x)[-2\psl\gamma^\mu\qsl + (4-n)\qsl\gamma^\mu\psl] \\
+        &= - y(1-y)(2-n)\qsl\gamma^m\qsl \\
+        &= -x(1-x)(2-n)\psl\gamma^\mu\psl \\
+  &= xy[-2 \qsl\gamma^m\psl + (4-n)\psl\gamma^\mu\qsl].
+\end{align}
+
+We can make a huge simplification here if we remember that at the end of the day, $i\Lambda^\mu$ gets put into some larger feynman diagram, in which it'll be sandwiched inbetween on-shell spinors (at 1-loop). Therefore, we can use the momentum-space Dirac equation to have that
+
+\begin{equation}
+  \bar{u}\qsl = m\bar{u} = 0, \quad\mathrm{and}\quad \psl u = mu = 0,
+\end{equation}
+
+since we are considering massless leptons. Therefore, the second and third terms(lines) above are zero, and the second term in the first set of brackets along with the first term in the last pair of brackets are all zero, meaning we are left with
+
+\begin{align}
+  N^\mu &= [-2(1-x)(1-y) + xy(4-n)] \psl\gamma^m\qsl\\
+        &= [-2 + 2y + 2x - 2xy + 4xy - nxy] \psl\gamma^m\qsl\\
+  &= [-2(1-x-y) + (2-n)xy] \psl\gamma^m\qsl,
+\end{align}
+
+So
+
+\begin{equation}
+  i\Lambda^\mu_{\mathrm{div}} = -2e^3 \psl\gamma^m\qsl \int_0^1 \dd x \int_0^{1-x} \dd y (2-n)xy - 2(1-x-y) \int \frac{\dd^n\ell}{(2\pi)^n} \frac{1}{(\ell^2 - \Delta)^3}.
+\end{equation}
+
+Doing a Wick rotation on the momentum integral is straightforward:
+
+\begin{equation}
+  \int \frac{\dd^n\ell}{(2\pi)^n} \frac{1}{(\ell - \Delta)^3} \rightarrow -i\int \frac{\dd^nL}{(2\pi)^n} \frac{1}{(L^2 + \Delta)^3}.
+\end{equation}
+
+Now, again using the general result from Equation~\eqref{eq:GeneralResult} we have that
+
+\begin{equation}
+  -i\int \frac{\dd^nL}{(2\pi)^n} \frac{1}{(L^2 - \Delta)^3} = -i \frac{\Gamma\br{3 - \frac{n}{2}}}{(4\pi)^{n/2}\Gamma(3)}\Delta^{n/2-3}.
+\end{equation}
+
+However, this is convergent for $d=4$, so we can just make those replacements:
+
+\begin{equation}
+  \rightarrow - \frac{i}{2(4\pi)^2} \frac{1}{\Delta}.
+\end{equation}
+
+Putting it all together:
+
+\begin{equation}
+  \label{eq:2}
+  i\Lambda^\mu_{\mathrm{div}} = \frac{ie^3}{(4\pi)^2} \psl\gamma^\mu\qsl \int_0^1 \dd x \int_0^{1-x} \dd y [-x(1-x)p^2 - y(1-y)q^2 + 2xpyq]^{-1}.
+\end{equation}
+
+
+
+\section{Without taking \texorpdfstring{$d=4$}{d=4}}
+
+After Equation~\eqref{eq:1}, I took $d=4$ since everything apart from the Gamma function converged. In general, though, we want to continue with the integral in $n$ dimensions and retrieve something like a Beta function. However, the integral looks like this:
+
+\begin{equation}
+  \int_0^1\mathrm{d}x \int_0^{1-x}\mathrm{d}y \; [-x(1-x)p^2 -y(1-y)q^2 - 2pqxy]^{(n/2)-2}.
+\end{equation}
+
+Equation~\eqref{eq:2} has a similar form, but in that case we have already taken $d=4$, so there's nothing left to do. I have tried plugging it into Mathematica, but have been without luck; it takes ages, and I either run it for 30+ minutes with no result or I try some simplifying assumptions and it spits out nonsense. I've also spent quite a while with different ways of doing the Feynman parametrization, but have been unable to get something of a form that makes the integral calculable.
+
+Letting $\lambda$ be the integral in Equation~\eqref{eq:2}, I can write my current final answer like
+
+\begin{equation}
+  i\Lambda^\mu(p,q) = \frac{ie^3}{16\pi^2}\br{\gamma^\mu \br{- \frac{1}{\epsilon} + \gamma_E + \mathcal{O}(\epsilon)} + \lambda\psl\gamma^\mu\qsl}.
+\end{equation}
+
+Or, taking into account QCD contributions, we can write it in this way:
+
+\begin{equation}
+  i\Lambda^\mu(p,q) = \frac{ig_s^3}{16\pi^2}C_F\br{\gamma^\mu \br{- \frac{1}{\epsilon} + \gamma_E + \mathcal{O}(\epsilon)} + \lambda\psl\gamma^\mu\qsl}.
+\end{equation}
+
+
+
+
+\end{document}
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: t
+%%% End:

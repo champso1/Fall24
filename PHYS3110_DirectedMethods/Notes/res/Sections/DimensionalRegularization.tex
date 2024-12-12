@@ -1,0 +1,209 @@
+\section*{Dimensional Regularization}
+
+\subsection*{Green's Function}
+This is a super brief coverage of Green's functions and their application into particle physics.
+
+\begin{itemize}
+    \item In the context of QFT, we use Green's functions to compute the expectation value of a time-ordered set of fields:
+        \begin{equation}
+            \hat{\phi}(x) = \bra{\mathcal{O}} T[\phi(x_1)\phi(x_2)\ldots\phi(x_n)] \ket{\mathcal{O}}.
+        \end{equation}
+        This is called the \textbf{correlator}.
+    \item The simplest example is the Dirac Propagator:
+        \begin{equation*}
+            \bra{\mathcal{O}} \psi_a(x) \psib_b(y) \ket{\mathcal{O}},
+        \end{equation*}
+        where we have a particle going from point $x$ to point $y$ at some later time. There is also the other form:
+        \begin{equation*}
+            \bra{\mathcal{O}} \psib_b(y) \psi_a(x) \ket{\mathcal{O}}.
+        \end{equation*}
+    \item Now we know the solutions of the Dirac equation (expanded as a Fourier transform):
+        \begin{equation*}
+            \int \frac{\dd^3p}{(2\pi)^3 \sqrt{2E_p}} \sum_s \left(a^{(s)}u^{(s)}(p) e^{-i\dotprod{p}{x}} + b^{(s)\dagger}v^{(s)}(p)e^{i\dotprod{p}{x}}\right),
+        \end{equation*}
+        where the $a$'s and $b$'s are creation and annihilation operators that satisfy certain commutation relations.
+    \item Now we can calculate the two amplitudes above for particles going from point $x$ to point $y$:
+        \begin{equation}
+            S_R^{ab}(x-y) = \Theta(x^0 - y^0) \bra{\mathcal{O}} \left\{ \psi_a(x), \psib_b(y) \right\} \ket{\mathcal{O}}.
+        \end{equation}
+        This is called the ``retarted'' Green's function. We can also define
+        \begin{equation}
+            S_R(x-y) = (i\slashed{\ddp} - m)D_R(x-y).
+        \end{equation}
+        ***WHAT IS GOING ON HERE!***
+\end{itemize}
+
+
+
+\subsection*{Consequences of using DR}
+
+\begin{itemize}
+    \item Returning back to Dimensional Regularization, there are numerous consequences with going to a different dimensionality. The first is that our indices $\mu$ no longer go from $0\ldots3$, but rather $0\ldots D-1$. This means that
+        \begin{align*}
+            &g^{\mu\nu}g_{\mu\nu} = D, \\
+            &= \gamma^{\mu}\gamma_{\mu} = D, \\
+            &= \gamma^{\mu}\gamma_{\nu}\gamma_{\mu} = (2-D)\gamma_{\nu}.
+        \end{align*}
+    \item Additionally, in our integral, we had a factor of $1/(2\pi)^4$, but this would instead have to be $1/(2\pi)^D$.
+    \item The alternative consequence is that the traces of the gamma matrices would be really wacky:
+        \begin{equation*}
+            \Tr[\gamma^{\mu}\gamma^{\nu}] = 2^{D/2}\gamma^{\mu\nu}.
+        \end{equation*}
+    \item So, the convention we use is to ``take'' the first consequence; i.e. we keep the $1/(2\pi)^D$ factor, but retain the normal 4-dim gamma traces.
+        \begin{itemize}
+            \item I could not even begin to explain how/why this works...
+        \end{itemize}
+\end{itemize}
+
+
+
+\subsection*{Continuing the Calculation}
+
+
+\begin{itemize}
+    \item Back to the self-energy; let's take, for simplicity, $m=0$ for our quark. Recall that our self-energy amplitude was
+        \begin{equation*}
+            \Sigma(p) = g_s^2 C_F(2-D) \int \frac{d^Dk}{(2\pi)^D} \frac{\slashed{k}^2 - \slashed{p}^2}{k^2(k-p)^2}.
+        \end{equation*}
+    \item Now, if this were any space of dimension less than 3, this integral would surely not diverge, but how do we try and go about this; what the hell do we do with a $\dd^4k$?
+    \item First, we use something called \textbf{Feynman Parametrization}, where we turn something of the form $1/AB$ into an integral. Specifically:
+        \begin{equation}
+            \frac{1}{AB} = \int_0^1 \frac{\ddx}{[xA + (1-x)B]^2}.
+        \end{equation}
+        It is trivial to show that this integral gives back correctly our $1/AB$. This can also be generalized for any number of factors.
+    \item Doing this for our integral:
+        \begin{equation*}
+            \Sigma(p) = g_s^2C_F(2-D) \int \frac{\dd^Dk}{(2\pi)^D} (\slashed{k} - \slashed{p}) \int_0^1 \frac{\ddx}{[x(k-p)^2 + (1-x)k^2]^2}.
+        \end{equation*}
+        Now, apparently (not sure why!) we can swap the two integral signs (and do a little rearranging) to get
+        \begin{equation*}
+            \Sigma(p) = g_s^2 C_F (2-D) \int \frac{\dd^Dk}{(2\pi)^D} \int_0^1 \frac{\slashed{k} - \slashed{p}}{[(k-xp)^2 + x(1-x)p^2]^2}.
+        \end{equation*}
+    \item Since DR preserves translational symmetry, we are allowed to simply make a shift in the momentum and be safe knowing that nothing changes with the underlying physics (I guess we just take this translational symmetry as an axiom?). So, let's do a transformation $k' = k-xp$:
+        \begin{equation*}
+            \Sigma(p) = g_s^2 C_F (2-D) \int_0^1 \;\ddx \int \frac{\dd^Dk'}{(2\pi)^D} \frac{\slashed{k}' - (1-x)\slashed{p}}{[k' + x(1-x)p^2]^2}.
+        \end{equation*}
+    \item We now have a sum of two functions. The first function is a function of $k'$, however, we can make the important note that it is an odd function. Since we are integrating momentum over all space ideally, it is technically a symmetric limit, meaning that the entire integral will evaluate to zero. So all we have left is:
+        \begin{equation*}
+            \Sigma(p) = g_s^2 C_F (D-2) \slashed{p} \int_0^1 \;\ddx \int \frac{\dd^Dk'}{(2\pi)^D}  \frac{1}{[k'^2 + x(1-x)p^2]^2}.
+        \end{equation*}
+    \item We can now do what is called a \textbf{Wick Rotation}. The basic idea is that this integral would be much easier to handle in Euclidean space (for some reason), but obviously we are not in Euclidean space. The main thing we are looking to eliminate is the fact that in Minkowski space we have that $k^{\prime 2} = (k^{\prime 0})^2 - \abs{\vv{k}'}^2$, but we want everything the same sign: $k^{\prime 2} = -(k^{\prime 0})^2 - \abs{\vv{k}'}^2$. To do this, we can make a complex rotation of the time component of this momentum to add a factor of $i$. So, let's do the following:
+        \begin{equation*}
+            k'_0 = iK_0, \ K \in \mathbb{R}, \quad \mathrm{and} \quad \vv{k}' = \vv{K}.
+        \end{equation*}
+        Now,
+        \begin{equation*}
+            k^{\prime 2} = -K_0^2 - \abs{\vv{K}}^2, \quad \mathrm{and} \quad \dd^Dk \rightarrow id^DK.
+        \end{equation*}
+        So,
+        \begin{equation*}
+            \Sigma(p) = g_s^2 C_F (D-2) \slashed{p} \int_0^1 \;\ddx (1-x) \int \frac{\dd^DK}{(2\pi)^D} \frac{1}{(K^2 + L)^2}.
+        \end{equation*}
+        where $L \equiv -x(1-x)p^2$
+    \item Now that it is Euclidean, we know that it will converge whenever $L>0$, meaning we want to keep $p^2<0$, or space-like.
+    \item To solve this integral, if it were simple 3-dim space, we would use spherical coordinates by saying $\dd^3\vv{k} = \dd\Omega_3 \abs{\vv{k}}^2 \dd\abs{\vv{k}}$, where $\Omega_3$ is the 3-dim solid angle.
+    \item To generalize this to $D$ dimensions, let's look at the coordinate transformations for a few dimensions and we will find a sort of recursion relation. For 3-dim, we have
+        \begin{equation*}
+            \begin{alignedat}{1}
+            \begin{cases}
+                x^1 &= \cos\theta_1, \\
+                x^2 &= \sin\theta_1\cos\theta_2, \\
+                x^3 &= \sin\theta_1\sin\theta_2,
+            \end{cases}
+            \end{alignedat}
+        \end{equation*}
+        where we have three coordinates but need only two angles, and we have taken $\abs{\vv{r}}=1$ for simplicity.
+    \item Now let's visualize this: the first transformation to $x^1$ grabs the $z$-axis, which is fine, since $z$ is one of our coordinates. However, going the other way and using sine only projects us onto the 2-dim $x$-$y$ plane, meaning we need a second angle to project onto the $x$ and $y$ axes themselves.
+    \item 4-dim looks like:
+        \begin{equation*}
+            \begin{alignedat}{1}
+                \begin{cases}
+                    x^1 &= \cos\theta_1, \\
+                    x^2 &= \sin\theta_1\cos\theta_2, \\
+                    x^3 &= \sin\theta_1\sin\theta_2\cos\theta_3, \\
+                    x^4 &= \sin\theta_2\sin\theta_2\sin\theta_3.
+                \end{cases}
+                \end{alignedat}
+        \end{equation*}
+    \item Here, $x^1$ remains the same, as we just project onto that axis (maybe not called $z$ anymore). Then, the sine projection will project it onto a 3-dim plane! This time, the cosine projects it onto our $z$-axis, but the sine one will project again onto the 2-dim $x$-$y$ plane, after which we can project to the $x$ and $y$ axes themselves.
+    \item We can already see a pattern emerging: cosine projects onto that dimensions ``$z$'' axis, then the sine projects onto the $D-1$ ``plane''. We continue this all the way until we project onto the 2-dim plane, where the sine projects onto the $y$ axis, and we are done.
+    \item So the recursion relation is that for $D$-dim, we need $D-1$ angles, and we have
+        \begin{equation*}
+            \begin{alignedat}{1}
+            \begin{cases}
+                x_1 &= \cos\theta_1, \\
+                &\vdots \\
+                x_{D-1} &= \sin\theta_1 \ldots \sin\theta_{D-2}\cos\theta_{D-1}, \\
+                x_D &= \sin\theta_1 \ldots \sin\theta_{D-2}\sin\theta_{D-1}.
+            \end{cases}
+            \end{alignedat}
+        \end{equation*}
+        Now
+        \begin{align*}
+            &K_0 = \abs{K}\cos\theta_1, \\
+            &\vdots, \\
+            &K_{D-1} = \abs{K}\sin\theta_1 \ldots \sin\theta_{D-1},
+        \end{align*}
+        and 
+        \begin{equation*}
+            \dd^DK = \dd\Omega_D \abs{\vv{K}}^{D-1}\dd\abs{\vv{K}},
+        \end{equation*}
+        where
+        \begin{equation*}
+            \dd\Omega_D = \prod_{\ell=1}^{D-1} \sin^{D-1-\ell}\theta_{\ell} \;\dd\theta_{\ell}.
+        \end{equation*}
+    \item We now have that the integral over the $D$-dim solid angle is
+        \begin{equation*}
+            \int \;\dd\Omega_D = \int_0^{\pi} \sin^{D-2}\theta_1 \;\dd\theta_1 \;\ldots\; \int_0^{\pi} \sin\theta_{D-2} \;\dd\theta_{D-2} \int_0^{\pi} \;\dd\theta_{D-1} = \frac{2 \pi^{D/2}}{\Gamma(D/2)}.
+        \end{equation*}
+    \item To show this, we can look at a unit sphere in $D$-dim. First, we look at the normal 1-dim Gaussian integral:
+        \begin{equation*}
+            \sqrt{\pi} = \intinf e^{-x^2} \;\ddx \ \rightarrow \left( \sqrt{\pi} \right)^D = \left( \intinf x^{-x^2}\;\dd^Dx \right).
+        \end{equation*}
+        In $D$-dim, we can take this integral over each independent coordinate:
+        \begin{equation*}
+            (\sqrt{\pi})^D = \intinf e^{-\left( \sum_i^D x_i^2 \right)} \;\dd^Dx.
+        \end{equation*}
+        We can now switch to polar coordinates, where defining $x \equiv \abs{\vv{x}} = \sqrt{x_1^2 + x_2^2 + \ldots + x_D^2}$ we get our volume differential to be
+        \begin{equation*}
+            \dd^Dx = x^{D-1} \dd\Omega_D \ddx.
+        \end{equation*}
+        Now, using our definition of $x$:
+        \begin{equation*}
+            (\sqrt{\pi})^D = \int \dd\Omega_D \int x^{D-1}e^{-x^2}\;\ddx.
+        \end{equation*}
+        Doing a change of variable to $x^2$, we get:
+        \begin{equation*}
+            = \int \dd\Omega_D \frac{1}{2}\int_0^{\infty} (x^2)^{(D/2)-1} e^{x^2} \;\dd x^2.
+        \end{equation*}
+        This looks just like the Gamma function:
+        \begin{equation*}
+            \Gamma(z) = \int_0^{\infty} t^{z-1}e^{-t} \;\ddx, \quad \mathrm{for} \quad z\in\mathbb{C} \ \mathrm{with}\ \mathrm{Re}[z] > 0,
+        \end{equation*}
+        so
+        \begin{equation*}
+            (\sqrt{\pi})^D = \frac{1}{2}\Gamma(D/2) \int \dd\Omega_D,
+        \end{equation*}
+        meaning
+        \begin{equation*}
+            \boxed{\int\dd\Omega_d = \frac{2\pi^{D/2}}{\Gamma(D/2)}.}
+        \end{equation*}
+
+    \item With this, we can now find the total integral:
+        \begin{equation*}
+            \int \frac{\dd^DK}{(2\pi)^D} \frac{1}{(K^2 + L)^2} = \frac{B\left( \frac{L}{2},\ 2-\frac{D}{2} \right) L^{(D/2)-2}}{(4\pi)^{D-2}\Gamma\left( \frac{D}{2} \right)},
+        \end{equation*}
+        where one representation of this \textbf{beta function} $B$ is:
+        \begin{equation*}
+            B(p,q) = \int_0^{\infty} \frac{t^{p-1}}{(1+t)^{p+q}} \;\ddt.
+        \end{equation*}
+    \item At last, then, we can return to the quark self-energy and insert this result:
+        \begin{equation*}
+            \sigma(p) = g_s^2 C_F (D-2) \slashed{p} \frac{\Gamma(2- D/2)}{(4\pi)^{D/2}} (-p^2)^{D/2-2},
+        \end{equation*}
+        or, in terms of the Beta function: 
+        \begin{equation*}
+            \sigma(p) = \frac{2C_Fg_s^2}{(4\pi)^{D/2}}\slashed{p}(-p^2)^{D/2-2} (D-1) B\left( \frac{D}{2}, \frac{D}{2} \right) \Gamma\left( 2-\frac{D}{2} \right).
+        \end{equation*}
+    \item We know have an analytic function in terms of only $D$!
+\end{itemize}

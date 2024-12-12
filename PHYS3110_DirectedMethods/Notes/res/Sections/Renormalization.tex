@@ -1,0 +1,319 @@
+\section*{Renormalization and Regularization}
+
+\begin{itemize}
+    \item From previous classes, we are now able to make perturbative calculations in QED and QCD at leading order.
+    \item This accurately discovers and treats the parton model to some extent, but we are still missing a lot of things from QED.
+    \item For instance, in Drell-Yan, in which we have an electron probing a proton through a virtual photon, the leading order contribution is pure QCD, despite containing quarks and despite having a proton involved, both of which are highly QCD-driven objects.
+    \item Loop diagrams are the first step into exploring this.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item But it is not so simple. Loop diagrams introduce annoying integrals, which is made worse by the fact that those integrals diverse for many values of momentum (mostly high ones, as one would expect).
+    \item This idea of \textbf{renormalization} is needed in order to handle these infinities. First, however, the integrals, as mentioned, are quite hard to begin with, so a process called \textbf{regularization} is used.
+    \item Regularization is a pure mathematical process by which the integral is essentially turned into a more simple object. Slightly more formally, the integral is turned into a function whose limit diverges, and treating such an object is easier than the raw integral itself.
+    \item There are a number of different regularization techniques; there is no unique process, as it is purely mathematical. There are pros and cons with all of them.
+    \item After the has been achieved, we are ready to renormalize. In short, renormalization is a process by which the infinities are systematically subtracted away or removed from the final physical answer.
+\end{itemize}
+
+
+\begin{itemize}
+    \item An example of a diverging diagram is the following:
+\end{itemize}
+
+\begin{center}
+    \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (a);
+            \vertex[right of=a] (b);
+            \vertex[right of=b] (c);
+            \vertex[right of=c] (d);
+
+            \diagram* {
+                (a) --[anti fermion, edge label'=$p$] (b) --[anti fermion, edge label'=$p-k$] (c) --[anti fermion, edge label'=$p$] (d),
+                (c) --[gluon, half right, momentum'=$k$] (b)
+            };
+        \end{feynman}
+    \end{tikzpicture}
+\end{center}
+
+\begin{itemize}
+    \item This is called the ``quark self-energy'', and it is denoted by $\Sigma_{ij}(p)$. The modification of the tree level quark propagator to contain \textit{all} radiative corrections (including this one) is given by $\tilde{S}_{ij}(p)$, where
+        \begin{equation}
+            \tilde{S}_{ij}(p) = \frac{\delta_{ij}}{m - \slashed{p} + \Sigma(p)},
+        \end{equation}
+        where 
+        \begin{equation}
+            \Sigma_{ij}(p) = \delta_{ij} \Sigma(p)\label{SigmaIJ}
+        \end{equation}
+        defines $\Sigma(p)$. We can also represent the total quark propagator as the following Fourier transform:
+        \begin{equation}
+            \tilde{S}_{ij} = i\int \dd^4x\; e^{-i \vv{p}\cdot\vv{x}} \bra{0} T \psib_i(x) \psi_j(0) \ket{0}
+        \end{equation}
+    \item It can be shown that we can expand this propagator in terms of powers of $\Sigma(p)$:
+        \begin{equation}
+            \tilde{S}_{ij} = S_{ij} \left\{\tilde{S}_0 + \tilde{S}_0 \Sigma(p) \tilde{S}_0 + \tilde{S}_0 \Sigma(p) \tilde{S}_0 \Sigma(p) \tilde{S}_0 + \ldots\right\}
+        \end{equation}
+    \item We can identity the first term of this expansion as the ordinary propagator with no corrections, and further terms as those with corrections.
+\end{itemize}
+
+\sep
+
+\begin{itemize}
+    \item It will be helpful to define something called 1-particle irreducible diagrams. One of the main things behind regular/renormalization involves classifying together all of these diagrams. Such diagrams are diagrams that cannot be decomposed into two new diagrams by making a ``cut''. Our Feynman diagram above is 1PI, but if there were a second loop to the right, we could make a cut between the two and create two new, 1-loop diagrams, and hence, such a diagram would not be 1PI.
+\end{itemize}
+
+
+\sep
+
+
+\begin{itemize}
+    \item Now we can move on to calculating our loop diagram. First, we need to know the following Feynman rules:
+    \begin{itemize}
+        \item A loop incurs an integral over the loop's momenta:
+    \end{itemize}
+\end{itemize}
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+    \begin{flushright}
+        \feynmandiagram[small, horizontal=a to b] {
+            a --[anti fermion] b,
+            a --[gluon, momentum=$k$, half left] b
+        };
+    \end{flushright}
+\end{minipage}\hspace*{1em}
+\begin{minipage}{0.4\textwidth}
+    \begin{flushleft}
+        $\displaystyle\rightarrow\ \int \frac{\dd x^4}{(2\pi)^4i}$
+    \end{flushleft}
+\end{minipage}
+\end{center}
+
+
+
+
+\begin{itemize}
+    \item[]
+    \begin{itemize}
+        \item Normal fermion propagator:
+    \end{itemize}
+\end{itemize}
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+    \begin{flushright}
+        \feynmandiagram[horizontal=a to b] {
+            a --[fermion, momentum'=$p$] b
+        };
+    \end{flushright}
+\end{minipage}\hspace*{1em}
+\begin{minipage}{0.4\textwidth}
+    \begin{flushleft}
+        $\displaystyle\rightarrow\ \frac{1}{m-\slashed{p}}$
+    \end{flushleft}
+\end{minipage}
+\end{center}
+
+
+
+
+
+\begin{itemize}
+    \item[]
+    \begin{itemize}
+        \item Normal gluon propagator:
+    \end{itemize}
+\end{itemize}
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+    \begin{flushright}
+        \feynmandiagram[horizontal=a to b] {
+            a [particle={$a,\mu$}] --[gluon, momentum=$k$] b [particle={$b,\nu$}]
+        };
+    \end{flushright}
+\end{minipage}\hspace*{1em}
+\begin{minipage}{0.4\textwidth}
+    \begin{flushleft}
+        $\displaystyle\rightarrow\ \frac{\delta_{ab}}{k^2} d^{\mu\nu}(k)$
+    \end{flushleft}
+\end{minipage}
+\end{center}
+\begin{itemize}
+    \item[] \begin{itemize}
+        \item[] where $d^{\mu\nu}(k)$ relies on the choice of gauge, but is generally described as
+            \begin{equation}
+                d^{\mu\nu}(k) = g^{\mu\nu} - (1-\alpha) \frac{k^{\mu}k^{\nu}}{k^2}.
+            \end{equation}
+    \end{itemize}
+\end{itemize}
+
+
+
+
+
+
+\begin{itemize}
+    \item[]
+    \begin{itemize}
+        \item The QCD fermion/fermion/gluon vertex:
+    \end{itemize}
+\end{itemize}
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+    \begin{flushright}
+        \feynmandiagram[small, horizontal=d to b] {
+            a --[fermion, edge label'=$i$] b --[fermion, edge label'=$j$] c,
+            d [particle={$a,\mu$}] --[gluon] b
+            };
+        \end{flushright}
+    \end{minipage}\hspace*{1em}
+    \begin{minipage}{0.4\textwidth}
+        \begin{flushleft}
+            $\displaystyle\rightarrow \frac{1}{m-\slashed{p}}$
+        \end{flushleft}
+    \end{minipage}
+\end{center}
+  
+
+\begin{itemize}
+    \item To evaluate the amplitude, we can first imagine cutting a line straight through the center to split the diagram in half, thus giving two vertices, basically.
+\end{itemize}
+
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+    \begin{flushright}
+        \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (i);
+            \vertex[right of=i] (a);
+            \vertex[right of=a] (b);
+            \vertex[above of=b] (c);
+    
+            \diagram* {
+                (i) --[anti fermion, momentum'=$p$, edge label=$i$] (a) --[anti fermion, momentum'=$p-k$, edge label=$l$] (b),
+                (a) --[gluon, quarter left, momentum=$k$, edge label'={$a,\mu$}] (c)
+            };
+        \end{feynman}
+        \end{tikzpicture}
+    \end{flushright}
+\end{minipage}\hspace*{2px}
+\begin{minipage}{0.4\textwidth}
+    \begin{flushleft}
+        \begin{tikzpicture}
+        \begin{feynman}
+            \vertex (c);
+            \vertex[below of=c] (b);
+            \vertex[right of=b] (a);
+            \vertex[right of=a] (f);
+    
+            \diagram* {
+                (c) --[gluon, quarter left, momentum=$k$, edge label'={$b,\nu$}] (a),
+                (b) --[anti fermion, momentum'=$p-k$, edge label=$n$] (a) --[anti fermion, momentum'=$p$, edge label=$j$] (f)
+            };
+        \end{feynman}
+        \end{tikzpicture}
+    \end{flushleft}
+\end{minipage}
+\end{center}
+
+
+
+
+\begin{itemize}
+    \item First, we have the loop integral:
+        \begin{equation*}
+            \Sigma_{ij}(p) = \int \frac{\dd^4 k}{(2\pi)^4i}\; \ldots.
+        \end{equation*}
+    \item Next, we have the vertices:
+        \begin{equation}
+            \Sigma_{ij}(p) = \int \frac{\dd^4 k}{(2\pi)^4i}\; (g_s \gamma^{\mu} T^a_{il})(g_s \gamma^{\nu} T^b_{nj}) \ldots
+        \end{equation}
+    \item Then, the fermion propagator in between the vertices. However, since during the propagation, the quark doesn't change, i.e. there is no difference between $l$ and $n$, we need to have a delta function there:
+        \begin{equation}
+            \Sigma_{ij}(p) = \int \frac{\dd^4 k}{(2\pi)^4i}\; (g_s \gamma^{\mu} T^a_{il}) \frac{\delta_{ln}}{m - (\slashed{p} - \slashed{k})}(g_s \gamma^{\nu} T^b_{nj}) \ldots
+        \end{equation}
+    \item Lastly, then, we have the gluon progagator:
+        \begin{equation}
+            \Sigma_{ij}(p) = \int \frac{\dd^4 k}{(2\pi)^4i}\; (g_s \gamma^{\mu} T^a_{il}) \frac{\delta_{ln}}{m - \slashed{p} + \slashed{k}}(g_s \gamma^{\nu} T^b_{nj}) \frac{\delta_{ab}}{k^2}d_{\mu\nu}(k)
+        \end{equation}
+    \item In the Feynman gauge, we have that $\alpha=1$, so $d_{\mu\nu}(k) = g_{\mu\nu}$, so
+        \begin{equation}
+            \Sigma_{ij}(p) = g_s^2 \int \frac{\dd^4 k}{(2\pi)^4i}\; \gamma^{\mu} \frac{1}{m - \slashed{p} + \slashed{k}}\gamma^{\nu}  \frac{g_{\mu\nu}}{k^2}\left(T^a_{il}\delta_{ln}T^b_{nj}\delta_{ab}\right)
+        \end{equation}
+    \item The color factor is:
+        \begin{equation}
+            T^a_{il}\delta_{ln}T^b_{nj}\delta_{ab} = T^a_{in}T^a_{nj} = \left(T^aT^a\right)_{ij} = \delta_{ij}C_F,
+        \end{equation}
+        where $C_F$ is called \textbf{Casimir of the fundamental}, and it is defined as:
+        \begin{equation}
+            C_F = \frac{N^2-1}{N},
+        \end{equation}
+        where $N$ is the dimensionality of the representation, which for us, in the fundamental representation, is 3. We can also now remove the delta function by virtue of \eqref{SigmaIJ}, so we have
+        \begin{equation}
+            \Sigma(p) = g_s^2 C_F \int \frac{\dd^4 k}{(2\pi)^4i}\; \gamma^{\mu} \frac{1}{k^2(m-\slashed{p} + \slashed{k})}\gamma_{\mu}
+        \end{equation}
+    \item The last thing that we can do is the following: when we have a $\slashed{p}$ in the denominator, we can ``multiply and divide'' by it to get:
+        \begin{equation}
+            \frac{1}{\slashed{p}} \cdot \frac{\slashed{p}}{\slashed{p}} = \frac{\slashed{p}}{p^2},
+        \end{equation}
+        so we have now ``moved'' the operator to the numerator. Doing this here,
+        \begin{equation}
+            \Sigma(p) = g_s^2 C_F \int \frac{\dd^4 k}{(2\pi)^4i}\;  \frac{\gamma^{\mu} \left(m + \slashed{p} - \slashed{k}\right) \gamma_{\mu}}{k^2[m^2 - (p - k)^2]}
+        \end{equation}
+    \item We can go no further, however, the integral is over $k$, so if we just look at the powers of $k$:
+        \begin{equation}
+            \Sigma(p) \approx \int \dd^4 k\;  \frac{\slashed{k}}{k^4} \approx \int \dd^4 k\;  \frac{1}{k^3} = \int \dd k \dd\Omega\; k^3 \frac{1}{k^3} = \int_0^{\infty} \dd k\; \int\dd\Omega.
+        \end{equation}
+    \item However, the $k$ integral diverges, here, obviously. The way we deal with this is to regularize it, the aforementioned intermediate step. Again, what this does is to make our integral into some convergent function, that diverges only as we take the limit. 
+    \item There are a number of methods to do this, we will briefly cover them here:
+\end{itemize}
+
+\subsection*{Regularization Methods}
+\begin{itemize}
+    \item \ul{Cut-off Method}
+    \item[] This method involves simply cutting the integral off at a finite, but still suitably large, momentum in the divergent integrals.
+    \begin{enumerate}[leftmargin=0.5in]
+        \item[Pros:] It is a very easy method.
+        \item[Cons:] It breaks a lot of invariances, most importantly translation invariance and gauge invariance. Hence, it is not good for gauge theories.
+    \end{enumerate}
+    \item \ul{Pauli-Villars}
+    \item[] Here, we replace the propagator in the integrand with
+        \begin{equation}
+            \frac{1}{m^2 - k^2} - \frac{1}{M^2 - k^2} = \frac{M^2 - m^2}{(m^2-k^2)(M^2-k^2)},
+        \end{equation}
+        which reduces to our original propagator in the limit as $M\rightarrow\infty$.
+        \begin{enumerate}[leftmargin=0.5in]
+            \item[Pros:] This time, translation invariance is kept. Additionally, Lorentz invariance and QED gauge invariance are kept, as well as in massless QCD
+            \item[Cons:] In massive Yang-Mils gauge theories, gauge invariance is broken. So, this isn't great for the standard model.
+        \end{enumerate}
+    \item \ul{Analytical Regularization}
+    \item[] Here, we put a power on the propagator:
+        \begin{equation}
+            \frac{1}{m^2 - k^2} \rightarrow \frac{1}{(m^2 - k^2)^{\alpha}},
+        \end{equation}
+        where $\alpha \in \mathbb{C}$, with $\text{Re}(\alpha) > 1$. In the limit as $\alpha \rightarrow 1$, our original propagator is recovered.
+        \begin{enumerate}[leftmargin=0.5in]
+            \item[Pros:] This method works very nicely and is used very often to prove whether a theory is renormalizable.
+            \item[Cons:] Violates gauge invariance, so it isn't great for QCD.
+        \end{enumerate}
+    \item \ul{Lattice Regularization}
+    \item[] This involves discretizing space-time into a lattice, i.e. our Minkowski space is now made of cells of size $a$. Now, in the configuration space, the arbitrarily small short-distance contribution to the Fourier transform integral is eliminated by capping this short-distance contribution, thus stopping our momentum space region from diverging.
+    \begin{enumerate}[leftmargin=0.5in]
+        \item[Pros:] Good for non-perturbative calculations (lattice QCD is a good and prominent example).
+    \end{enumerate}
+    \item \ul{Dimensional Regularization (DR)}
+    \item[] This involves handling our divergent multiple-integral by reducing the number of dimensions such that the integrals no longer diverge. For instance, our divergent 4-dimensional integral would not be divergent in 2 dimensions. So, what we do is
+        \begin{equation}
+            \int\dd^4k \rightarrow \int\dd^Dk,\ \text{where} D<4.
+        \end{equation}
+        However, $D$ can be something like $D=4-\epsilon$, where $\epsilon$ is very small. This makes things very challenging, but it works very well (see pros)
+    \begin{enumerate}[leftmargin=0.5in]
+        \item[Pros:] Nothing is violated!!
+        \item[Cons:] Quite challenging: since the space is no longer 4-dimensional, we must be very careful about our algebra.
+    \end{enumerate}
+\end{itemize}

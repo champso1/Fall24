@@ -1,0 +1,17 @@
+\begin{tikzpicture}
+\begin{feynman}
+
+    \vertex (i1);
+    \vertex[above right of=i1] (x1);
+    \vertex[above right of=x1] (x);
+    \vertex[above of=x] (a);
+    \vertex[below right of=x] (x2);
+    \vertex[below right of=x2] (f1);
+
+    \diagram* {
+        (i1) --[fermion, edge label=$p$] (x1) --[fermion, edge label=$p-k$] (x) --[fermion, edge label=$q-k$] (x2) --[fermion, edge label=$q$] (f1),
+        (a) --[photon, momentum'=$q-p$] (x),
+        (x1) --[photon, momentum'=$k$] (x2)
+    };  
+\end{feynman}
+\end{tikzpicture}

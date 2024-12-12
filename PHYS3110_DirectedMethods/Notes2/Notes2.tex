@@ -1,0 +1,296 @@
+\documentclass[titlepage]{article}
+\usepackage{PreambleCommon, Preamble}
+
+\title{Notes: PHYS3110 Directed Methods}
+\author{Casey Hampson}
+\date{\today}
+
+\begin{document}
+\maketitle
+\pagebreak
+
+\section{Intro}
+
+In going to diagrams with loops, we find, in many cases, that we get infinities. For instance, the quark self-energy diagram given by
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{feynman}
+      \vertex (i);
+      \vertex[right of=i] (x);
+      \vertex[right of=x] (y);
+      \vertex[right of=y] (f);
+
+      \diagram* {
+        (i) --[fermion, edge label'=$p$] (x) --[fermion, edge label'=$p-k$] (y) --[fermion, edge label'=$p$] (f),
+        (x) --[gluon, edge label=$k$, half left] (y)
+      };
+    \end{feynman}
+  \end{tikzpicture}
+\end{center}
+
+is divergent. Recall, we need to integrate over all possible internal momenta, since it is not constrained by the external momenta $p$. So, the amplitude here we can write simply as
+
+\begin{equation}
+  i\mathcal{M} = \int \frac{\dd^4k}{(2\pi)^4} \overline{u}(p) (-ig_s\gamma^\mu T_{ij}^a) \br{\frac{i(\psl - \ksl + m)}{(p-k)^2 - m^2}} (-ig_s\gamma^\nu T_{jk}^b) u(p) \br{- \frac{ig_{\mu\nu}\delta^{ab}}{k^2}}.
+\end{equation}
+
+First, we can qualitatively examine this to see the divergences. The numerator of the integrand will be of the order $k$, and denominator will be of the order $k^4$. So,
+
+\begin{equation}
+  \label{eq:1}
+  \int \dd^4k \; \frac{k}{k^4} = \int \dd k \; \frac{k^3}{k^3} = \infty.
+\end{equation}
+
+Unfortunately, it diverges. Equally unfortunate, it's not supposed to, as its square is proportional to an observable quantity. There are a number of ways to tackle this, but in general there are two steps: \textbf{regularization} and \textbf{renormalization}. Essentially, regularization involves turning the diverging integral into an analytic function where the infinites are mapped into $1/\epsilon$ poles, where we take $\epsilon \rightarrow 0$. After that, renormalization involves absorbing these poles into constants within the Lagrangian, then essentially ignoring them because they aren't physical, leaving only the true, observable mass remaining. This will make a little more sense when we get there.
+
+There are a number of ways to regularize such a diverging integral. One of the easier ways is introducing a cutoff energy so that we no longer integrate over all possible momenta, and thus it doesn't diverge. However, as one would expect, this violates a number of symmetries, and also means the result we get is based entirely upon what arbitrary cutoff we use. There are others that are similar, some that more cleverly introduce various cutoffs; we won't use any of these. We will use something called \textbf{Dimensional Regularization (DR)}. This involves no arbitrary cutoffs or anything, and preserves all symmetries. It is also the method why which we map the infinities into poles as I mentioned in the previous paragraph.
+
+
+\section{Dimensional Regularization}
+
+DR involves turning the 4-dimensional integral into an $n$-dimensional integral, where $n$ is some dimension less than $4$. The motivation for doing something like is because the integral in Equation~\eqref{eq:1} would be convergent for any $n<4$. It turns out that integral is actually only logarithmically divergent - our integrand is a fraction, and the numerator will contain terms linear and terms constant in $k$. The terms linear in $k$ leave the entire integrand odd, so it integrates to zero leaving only the constant terms remaining. Hence, it is logarithmically divergent. After doing this, we will let $n=4-\epsilon$ (or sometimes $4-2\epsilon$), where we eventually take $\epsilon \rightarrow 0$ except in the poles that emerge (obviously, because those by construction diverge).
+
+First, let's consider how we'd actually handle an $n$-dimensional integral. This means we have something like
+
+\begin{equation}
+  \int \frac{\dd^nk}{(2\pi)^n},
+\end{equation}
+
+where the measure also takes a power of $n$. It turns out that this is not strictly required, we just need to make sure that it reduces to $(2\pi)^4$ when we take $d=4$ ($\epsilon \rightarrow 0$).
+
+There are a number of other implications of moving to $n$ dimensions. Mainly, this involves some more consideration of the Dirac algebra. Its full definition via anti-commutators remains the same (it is, of course, how they are defined):
+
+\begin{equation}
+  \{\gamma^\mu,\gamma^\nu\} = 4g^{\mu\nu}.
+\end{equation}
+
+The 4 is arbitrary. It can in fact be $2^{d/2}$, which of course returns to 4 in 4-dimensions, but we choose to keep it normalized to 4 this way. This itself isn't the issue, but rather the $g^{\mu\nu}$ is what is the problem, mainly when it comes to contractions. First, we now have that
+
+\begin{equation}
+  g^{\mu\nu}g_{\mu\nu} = n
+\end{equation}
+
+rather than 4. This means that
+
+\begin{align}
+  &\gamma^\mu\gamma_\mu = n, \\
+  &\gamma^\nu\gamma^\mu\gamma_\nu = (2-n)\gamma^\mu, \\
+  &\gamma^\rho\gamma^\nu\gamma^\mu\gamma^\sigma\gamma_\rho = -2 \gamma^\sigma\gamma^\nu\gamma^\nu + (4-n)\gamma^\nu\gamma^\mu\gamma^\rho.
+\end{align}
+
+These things are the most challenging parts of working in $n$-dimensions.
+
+
+
+
+\subsection{N-Dimensional Integration}
+
+We will need a few more things before moving on. The first is how to actually handle the integrals... what the hell is an $n$-dimensional integral? Naturally, when we have something like
+
+\begin{equation}
+  \int \dd^nk,
+\end{equation}
+
+we are inclined to try and go to spherical coordinates. Returning to 3-dimensions for a moment, we know that we can relate the cartesian coordinates $x$, $y$, and $z$ to the spherical coordinates $r$, $\theta$, and $\phi$ in this way:
+
+\begin{equation}
+  \begin{alignedat}{1}
+    \begin{cases}
+      z &= r\cos\phi \\
+      x &= r\sin\theta\cos\phi \\
+      y &= r\sin\theta\cos\phi.
+    \end{cases}
+  \end{alignedat}
+\end{equation}
+
+Notice the pattern, here. We start off with the first cartesian coordinate just being the radius' cosine projection. Then, the rest of the coordinates need a sine projection, after which we start the process again: the first coordinate gets a cosine projection, then the one after gets a sin projection. This will continue; for 5-dimensions, this becomes even easier to see:
+
+\begin{equation}
+  \begin{alignedat}{1}
+    \begin{cases}
+      x^1 &= \cos\theta_1 \\
+      x^2 &= \sin\theta_1\cos\theta_2 \\
+      x^3 &= \sin\theta_1\sin\theta_2\cos\theta_3 \\
+      x^4 &= \sin\theta_1\sin\theta_2\sin\theta_3\cos\theta_4 \\
+      x^5 &= \sin\theta_1\sin\theta_2\sin\theta_3\sin\theta_4 \\      
+    \end{cases}
+  \end{alignedat}
+\end{equation}
+
+We have five cartesian coordinates but I only listed four - the remaining coordinate is the radius. We could also rename the last one to $\phi$ if we wanted, but it doesn't really matter, we won't ever explicitly see then anymore after this. When doing the change of variables for the integration, we had, going back to 3-dimensions,
+
+\begin{equation}
+  \int \dd^3x = \int r^2\dd r \dd\Omega,
+\end{equation}
+
+where all of this angular stuff is grouped together in the differential solid angle
+
+\begin{equation}
+  \dd\Omega_3 = \sin\theta \dd\theta\dd\phi.
+\end{equation}
+
+In our 5-dimensional case, this would be
+
+\begin{equation}
+  \dd\Omega_5 = \sin^3\theta_1 \sin^2\theta_2 \sin\theta_3 \dd\theta_1 \dd\theta_1\dd\theta_2\dd\theta_3\dd\theta_4.
+\end{equation}
+
+Note the pattern here also. With all of this, then, a change of variables to spherical from $n$-dimensional cartesian coordinates looks like:
+
+\begin{equation}
+  \int \dd^4k = k^{n-1} \dd\abs{k} \dd\Omega_n,
+\end{equation}
+
+where
+
+\begin{equation}
+  \dd\Omega_n = \prod_{\ell=1}^{n-1} \sin^{n-1-\ell}\theta_\ell \dd\theta_\ell.
+\end{equation}
+
+All of the integrals we will do will have no explicit angular dependence, so we can integrate that separately. I won't go into it, but it turns out that this becomes
+
+\begin{equation}
+  \int \dd\Omega_n = \frac{2\pi^{n/2}}{\Gamma(n/2)},
+\end{equation}
+
+where $\Gamma$ is the Euler gamma function. We will see in just a little how to expand this around $x=0$, but I'll list two properties of it. The Gamma function has an number of different representations, but the one that we will use is
+
+\begin{equation}
+  \Gamma(z) = \int_0^{\infty} t^{z-1}e^{-t} \;\dd t.
+\end{equation}
+
+The Gamma function has the rough definition of being a more generalized version of the factorial. Because of this, it has this nice property:
+
+\begin{equation}
+  z\Gamma(z) = \Gamma(z+1).
+\end{equation}
+
+We are also going to need a few more results before I can just list the general result for $n$-dimensional integration. First, there is the Beta function $B(p,q)$, which can be defined in terms of gamma functions, along with having an integral representation:
+
+\begin{equation}
+  B(p,q) = \frac{\Gamma(p)\Gamma(q)}{\Gamma(p+q)} = \int_0^1 x^{p-1}(1-x)^{q-1} \;\dd x.
+\end{equation}
+
+Next, we will almost always end up with integrals like so:
+
+\begin{equation}
+  \int \frac{\dd^nk}{(2\pi)^n} \frac{1}{(k^2 - \Delta)^a},
+\end{equation}
+
+where $\Delta$ is some function of other momenta and other integration variables and $a$ is some real number.. At this point, it apparently is quite complex to do this integral in Minkowski space. However, if we do what's called a Wick rotation, where we essentially make a $\qty{90}{\degree}$ rotation in the complex plane. This turns $k^0 = iK_0$, and keeps $\vv{k} = \vv{K}$. At this point, then, we have that each term in $K^2$ is positive, unlike in Minkowski space where the time component is off by a minus compared to the spatial parts. We are hence in Euclidean space, where the integral is much more natural.
+
+Side effects of this are very minimal. It simply takes $k^2 \rightarrow -K^2$ and $\dd^nk \rightarrow i\dd^nK$. Therefore, we have the integral
+
+\begin{equation}
+  \int \frac{\dd^nK}{(2\pi)^ni} \frac{1}{(K^2 + \Delta)^a},
+\end{equation}
+
+where I took the minus out and turned the $-i$ to a $1/i$.
+
+At this point, we can write down the general result for the above integral (which is in Euclidean space now):
+
+\begin{equation}
+  \int \frac{\dd^nK}{(2\pi)^ni} \frac{1}{(K^2 + \Delta)^a} = \frac{B(n/2, 2-n/2)}{(4\pi)^{n/2}\Gamma(n/2)} \Delta^{n/2 - 2} = \frac{\Gamma\br{2 - \frac{n}{2}}}{(4\pi)^{n/2}\Gamma(a)}\Delta^{n/2 - a}.
+\end{equation}
+
+Lastly, the integrals we will get won't be a in a form where the entire denominator is raised to a power. In order to get it in such a form, we employ Feynman parametrization, wherein we can write a sum of propagators (which is what the denominator will be) like so:
+
+\begin{equation}
+  \prod_{i=1}^n \frac{1}{A_i^{\alpha_i}} = \frac{\Gamma(\alpha)}{\prod_{i=1}^n \Gamma(\alpha_i)} \int_0^1 \br{\prod_{i=1}^n \dd x_i \; x_i^{\alpha_i - 1}} \frac{\delta(1-x)}{\br{\sum_{i=1}^n x_iA_i}^\alpha},
+\end{equation}
+
+where $\alpha = \sum \alpha_i$ and $x = \sum x_i$. This formula looks quite complicated, however we will only ever use the simpler versions of it. For instance,
+
+\begin{equation}
+  \frac{1}{AB} = \int_0^1\dd x \dd y \; \frac{\delta(1-x-y)}{(Ax + By)^2}.
+\end{equation}
+
+We can kill the $y$ integral with the delta function:
+
+\begin{equation}
+  \frac{1}{AB} = \int_0^1 \dd x \; \frac{1}{[Ax + (1-x)B]^2},
+\end{equation}
+
+which is quite a simple result. Additionally, we see now that we have turned the product in the denominator to something that is squared in its entirety, meaning we will be able to employ our dimensional regularlization.
+
+
+
+
+
+\section{The Lepton Self-Energy}
+
+We now move to calculate the diagram I showed first, the lepton self energy. To be more general, we can consider the quark self-energy, which involves QCD contributions. I wrote it earlier as just a normal amplitude with spinors (and in 4-dimensions), but we want to consider it as corrections to the quark propagator, so we ignore the external spinors for the moment. Therefore, we give it a different notation: $i\sigma_{ij}$, where the $i$ indicates the first quark and the $j$ indicates the second quark. As we will see, there will be a $\delta_{ij}$ in there, meaning, naturally, that the quark stays itself.
+
+\begin{align}
+  i\Sigma_{ij} &= \int \frac{\dd^4k}{(2\pi)^4} (-ig_s\gamma^\mu T_{ij}^a) \br{\frac{i(\psl - \ksl)}{(p-k)^2}} (-ig_s\gamma^\nu T_{jk}^b) \br{- \frac{ig_{\mu\nu}\delta^{ab}}{k^2}} \\
+  &= -g_s^2 \br{T_{ij}^a T_{jk}^a} \int \frac{\dd^nk}{(2\pi)^n} \frac{\gamma^\mu (\psl - \ksl) \gamma_\mu}{(p-k)^2k^2},
+\end{align}
+
+where I have taken the quarks to be massless. The color factor evaluates to $T_{ij}^a T_{jk}^a = \delta_{ij}C_F$, where $C_F$ is the \textit{Casimir of the fundamental}, and it essentially counts/labels all of the irriducible representations of $SU(N)$. Since we are in $n$ dimensions, we do not evaluate this as if we were in $SU(3)$. We have also found our delta function, as I anticipated, so we can write
+
+\begin{equation}
+  i\Sigma = g_s^2 C_F \int \frac{\dd^nk}{(2\pi)^n} \frac{\gamma^\mu(\ksl - \psl)\gamma_\mu}{(k-p)^2k^2}.
+\end{equation}
+
+Also note that we have adopted the Feynman gauge in our choice of the gauge propagator. This can be done with not too much more work in the case that we take a more general gauge, but I will keep it simple here.
+
+At this stage, we need to get something that is entirely squared in the denominator so that we can apply our general result. This calls for Feynman parameters; I quoted already the exact case for a product of two propagators of power 1:
+
+\begin{equation}
+  \frac{1}{(p-k)^2k^2} = \int_0^1 \dd x \; \frac{1}{[x(k-p)^2 + (1-x)k^2]^2},
+\end{equation}
+
+meaning
+
+\begin{equation}
+  \Sigma = -ig_s^2 C_F \int_0^1 \dd x \int \frac{\dd^nk}{(2\pi)^n} \frac{\gamma^\mu(\ksl - \psl)\gamma_\mu}{[x(k-p)^2 + (1-x)k^2]^2}.
+\end{equation}
+
+We can use our gamma matrix results to say that
+
+\begin{equation}
+  \Sigma = -ig_s^2 C_F (2-n) \int_0^1 \dd x \int \frac{\dd^nk}{(2\pi)^n} \frac{\ksl - \psl}{[x(k-p)^2 + (1-x)k^2]^2}.
+\end{equation}
+
+What we can do now is massage the denominator a little bit. What we want, in the end, is to introduce a shifted momentum such that we can ``cancel'' or in general simplify the denominator. Doing so:
+
+\begin{align}
+  &= xk^2 - 2xkp + xp^2 + k^2 - xk^2 \\
+  &= k^2 - 2xkp + x^2p^2 - x^2p^2 + xp^2 \\
+  &= (k-xp)^2 + x(1-x)p^2.
+\end{align}
+
+At this point, we define the shifted momentum $\ell \equiv k-xp$ and $\Delta \equiv -x(1-x)p^2$ so that the denominator becomes
+
+\begin{equation}
+  = \ell^2 - \Delta.
+\end{equation}
+
+We also need to replace $\ksl$ with our new shifted momenta:
+
+\begin{equation}
+  \ksl - \psl = \lsl + (1-x)\psl.
+\end{equation}
+
+Thus,
+
+\begin{equation}
+  \Sigma = -ig_s^2 C_F (2-n) \int_0^1 \dd x \int \frac{\dd^n\ell}{(2\pi)^n} \frac{\lsl + (1-x)\psl}{(\ell^2 - \Delta)^2}.
+\end{equation}
+
+Now we notice that the denominator is on the order of $\mathcal{O}(\ell^4)$, meaning that it is even. As a result, the term that is linear in $\ell$ in the numerator will turn the entire integrand odd, which, when evaluated over a symmetric interval, is zero. This means that we can ignore all linear terms so that
+
+\begin{equation}
+  \Sigma = -ig_s^2 C_F (2-n) \psl \int_0^1 \dd x \; (1-x) \int \frac{\dd^n\ell}{(2\pi)^n} \frac{1}{(\ell^2 - \Delta)^2}.
+\end{equation}
+
+
+\end{document}
+
+
+
+%%% Local Variables:
+%%% mode: LaTeX
+%%% TeX-master: t
+%%% End:
