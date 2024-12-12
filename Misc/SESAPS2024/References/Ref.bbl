@@ -1,0 +1,251 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated as
+% required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+\datalist[entry]{none/global//global/global/global}
+  \entry{one}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=cL}{%
+         family={collaboration},
+         familyi={c\bibinitperiod},
+         given={LHCb},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{cL1}
+    \strng{fullhash}{cL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{eprint}
+    \verb 2406.03387
+    \endverb
+    \field{title}{Measurement of the branching fraction ratios $R(D^{+})$ and $R(D^{*+})$ using muonic $\tau$ decays}
+    \verb{url}
+    \verb https://arxiv.org/abs/2406.03387
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{hep-ex}
+    \field{year}{2024}
+  \endentry
+
+  \entry{two}{article}{}{}
+    \name{author}{1}{}{%
+      {{hash=CL}{%
+         family={Collaboration},
+         familyi={C\bibinitperiod},
+         given={LHCb},
+         giveni={L\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {American Physical Society (APS)}%
+    }
+    \strng{namehash}{CL1}
+    \strng{fullhash}{CL1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1103/physrevlett.132.131801
+    \endverb
+    \field{issn}{1079-7114}
+    \field{number}{13}
+    \field{title}{Amplitude Analysis of the $B^0$ Decay}
+    \verb{url}
+    \verb http://dx.doi.org/10.1103/PhysRevLett.132.131801
+    \endverb
+    \field{volume}{132}
+    \field{journaltitle}{Physical Review Letters}
+    \field{month}{03}
+    \field{year}{2024}
+  \endentry
+
+  \entry{three}{misc}{}{}
+    \name{author}{1}{}{%
+      {{hash=PH}{%
+         family={Pacey},
+         familyi={P\bibinitperiod},
+         given={Holly},
+         giveni={H\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{PH1}
+    \strng{fullhash}{PH1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{eprint}
+    \verb 2405.11572
+    \endverb
+    \field{title}{Searches for Lepton Flavour Violation at ATLAS and CMS}
+    \verb{url}
+    \verb https://arxiv.org/abs/2405.11572
+    \endverb
+    \field{eprinttype}{arXiv}
+    \field{eprintclass}{hep-ex}
+    \field{year}{2024}
+  \endentry
+
+  \entry{four}{article}{}{}
+    \name{author}{2}{}{%
+      {{hash=BK}{%
+         family={Babu},
+         familyi={B\bibinitperiod},
+         given={K.S.},
+         giveni={K\bibinitperiod},
+      }}%
+      {{hash=JJ}{%
+         family={Julio},
+         familyi={J\bibinitperiod},
+         given={J.},
+         giveni={J\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{1}{%
+      {Elsevier BV}%
+    }
+    \strng{namehash}{BKJJ1}
+    \strng{fullhash}{BKJJ1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1016/j.nuclphysb.2010.07.022
+    \endverb
+    \field{issn}{0550-3213}
+    \field{number}{1–2}
+    \field{pages}{130–156}
+    \field{title}{Two-loop neutrino mass generation through leptoquarks}
+    \verb{url}
+    \verb http://dx.doi.org/10.1016/j.nuclphysb.2010.07.022
+    \endverb
+    \field{volume}{841}
+    \field{journaltitle}{Nuclear Physics B}
+    \field{month}{12}
+    \field{year}{2010}
+  \endentry
+
+  \entry{five}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=DI}{%
+         family={Doršner},
+         familyi={D\bibinitperiod},
+         given={Ilja},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Lejlić},
+         familyi={L\bibinitperiod},
+         given={Ajla},
+         giveni={A\bibinitperiod},
+      }}%
+      {{hash=SS}{%
+         family={Saad},
+         familyi={S\bibinitperiod},
+         given={Shaikh},
+         giveni={S\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{2}{%
+      {Springer Science}%
+      {Business Media LLC}%
+    }
+    \strng{namehash}{DILASS1}
+    \strng{fullhash}{DILASS1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1007/jhep03(2023)025
+    \endverb
+    \field{issn}{1029-8479}
+    \field{number}{3}
+    \field{title}{Asymmetric leptoquark pair production at LHC}
+    \verb{url}
+    \verb http://dx.doi.org/10.1007/JHEP03(2023)025
+    \endverb
+    \field{volume}{2023}
+    \field{journaltitle}{Journal of High Energy Physics}
+    \field{month}{03}
+    \field{year}{2023}
+  \endentry
+
+  \entry{six}{article}{}{}
+    \name{author}{3}{}{%
+      {{hash=DI}{%
+         family={Doršner},
+         familyi={D\bibinitperiod},
+         given={Ilja},
+         giveni={I\bibinitperiod},
+      }}%
+      {{hash=FS}{%
+         family={Fajfer},
+         familyi={F\bibinitperiod},
+         given={Svjetlana},
+         giveni={S\bibinitperiod},
+      }}%
+      {{hash=LA}{%
+         family={Lejlić},
+         familyi={L\bibinitperiod},
+         given={Ajla},
+         giveni={A\bibinitperiod},
+      }}%
+    }
+    \list{publisher}{2}{%
+      {Springer Science}%
+      {Business Media LLC}%
+    }
+    \strng{namehash}{DIFSLA1}
+    \strng{fullhash}{DIFSLA1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \verb{doi}
+    \verb 10.1007/jhep05(2021)167
+    \endverb
+    \field{issn}{1029-8479}
+    \field{number}{5}
+    \field{title}{Novel leptoquark pair production at LHC}
+    \verb{url}
+    \verb http://dx.doi.org/10.1007/JHEP05(2021)167
+    \endverb
+    \field{volume}{2021}
+    \field{journaltitle}{Journal of High Energy Physics}
+    \field{month}{05}
+    \field{year}{2021}
+  \endentry
+
+  \entry{seven}{thesis}{}{}
+    \name{author}{1}{}{%
+      {{hash=YV}{%
+         family={Yazykov},
+         familyi={Y\bibinitperiod},
+         given={Vladyslav},
+         giveni={V\bibinitperiod},
+      }}%
+    }
+    \strng{namehash}{YV1}
+    \strng{fullhash}{YV1}
+    \field{labelnamesource}{author}
+    \field{labeltitlesource}{title}
+    \field{note}{Presented 05 Sep 2023}
+    \field{title}{Optimization of the ttH Selection Including Systematics Using Machine Learning with ATLAS Data}
+    \verb{url}
+    \verb https://cds.cern.ch/record/2871484
+    \endverb
+    \list{institution}{1}{%
+      {Prague, Tech. U.}%
+    }
+    \field{year}{2023}
+  \endentry
+\enddatalist
+\endinput

@@ -1,0 +1,4 @@
+- vertex correction calculation
+- put together ppt for SESAPS conference (low prio since this should be easy)
+- data structures/econ various stuff
+- QM hw
